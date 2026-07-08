@@ -1,0 +1,2393 @@
+{
+  "presente-indicativo": {
+    "slug": "presente-indicativo",
+    "explanation": "El presente de indicativo expresa acciones habituales, verdades generales y situaciones actuales. En español los verbos se dividen en tres grupos según su terminación: -ar, -er, -ir. Cada grupo tiene sus propias terminaciones, que se añaden a la raíz del verbo. También se usa para hablar de un futuro muy cercano y seguro (Mañana trabajo).",
+    "rule_of_thumb": "Quitas -ar/-er/-ir, miras el grupo y pones la terminación. El presente también sirve para lo que haces normalmente.",
+    "german_pitfall": "Im Deutschen gibt es nur eine Präsensform pro Person, im Spanischen hängt die Endung von der Verbgruppe (-ar/-er/-ir) ab. Achtung: Das Subjektpronomen (yo, tú...) lässt man meist weg, weil die Endung schon zeigt, wer handelt – anders als im Deutschen, wo 'ich/du' fast immer stehen muss.",
+    "paradigm": {
+      "ar": {
+        "yo": "hablo",
+        "tu": "hablas",
+        "el": "habla",
+        "nosotros": "hablamos",
+        "vosotros": "habláis",
+        "ellos": "hablan"
+      },
+      "er": {
+        "yo": "como",
+        "tu": "comes",
+        "el": "come",
+        "nosotros": "comemos",
+        "vosotros": "coméis",
+        "ellos": "comen"
+      },
+      "ir": {
+        "yo": "vivo",
+        "tu": "vives",
+        "el": "vive",
+        "nosotros": "vivimos",
+        "vosotros": "vivís",
+        "ellos": "viven"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Yo ____ (hablar) español todos los días.",
+        "a": "hablo"
+      },
+      {
+        "q": "Nosotros ____ (comer) a las dos.",
+        "a": "comemos"
+      },
+      {
+        "q": "Ellos ____ (vivir) en Barcelona.",
+        "a": "viven"
+      }
+    ],
+    "label": "Presente de indicativo",
+    "ctype": "tense",
+    "cefr": "A1"
+  },
+  "futuro-proximo": {
+    "slug": "futuro-proximo",
+    "explanation": "El futuro próximo se forma con el verbo ir conjugado en presente + la preposición a + infinitivo. Sirve para expresar planes e intenciones o acciones futuras cercanas. Es muy frecuente en la lengua hablada. La preposición a nunca desaparece: es obligatoria.",
+    "rule_of_thumb": "ir (voy, vas, va...) + a + infinitivo. Es como el 'going to' inglés.",
+    "german_pitfall": "Im Deutschen benutzt man für nahe Zukunft oft einfach das Präsens ('Ich mache das morgen'). Im Spanischen ist die Konstruktion mit 'a' zwingend – vergiss das 'a' nicht: 'Voy a comer', nicht 'Voy comer'.",
+    "paradigm": {
+      "ar": {
+        "yo": "voy a hablar",
+        "tu": "vas a hablar",
+        "el": "va a hablar",
+        "nosotros": "vamos a hablar",
+        "vosotros": "vais a hablar",
+        "ellos": "van a hablar"
+      },
+      "er": {
+        "yo": "voy a comer",
+        "tu": "vas a comer",
+        "el": "va a comer",
+        "nosotros": "vamos a comer",
+        "vosotros": "vais a comer",
+        "ellos": "van a comer"
+      },
+      "ir": {
+        "yo": "voy a vivir",
+        "tu": "vas a vivir",
+        "el": "va a vivir",
+        "nosotros": "vamos a vivir",
+        "vosotros": "vais a vivir",
+        "ellos": "van a vivir"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Mañana yo ____ (estudiar) en la biblioteca.",
+        "a": "voy a estudiar"
+      },
+      {
+        "q": "¿Qué ____ (hacer, tú) este fin de semana?",
+        "a": "vas a hacer"
+      },
+      {
+        "q": "Nosotros ____ (viajar) a Madrid.",
+        "a": "vamos a viajar"
+      }
+    ],
+    "label": "Futuro próximo (ir a + infinitivo)",
+    "ctype": "tense",
+    "cefr": "A1"
+  },
+  "estar-gerundio": {
+    "slug": "estar-gerundio",
+    "explanation": "La perífrasis estar + gerundio expresa una acción que está en desarrollo en el momento de hablar. El gerundio se forma con -ando (verbos en -ar) y -iendo (verbos en -er/-ir). Se usa para acciones concretas en curso, no para hábitos. Ejemplo: Estoy comiendo ahora mismo.",
+    "rule_of_thumb": "estar + verbo terminado en -ando/-iendo = lo que pasa justo ahora.",
+    "german_pitfall": "Im Deutschen gibt es keine echte Verlaufsform; man sagt 'Ich esse (gerade)'. Verwende estar + gerundio NUR für Handlungen im Moment, nicht für Gewohnheiten: 'Trabajo en un banco' (allgemein), nicht 'Estoy trabajando en un banco', wenn du deinen Beruf meinst.",
+    "paradigm": {
+      "ar": {
+        "yo": "estoy hablando",
+        "tu": "estás hablando",
+        "el": "está hablando",
+        "nosotros": "estamos hablando",
+        "vosotros": "estáis hablando",
+        "ellos": "están hablando"
+      },
+      "er": {
+        "yo": "estoy comiendo",
+        "tu": "estás comiendo",
+        "el": "está comiendo",
+        "nosotros": "estamos comiendo",
+        "vosotros": "estáis comiendo",
+        "ellos": "están comiendo"
+      },
+      "ir": {
+        "yo": "estoy viviendo",
+        "tu": "estás viviendo",
+        "el": "está viviendo",
+        "nosotros": "estamos viviendo",
+        "vosotros": "estáis viviendo",
+        "ellos": "están viviendo"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Ahora mismo yo ____ (hablar) por teléfono.",
+        "a": "estoy hablando"
+      },
+      {
+        "q": "Los niños ____ (comer) en la cocina.",
+        "a": "están comiendo"
+      },
+      {
+        "q": "¿Qué ____ (hacer, tú) ahora?",
+        "a": "estás haciendo"
+      }
+    ],
+    "label": "Estar + gerundio",
+    "ctype": "tense",
+    "cefr": "A2"
+  },
+  "perfecto": {
+    "slug": "perfecto",
+    "explanation": "El pretérito perfecto se forma con el presente del verbo haber + participio pasado (-ado para -ar; -ido para -er/-ir). Expresa acciones pasadas relacionadas con el presente o en un periodo de tiempo aún no terminado (hoy, esta semana, este año). También se usa para experiencias vitales. Ejemplo: Hoy he comido paella.",
+    "rule_of_thumb": "haber (he, has, ha...) + participio. Para lo que ha pasado hace poco o dentro de un tiempo que aún dura.",
+    "german_pitfall": "Der Aufbau ähnelt dem deutschen Perfekt (haben + Partizip), ABER haber und das Partizip dürfen NIE getrennt werden: 'He comido mucho', nicht 'He mucho comido'. Außerdem gibt es nur EIN Hilfsverb (haber) – kein 'sein' wie im Deutschen ('ich bin gegangen').",
+    "paradigm": {
+      "ar": {
+        "yo": "he hablado",
+        "tu": "has hablado",
+        "el": "ha hablado",
+        "nosotros": "hemos hablado",
+        "vosotros": "habéis hablado",
+        "ellos": "han hablado"
+      },
+      "er": {
+        "yo": "he comido",
+        "tu": "has comido",
+        "el": "ha comido",
+        "nosotros": "hemos comido",
+        "vosotros": "habéis comido",
+        "ellos": "han comido"
+      },
+      "ir": {
+        "yo": "he vivido",
+        "tu": "has vivido",
+        "el": "ha vivido",
+        "nosotros": "hemos vivido",
+        "vosotros": "habéis vivido",
+        "ellos": "han vivido"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Esta mañana yo ____ (desayunar) café.",
+        "a": "he desayunado"
+      },
+      {
+        "q": "¿Alguna vez ____ (comer, tú) sushi?",
+        "a": "has comido"
+      },
+      {
+        "q": "Nosotros ____ (vivir) aquí muchos años.",
+        "a": "hemos vivido"
+      }
+    ],
+    "label": "Pretérito perfecto",
+    "ctype": "tense",
+    "cefr": "A2"
+  },
+  "indefinido": {
+    "slug": "indefinido",
+    "explanation": "El pretérito indefinido expresa acciones pasadas terminadas, en un momento concreto del pasado que ya no tiene relación con el presente (ayer, el año pasado, en 2010). Narra hechos puntuales y completos. Los verbos en -er y -ir comparten las mismas terminaciones. Ejemplo: Ayer comí en un restaurante.",
+    "rule_of_thumb": "Para algo que pasó y terminó en un momento concreto del pasado: ayer, el lunes, en 2020.",
+    "german_pitfall": "Im gesprochenen Deutschen benutzt man meist das Perfekt für alles Vergangene. Im Spanischen musst du unterscheiden: indefinido = abgeschlossen mit Zeitangabe (ayer comí), perfecto = mit Bezug zur Gegenwart (hoy he comido). Diese Trennung gibt es im Deutschen nicht.",
+    "paradigm": {
+      "ar": {
+        "yo": "hablé",
+        "tu": "hablaste",
+        "el": "habló",
+        "nosotros": "hablamos",
+        "vosotros": "hablasteis",
+        "ellos": "hablaron"
+      },
+      "er": {
+        "yo": "comí",
+        "tu": "comiste",
+        "el": "comió",
+        "nosotros": "comimos",
+        "vosotros": "comisteis",
+        "ellos": "comieron"
+      },
+      "ir": {
+        "yo": "viví",
+        "tu": "viviste",
+        "el": "vivió",
+        "nosotros": "vivimos",
+        "vosotros": "vivisteis",
+        "ellos": "vivieron"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Ayer yo ____ (hablar) con mi jefe.",
+        "a": "hablé"
+      },
+      {
+        "q": "El año pasado ellos ____ (vivir) en Sevilla.",
+        "a": "vivieron"
+      },
+      {
+        "q": "¿Qué ____ (comer, tú) anoche?",
+        "a": "comiste"
+      }
+    ],
+    "label": "Pretérito indefinido",
+    "ctype": "tense",
+    "cefr": "A2"
+  },
+  "imperfecto": {
+    "slug": "imperfecto",
+    "explanation": "El pretérito imperfecto describe acciones habituales en el pasado, situaciones en desarrollo, descripciones y circunstancias. No indica cuándo empezó o terminó la acción. Los verbos en -er y -ir comparten las terminaciones. Se usa mucho con expresiones como antes, siempre, todos los días. Ejemplo: Cuando era niño, jugaba en la calle.",
+    "rule_of_thumb": "Para describir el pasado o hablar de lo que hacías habitualmente: 'antes', 'siempre', 'todos los días'.",
+    "german_pitfall": "Das Deutsche unterscheidet nicht zwischen imperfecto und indefinido – beides ist im Deutschen oft dasselbe Präteritum/Perfekt. Merke: imperfecto = Hintergrund, Beschreibung, Gewohnheit ('llovía', 'era feliz'); indefinido = ein abgeschlossenes Ereignis ('llovió una hora'). Diese Wahl musst du bewusst treffen.",
+    "paradigm": {
+      "ar": {
+        "yo": "hablaba",
+        "tu": "hablabas",
+        "el": "hablaba",
+        "nosotros": "hablábamos",
+        "vosotros": "hablabais",
+        "ellos": "hablaban"
+      },
+      "er": {
+        "yo": "comía",
+        "tu": "comías",
+        "el": "comía",
+        "nosotros": "comíamos",
+        "vosotros": "comíais",
+        "ellos": "comían"
+      },
+      "ir": {
+        "yo": "vivía",
+        "tu": "vivías",
+        "el": "vivía",
+        "nosotros": "vivíamos",
+        "vosotros": "vivíais",
+        "ellos": "vivían"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Cuando era pequeño, yo ____ (hablar) con mis abuelos cada domingo.",
+        "a": "hablaba"
+      },
+      {
+        "q": "Antes nosotros ____ (vivir) en el campo.",
+        "a": "vivíamos"
+      },
+      {
+        "q": "De niños, ellos siempre ____ (comer) a la una.",
+        "a": "comían"
+      }
+    ],
+    "label": "Pretérito imperfecto",
+    "ctype": "tense",
+    "cefr": "B1"
+  },
+  "pluscuamperfecto": {
+    "slug": "pluscuamperfecto",
+    "explanation": "El pretérito pluscuamperfecto expresa una acción pasada anterior a otra acción también pasada. Se forma con el imperfecto del verbo haber (había, habías...) + participio pasado. Indica el pasado del pasado. Ejemplo: Cuando llegué, ellos ya habían comido.",
+    "rule_of_thumb": "había + participio = lo que ya había pasado antes de otro momento del pasado.",
+    "german_pitfall": "Entspricht dem deutschen Plusquamperfekt ('hatte gegessen'), aber wieder gilt: nur EIN Hilfsverb (haber) – kein 'sein' ('war gegangen' → 'había ido'). Und haber + Partizip nie trennen.",
+    "paradigm": {
+      "ar": {
+        "yo": "había hablado",
+        "tu": "habías hablado",
+        "el": "había hablado",
+        "nosotros": "habíamos hablado",
+        "vosotros": "habíais hablado",
+        "ellos": "habían hablado"
+      },
+      "er": {
+        "yo": "había comido",
+        "tu": "habías comido",
+        "el": "había comido",
+        "nosotros": "habíamos comido",
+        "vosotros": "habíais comido",
+        "ellos": "habían comido"
+      },
+      "ir": {
+        "yo": "había vivido",
+        "tu": "habías vivido",
+        "el": "había vivido",
+        "nosotros": "habíamos vivido",
+        "vosotros": "habíais vivido",
+        "ellos": "habían vivido"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Cuando llegué, la película ya ____ (empezar).",
+        "a": "había empezado"
+      },
+      {
+        "q": "Ellos ya ____ (comer) cuando volvimos.",
+        "a": "habían comido"
+      },
+      {
+        "q": "Yo nunca ____ (vivir) en una ciudad tan grande antes.",
+        "a": "había vivido"
+      }
+    ],
+    "label": "Pretérito pluscuamperfecto",
+    "ctype": "tense",
+    "cefr": "B1"
+  },
+  "futuro-simple": {
+    "slug": "futuro-simple",
+    "explanation": "El futuro simple expresa acciones futuras y también probabilidad o suposición en el presente. Se forma añadiendo las terminaciones directamente al infinitivo completo del verbo; las terminaciones son iguales para los tres grupos (-ar, -er, -ir). Ejemplo: Mañana hablaré con ella. También: Serán las tres (probablemente).",
+    "rule_of_thumb": "Infinitivo entero + terminación (-é, -ás, -á...). Mismas terminaciones para todos los verbos.",
+    "german_pitfall": "Im gesprochenen Deutschen und Spanischen nimmt man für Zukunft oft andere Formen (Präsens oder 'ir a'). Merke im Spanischen: Die Endungen werden an den GANZEN Infinitiv gehängt, nicht an den Stamm – 'hablaré', nicht 'hablé' (das wäre indefinido!).",
+    "paradigm": {
+      "ar": {
+        "yo": "hablaré",
+        "tu": "hablarás",
+        "el": "hablará",
+        "nosotros": "hablaremos",
+        "vosotros": "hablaréis",
+        "ellos": "hablarán"
+      },
+      "er": {
+        "yo": "comeré",
+        "tu": "comerás",
+        "el": "comerá",
+        "nosotros": "comeremos",
+        "vosotros": "comeréis",
+        "ellos": "comerán"
+      },
+      "ir": {
+        "yo": "viviré",
+        "tu": "vivirás",
+        "el": "vivirá",
+        "nosotros": "viviremos",
+        "vosotros": "viviréis",
+        "ellos": "vivirán"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Mañana yo ____ (hablar) con el médico.",
+        "a": "hablaré"
+      },
+      {
+        "q": "El próximo año ellos ____ (vivir) en otro país.",
+        "a": "vivirán"
+      },
+      {
+        "q": "¿Dónde ____ (comer, nosotros) el domingo?",
+        "a": "comeremos"
+      }
+    ],
+    "label": "Futuro simple",
+    "ctype": "tense",
+    "cefr": "B1"
+  },
+  "condicional-simple": {
+    "slug": "condicional-simple",
+    "explanation": "El condicional simple expresa acciones hipotéticas, deseos y cortesía. Se forma con el infinitivo completo más las terminaciones -ía, -ías, -ía, -íamos, -íais, -ían, iguales para las tres conjugaciones. Los verbos irregulares en futuro lo son también en condicional (tendría, haría, podría, diría). Se usa mucho para pedir cosas con educación: '¿Podrías ayudarme?'",
+    "rule_of_thumb": "Infinitivo + terminaciones del imperfecto de -er/-ir (-ía, -ías...). Sirve para el 'würde' alemán.",
+    "german_pitfall": "Deutsche neigen dazu, das Konditional wie im Deutschen mit einem Hilfsverb ('würde' + Infinitiv) zu bilden. Im Spanischen ist es EINE Verbform: 'ich würde essen' = 'comería', nicht 'sería comer' o ähnlich.",
+    "paradigm": {
+      "ar": {
+        "yo": "hablaría",
+        "tu": "hablarías",
+        "el": "hablaría",
+        "nosotros": "hablaríamos",
+        "vosotros": "hablaríais",
+        "ellos": "hablarían"
+      },
+      "er": {
+        "yo": "comería",
+        "tu": "comerías",
+        "el": "comería",
+        "nosotros": "comeríamos",
+        "vosotros": "comeríais",
+        "ellos": "comerían"
+      },
+      "ir": {
+        "yo": "viviría",
+        "tu": "vivirías",
+        "el": "viviría",
+        "nosotros": "viviríamos",
+        "vosotros": "viviríais",
+        "ellos": "vivirían"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Yo en tu lugar no ____ (decir) nada.",
+        "a": "diría"
+      },
+      {
+        "q": "¿____ (poder) usted ayudarme, por favor?",
+        "a": "Podría"
+      },
+      {
+        "q": "Nosotros ____ (viajar) más si tuviéramos dinero.",
+        "a": "viajaríamos"
+      }
+    ],
+    "label": "Condicional simple",
+    "ctype": "tense",
+    "cefr": "B1"
+  },
+  "imperativo-afirmativo": {
+    "slug": "imperativo-afirmativo",
+    "explanation": "El imperativo afirmativo sirve para dar órdenes, consejos e instrucciones. Para tú, se usa la tercera persona del presente (habla, come, vive); para vosotros se cambia la -r del infinitivo por -d (hablad, comed, vivid). Los pronombres se pegan detrás del verbo: dímelo, levántate. Hay irregulares importantes en tú: di, haz, ven, pon, sal, ten, ven, sé, ve.",
+    "rule_of_thumb": "Tú = 3ª persona del presente; vosotros = infinitivo con -d en vez de -r. Los pronombres van pegados detrás.",
+    "german_pitfall": "Im Deutschen steht das Pronomen getrennt ('gib es mir'), im Spanischen wird es an das Verb angehängt und oft mit Akzent geschrieben: 'dámelo'. Außerdem gibt es im Spanischen eine eigene Ihr-Form (vosotros: 'comed'), die es im Deutschen so nicht gibt.",
+    "paradigm": {
+      "ar": {
+        "yo": "—",
+        "tu": "habla",
+        "el": "hable",
+        "nosotros": "hablemos",
+        "vosotros": "hablad",
+        "ellos": "hablen"
+      },
+      "er": {
+        "yo": "—",
+        "tu": "come",
+        "el": "coma",
+        "nosotros": "comamos",
+        "vosotros": "comed",
+        "ellos": "coman"
+      },
+      "ir": {
+        "yo": "—",
+        "tu": "vive",
+        "el": "viva",
+        "nosotros": "vivamos",
+        "vosotros": "vivid",
+        "ellos": "vivan"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "¡____ (hablar, tú) más despacio!",
+        "a": "Habla"
+      },
+      {
+        "q": "Niños, ____ (comer, vosotros) la verdura.",
+        "a": "comed"
+      },
+      {
+        "q": "____ (decir, tú) me la verdad.",
+        "a": "Dime"
+      }
+    ],
+    "label": "Imperativo afirmativo",
+    "ctype": "tense",
+    "cefr": "A2"
+  },
+  "imperativo-negativo": {
+    "slug": "imperativo-negativo",
+    "explanation": "El imperativo negativo se forma siempre con el presente de subjuntivo, para todas las personas. No comas, no habléis, no viva usted. A diferencia del afirmativo, los pronombres van DELANTE del verbo: no me lo digas, no te levantes. Es una de las formas donde el subjuntivo aparece de manera muy práctica.",
+    "rule_of_thumb": "'No' + presente de subjuntivo. Los pronombres van delante: no te vayas.",
+    "german_pitfall": "Der bejahte und der verneinte Imperativ sind im Spanischen völlig verschieden: 'habla' → 'no hables'. Deutsche setzen oft einfach ein 'no' vor die bejahte Form ('no habla'), das ist falsch. Außerdem wandert das Pronomen jetzt VOR das Verb: 'dímelo' → 'no me lo digas'.",
+    "paradigm": {
+      "ar": {
+        "yo": "—",
+        "tu": "no hables",
+        "el": "no hable",
+        "nosotros": "no hablemos",
+        "vosotros": "no habléis",
+        "ellos": "no hablen"
+      },
+      "er": {
+        "yo": "—",
+        "tu": "no comas",
+        "el": "no coma",
+        "nosotros": "no comamos",
+        "vosotros": "no comáis",
+        "ellos": "no coman"
+      },
+      "ir": {
+        "yo": "—",
+        "tu": "no vivas",
+        "el": "no viva",
+        "nosotros": "no vivamos",
+        "vosotros": "no viváis",
+        "ellos": "no vivan"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "¡No ____ (hablar, tú) tan alto!",
+        "a": "hables"
+      },
+      {
+        "q": "No ____ (venir, vosotros) tarde.",
+        "a": "vengáis"
+      },
+      {
+        "q": "No ____ (decir, tú) melo ahora. → No ____ lo digas.",
+        "a": "me"
+      }
+    ],
+    "label": "Imperativo negativo",
+    "ctype": "tense",
+    "cefr": "B1"
+  },
+  "subjuntivo-presente": {
+    "slug": "subjuntivo-presente",
+    "explanation": "El presente de subjuntivo expresa deseos, dudas, emociones, opiniones y mandatos. Se forma quitando la -o de la primera persona del presente y añadiendo las terminaciones opuestas: los verbos en -ar toman -e, y los en -er/-ir toman -a. Aparece sobre todo en frases subordinadas con 'que': 'Quiero que vengas', 'Es posible que llueva'. Muchos irregulares se heredan de la forma 'yo' del presente (tenga, haga, salga).",
+    "rule_of_thumb": "Terminaciones al revés: -ar → -e, -er/-ir → -a. Vive en frases con 'que' de deseo, duda o emoción.",
+    "german_pitfall": "Es gibt keine echte deutsche Entsprechung — der deutsche Konjunktiv deckt das nicht ab. Deutsche benutzen nach 'wollen, dass...' oft den Indikativ ('quiero que vienes'), aber richtig ist der Subjuntivo: 'quiero que vengas'.",
+    "paradigm": {
+      "ar": {
+        "yo": "hable",
+        "tu": "hables",
+        "el": "hable",
+        "nosotros": "hablemos",
+        "vosotros": "habléis",
+        "ellos": "hablen"
+      },
+      "er": {
+        "yo": "coma",
+        "tu": "comas",
+        "el": "coma",
+        "nosotros": "comamos",
+        "vosotros": "comáis",
+        "ellos": "coman"
+      },
+      "ir": {
+        "yo": "viva",
+        "tu": "vivas",
+        "el": "viva",
+        "nosotros": "vivamos",
+        "vosotros": "viváis",
+        "ellos": "vivan"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Quiero que tú ____ (venir) a la fiesta.",
+        "a": "vengas"
+      },
+      {
+        "q": "Es posible que ____ (llover) mañana.",
+        "a": "llueva"
+      },
+      {
+        "q": "Espero que vosotros ____ (comer) bien.",
+        "a": "comáis"
+      }
+    ],
+    "label": "Presente de subjuntivo",
+    "ctype": "tense",
+    "cefr": "B1"
+  },
+  "subjuntivo-imperfecto": {
+    "slug": "subjuntivo-imperfecto",
+    "explanation": "El imperfecto de subjuntivo se usa para hipótesis irreales, cortesía y para el subjuntivo en pasado. Se forma a partir de la tercera persona del plural del pretérito indefinido: se quita -ron y se añade -ra o -se (las dos formas son válidas): hablaran/hablasen, comieran/comiesen. Aparece en condicionales irreales ('Si tuviera dinero, viajaría') y tras verbos de deseo en pasado ('Quería que vinieras').",
+    "rule_of_thumb": "3ª persona plural del indefinido menos -ron, más -ra/-se. Es el compañero del condicional en frases con 'si'.",
+    "german_pitfall": "In irrealen Bedingungssätzen benutzen Deutsche gern das Konditional in beiden Satzhälften. Im Spanischen steht im 'si'-Teil aber der Imperfecto de subjuntivo: 'Wenn ich Geld hätte' = 'Si tuviera dinero' (NICHT 'si tendría dinero').",
+    "paradigm": {
+      "ar": {
+        "yo": "hablara",
+        "tu": "hablaras",
+        "el": "hablara",
+        "nosotros": "habláramos",
+        "vosotros": "hablarais",
+        "ellos": "hablaran"
+      },
+      "er": {
+        "yo": "comiera",
+        "tu": "comieras",
+        "el": "comiera",
+        "nosotros": "comiéramos",
+        "vosotros": "comierais",
+        "ellos": "comieran"
+      },
+      "ir": {
+        "yo": "viviera",
+        "tu": "vivieras",
+        "el": "viviera",
+        "nosotros": "viviéramos",
+        "vosotros": "vivierais",
+        "ellos": "vivieran"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Si yo ____ (tener) tiempo, iría contigo.",
+        "a": "tuviera"
+      },
+      {
+        "q": "Me gustaría que tú ____ (venir) conmigo.",
+        "a": "vinieras"
+      },
+      {
+        "q": "Si ellos ____ (hablar) más despacio, entendería.",
+        "a": "hablaran"
+      }
+    ],
+    "label": "Imperfecto de subjuntivo",
+    "ctype": "tense",
+    "cefr": "B2"
+  },
+  "gerundio": {
+    "slug": "gerundio",
+    "explanation": "El gerundio expresa una acción en desarrollo. Se forma con -ando (verbos en -ar) y -iendo (verbos en -er/-ir): hablando, comiendo, viviendo. Se usa sobre todo con 'estar' para la acción en curso: 'Estoy comiendo'. También indica el modo o simultaneidad: 'Aprendo español viendo series'. No se usa como sustantivo (para eso está el infinitivo).",
+    "rule_of_thumb": "-ando / -iendo. Es el '-ing' del inglés: 'estoy haciendo' = ich bin gerade am Machen.",
+    "german_pitfall": "Das Deutsche hat keine echte Verlaufsform, daher übersetzen Deutsche 'ich lese' oft mit 'leo', vergessen aber, dass 'gerade lesen' 'estoy leyendo' verlangt. Und Achtung: als Subjekt wird NICHT der Gerundio benutzt ('Rauchen ist schädlich' = 'Fumar es malo', nicht 'fumando').",
+    "paradigm": {
+      "ar": {
+        "yo": "hablando",
+        "tu": "hablando",
+        "el": "hablando",
+        "nosotros": "hablando",
+        "vosotros": "hablando",
+        "ellos": "hablando"
+      },
+      "er": {
+        "yo": "comiendo",
+        "tu": "comiendo",
+        "el": "comiendo",
+        "nosotros": "comiendo",
+        "vosotros": "comiendo",
+        "ellos": "comiendo"
+      },
+      "ir": {
+        "yo": "viviendo",
+        "tu": "viviendo",
+        "el": "viviendo",
+        "nosotros": "viviendo",
+        "vosotros": "viviendo",
+        "ellos": "viviendo"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Ahora mismo estoy ____ (comer).",
+        "a": "comiendo"
+      },
+      {
+        "q": "Los niños están ____ (jugar) en el parque.",
+        "a": "jugando"
+      },
+      {
+        "q": "Aprendo mucho ____ (leer) libros.",
+        "a": "leyendo"
+      }
+    ],
+    "label": "El gerundio",
+    "ctype": "tense",
+    "cefr": "A2"
+  },
+  "participio": {
+    "slug": "participio",
+    "explanation": "El participio se forma con -ado (verbos en -ar) y -ido (verbos en -er/-ir): hablado, comido, vivido. Se usa con 'haber' para formar los tiempos compuestos ('he comido') y también como adjetivo, y entonces concuerda en género y número ('la puerta está cerrada'). Hay irregulares frecuentes: hecho, dicho, visto, escrito, puesto, abierto, vuelto, roto, muerto.",
+    "rule_of_thumb": "-ado / -ido. Con 'haber' es invariable (he comido); como adjetivo concuerda (cerrada).",
+    "german_pitfall": "Nach 'haber' bleibt das Partizip IMMER unverändert: 'las cartas que he escrito', nicht 'escritas'. Als Adjektiv mit 'estar/ser' muss es aber angeglichen werden. Das Deutsche kennt diese doppelte Regel nicht.",
+    "paradigm": {
+      "ar": {
+        "yo": "hablado",
+        "tu": "hablado",
+        "el": "hablado",
+        "nosotros": "hablado",
+        "vosotros": "hablado",
+        "ellos": "hablado"
+      },
+      "er": {
+        "yo": "comido",
+        "tu": "comido",
+        "el": "comido",
+        "nosotros": "comido",
+        "vosotros": "comido",
+        "ellos": "comido"
+      },
+      "ir": {
+        "yo": "vivido",
+        "tu": "vivido",
+        "el": "vivido",
+        "nosotros": "vivido",
+        "vosotros": "vivido",
+        "ellos": "vivido"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Hoy he ____ (comer) paella.",
+        "a": "comido"
+      },
+      {
+        "q": "La ventana está ____ (abrir).",
+        "a": "abierta"
+      },
+      {
+        "q": "¿Has ____ (ver) la película?",
+        "a": "visto"
+      }
+    ],
+    "label": "El participio",
+    "ctype": "tense",
+    "cefr": "A2"
+  },
+  "ser-vs-estar": {
+    "slug": "ser-vs-estar",
+    "explanation": "El español tiene dos verbos para 'ser/estar' del alemán 'sein'. 'Ser' expresa identidad, características esenciales, origen, profesión, hora y material: 'Soy alemán', 'La mesa es de madera'. 'Estar' expresa estados, ubicación y resultados temporales: 'Estoy cansado', 'Barcelona está en España'. A veces el mismo adjetivo cambia de sentido: 'es aburrido' (es una persona aburrida) frente a 'está aburrido' (se siente aburrido ahora).",
+    "rule_of_thumb": "Ser = lo que algo ES (permanente, identidad). Estar = cómo ESTÁ o DÓNDE está (estado, lugar).",
+    "german_pitfall": "Im Deutschen gibt es nur 'sein', daher ist die Aufteilung die größte Fehlerquelle. Merke: Ort ist IMMER 'estar' ('Barcelona está en España'), aber ein Ereignis findet mit 'ser' statt ('La fiesta es en mi casa'). Und Gefühle/Zustände immer 'estar': 'estoy cansado', nie 'soy cansado'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Yo ____ alemán, de Múnich.",
+        "a": "soy"
+      },
+      {
+        "q": "Hoy ____ (yo) muy cansado.",
+        "a": "estoy"
+      },
+      {
+        "q": "Barcelona ____ en Cataluña.",
+        "a": "está"
+      }
+    ],
+    "label": "Ser vs. estar",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "estar-vs-hay": {
+    "slug": "estar-vs-hay",
+    "explanation": "Usamos «hay» (forma impersonal de haber) para expresar existencia: decir que algo existe o no, normalmente con cosas nuevas o indefinidas. «Hay» es invariable: nunca cambia. Usamos «estar» para situar en el espacio algo que ya conocemos o que lleva artículo determinado. Ejemplo: «Hay un supermercado cerca» (existe), «El supermercado está en la esquina» (ubicación).",
+    "rule_of_thumb": "«Hay» cuando algo existe (con un/una/dos...); «está/están» cuando dices dónde está algo concreto (con el/la/mi...).",
+    "german_pitfall": "Im Deutschen sagt man für beides oft «es gibt» oder «ist»: «Es gibt einen Markt» / «Der Markt ist dort». Achtung: «hay» ist immer unveränderlich – nie «han» im Plural sagen. Und mit bestimmtem Artikel (el, la, mi) benutzt man immer «estar», nie «hay».",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "En mi barrio ___ tres farmacias.",
+        "a": "hay"
+      },
+      {
+        "q": "La farmacia ___ al lado del banco.",
+        "a": "está"
+      },
+      {
+        "q": "¿Dónde ___ los niños? — En el parque.",
+        "a": "están"
+      }
+    ],
+    "label": "Estar vs. hay",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "genero-y-numero": {
+    "slug": "genero-y-numero",
+    "explanation": "Los sustantivos en español tienen género (masculino o femenino) y número (singular o plural). En general, las palabras terminadas en -o son masculinas y las terminadas en -a son femeninas, pero hay excepciones (el problema, la mano). El plural se forma añadiendo -s si la palabra acaba en vocal (casa → casas) y -es si acaba en consonante (papel → papeles). Las palabras terminadas en -z cambian a -ces (luz → luces).",
+    "rule_of_thumb": "-o suele ser masculino, -a femenino; plural con -s tras vocal y -es tras consonante.",
+    "german_pitfall": "Deutsch hat drei Genera (der/die/das), Spanisch nur zwei. Das grammatische Geschlecht stimmt oft NICHT mit dem Deutschen überein: «die Milch» ist «la leche» (f.), aber «das Auto» ist «el coche» (m.). Lerne jedes Substantiv immer mit Artikel.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "el coche → los ___",
+        "a": "coches"
+      },
+      {
+        "q": "la ciudad → las ___",
+        "a": "ciudades"
+      },
+      {
+        "q": "la luz → las ___",
+        "a": "luces"
+      }
+    ],
+    "label": "Género y número del sustantivo",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "articulos": {
+    "slug": "articulos",
+    "explanation": "Los artículos determinados (el, la, los, las) se usan para algo conocido o ya mencionado. Los indeterminados (un, una, unos, unas) presentan algo nuevo o indefinido. El artículo concuerda en género y número con el sustantivo: el libro, la mesa, unos libros, unas mesas. Ante sustantivo femenino singular que empieza por «a-» tónica se usa «el»: el agua, el águila (pero: las aguas).",
+    "rule_of_thumb": "el/la/los/las = lo conocido; un/una/unos/unas = algo nuevo. Siempre concuerdan con el sustantivo.",
+    "german_pitfall": "Im Spanischen benutzt man den bestimmten Artikel viel häufiger als im Deutschen, z. B. bei allgemeinen Aussagen: «Me gusta el café» (Ich mag Kaffee – ohne Artikel im Deutschen). Auch vor Wochentagen: «los lunes» (montags).",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Quiero comprar ___ libro nuevo. (indeterminado)",
+        "a": "un"
+      },
+      {
+        "q": "___ mesa de la cocina es grande. (determinado)",
+        "a": "La"
+      },
+      {
+        "q": "Me gustan ___ perros. (general, determinado)",
+        "a": "los"
+      }
+    ],
+    "label": "Artículos determinados e indeterminados",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "concordancia-adjetivo": {
+    "slug": "concordancia-adjetivo",
+    "explanation": "El adjetivo concuerda en género y número con el sustantivo al que acompaña. Los adjetivos en -o tienen cuatro formas: alto, alta, altos, altas. Los que terminan en -e o en consonante solo cambian en número: grande/grandes, azul/azules. El adjetivo suele ir después del sustantivo: «una casa blanca», «unos coches rápidos».",
+    "rule_of_thumb": "El adjetivo copia el género y el número del sustantivo y normalmente va detrás.",
+    "german_pitfall": "Im Deutschen steht das Adjektiv VOR dem Substantiv («ein rotes Auto»); im Spanischen meist DAHINTER («un coche rojo»). Außerdem verändert sich das Adjektiv nach Geschlecht UND Zahl: «las casas blancas» – der Plural-Endung nicht vergessen.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "una casa (blanco) → una casa ___",
+        "a": "blanca"
+      },
+      {
+        "q": "unos coches (rápido) → unos coches ___",
+        "a": "rápidos"
+      },
+      {
+        "q": "las flores (azul) → las flores ___",
+        "a": "azules"
+      }
+    ],
+    "label": "Concordancia del adjetivo",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "demostrativos": {
+    "slug": "demostrativos",
+    "explanation": "Los demostrativos señalan la distancia respecto al hablante. «Este/esta/estos/estas» = algo cerca de mí. «Ese/esa/esos/esas» = algo cerca de ti. «Aquel/aquella/aquellos/aquellas» = algo lejos de los dos. Concuerdan en género y número con el sustantivo: «este libro», «esas mesas», «aquellos coches».",
+    "rule_of_thumb": "este = aquí (yo), ese = ahí (tú), aquel = allí (lejos de ambos).",
+    "german_pitfall": "Deutsch hat nur zwei Grade («dieser/jener»), Spanisch drei. Verwechsle «ese» (bei dir) nicht mit «aquel» (weit weg). Achte auf die Übereinstimmung: nicht «este casa», sondern «esta casa».",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "___ libro que tengo aquí es mío. (cerca de mí)",
+        "a": "Este"
+      },
+      {
+        "q": "___ montañas del horizonte son preciosas. (lejos)",
+        "a": "Aquellas"
+      },
+      {
+        "q": "¿Me pasas ___ vaso que tienes ahí? (cerca de ti)",
+        "a": "ese"
+      }
+    ],
+    "label": "Demostrativos (este/ese/aquel)",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "posesivos": {
+    "slug": "posesivos",
+    "explanation": "Los posesivos indican a quién pertenece algo. Las formas átonas van antes del sustantivo: mi, tu, su, nuestro/a, vuestro/a, su. Concuerdan en número (mis libros) y algunas también en género (nuestra casa, nuestras casas). «Su/sus» sirve para él, ella, usted, ellos y ustedes, según el contexto.",
+    "rule_of_thumb": "mi/tu/su + sustantivo; solo nuestro y vuestro cambian de género. «su» vale para muchas personas.",
+    "german_pitfall": "«su» ist mehrdeutig: es kann sein/ihr/Ihr bedeuten – der Kontext klärt es. Und Achtung: der Possessivartikel richtet sich nach dem BESITZTEN Ding, nicht nach dem Besitzer wie teilweise im Deutschen: «sus libros» = seine/ihre Bücher (Plural wegen «libros»).",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Yo tengo un coche. Es ___ coche.",
+        "a": "mi"
+      },
+      {
+        "q": "Nosotros tenemos una casa. Es ___ casa.",
+        "a": "nuestra"
+      },
+      {
+        "q": "Ellos tienen dos perros. Son ___ perros.",
+        "a": "sus"
+      }
+    ],
+    "label": "Posesivos",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "muy-vs-mucho": {
+    "slug": "muy-vs-mucho",
+    "explanation": "«Muy» modifica adjetivos y adverbios y es invariable: «muy alto», «muy bien». «Mucho» expresa cantidad. Cuando acompaña a un sustantivo funciona como adjetivo y concuerda: «mucho dinero», «muchas casas». Cuando modifica a un verbo es adverbio e invariable: «trabaja mucho». No se combinan: no se dice «muy mucho».",
+    "rule_of_thumb": "«muy» + adjetivo/adverbio (nunca cambia); «mucho» + sustantivo (concuerda) o + verbo (invariable).",
+    "german_pitfall": "Im Deutschen sagt man «sehr» für Adjektive und «viel» für Mengen, aber die Grenze ist anders: «Er arbeitet viel» = «Trabaja mucho» (nicht «muy»). Vor Adjektiven immer «muy»: «muy cansado», nie «mucho cansado».",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Este café está ___ caliente.",
+        "a": "muy"
+      },
+      {
+        "q": "Tengo ___ trabajo esta semana.",
+        "a": "mucho"
+      },
+      {
+        "q": "Ella estudia ___ para el examen.",
+        "a": "mucho"
+      }
+    ],
+    "label": "Muy vs. mucho",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "negacion-doble": {
+    "slug": "negacion-doble",
+    "explanation": "En español la negación suele ser doble. Cuando la palabra negativa (nada, nadie, nunca, ninguno) va después del verbo, se necesita «no» antes del verbo: «No veo nada», «No viene nadie». Si la palabra negativa va antes del verbo, se quita «no»: «Nadie viene», «Nunca como carne». Las dos formas son correctas.",
+    "rule_of_thumb": "Palabra negativa después del verbo → «no» delante: «No hay nada». Delante del verbo → sin «no»: «Nadie lo sabe».",
+    "german_pitfall": "Im Deutschen ist die doppelte Verneinung falsch, im Spanischen aber PFLICHT: «Ich sehe nichts» = «No veo nada» (wörtlich: «nicht ... nichts»). Lass das «no» nicht weg, wenn das Verneinungswort hinter dem Verb steht.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "___ veo nada en la oscuridad.",
+        "a": "No"
+      },
+      {
+        "q": "___ viene a la fiesta. (nadie, antes del verbo)",
+        "a": "Nadie"
+      },
+      {
+        "q": "No como carne ___. (jamás)",
+        "a": "nunca"
+      }
+    ],
+    "label": "Negación (no ... nada/nadie/nunca)",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "interrogativos": {
+    "slug": "interrogativos",
+    "explanation": "Los interrogativos sirven para hacer preguntas y siempre llevan tilde: qué, cuál/cuáles, quién/quiénes, cómo, cuándo, dónde, cuánto/a/os/as y por qué. 'Qué' pregunta por cosas o definiciones (¿Qué es esto?). 'Cuál' pregunta por una opción dentro de un grupo (¿Cuál prefieres?). 'Quién' pregunta por personas y tiene plural (¿Quiénes son?). En preguntas directas van entre signos ¿...? y llevan acento gráfico.",
+    "rule_of_thumb": "'Qué' pide una definición, 'cuál' pide elegir entre varios. Y ojo: en preguntas siempre con tilde.",
+    "german_pitfall": "Deutsche verwechseln 'qué' und 'cuál', weil beides oft 'welch-/was' ist: 'Welche Farbe magst du?' ist im Spanischen '¿Qué color te gusta?' (nicht 'cuál'), da 'qué' vor Substantiv steht. Außerdem hat 'quién' einen Plural 'quiénes' — im Deutschen gibt es kein Plural von 'wer'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "¿___ es la capital de España? (definición/cosa)",
+        "a": "Cuál"
+      },
+      {
+        "q": "¿___ personas vienen a la fiesta? (cantidad)",
+        "a": "Cuántas"
+      },
+      {
+        "q": "¿___ vives, en Barcelona o en Madrid? (lugar)",
+        "a": "Dónde"
+      }
+    ],
+    "label": "Interrogativos (qué/cuál/quién...)",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "tuteo-vs-usted": {
+    "slug": "tuteo-vs-usted",
+    "explanation": "En español hay dos formas de dirigirse a alguien: 'tú' (informal) y 'usted' (formal, respetuoso). 'Tú' usa las formas verbales de segunda persona (tú hablas), mientras que 'usted' usa la tercera persona del singular (usted habla). En España el 'tú' es muy frecuente, incluso con desconocidos jóvenes o en tiendas. 'Usted' se reserva para personas mayores, autoridades o contextos muy formales.",
+    "rule_of_thumb": "En España tutea casi siempre; reserva 'usted' para gente mayor o situaciones muy formales.",
+    "german_pitfall": "Achtung: Spanisches 'usted' verlangt die 3. Person Singular ('usted tiene'), nicht wie das deutsche 'Sie' die Pluralform. Zudem duzt man in Spanien viel schneller als im Deutschen — das förmliche 'Sie' überträgt sich nicht 1:1 auf 'usted'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Formal: ¿Cómo ___ (llamarse) usted?",
+        "a": "se llama"
+      },
+      {
+        "q": "Informal: ¿Dónde ___ (vivir) tú?",
+        "a": "vives"
+      },
+      {
+        "q": "Formal: ¿___ (querer, usted) un café?",
+        "a": "Quiere"
+      }
+    ],
+    "label": "Tú vs. usted",
+    "ctype": "grammar",
+    "cefr": "A1"
+  },
+  "verbos-tipo-gustar": {
+    "slug": "verbos-tipo-gustar",
+    "explanation": "Verbos como 'gustar' funcionan al revés que en alemán: lo que gusta es el sujeto y la persona que siente va en pronombre de objeto indirecto (me, te, le, nos, os, les). Por eso el verbo concuerda con la cosa que gusta: 'Me gusta el café' (singular) pero 'Me gustan los libros' (plural). Para dar énfasis o aclarar se añade 'a mí, a ti, a él...': 'A mí me gusta'. Otros verbos parecidos son encantar, doler, interesar o faltar.",
+    "rule_of_thumb": "No 'gustas' algo: algo 'te gusta a ti'. El verbo concuerda con lo que gusta, no con la persona.",
+    "german_pitfall": "Der größte Fehler: Deutsche behandeln 'gustar' wie 'mögen' und machen sich selbst zum Subjekt ('*Yo gusto el café'). Falsch! Es heißt 'Me gusta el café' — wörtlich 'Mir gefällt der Kaffee'. Das Verb richtet sich nach dem Gefallenden (Singular/Plural), nicht nach der Person.",
+    "paradigm": null,
+    "member_verbs": [
+      "gustar",
+      "encantar",
+      "interesar",
+      "doler",
+      "molestar",
+      "faltar",
+      "quedar",
+      "parecer",
+      "apetecer",
+      "importar",
+      "costar",
+      "fascinar"
+    ],
+    "default_exercises": [
+      {
+        "q": "A mí me ___ (gustar) las películas de terror.",
+        "a": "gustan"
+      },
+      {
+        "q": "A María le ___ (encantar) el chocolate.",
+        "a": "encanta"
+      },
+      {
+        "q": "¿A ti te ___ (doler) las piernas?",
+        "a": "duelen"
+      }
+    ],
+    "label": "Verbos tipo gustar",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "verbos-reflexivos": {
+    "slug": "verbos-reflexivos",
+    "explanation": "Los verbos reflexivos indican que la acción recae sobre el propio sujeto y se conjugan con los pronombres me, te, se, nos, os, se. En infinitivo el pronombre va pegado al final: levantarse, ducharse, llamarse. Al conjugar, el pronombre va delante del verbo: 'Yo me levanto', 'Tú te duchas'. Muchos expresan rutina diaria o cambios de estado (acostarse, vestirse, sentarse).",
+    "rule_of_thumb": "Si la acción vuelve al mismo sujeto, pon me/te/se antes del verbo: 'me lavo', 'se peina'.",
+    "german_pitfall": "Vorsicht: Die reflexiven Verben decken sich nicht immer mit dem Deutschen. 'sich duschen' = ducharse (passt), aber 'aufstehen' ist im Deutschen NICHT reflexiv, im Spanischen aber 'levantarse'. Umgekehrt ist Spanisch 'me llamo' (ich heiße) wörtlich 'ich rufe mich' — das gibt es im Deutschen so nicht.",
+    "paradigm": null,
+    "member_verbs": [
+      "levantarse",
+      "ducharse",
+      "llamarse",
+      "acostarse",
+      "despertarse",
+      "vestirse",
+      "sentarse",
+      "peinarse",
+      "lavarse",
+      "ponerse",
+      "irse",
+      "quedarse",
+      "casarse",
+      "sentirse"
+    ],
+    "default_exercises": [
+      {
+        "q": "Yo ___ (levantarse) a las siete.",
+        "a": "me levanto"
+      },
+      {
+        "q": "¿Cómo ___ (llamarse) tú?",
+        "a": "te llamas"
+      },
+      {
+        "q": "Los niños ___ (acostarse) temprano.",
+        "a": "se acuestan"
+      }
+    ],
+    "label": "Verbos reflexivos",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "a-personal": {
+    "slug": "a-personal",
+    "explanation": "En español se pone la preposición 'a' delante del objeto directo cuando este es una persona (o un animal o cosa personificada) concreta y conocida. Por ejemplo: 'Veo a María' (persona) frente a 'Veo la casa' (cosa). También aparece con pronombres como alguien, nadie, quién: '¿A quién buscas?'. No se usa normalmente con el verbo 'tener' (Tengo dos hermanos) ni con personas indeterminadas (Busco un médico = cualquiera).",
+    "rule_of_thumb": "Si el complemento directo es una persona concreta, mete una 'a' antes: 'Conozco a Ana'.",
+    "german_pitfall": "Im Deutschen gibt es diese 'a personal' nicht — man sagt einfach 'Ich sehe Maria'. Deutsche vergessen deshalb fast immer das 'a': '*Veo Maria' ist falsch, korrekt ist 'Veo a María'. Merke: Personen als direktes Objekt bekommen ein 'a'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Veo ___ mi amigo en la calle.",
+        "a": "a"
+      },
+      {
+        "q": "Compro ___ un libro nuevo. (cosa)",
+        "a": "(nada)"
+      },
+      {
+        "q": "¿___ quién esperas?",
+        "a": "A"
+      }
+    ],
+    "label": "La a personal",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "preposiciones-a-en-de": {
+    "slug": "preposiciones-a-en-de",
+    "explanation": "'A' indica dirección o destino y hora: 'Voy a Madrid', 'a las tres'. 'En' indica lugar donde se está y medios de transporte: 'Estoy en casa', 'en tren'. 'De' indica origen, posesión o material: 'Soy de Alemania', 'el coche de Ana', 'una mesa de madera'. Son preposiciones muy frecuentes y cada una cubre varios significados según el contexto.",
+    "rule_of_thumb": "'A' = hacia dónde vas; 'en' = dónde estás; 'de' = de dónde vienes o de quién es.",
+    "german_pitfall": "Deutsche übersetzen 'in' oft automatisch mit 'en', aber bei Bewegung/Richtung braucht man 'a': 'Ich gehe in die Stadt' = 'Voy a la ciudad' (nicht 'en'). Bei Verkehrsmitteln heißt es 'en tren/en coche' — nicht 'con', obwohl man im Deutschen 'mit dem Zug' sagt.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Mañana voy ___ Barcelona.",
+        "a": "a"
+      },
+      {
+        "q": "Vivo ___ un piso pequeño.",
+        "a": "en"
+      },
+      {
+        "q": "Soy ___ Alemania.",
+        "a": "de"
+      }
+    ],
+    "label": "Preposiciones básicas (a/en/de)",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "comparativos": {
+    "slug": "comparativos",
+    "explanation": "Para comparar se usa 'más ... que' (superioridad), 'menos ... que' (inferioridad) y 'tan ... como' (igualdad): 'Ana es más alta que Luis', 'Este libro es menos caro que aquel', 'Soy tan rápido como tú'. Con sustantivos la igualdad usa 'tanto/a/os/as ... como'. Hay formas irregulares: bueno→mejor, malo→peor, grande→mayor, pequeño→menor. Ante números se usa 'de' en vez de 'que': 'más de diez'.",
+    "rule_of_thumb": "más/menos ... que para diferencias; tan ... como para igualdad. Y 'mejor/peor', no 'más bueno/malo'.",
+    "german_pitfall": "Im Deutschen bildet man den Komparativ mit Endung (-er: schöner), im Spanischen NIE — immer mit 'más' davor ('más bonito'). Der Vergleichspartikel ist 'que' (als), aber vor Zahlen 'de': 'más de veinte' (mehr als zwanzig), nicht 'más que veinte'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Madrid es ___ grande ___ Girona. (mayor tamaño)",
+        "a": "más ... que"
+      },
+      {
+        "q": "Este café es ___ bueno ___ el otro. (superioridad, irregular)",
+        "a": "mejor que"
+      },
+      {
+        "q": "Ella es ___ alta ___ su hermano. (igualdad)",
+        "a": "tan ... como"
+      }
+    ],
+    "label": "Comparativos",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "superlativos": {
+    "slug": "superlativos",
+    "explanation": "El superlativo relativo destaca algo dentro de un grupo: 'el/la/los/las + (sustantivo) + más/menos + adjetivo + de': 'Es el chico más alto de la clase'. El superlativo absoluto expresa un grado altísimo sin comparar y se forma con '-ísimo/a': 'guapo → guapísimo', 'grande → grandísimo'. También sirve 'muy + adjetivo'. Hay irregulares: bueno→el mejor, malo→el peor.",
+    "rule_of_thumb": "Dentro de un grupo: 'el más ... de'. Sin comparar, muy intenso: 'guapísimo' o 'muy guapo'.",
+    "german_pitfall": "Der spanische relative Superlativ verlangt 'de', nicht 'in': 'der Beste in der Klasse' = 'el mejor DE la clase' (nicht 'en'). Und statt der deutschen Endung '-ste' (schönste) nimmt man 'el más' + Adjektiv oder '-ísimo' für 'sehr' — verwechsle die beiden nicht.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Es la ciudad ___ bonita ___ España. (relativo)",
+        "a": "más ... de"
+      },
+      {
+        "q": "Esta tarta está ___ (rica, absoluto con -ísimo).",
+        "a": "riquísima"
+      },
+      {
+        "q": "Juan es ___ (bueno, el superlativo irregular) de todos.",
+        "a": "el mejor"
+      }
+    ],
+    "label": "Superlativos",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "pronombres-od": {
+    "slug": "pronombres-od",
+    "explanation": "Los pronombres de objeto directo sustituyen a la persona o cosa que recibe la acción directamente: me, te, lo, la, nos, os, los, las. Responden a la pregunta ¿qué? o ¿a quién? Se colocan delante del verbo conjugado: '¿Ves la película? Sí, la veo.' Con infinitivo o gerundio pueden ir detrás y unidos: 'Quiero verla' / 'La quiero ver'. Lo/la/los/las concuerdan en género y número con el objeto.",
+    "rule_of_thumb": "Sustituye la cosa por lo/la/los/las y ponlo delante del verbo. '¿El pan? Lo compro.'",
+    "german_pitfall": "Im Deutschen steht das Akkusativpronomen oft nach dem Verb ('Ich sehe ihn'), im Spanischen aber VOR dem konjugierten Verb ('Lo veo'). Nicht *'Veo lo'. Achtung: 'lo/la' unterscheiden Genus wie 'ihn/sie', aber richten sich nach dem spanischen Substantiv, nicht dem deutschen.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "¿Compras el periódico? Sí, ___ compro.",
+        "a": "lo"
+      },
+      {
+        "q": "¿Ves a María? Sí, ___ veo.",
+        "a": "la"
+      },
+      {
+        "q": "Estas cartas quiero enviar___ hoy.",
+        "a": "las"
+      }
+    ],
+    "label": "Pronombres de objeto directo",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "pronombres-oi": {
+    "slug": "pronombres-oi",
+    "explanation": "Los pronombres de objeto indirecto indican a quién o para quién se hace algo: me, te, le, nos, os, les. Responden a ¿a quién? o ¿para quién? 'Le doy el libro a Juan.' Fíjate que 'le/les' se usan tanto para masculino como femenino. Cuando coinciden un OI y un OD de tercera persona, 'le/les' cambian a 'se': 'Se lo doy' (no *'le lo doy'). Se colocan delante del verbo conjugado.",
+    "rule_of_thumb": "El destinatario va con me/te/le/nos/os/les. Y si choca con lo/la, el 'le' se convierte en 'se'.",
+    "german_pitfall": "Im Deutschen ist der Dativ oft nicht doppelt markiert. Spanisch verdoppelt fast immer: 'Le doy el libro a Juan' — das 'le' UND 'a Juan' stehen zusammen. Das wirkt redundant, ist aber Pflicht. Und 'le' unterscheidet kein Genus (nicht wie 'ihm/ihr').",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "___ escribo una carta a mi madre.",
+        "a": "Le"
+      },
+      {
+        "q": "¿El regalo para los niños? ___ ___ compro mañana.",
+        "a": "Se lo"
+      },
+      {
+        "q": "A nosotros ___ gusta el cine.",
+        "a": "nos"
+      }
+    ],
+    "label": "Pronombres de objeto indirecto",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "saber-vs-conocer": {
+    "slug": "saber-vs-conocer",
+    "explanation": "'Saber' se usa para conocimientos, información y habilidades: 'Sé nadar', 'Sé dónde vive'. 'Conocer' se usa para personas, lugares y cosas con las que se tiene familiaridad: 'Conozco a María', 'Conozco Barcelona'. Con 'saber' suele seguir un infinitivo o una oración con que/dónde/cómo. Con 'conocer' suele seguir un sustantivo (una persona, un sitio). Ambos son irregulares en la primera persona: sé / conozco.",
+    "rule_of_thumb": "'Saber' = datos y habilidades. 'Conocer' = tener trato con personas o sitios.",
+    "german_pitfall": "Deutsch hat nur 'wissen' vs. 'kennen', was ungefähr passt — ABER Vorsicht: 'können' (eine Fähigkeit) wird im Spanischen mit 'saber + Infinitiv' ausgedrückt, nicht mit 'poder': 'Sé nadar' = 'Ich kann schwimmen'. 'Poder' heißt nur 'dürfen/imstande sein'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Yo no ___ tu número de teléfono.",
+        "a": "sé"
+      },
+      {
+        "q": "¿___ (tú) a mi hermano?",
+        "a": "Conoces"
+      },
+      {
+        "q": "Ella ___ tocar el piano muy bien.",
+        "a": "sabe"
+      }
+    ],
+    "label": "Saber vs. conocer",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "pedir-vs-preguntar": {
+    "slug": "pedir-vs-preguntar",
+    "explanation": "'Pedir' significa solicitar algo (un objeto, un favor, un servicio): 'Pido un café', 'Le pido ayuda'. 'Preguntar' significa hacer una pregunta para obtener información: 'Pregunto la hora', 'Le pregunto dónde vive'. 'Pedir' es irregular (pido, pides, pide...). Truco: si esperas una cosa o una acción, usas 'pedir'; si esperas una respuesta/información, usas 'preguntar'.",
+    "rule_of_thumb": "¿Quieres algo? Pides. ¿Quieres saber algo? Preguntas.",
+    "german_pitfall": "Deutsch 'bitten um' (pedir) und 'fragen' (preguntar) sind zwar getrennt, aber Deutsche verwechseln oft 'preguntar por' ('nach jemandem fragen') mit 'pedir'. 'Preguntar por María' = sich nach María erkundigen, NICHT sie holen. Und Achtung: 'eine Frage stellen' = 'hacer una pregunta', nicht *'preguntar una pregunta'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "En el bar siempre ___ una caña.",
+        "a": "pido"
+      },
+      {
+        "q": "Voy a ___ al camarero dónde está el baño.",
+        "a": "preguntar"
+      },
+      {
+        "q": "El niño le ___ un helado a su padre.",
+        "a": "pide"
+      }
+    ],
+    "label": "Pedir vs. preguntar",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "ir-vs-venir": {
+    "slug": "ir-vs-venir",
+    "explanation": "'Ir' expresa movimiento hacia un lugar que NO es donde está quien habla: 'Voy al cine' (me alejo). 'Venir' expresa movimiento hacia el lugar donde está quien habla: 'Ven aquí', 'Viene a mi casa'. La diferencia depende de dónde se sitúa el hablante. Ambos son irregulares: voy/vas/va, vengo/vienes/viene.",
+    "rule_of_thumb": "'Ir' = alejarse del hablante. 'Venir' = acercarse al hablante.",
+    "german_pitfall": "Achtung, das ist die klassische Falle: Deutsch 'Ich komme (zu dir)' übersetzt man oft falsch mit 'venir'. Aber wenn DU zum Gesprächspartner gehst, verwendet Spanisch 'IR', nicht 'venir': '¡Ya voy!' (= Ich komme schon!), nicht *'¡Ya vengo!'. 'Venir' nur, wenn die Bewegung zum SPRECHER hin geht.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Mañana (yo) ___ a Madrid por trabajo.",
+        "a": "voy"
+      },
+      {
+        "q": "¿Puedes ___ a mi casa esta tarde?",
+        "a": "venir"
+      },
+      {
+        "q": "—¡La cena está lista! —¡Ya ___!",
+        "a": "voy"
+      }
+    ],
+    "label": "Ir vs. venir",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "llevar-vs-traer": {
+    "slug": "llevar-vs-traer",
+    "explanation": "'Llevar' es transportar algo hacia otro lugar, lejos de donde está el hablante: 'Llevo el regalo a la fiesta'. 'Traer' es transportar algo hacia el lugar donde está el hablante: 'Trae el vino aquí'. Funcionan como 'ir' y 'venir', pero con un objeto. 'Traer' es irregular: traigo, traes, trae.",
+    "rule_of_thumb": "'Llevar' va con 'ir' (alejarse). 'Traer' va con 'venir' (acercarse al hablante).",
+    "german_pitfall": "Deutsch 'bringen' deckt beides ab, was zu Fehlern führt. 'Bring mir das Buch' = 'Tráeme el libro' (zu mir hin = traer). 'Ich bringe das Buch zu Maria' = 'Le llevo el libro a María' (weg von mir = llevar). Perspektive des Sprechers ist entscheidend.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Voy a la fiesta y ___ una botella de vino.",
+        "a": "llevo"
+      },
+      {
+        "q": "¿Me ___ (tú) un vaso de agua, por favor?",
+        "a": "traes"
+      },
+      {
+        "q": "Cuando vengas a mi casa, ___ el postre.",
+        "a": "trae"
+      }
+    ],
+    "label": "Llevar vs. traer",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "obligacion": {
+    "slug": "obligacion",
+    "explanation": "Para expresar obligación hay tres formas principales. 'Tener que + infinitivo' indica una obligación personal y concreta: 'Tengo que estudiar'. 'Deber + infinitivo' indica un deber o recomendación, algo moral: 'Debes ayudar a tu madre'. 'Hay que + infinitivo' es una obligación impersonal, general, sin sujeto concreto: 'Hay que reciclar'. 'Hay que' nunca se conjuga en persona; es siempre 'hay que'.",
+    "rule_of_thumb": "'Tengo que' = yo, ahora. 'Hay que' = todo el mundo, en general. 'Debo' = es lo correcto.",
+    "german_pitfall": "Deutsche mischen 'müssen' und 'sollen'. 'Tener que/hay que' = müssen (Notwendigkeit); 'deber' = sollen (moralische Pflicht/Empfehlung). Und 'hay que' hat KEIN Subjekt — nicht *'la gente hay que', sondern einfach 'Hay que...' als unpersönliche Form (wie 'man muss').",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Mañana tengo un examen, ___ que estudiar mucho.",
+        "a": "tengo"
+      },
+      {
+        "q": "Para estar sano, ___ que comer verduras. (impersonal)",
+        "a": "hay"
+      },
+      {
+        "q": "(Tú) ___ llamar a tus padres más a menudo. (recomendación)",
+        "a": "debes"
+      }
+    ],
+    "label": "Expresar obligación (tener que / hay que / deber)",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "acabar-de": {
+    "slug": "acabar-de",
+    "explanation": "'Acabar de + infinitivo' expresa una acción que ha terminado hace muy poco tiempo, un pasado muy reciente: 'Acabo de comer' (= he comido hace un momento). Se conjuga 'acabar' y el segundo verbo va siempre en infinitivo. Es una perífrasis muy frecuente para hablar de algo inmediatamente anterior al momento presente.",
+    "rule_of_thumb": "'Acabar de + infinitivo' = acabar de hacer algo justo ahora mismo. 'Acabo de llegar.'",
+    "german_pitfall": "Deutsch benutzt 'gerade eben' + Perfekt ('Ich bin gerade angekommen'). Spanisch packt das in eine feste Konstruktion mit Infinitiv: 'Acabo de llegar' — NICHT das Partizip, sondern der Infinitiv folgt. Also nicht *'acabo de llegado'. Und 'acabar' allein heißt 'beenden', erst mit 'de' + Infinitiv bedeutet es 'soeben getan haben'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "—¿Quieres comer? —No, gracias, ___ de comer.",
+        "a": "acabo"
+      },
+      {
+        "q": "El tren ___ de salir, lo hemos perdido.",
+        "a": "acaba"
+      },
+      {
+        "q": "(Nosotros) acabamos de ___ la película. (ver)",
+        "a": "ver"
+      }
+    ],
+    "label": "Acabar de + infinitivo",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "desde-hace-durante": {
+    "slug": "desde-hace-durante",
+    "explanation": "Usamos 'desde' para marcar el punto de inicio de una acción: 'Vivo en Barcelona desde 2019'. Usamos 'hace' + tiempo para indicar cuánto tiempo ha pasado: 'Vivo aquí hace tres años' o 'Estudio español desde hace tres años'. Usamos 'durante' para expresar la duración de una acción: 'Estudié durante dos horas'. 'Desde hace' combina inicio y duración cuando la acción sigue en el presente.",
+    "rule_of_thumb": "'Desde' = desde cuándo; 'hace' = cuánto tiempo hace; 'durante' = cuánto tiempo dura.",
+    "german_pitfall": "Deutsch benutzt 'seit' sowohl für Zeitpunkt als auch für Dauer ('seit 2019', 'seit drei Jahren'). Im Spanischen musst du unterscheiden: 'desde' + Zeitpunkt, aber 'desde hace' + Zeitspanne. Sag also nicht 'desde tres años', sondern 'desde hace tres años'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Trabajo en esta empresa ___ 2020.",
+        "a": "desde"
+      },
+      {
+        "q": "Estudio catalán ___ hace seis meses.",
+        "a": "desde"
+      },
+      {
+        "q": "Ayer leí ___ dos horas.",
+        "a": "durante"
+      }
+    ],
+    "label": "Desde / hace / durante",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "ya-vs-todavia": {
+    "slug": "ya-vs-todavia",
+    "explanation": "'Ya' indica que algo ha ocurrido o ha cambiado: 'Ya he comido' (la acción está hecha). 'Todavía' (o 'aún') indica que algo continúa: 'Todavía estudio' (sigo estudiando). En negativo, 'ya no' significa que algo terminó ('Ya no fumo'), y 'todavía no' significa que algo aún no ha pasado pero se espera ('Todavía no he comido').",
+    "rule_of_thumb": "'Ya' = cambio o hecho cumplido; 'todavía' = continúa igual. 'Ya no' = terminó; 'todavía no' = falta.",
+    "german_pitfall": "Deutsch 'schon' = ya, 'noch' = todavía, 'nicht mehr' = ya no, 'noch nicht' = todavía no. Die Zuordnung ist meist parallel, aber Vorsicht: Deutsche verwechseln oft 'ya no' und 'todavía no'. 'Noch nicht' ist 'todavía no', NICHT 'ya no'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "— ¿Has terminado? — Sí, ___ he terminado.",
+        "a": "ya"
+      },
+      {
+        "q": "No te preocupes, ___ no trabajo allí, cambié de empresa.",
+        "a": "ya"
+      },
+      {
+        "q": "— ¿Ya comiste? — No, ___ no he comido.",
+        "a": "todavía"
+      }
+    ],
+    "label": "Ya vs. todavía",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "apocope": {
+    "slug": "apocope",
+    "explanation": "La apócope es la pérdida de la letra o sílaba final de algunos adjetivos cuando van delante del sustantivo. 'Bueno' → 'buen', 'malo' → 'mal', 'primero' → 'primer', 'tercero' → 'tercer' (solo ante sustantivo masculino singular). 'Grande' → 'gran' ante cualquier sustantivo singular (masculino o femenino). 'Ciento' → 'cien' ante sustantivos. Ojo: 'gran' cambia el significado a 'importante/estupendo'.",
+    "rule_of_thumb": "Delante de nombre masculino singular: buen, mal, primer, tercer. 'Grande' → 'gran' ante cualquier singular.",
+    "german_pitfall": "Im Deutschen ändert sich das Adjektiv nur durch Endungen, nicht durch Wegfall. Deutsche vergessen die Apokope und sagen 'un bueno amigo' statt 'un buen amigo' oder 'el primero día' statt 'el primer día'. Merke: Apokope NUR vor dem Substantiv, danach bleibt die volle Form ('el amigo es bueno').",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Es un ___ (bueno) libro.",
+        "a": "buen"
+      },
+      {
+        "q": "Vivo en el ___ (primero) piso.",
+        "a": "primer"
+      },
+      {
+        "q": "Barcelona es una ___ (grande) ciudad.",
+        "a": "gran"
+      }
+    ],
+    "label": "Apócope (buen, gran, primer...)",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "adverbios-mente": {
+    "slug": "adverbios-mente",
+    "explanation": "Muchos adverbios de modo se forman añadiendo '-mente' a la forma femenina del adjetivo: 'rápido' → 'rápida' → 'rápidamente'; 'lento' → 'lentamente'. Si el adjetivo no tiene forma femenina distinta, se añade directamente: 'fácil' → 'fácilmente'. El adjetivo conserva su tilde original: 'rápida' → 'rápidamente'. Cuando hay dos adverbios seguidos, solo el último lleva '-mente': 'clara y rápidamente'.",
+    "rule_of_thumb": "Adjetivo en femenino + '-mente'. Y conserva la tilde del adjetivo.",
+    "german_pitfall": "Im Deutschen sind Adverb und Adjektiv oft identisch ('schnell'). Deutsche vergessen daher das '-mente' und benutzen das Adjektiv als Adverb: 'Habla rápido' ist umgangssprachlich okay, aber für die Form auf '-mente' brauchst du die weibliche Form: 'rápidamente', nicht 'rápidomente'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Habla muy ___ (lento).",
+        "a": "lentamente"
+      },
+      {
+        "q": "Resolvió el problema ___ (fácil).",
+        "a": "fácilmente"
+      },
+      {
+        "q": "Se vistió ___ (rápido).",
+        "a": "rápidamente"
+      }
+    ],
+    "label": "Adverbios en -mente",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "vosotros-vs-ustedes": {
+    "slug": "vosotros-vs-ustedes",
+    "explanation": "En España, 'vosotros/vosotras' es la forma de plural informal (a amigos, familia) y usa formas verbales propias: 'habláis', 'coméis', 'vivís'. 'Ustedes' es la forma de plural formal (a desconocidos, en contextos de respeto) y usa la conjugación de tercera persona del plural: 'hablan', 'comen', 'viven'. En Latinoamérica no se usa 'vosotros': 'ustedes' sirve para todo.",
+    "rule_of_thumb": "En España: amigos = vosotros; formal/desconocidos = ustedes. 'Ustedes' va con el verbo en tercera persona plural.",
+    "german_pitfall": "Deutsch hat nur 'ihr' (informell) und 'Sie' (formell). Aber Achtung: Spanisches 'ustedes' wird mit der 3. Person Plural konjugiert ('ustedes hablan'), nicht mit der 2. Person wie das deutsche 'Sie' (2. Person höflich). Deutsche sagen fälschlich 'ustedes habláis'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Chicos, ¿___ (venir, vosotros) a la fiesta?",
+        "a": "venís"
+      },
+      {
+        "q": "Señores, ¿___ (querer, ustedes) un café?",
+        "a": "quieren"
+      },
+      {
+        "q": "¿Dónde ___ (vivir, vosotros), amigos?",
+        "a": "vivís"
+      }
+    ],
+    "label": "Vosotros vs. ustedes",
+    "ctype": "grammar",
+    "cefr": "A2"
+  },
+  "indefinido-vs-perfecto": {
+    "slug": "indefinido-vs-perfecto",
+    "explanation": "El pretérito perfecto ('he hablado') se usa para acciones pasadas dentro de un periodo de tiempo que todavía continúa o que sentimos cercano: 'Hoy he comido tarde', 'Este año he viajado mucho'. El pretérito indefinido ('hablé') se usa para acciones pasadas en un tiempo terminado y sin conexión con el presente: 'Ayer comí tarde', 'El año pasado viajé mucho'. Marcadores del perfecto: hoy, esta semana, este mes, ya, nunca, alguna vez. Marcadores del indefinido: ayer, el año pasado, en 2010.",
+    "rule_of_thumb": "Tiempo que aún dura o cercano → perfecto (he hecho). Tiempo cerrado (ayer, en 2010) → indefinido (hice).",
+    "german_pitfall": "Im Deutschen wählt man zwischen Perfekt und Präteritum meist nach Stil (mündlich vs. schriftlich), NICHT nach Zeitbezug. Im Spanischen ist die Wahl grammatisch zwingend: 'Ayer he ido' ist falsch, es muss 'Ayer fui' heißen. Achte auf die Zeitmarker.",
+    "paradigm": {
+      "ar": {
+        "yo": "hablé",
+        "tu": "hablaste",
+        "el": "habló",
+        "nosotros": "hablamos",
+        "vosotros": "hablasteis",
+        "ellos": "hablaron"
+      },
+      "er": {
+        "yo": "comí",
+        "tu": "comiste",
+        "el": "comió",
+        "nosotros": "comimos",
+        "vosotros": "comisteis",
+        "ellos": "comieron"
+      },
+      "ir": {
+        "yo": "viví",
+        "tu": "viviste",
+        "el": "vivió",
+        "nosotros": "vivimos",
+        "vosotros": "vivisteis",
+        "ellos": "vivieron"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Hoy ___ (comer, yo) en un restaurante nuevo.",
+        "a": "he comido"
+      },
+      {
+        "q": "Ayer ___ (comer, yo) en casa.",
+        "a": "comí"
+      },
+      {
+        "q": "El año pasado ___ (viajar, nosotros) a México.",
+        "a": "viajamos"
+      }
+    ],
+    "label": "Indefinido vs. perfecto",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "indefinido-vs-imperfecto": {
+    "slug": "indefinido-vs-imperfecto",
+    "explanation": "El indefinido ('hablé') presenta acciones pasadas completas, puntuales o que hacen avanzar la historia: 'Llegué, abrí la puerta y entré'. El imperfecto ('hablaba') describe el contexto, las circunstancias, acciones habituales o en desarrollo en el pasado: 'Era de noche y llovía', 'De niño jugaba al fútbol'. A menudo el imperfecto es el 'fondo' y el indefinido lo que ocurre: 'Mientras cenaba, sonó el teléfono'.",
+    "rule_of_thumb": "Indefinido = acción/qué pasó. Imperfecto = descripción, costumbre, escenario. El indefinido interrumpe al imperfecto.",
+    "german_pitfall": "Deutsch hat keine grammatische Unterscheidung zwischen 'punktueller' und 'beschreibender' Vergangenheit — ein einziges Präteritum deckt beides ab. Deutsche greifen oft nur zum Indefinido und vergessen das Imperfecto für Beschreibungen, Gewohnheiten und Zustände. Merke: 'war/hatte/pflegte zu' → meist Imperfecto.",
+    "paradigm": {
+      "ar": {
+        "yo": "hablaba",
+        "tu": "hablabas",
+        "el": "hablaba",
+        "nosotros": "hablábamos",
+        "vosotros": "hablabais",
+        "ellos": "hablaban"
+      },
+      "er": {
+        "yo": "comía",
+        "tu": "comías",
+        "el": "comía",
+        "nosotros": "comíamos",
+        "vosotros": "comíais",
+        "ellos": "comían"
+      },
+      "ir": {
+        "yo": "vivía",
+        "tu": "vivías",
+        "el": "vivía",
+        "nosotros": "vivíamos",
+        "vosotros": "vivíais",
+        "ellos": "vivían"
+      }
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Cuando ___ (ser) niño, jugaba mucho.",
+        "a": "era"
+      },
+      {
+        "q": "Ayer ___ (llegar, yo) tarde a casa.",
+        "a": "llegué"
+      },
+      {
+        "q": "Mientras ___ (leer, yo), sonó el móvil.",
+        "a": "leía"
+      }
+    ],
+    "label": "Indefinido vs. imperfecto",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "por-vs-para": {
+    "slug": "por-vs-para",
+    "explanation": "'Para' expresa finalidad, destino, plazo y destinatario: 'Estudio para aprobar', 'Salgo para Madrid', 'Es para ti', 'Lo necesito para el lunes'. 'Por' expresa causa/motivo, tiempo aproximado, lugar de paso, medio e intercambio: 'Lo hago por ti', 'Paseo por el parque', 'Gracias por todo', 'Te llamo por teléfono', 'Pagué diez euros por el libro'. En resumen: 'para' mira hacia el objetivo, 'por' hacia la causa o el recorrido.",
+    "rule_of_thumb": "'Para' = meta, destino, para quién. 'Por' = causa, a cambio de, a través de, por dónde.",
+    "german_pitfall": "Deutsch benutzt oft 'für' für beides, was zu Fehlern führt. 'Danke für alles' = 'Gracias POR todo' (Grund/Ursache), NICHT 'para'. Bei Ziel/Zweck ('für dich', 'um zu') → 'para'; bei Grund/Austausch ('wegen', 'für' im Sinne von Tausch) → 'por'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Este regalo es ___ mi madre.",
+        "a": "para"
+      },
+      {
+        "q": "Gracias ___ tu ayuda.",
+        "a": "por"
+      },
+      {
+        "q": "Estudio mucho ___ aprobar el examen.",
+        "a": "para"
+      }
+    ],
+    "label": "Por vs. para",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "combinacion-pronombres": {
+    "slug": "combinacion-pronombres",
+    "explanation": "Cuando usamos un pronombre de objeto indirecto (me, te, le, nos, os, les) y uno de objeto directo (lo, la, los, las) juntos, el indirecto va primero. Cuando ambos son de tercera persona, 'le' y 'les' se convierten en 'se': no decimos 'le lo doy', sino 'se lo doy'. Con infinitivo, gerundio o imperativo, los pronombres se pegan al final del verbo: 'quiero dártelo', 'dámelo'. El orden es siempre indirecto + directo.",
+    "rule_of_thumb": "Primero la persona (a quién), luego la cosa (qué). Y 'le/les' + 'lo/la' = 'se lo/se la'.",
+    "german_pitfall": "Im Deutschen steht das Dativobjekt (indirekt) vor dem Akkusativobjekt (direkt) — genau wie im Spanischen, das hilft. Aber die Verwandlung von 'le' in 'se' hat kein deutsches Gegenstück: Man kann NICHT 'le lo doy' sagen, sondern MUSS 'se lo doy' sagen. Verwechsle dieses 'se' nicht mit dem reflexiven 'se'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "¿El libro? Ya ___ ___ di a Juan. (a él, el libro)",
+        "a": "se lo"
+      },
+      {
+        "q": "Necesito la sal. ¿Puedes pasár______? (a mí, la sal)",
+        "a": "mela"
+      },
+      {
+        "q": "Estas flores son para María. Voy a regalár___las.",
+        "a": "se"
+      }
+    ],
+    "label": "Combinación de pronombres (se lo)",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "se-impersonal-pasivo": {
+    "slug": "se-impersonal-pasivo",
+    "explanation": "El 'se' impersonal expresa acciones sin sujeto concreto: 'En España se cena tarde'. El verbo va siempre en singular. El 'se' pasivo se usa con cosas: el verbo concuerda con el objeto, que funciona como sujeto: 'Se vende un piso' / 'Se venden pisos'. En la práctica los dos usos son muy parecidos y sirven para no mencionar quién hace la acción. Es muy frecuente en carteles, instrucciones y lengua general.",
+    "rule_of_thumb": "Si no quieres decir quién, usa 'se' + verbo. Con cosas, el verbo va en plural si hay varias.",
+    "german_pitfall": "Deutsche greifen hier oft zu 'man' ('man isst spät') und übersetzen wörtlich mit 'uno', was zwar existiert, aber viel seltener ist. Natürlicher ist die 'se'-Konstruktion. Achtung bei der Kongruenz: 'Se venden pisos' (Plural!), nicht 'se vende pisos'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Aquí ___ habla español. (impersonal)",
+        "a": "se"
+      },
+      {
+        "q": "En esta tienda ___ ___ muchos libros. (vender, plural)",
+        "a": "se venden"
+      },
+      {
+        "q": "¿Cómo ___ ___ a la estación? (llegar, impersonal)",
+        "a": "se llega"
+      }
+    ],
+    "label": "Se impersonal y pasivo",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "desencadenantes-subjuntivo": {
+    "slug": "desencadenantes-subjuntivo",
+    "explanation": "Algunos verbos y expresiones exigen subjuntivo en la oración que introducen con 'que'. Son los que expresan deseo, voluntad, emoción, necesidad o valoración: 'quiero que', 'espero que', 'me gusta que', 'es importante que', 'es necesario que'. La condición clave es que haya un cambio de sujeto: 'Quiero comer' (mismo sujeto, infinitivo) pero 'Quiero que comas' (dos sujetos, subjuntivo). Si el sujeto es el mismo, se usa infinitivo.",
+    "rule_of_thumb": "Deseo o valoración + 'que' + otro sujeto = subjuntivo. Mismo sujeto = infinitivo.",
+    "german_pitfall": "Im Deutschen steht nach 'ich will, dass...' der Indikativ ('dass du kommst'). Im Spanischen ist das unmöglich — es MUSS Subjunktiv sein: 'Quiero que vengas', nicht 'que vienes'. Merke: sobald ein zweites Subjekt und ein Wunsch/eine Wertung im Spiel sind, kippt das Verb in den Subjuntivo.",
+    "paradigm": null,
+    "member_verbs": [
+      "querer",
+      "esperar",
+      "desear",
+      "necesitar",
+      "pedir",
+      "aconsejar",
+      "recomendar",
+      "prohibir",
+      "permitir",
+      "gustar",
+      "molestar",
+      "alegrarse",
+      "preferir",
+      "sugerir"
+    ],
+    "default_exercises": [
+      {
+        "q": "Quiero que tú ___ (venir) a la fiesta.",
+        "a": "vengas"
+      },
+      {
+        "q": "Es importante que nosotros ___ (estudiar) más.",
+        "a": "estudiemos"
+      },
+      {
+        "q": "Espero que todo ___ (salir) bien.",
+        "a": "salga"
+      }
+    ],
+    "label": "Desencadenantes del subjuntivo (quiero que, es importante que...)",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "subjuntivo-vs-indicativo": {
+    "slug": "subjuntivo-vs-indicativo",
+    "explanation": "Los verbos de pensamiento y percepción ('creer', 'pensar', 'parecer') en afirmativo van con indicativo: 'Creo que tiene razón'. Pero en negativo introducen duda y piden subjuntivo: 'No creo que tenga razón'. Lo mismo con expresiones de certeza: 'Es verdad que viene' (indicativo) frente a 'No es verdad que venga' (subjuntivo). La idea: afirmar un hecho = indicativo; negar, dudar o poner en cuestión = subjuntivo.",
+    "rule_of_thumb": "'Creo que' + indicativo; 'no creo que' + subjuntivo. Certeza va con indicativo, duda con subjuntivo.",
+    "german_pitfall": "Im Deutschen ändert sich der Modus nicht, ob du 'ich glaube, dass...' oder 'ich glaube nicht, dass...' sagst — beides Indikativ. Im Spanischen dagegen schaltet die Verneinung von 'creer/pensar' auf Subjuntivo um: 'No creo que sea verdad', nicht 'que es verdad'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Creo que Ana ___ (estar) en casa.",
+        "a": "está"
+      },
+      {
+        "q": "No creo que Ana ___ (estar) en casa.",
+        "a": "esté"
+      },
+      {
+        "q": "No pienso que ___ (ser) buena idea.",
+        "a": "sea"
+      }
+    ],
+    "label": "Subjuntivo vs. indicativo (creo que / no creo que)",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "condicional-real": {
+    "slug": "condicional-real",
+    "explanation": "Las condicionales reales expresan condiciones posibles o probables en el presente o el futuro. La estructura básica es: 'si' + presente de indicativo, y en la otra parte presente, futuro o imperativo. Ejemplos: 'Si llueve, no salgo', 'Si tienes tiempo, ven', 'Si estudias, aprobarás'. Nunca se usa el futuro ni el subjuntivo detrás de este 'si' condicional.",
+    "rule_of_thumb": "Detrás de 'si' (condición real), presente. Nunca futuro ni 'si' + subjuntivo presente.",
+    "german_pitfall": "Deutsche setzen nach 'wenn' oft ein Futur/einen Konjunktiv-Reflex an. Im Spanischen gilt aber: nach dem realen 'si' NIE Futur und NIE Präsens-Subjuntivo — falsch ist 'si tendrás tiempo' oder 'si tengas tiempo', richtig ist 'si tienes tiempo'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Si ___ (hacer) sol, iremos a la playa.",
+        "a": "hace"
+      },
+      {
+        "q": "Si tú ___ (querer), te ayudo.",
+        "a": "quieres"
+      },
+      {
+        "q": "Si no ___ (estudiar), suspenderás.",
+        "a": "estudias"
+      }
+    ],
+    "label": "Oraciones condicionales reales (si + presente)",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "relativos": {
+    "slug": "relativos",
+    "explanation": "Las oraciones de relativo unen dos frases dando información sobre un nombre. 'Que' es el relativo más frecuente y sirve para personas y cosas: 'El chico que vino'. 'Donde' se refiere a lugares: 'La ciudad donde vivo'. Después de preposición se usa 'el que / la que / los que / las que' o 'el cual': 'La casa en la que vivo'. Con personas y preposición también se usa 'quien': 'La persona con quien hablo'.",
+    "rule_of_thumb": "'Que' para casi todo, 'donde' para lugares, y tras preposición 'el/la que' o 'quien' (personas).",
+    "german_pitfall": "Anders als deutsche Relativpronomen (der/die/das/dem/dessen) verändert sich 'que' nicht nach Genus oder Kasus — ein Wort für alles. Und 'que' darf im Spanischen nie weggelassen werden, während im Englischen/teils Deutschen die Auslassung möglich ist. Bei Präposition steht diese vor dem Relativum: 'la casa en la que vivo', nie am Satzende.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Este es el libro ___ compré ayer.",
+        "a": "que"
+      },
+      {
+        "q": "Barcelona es la ciudad ___ vivo.",
+        "a": "donde"
+      },
+      {
+        "q": "La chica con ___ hablé es catalana.",
+        "a": "quien"
+      }
+    ],
+    "label": "Oraciones de relativo (que/donde/el que)",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "estar-participio": {
+    "slug": "estar-participio",
+    "explanation": "'Estar + participio' expresa el resultado de una acción anterior, es decir, cómo está algo después de que ha pasado algo. 'He cerrado la ventana' (acción) → 'La ventana está cerrada' (resultado). El participio funciona como adjetivo y concuerda en género y número con el sujeto: 'Las puertas están abiertas'. No confundir con la pasiva 'ser + participio', que expresa la acción misma.",
+    "rule_of_thumb": "'Estar + participio' = el resultado que ves ahora. El participio concuerda como adjetivo.",
+    "german_pitfall": "Im Deutschen benutzt man dafür meist 'sein' + Partizip ('die Tür ist geschlossen'), was zur Verwechslung mit der spanischen 'ser'-Passiv verleitet. Für den Zustand/das Resultat braucht man aber 'estar', nicht 'ser': 'La puerta está cerrada'. Vergiss außerdem die Angleichung nicht: 'Las ventanas están abiertas'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "He escrito la carta. Ahora la carta ___ ___ (escribir).",
+        "a": "está escrita"
+      },
+      {
+        "q": "Los niños ya ___ ___ (dormir).",
+        "a": "están dormidos"
+      },
+      {
+        "q": "Las tiendas ___ ___ (cerrar) los domingos.",
+        "a": "están cerradas"
+      }
+    ],
+    "label": "Estar + participio (resultado)",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "perifrasis-verbales": {
+    "slug": "perifrasis-verbales",
+    "explanation": "Las perífrasis verbales combinan un verbo auxiliar con un infinitivo, gerundio o participio para añadir matices. 'Volver a + infinitivo' significa repetir: 'Vuelvo a leerlo' (lo leo otra vez). 'Seguir + gerundio' expresa continuidad: 'Sigo trabajando' (todavía trabajo). 'Llevar + gerundio' indica el tiempo transcurrido en una acción que continúa: 'Llevo dos años estudiando español'. Son muy frecuentes en el habla diaria.",
+    "rule_of_thumb": "'Volver a' = otra vez; 'seguir + -ndo' = todavía; 'llevar + tiempo + -ndo' = desde hace cuánto.",
+    "german_pitfall": "'Llevo dos años estudiando' lässt sich nicht wörtlich übersetzen: Deutsch sagt 'ich lerne seit zwei Jahren' (Präsens + 'seit'). Wörtliches 'estudio desde dos años' ist falsch — nutze 'llevar + Zeit + Gerundio'. Und 'volver a + Infinitiv' heißt 'wieder tun', nicht 'zurückkehren, um zu'.",
+    "paradigm": null,
+    "member_verbs": [
+      "volver a",
+      "seguir",
+      "llevar",
+      "empezar a",
+      "ir a",
+      "acabar de",
+      "estar a punto de",
+      "dejar de",
+      "ponerse a",
+      "continuar",
+      "andar",
+      "tener que"
+    ],
+    "default_exercises": [
+      {
+        "q": "No entiendo. ¿Puedes ___ a explicármelo? (repetir)",
+        "a": "volver"
+      },
+      {
+        "q": "___ (yo) viviendo en Barcelona desde 2019. (tiempo transcurrido)",
+        "a": "Llevo"
+      },
+      {
+        "q": "Aunque es tarde, ellos ___ (seguir) trabajando.",
+        "a": "siguen"
+      }
+    ],
+    "label": "Perífrasis verbales (volver a, seguir + gerundio, llevar + gerundio)",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "quedar-vs-quedarse": {
+    "slug": "quedar-vs-quedarse",
+    "explanation": "El verbo 'quedar' tiene varios significados. Sin pronombre, 'quedar' puede significar citarse con alguien ('¿Quedamos mañana?'), estar situado ('El museo queda cerca') o resultar/sentar ('Te queda bien esa camisa'). Con pronombre, 'quedarse' significa permanecer en un lugar o pasar a un estado ('Me quedo en casa', 'Se quedó dormido'). También existe 'quedarse con algo' en el sentido de conservarlo. La diferencia clave es que 'quedar' suele expresar acordar o situar, mientras que 'quedarse' expresa permanencia.",
+    "rule_of_thumb": "Sin 'se' = citarse o estar situado; con 'se' = permanecer o convertirse en algo.",
+    "german_pitfall": "Deutsche denken bei 'quedar' oft an 'bleiben' und benutzen automatisch die reflexive Form. Aber 'sich mit jemandem verabreden' ist 'quedar' OHNE Pronomen ('¿Quedamos?'), während 'bleiben' 'quedarse' MIT Pronomen ist ('Me quedo en casa'). Verwechsle die beiden nicht.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "¿____ (nosotros) el viernes para tomar algo?",
+        "a": "Quedamos"
+      },
+      {
+        "q": "Hoy no salgo, me ____ en casa.",
+        "a": "quedo"
+      },
+      {
+        "q": "La farmacia ____ al lado de mi casa.",
+        "a": "queda"
+      }
+    ],
+    "label": "Quedar vs. quedarse",
+    "ctype": "grammar",
+    "cefr": "B1"
+  },
+  "condicional-irreal": {
+    "slug": "condicional-irreal",
+    "explanation": "Las oraciones condicionales irreales expresan situaciones hipotéticas o imposibles en el presente. Se construyen con 'si' + imperfecto de subjuntivo en la condición, y condicional simple en la consecuencia: 'Si tuviera dinero, viajaría más'. El imperfecto de subjuntivo tiene dos formas equivalentes: '-ara/-iera' o '-ase/-iese'. Nunca se usa 'si' + condicional en el español estándar. Sirven para hablar de deseos, hipótesis y consejos irreales.",
+    "rule_of_thumb": "Si + imperfecto de subjuntivo, + condicional. 'Si pudiera, lo haría.'",
+    "german_pitfall": "Im Deutschen benutzt man im Konjunktiv II oft dieselbe Form in beiden Satzteilen ('Wenn ich Zeit hätte, käme ich'). Auf Spanisch NIEMALS 'si' + Konditional! Es heißt 'Si tuviera' (Subjuntivo), nicht 'Si tendría'. Der 'si'-Satz bekommt Subjuntivo, der Hauptsatz das Konditional.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "Si (yo) ____ (tener) tiempo, iría al gimnasio.",
+        "a": "tuviera"
+      },
+      {
+        "q": "Si fuéramos ricos, ____ (comprar, nosotros) una casa en el mar.",
+        "a": "compraríamos"
+      },
+      {
+        "q": "Yo que tú, ____ (hablar) con el jefe.",
+        "a": "hablaría"
+      }
+    ],
+    "label": "Oraciones condicionales irreales (si + imperfecto de subjuntivo)",
+    "ctype": "grammar",
+    "cefr": "B2"
+  },
+  "estilo-indirecto": {
+    "slug": "estilo-indirecto",
+    "explanation": "El estilo indirecto se usa para repetir lo que otra persona ha dicho sin citarla literalmente. Se introduce con verbos como 'decir', 'preguntar', 'comentar' seguidos de 'que'. Al pasar del estilo directo al indirecto cambian los pronombres, los posesivos y a menudo los tiempos verbales: presente pasa a imperfecto, pretérito perfecto a pluscuamperfecto, futuro a condicional. También cambian los marcadores temporales ('hoy' → 'aquel día'). En preguntas indirectas se usa 'si' o la palabra interrogativa.",
+    "rule_of_thumb": "'Dijo que...' y retrocede un tiempo: presente→imperfecto, futuro→condicional.",
+    "german_pitfall": "Deutsche neigen dazu, den Konjunktiv I für indirekte Rede zu verwenden ('Er sagte, er habe Zeit'). Im Spanischen gibt es das nicht: Man verschiebt einfach die Zeitform in den Indikativ (presente→imperfecto). Außerdem darf das 'que' nach 'dijo' NIE weggelassen werden – anders als 'dass' im Deutschen.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "'Estoy cansado.' → Dijo que ____ cansado.",
+        "a": "estaba"
+      },
+      {
+        "q": "'Vendré mañana.' → Dijo que ____ al día siguiente.",
+        "a": "vendría"
+      },
+      {
+        "q": "'¿Tienes hambre?' → Me preguntó ____ tenía hambre.",
+        "a": "si"
+      }
+    ],
+    "label": "Estilo indirecto",
+    "ctype": "grammar",
+    "cefr": "B2"
+  },
+  "futuro-de-probabilidad": {
+    "slug": "futuro-de-probabilidad",
+    "explanation": "El futuro simple no solo expresa acciones futuras, sino también suposiciones o probabilidad sobre el presente. Cuando no sabemos algo con seguridad, usamos el futuro para conjeturar: '¿Qué hora será?' (= no lo sé, supongo) o 'Serán las tres'. Para hipótesis sobre el pasado se usa el condicional o el futuro perfecto ('Estaría enfermo', 'Habrá salido'). Es un uso muy común en el español hablado.",
+    "rule_of_thumb": "Futuro = suposición sobre el ahora. 'Serán las cinco' = seguramente son las cinco.",
+    "german_pitfall": "Im Deutschen drückt man Vermutungen mit 'wohl', 'wahrscheinlich' oder 'werden wohl' aus. Deutsche vergessen oft, dass das spanische Futur ALLEIN schon die Vermutung ausdrückt. '¿Dónde estará Juan?' bedeutet 'Wo mag Juan wohl sein?' – nicht 'Wo wird Juan sein?' (Zukunft).",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "No sé qué hora es. ____ (ser) las diez.",
+        "a": "Serán"
+      },
+      {
+        "q": "¿Dónde está María? No sé, ____ (estar) en el trabajo.",
+        "a": "estará"
+      },
+      {
+        "q": "Ese coche es caro, ____ (costar) más de treinta mil euros.",
+        "a": "costará"
+      }
+    ],
+    "label": "Futuro de probabilidad",
+    "ctype": "grammar",
+    "cefr": "B2"
+  },
+  "voz-pasiva": {
+    "slug": "voz-pasiva",
+    "explanation": "La voz pasiva se forma con el verbo 'ser' + participio, que concuerda en género y número con el sujeto: 'La casa fue construida en 1990'. El agente se introduce con 'por'. Sin embargo, en español la pasiva con 'ser' es poco frecuente en la lengua hablada; se prefiere la pasiva refleja con 'se' ('Se venden pisos', 'Se construyó la casa') o construcciones activas. La pasiva con 'ser' es típica de textos escritos y periodísticos.",
+    "rule_of_thumb": "ser + participio concordado + 'por' el agente. Pero en el día a día usa 'se'.",
+    "german_pitfall": "Im Deutschen ist das Passiv mit 'werden' sehr häufig. Deutsche übertragen das gerne 1:1 mit 'ser'. Im Spanischen klingt das oft unnatürlich – benutze lieber die pasiva refleja mit 'se': 'Se habla español' statt 'El español es hablado'. Achte außerdem darauf, dass das Partizip in Geschlecht und Zahl übereinstimmt (fue construida, nicht construido).",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {
+        "q": "La novela ____ (ser) escrita por García Márquez.",
+        "a": "fue"
+      },
+      {
+        "q": "Las cartas ya ____ (ser) enviadas.",
+        "a": "fueron"
+      },
+      {
+        "q": "Aquí ____ (venderse) casas.",
+        "a": "se venden"
+      }
+    ],
+    "label": "Voz pasiva",
+    "ctype": "grammar",
+    "cefr": "B2"
+  },
+  "stem-change-e-ie": {
+    "slug": "stem-change-e-ie",
+    "explanation": "Muchos verbos cambian la 'e' de la raíz por 'ie' cuando está acentuada. Esto ocurre en todas las personas del singular y en la tercera del plural (yo, tú, él, ellos), pero NO en 'nosotros' ni 'vosotros', porque ahí el acento cae en la terminación. Por ejemplo: 'querer' → 'quiero, quieres, quiere, queremos, queréis, quieren'. Afecta a verbos de las tres conjugaciones. Las terminaciones son totalmente regulares; solo cambia la raíz.",
+    "rule_of_thumb": "e→ie donde suena fuerte; nosotros y vosotros no cambian ('la bota': las cuatro esquinas cambian, el centro no).",
+    "german_pitfall": "Im Deutschen gibt es keine solche Vokaländerung im Wortstamm bei der Konjugation. Deutsche vergessen den Wechsel oder wenden ihn fälschlich auch auf 'nosotros/vosotros' an. Merke: 'queremos' und 'queréis' behalten das 'e' – nur da, wo die Betonung auf dem Stamm liegt, wird es zu 'ie'.",
+    "paradigm": null,
+    "member_verbs": [
+      "querer",
+      "pensar",
+      "empezar",
+      "entender",
+      "cerrar",
+      "perder",
+      "sentir",
+      "preferir",
+      "comenzar",
+      "despertar",
+      "recomendar",
+      "encender",
+      "mentir",
+      "calentar"
+    ],
+    "default_exercises": [
+      {
+        "q": "(Yo) ____ (querer) un café, por favor.",
+        "a": "quiero"
+      },
+      {
+        "q": "¿Qué ____ (pensar) tú de esto?",
+        "a": "piensas"
+      },
+      {
+        "q": "Nosotros ____ (empezar) a las nueve.",
+        "a": "empezamos"
+      }
+    ],
+    "label": "Cambio de raíz e→ie (querer, pensar...)",
+    "ctype": "pattern_family",
+    "cefr": "A2"
+  },
+  "stem-change-o-ue": {
+    "slug": "stem-change-o-ue",
+    "explanation": "Estos verbos cambian la 'o' de la raíz por 'ue' cuando está acentuada. Como en el grupo e→ie, el cambio ocurre en yo, tú, él y ellos, pero NO en 'nosotros' ni 'vosotros'. Por ejemplo: 'poder' → 'puedo, puedes, puede, podemos, podéis, pueden'. El verbo 'jugar' es especial porque cambia u→ue ('juego'). Las terminaciones son regulares; solo cambia la vocal de la raíz.",
+    "rule_of_thumb": "o→ue donde recae el acento; nosotros y vosotros se quedan igual.",
+    "german_pitfall": "Auch hier fehlt im Deutschen die Entsprechung. Deutsche neigen dazu, 'podemos' fälschlich als 'puedemos' zu bilden. Die 1. und 2. Person Plural bleiben IMMER beim ursprünglichen 'o': 'dormimos', 'volvéis', 'podemos'.",
+    "paradigm": null,
+    "member_verbs": [
+      "poder",
+      "dormir",
+      "volver",
+      "encontrar",
+      "contar",
+      "recordar",
+      "costar",
+      "morir",
+      "soñar",
+      "almorzar",
+      "mover",
+      "acostar",
+      "probar",
+      "llover",
+      "jugar"
+    ],
+    "default_exercises": [
+      {
+        "q": "(Yo) no ____ (poder) venir hoy.",
+        "a": "puedo"
+      },
+      {
+        "q": "¿Cuánto ____ (costar) esto?",
+        "a": "cuesta"
+      },
+      {
+        "q": "Nosotros ____ (dormir) ocho horas.",
+        "a": "dormimos"
+      }
+    ],
+    "label": "Cambio de raíz o→ue (poder, dormir...)",
+    "ctype": "pattern_family",
+    "cefr": "A2"
+  },
+  "stem-change-e-i": {
+    "slug": "stem-change-e-i",
+    "explanation": "Algunos verbos terminados en '-ir' cambian la 'e' de la raíz por 'i' cuando está acentuada. El cambio afecta a yo, tú, él y ellos, pero NO a 'nosotros' ni 'vosotros'. Por ejemplo: 'pedir' → 'pido, pides, pide, pedimos, pedís, piden'. A diferencia de los grupos e→ie y o→ue, este cambio solo se da en verbos de la tercera conjugación (-ir). Las terminaciones son regulares.",
+    "rule_of_thumb": "Solo verbos en -ir: e→i excepto en nosotros y vosotros. 'Pido, pides, pide... pedimos.'",
+    "german_pitfall": "Deutsche verwechseln diese Gruppe oft mit e→ie (querer). Merke: bei 'pedir', 'servir', 'repetir' wird das 'e' zu einem einfachen 'i', NICHT zu 'ie'. Es heißt 'pido', nicht 'piedo'. Und wie bei den anderen Gruppen bleibt 'pedimos'/'pedís' unverändert.",
+    "paradigm": null,
+    "member_verbs": [
+      "pedir",
+      "servir",
+      "repetir",
+      "seguir",
+      "conseguir",
+      "elegir",
+      "vestir",
+      "medir",
+      "reír",
+      "despedir",
+      "corregir",
+      "competir",
+      "impedir",
+      "freír"
+    ],
+    "default_exercises": [
+      {
+        "q": "(Yo) ____ (pedir) la cuenta, por favor.",
+        "a": "pido"
+      },
+      {
+        "q": "El camarero nos ____ (servir) el vino.",
+        "a": "sirve"
+      },
+      {
+        "q": "¿Puedes ____ (repetir) la pregunta?",
+        "a": "repetir"
+      }
+    ],
+    "label": "Cambio de raíz e→i (pedir, servir...)",
+    "ctype": "pattern_family",
+    "cefr": "A2"
+  },
+  "g-verbs": {
+    "slug": "g-verbs",
+    "explanation": "Algunos verbos añaden una -g- en la primera persona del singular (yo) del presente. Solo cambia la forma de 'yo'; el resto del presente sigue como un verbo normal (o con otro cambio propio). Por ejemplo: tener → tengo, poner → pongo, salir → salgo, hacer → hago. Muchos de estos verbos combinan la -g- con un cambio de vocal (tener: tú tienes, él tiene).",
+    "rule_of_thumb": "Solo la forma 'yo' gana una -g-: tengo, pongo, salgo, hago, digo.",
+    "german_pitfall": "Im Deutschen ist die 1. Person Singular oft die 'regelmäßigste' Form (ich komme). Im Spanischen ist bei diesen Verben gerade das 'yo' die unregelmäßige Form – verwechsle 'tengo' nicht mit einem regelmäßigen 'teno'.",
+    "paradigm": null,
+    "member_verbs": [
+      "tener",
+      "poner",
+      "salir",
+      "hacer",
+      "decir",
+      "venir",
+      "valer",
+      "poner",
+      "traer",
+      "oír",
+      "caer",
+      "tener que"
+    ],
+    "default_exercises": [
+      {
+        "q": "Yo ___ (tener) dos hermanos.",
+        "a": "tengo"
+      },
+      {
+        "q": "Yo ___ (salir) de casa a las ocho.",
+        "a": "salgo"
+      },
+      {
+        "q": "Yo ___ (hacer) los deberes por la tarde.",
+        "a": "hago"
+      }
+    ],
+    "label": "Verbos en -go (tengo, pongo, salgo...)",
+    "ctype": "pattern_family",
+    "cefr": "A2"
+  },
+  "zc-verbs": {
+    "slug": "zc-verbs",
+    "explanation": "Los verbos terminados en -cer o -cir (con vocal delante de la c) añaden una -z- en la forma 'yo' del presente: -zco. Por ejemplo: conocer → conozco, conducir → conduzco, ofrecer → ofrezco, traducir → traduzco. El resto del presente es regular: conoces, conoce, conocemos... Solo cambia el 'yo'.",
+    "rule_of_thumb": "Verbo en -cer/-cir → yo termina en -zco: conozco, conduzco, ofrezco.",
+    "german_pitfall": "Es geht nur um die Aussprache/Schreibung des 'yo', nicht um eine echte Bedeutungsänderung. Deutsche neigen dazu, 'conoco' zu sagen – aber es muss 'conozco' mit z heißen.",
+    "paradigm": null,
+    "member_verbs": [
+      "conocer",
+      "conducir",
+      "traducir",
+      "ofrecer",
+      "parecer",
+      "agradecer",
+      "obedecer",
+      "producir",
+      "reducir",
+      "aparecer",
+      "crecer",
+      "nacer",
+      "merecer"
+    ],
+    "default_exercises": [
+      {
+        "q": "Yo ___ (conocer) muy bien Barcelona.",
+        "a": "conozco"
+      },
+      {
+        "q": "Yo ___ (conducir) al trabajo cada día.",
+        "a": "conduzco"
+      },
+      {
+        "q": "Yo te ___ (agradecer) mucho la ayuda.",
+        "a": "agradezco"
+      }
+    ],
+    "label": "Verbos en -zco (conozco, conduzco...)",
+    "ctype": "pattern_family",
+    "cefr": "A2"
+  },
+  "y-verbs": {
+    "slug": "y-verbs",
+    "explanation": "Los verbos terminados en -uir (menos -guir) insertan una -y- delante de las terminaciones cuando estas empiezan por a, e, o. En presente afecta a todas las formas menos 'nosotros' y 'vosotros': construyo, construyes, construye, construimos, construís, construyen. Ejemplos: huir → huyo, construir → construyo, destruir → destruyo, incluir → incluyo.",
+    "rule_of_thumb": "En -uir sale una 'y' en todo el presente menos nosotros/vosotros: construyo, huyes, incluye.",
+    "german_pitfall": "Das eingeschobene 'y' hat keine Entsprechung im Deutschen und wird oft vergessen. Achte darauf: nicht 'construo' oder 'huo', sondern 'construyo', 'huyo'.",
+    "paradigm": null,
+    "member_verbs": [
+      "construir",
+      "huir",
+      "destruir",
+      "incluir",
+      "concluir",
+      "contribuir",
+      "distribuir",
+      "sustituir",
+      "influir",
+      "atribuir",
+      "disminuir",
+      "constituir"
+    ],
+    "default_exercises": [
+      {
+        "q": "Ellos ___ (construir) una casa nueva.",
+        "a": "construyen"
+      },
+      {
+        "q": "El ladrón ___ (huir) de la policía.",
+        "a": "huye"
+      },
+      {
+        "q": "El precio ___ (incluir) el desayuno.",
+        "a": "incluye"
+      }
+    ],
+    "label": "Verbos en -uir con y (construyo, huyo...)",
+    "ctype": "pattern_family",
+    "cefr": "B1"
+  },
+  "irregular-indefinido": {
+    "slug": "irregular-indefinido",
+    "explanation": "Algunos verbos muy frecuentes tienen una raíz irregular en el pretérito indefinido, llamada 'pretérito fuerte'. Estos verbos comparten unas terminaciones especiales, distintas de las regulares: -e, -iste, -o, -imos, -isteis, -ieron. Fíjate: la 1ª y 3ª persona del singular NO llevan tilde (tuve, tuvo). Ejemplos: tener → tuve, estar → estuve, poder → pude, poner → puse, saber → supe, hacer → hice.",
+    "rule_of_thumb": "Raíz irregular + terminaciones sin tilde: tuve, estuve, pude, puse, quise.",
+    "german_pitfall": "Anders als bei den regelmäßigen Formen (hablé, comí) tragen 'yo' und 'él' hier KEINEN Akzent: 'tuve', nicht 'tuvé'. Deutsche setzen den Akzent oft aus Analogie fälschlich.",
+    "paradigm": null,
+    "member_verbs": [
+      "tener",
+      "estar",
+      "poder",
+      "poner",
+      "saber",
+      "hacer",
+      "querer",
+      "venir",
+      "decir",
+      "traer",
+      "andar",
+      "caber",
+      "haber"
+    ],
+    "default_exercises": [
+      {
+        "q": "Ayer ___ (tener, yo) mucho trabajo.",
+        "a": "tuve"
+      },
+      {
+        "q": "El año pasado ___ (estar, nosotros) en Madrid.",
+        "a": "estuvimos"
+      },
+      {
+        "q": "No ___ (poder, ella) venir a la fiesta.",
+        "a": "pudo"
+      }
+    ],
+    "label": "Indefinidos fuertes (estuve, tuve, pude...)",
+    "ctype": "pattern_family",
+    "cefr": "A2"
+  },
+  "irregular-futuro": {
+    "slug": "irregular-futuro",
+    "explanation": "El futuro simple se forma con el infinitivo + terminaciones (-é, -ás, -á, -emos, -éis, -án). Pero algunos verbos tienen una raíz irregular: pierden la vocal o cambian la letra. Ejemplos: tener → tendré, salir → saldré, poder → podré, hacer → haré, decir → diré. Las terminaciones son siempre las mismas y regulares; solo cambia la raíz.",
+    "rule_of_thumb": "Raíz irregular + terminaciones normales del futuro: tendré, saldré, haré, diré.",
+    "german_pitfall": "Das Deutsche bildet die Zukunft mit 'werden' + Infinitiv (ich werde haben). Im Spanischen ist es eine EINE Wortform mit angehängter Endung – kein Hilfsverb. Verwende nicht 'voy a tener' und 'tendré' beliebig durcheinander.",
+    "paradigm": null,
+    "member_verbs": [
+      "tener",
+      "salir",
+      "poder",
+      "hacer",
+      "decir",
+      "poner",
+      "venir",
+      "saber",
+      "querer",
+      "haber",
+      "caber",
+      "valer"
+    ],
+    "default_exercises": [
+      {
+        "q": "Mañana ___ (tener, yo) tiempo para ti.",
+        "a": "tendré"
+      },
+      {
+        "q": "El tren ___ (salir) a las nueve.",
+        "a": "saldrá"
+      },
+      {
+        "q": "Nosotros ___ (hacer) la cena juntos.",
+        "a": "haremos"
+      }
+    ],
+    "label": "Futuros irregulares (tendré, saldré...)",
+    "ctype": "pattern_family",
+    "cefr": "B1"
+  },
+  "irregular-participio": {
+    "slug": "irregular-participio",
+    "explanation": "El participio regular termina en -ado (verbos en -ar) o -ido (verbos en -er/-ir). Pero varios verbos frecuentes tienen participios irregulares que debes memorizar: hacer → hecho, ver → visto, escribir → escrito, poner → puesto, abrir → abierto, decir → dicho, volver → vuelto, romper → roto. Se usan igual: con haber para tiempos compuestos (he hecho) y como adjetivo (la puerta está abierta).",
+    "rule_of_thumb": "Algunos participios no acaban en -ado/-ido: hecho, visto, escrito, puesto, dicho, roto.",
+    "german_pitfall": "Wie im Deutschen ('gemacht', 'gesehen') muss man diese Formen einfach lernen. Achtung: Anders als Deutsche oft denken, gibt es hier keine Vorsilbe wie 'ge-'; bilde nicht '*hacido', sondern 'hecho'.",
+    "paradigm": null,
+    "member_verbs": [
+      "hacer",
+      "ver",
+      "escribir",
+      "poner",
+      "abrir",
+      "decir",
+      "volver",
+      "romper",
+      "morir",
+      "cubrir",
+      "descubrir",
+      "resolver"
+    ],
+    "default_exercises": [
+      {
+        "q": "He ___ (hacer) los deberes.",
+        "a": "hecho"
+      },
+      {
+        "q": "¿Has ___ (ver) la película?",
+        "a": "visto"
+      },
+      {
+        "q": "La ventana está ___ (abrir).",
+        "a": "abierta"
+      }
+    ],
+    "label": "Participios irregulares (hecho, visto...)",
+    "ctype": "pattern_family",
+    "cefr": "A2"
+  },
+  "irregular-imperativo": {
+    "slug": "irregular-imperativo",
+    "explanation": "Algunos verbos tienen un imperativo afirmativo irregular en la forma 'tú': poner → pon, tener → ten, venir → ven, salir → sal, hacer → haz, decir → di, ir → ve, ser → sé. Son formas cortas que hay que memorizar. Ojo: el imperativo negativo (no pongas, no tengas) usa el presente de subjuntivo, no estas formas cortas.",
+    "rule_of_thumb": "Ocho imperativos cortos para 'tú': pon, ten, ven, sal, haz, di, ve, sé.",
+    "german_pitfall": "Diese verkürzten Befehlsformen wirken für Deutsche 'unvollständig'. Man sagt 'ven', nicht '*veni' oder '*viene'. Und der verneinte Befehl ist ganz anders: 'no vengas', nicht '*no ven'.",
+    "paradigm": null,
+    "member_verbs": [
+      "poner",
+      "tener",
+      "venir",
+      "salir",
+      "hacer",
+      "decir",
+      "ir",
+      "ser"
+    ],
+    "default_exercises": [
+      {
+        "q": "¡___ (venir, tú) aquí ahora mismo!",
+        "a": "Ven"
+      },
+      {
+        "q": "___ (hacer, tú) la cama, por favor.",
+        "a": "Haz"
+      },
+      {
+        "q": "___ (salir, tú) de la habitación.",
+        "a": "Sal"
+      }
+    ],
+    "label": "Imperativos irregulares (pon, ten, ven, sal...)",
+    "ctype": "pattern_family",
+    "cefr": "A2"
+  }
+}

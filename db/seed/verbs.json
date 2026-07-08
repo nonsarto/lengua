@@ -1,0 +1,4278 @@
+{
+  "ser": {
+    "infinitive": "ser",
+    "translation": "sein",
+    "cefr": "A1",
+    "pattern_tags": [
+      "irregular-indefinido",
+      "irregular-imperativo"
+    ],
+    "irregularity_note": "Es un verbo totalmente irregular con raíces distintas en varios tiempos.",
+    "conjugations": {
+      "presente": {
+        "yo": "soy",
+        "tu": "eres",
+        "el": "es",
+        "nosotros": "somos",
+        "vosotros": "sois",
+        "ellos": "son"
+      },
+      "indefinido": {
+        "yo": "fui",
+        "tu": "fuiste",
+        "el": "fue",
+        "nosotros": "fuimos",
+        "vosotros": "fuisteis",
+        "ellos": "fueron"
+      },
+      "imperfecto": {
+        "yo": "era",
+        "tu": "eras",
+        "el": "era",
+        "nosotros": "éramos",
+        "vosotros": "erais",
+        "ellos": "eran"
+      },
+      "futuro": {
+        "yo": "seré",
+        "tu": "serás",
+        "el": "será",
+        "nosotros": "seremos",
+        "vosotros": "seréis",
+        "ellos": "serán"
+      },
+      "condicional": {
+        "yo": "sería",
+        "tu": "serías",
+        "el": "sería",
+        "nosotros": "seríamos",
+        "vosotros": "seríais",
+        "ellos": "serían"
+      },
+      "subjuntivo_presente": {
+        "yo": "sea",
+        "tu": "seas",
+        "el": "sea",
+        "nosotros": "seamos",
+        "vosotros": "seáis",
+        "ellos": "sean"
+      },
+      "imperativo": {
+        "tu": "sé",
+        "usted": "sea",
+        "vosotros": "sed"
+      },
+      "gerundio": "siendo",
+      "participio": "sido"
+    },
+    "freq_rank": 1
+  },
+  "estar": {
+    "infinitive": "estar",
+    "translation": "sein (sich befinden)",
+    "cefr": "A1",
+    "pattern_tags": [
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Lleva acentos irregulares en el presente y raíz 'estuv-' en el indefinido.",
+    "conjugations": {
+      "presente": {
+        "yo": "estoy",
+        "tu": "estás",
+        "el": "está",
+        "nosotros": "estamos",
+        "vosotros": "estáis",
+        "ellos": "están"
+      },
+      "indefinido": {
+        "yo": "estuve",
+        "tu": "estuviste",
+        "el": "estuvo",
+        "nosotros": "estuvimos",
+        "vosotros": "estuvisteis",
+        "ellos": "estuvieron"
+      },
+      "imperfecto": {
+        "yo": "estaba",
+        "tu": "estabas",
+        "el": "estaba",
+        "nosotros": "estábamos",
+        "vosotros": "estabais",
+        "ellos": "estaban"
+      },
+      "futuro": {
+        "yo": "estaré",
+        "tu": "estarás",
+        "el": "estará",
+        "nosotros": "estaremos",
+        "vosotros": "estaréis",
+        "ellos": "estarán"
+      },
+      "condicional": {
+        "yo": "estaría",
+        "tu": "estarías",
+        "el": "estaría",
+        "nosotros": "estaríamos",
+        "vosotros": "estaríais",
+        "ellos": "estarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "esté",
+        "tu": "estés",
+        "el": "esté",
+        "nosotros": "estemos",
+        "vosotros": "estéis",
+        "ellos": "estén"
+      },
+      "imperativo": {
+        "tu": "está",
+        "usted": "esté",
+        "vosotros": "estad"
+      },
+      "gerundio": "estando",
+      "participio": "estado"
+    },
+    "freq_rank": 2
+  },
+  "haber": {
+    "infinitive": "haber",
+    "translation": "haben (Hilfsverb)",
+    "cefr": "A1",
+    "pattern_tags": [
+      "irregular-indefinido",
+      "irregular-futuro"
+    ],
+    "irregularity_note": "Es un verbo auxiliar totalmente irregular con la forma impersonal 'hay'.",
+    "conjugations": {
+      "presente": {
+        "yo": "he",
+        "tu": "has",
+        "el": "ha",
+        "nosotros": "hemos",
+        "vosotros": "habéis",
+        "ellos": "han"
+      },
+      "indefinido": {
+        "yo": "hube",
+        "tu": "hubiste",
+        "el": "hubo",
+        "nosotros": "hubimos",
+        "vosotros": "hubisteis",
+        "ellos": "hubieron"
+      },
+      "imperfecto": {
+        "yo": "había",
+        "tu": "habías",
+        "el": "había",
+        "nosotros": "habíamos",
+        "vosotros": "habíais",
+        "ellos": "habían"
+      },
+      "futuro": {
+        "yo": "habré",
+        "tu": "habrás",
+        "el": "habrá",
+        "nosotros": "habremos",
+        "vosotros": "habréis",
+        "ellos": "habrán"
+      },
+      "condicional": {
+        "yo": "habría",
+        "tu": "habrías",
+        "el": "habría",
+        "nosotros": "habríamos",
+        "vosotros": "habríais",
+        "ellos": "habrían"
+      },
+      "subjuntivo_presente": {
+        "yo": "haya",
+        "tu": "hayas",
+        "el": "haya",
+        "nosotros": "hayamos",
+        "vosotros": "hayáis",
+        "ellos": "hayan"
+      },
+      "imperativo": {
+        "tu": "—",
+        "usted": "—",
+        "vosotros": "—"
+      },
+      "gerundio": "habiendo",
+      "participio": "habido"
+    },
+    "freq_rank": 3
+  },
+  "tener": {
+    "infinitive": "tener",
+    "translation": "haben",
+    "cefr": "A1",
+    "pattern_tags": [
+      "stem-change-e-ie",
+      "g-verbs",
+      "irregular-indefinido",
+      "irregular-futuro",
+      "irregular-imperativo"
+    ],
+    "irregularity_note": "Diptonga e>ie, añade 'g' en la primera persona y tiene raíz 'tuv-' en el indefinido.",
+    "conjugations": {
+      "presente": {
+        "yo": "tengo",
+        "tu": "tienes",
+        "el": "tiene",
+        "nosotros": "tenemos",
+        "vosotros": "tenéis",
+        "ellos": "tienen"
+      },
+      "indefinido": {
+        "yo": "tuve",
+        "tu": "tuviste",
+        "el": "tuvo",
+        "nosotros": "tuvimos",
+        "vosotros": "tuvisteis",
+        "ellos": "tuvieron"
+      },
+      "imperfecto": {
+        "yo": "tenía",
+        "tu": "tenías",
+        "el": "tenía",
+        "nosotros": "teníamos",
+        "vosotros": "teníais",
+        "ellos": "tenían"
+      },
+      "futuro": {
+        "yo": "tendré",
+        "tu": "tendrás",
+        "el": "tendrá",
+        "nosotros": "tendremos",
+        "vosotros": "tendréis",
+        "ellos": "tendrán"
+      },
+      "condicional": {
+        "yo": "tendría",
+        "tu": "tendrías",
+        "el": "tendría",
+        "nosotros": "tendríamos",
+        "vosotros": "tendríais",
+        "ellos": "tendrían"
+      },
+      "subjuntivo_presente": {
+        "yo": "tenga",
+        "tu": "tengas",
+        "el": "tenga",
+        "nosotros": "tengamos",
+        "vosotros": "tengáis",
+        "ellos": "tengan"
+      },
+      "imperativo": {
+        "tu": "ten",
+        "usted": "tenga",
+        "vosotros": "tened"
+      },
+      "gerundio": "teniendo",
+      "participio": "tenido"
+    },
+    "freq_rank": 4
+  },
+  "hacer": {
+    "infinitive": "hacer",
+    "translation": "machen",
+    "cefr": "A1",
+    "pattern_tags": [
+      "g-verbs",
+      "irregular-indefinido",
+      "irregular-futuro",
+      "irregular-participio",
+      "irregular-imperativo"
+    ],
+    "irregularity_note": "Añade 'g' en yo, tiene raíz 'hic-/hiz-' en el indefinido y participio 'hecho'.",
+    "conjugations": {
+      "presente": {
+        "yo": "hago",
+        "tu": "haces",
+        "el": "hace",
+        "nosotros": "hacemos",
+        "vosotros": "hacéis",
+        "ellos": "hacen"
+      },
+      "indefinido": {
+        "yo": "hice",
+        "tu": "hiciste",
+        "el": "hizo",
+        "nosotros": "hicimos",
+        "vosotros": "hicisteis",
+        "ellos": "hicieron"
+      },
+      "imperfecto": {
+        "yo": "hacía",
+        "tu": "hacías",
+        "el": "hacía",
+        "nosotros": "hacíamos",
+        "vosotros": "hacíais",
+        "ellos": "hacían"
+      },
+      "futuro": {
+        "yo": "haré",
+        "tu": "harás",
+        "el": "hará",
+        "nosotros": "haremos",
+        "vosotros": "haréis",
+        "ellos": "harán"
+      },
+      "condicional": {
+        "yo": "haría",
+        "tu": "harías",
+        "el": "haría",
+        "nosotros": "haríamos",
+        "vosotros": "haríais",
+        "ellos": "harían"
+      },
+      "subjuntivo_presente": {
+        "yo": "haga",
+        "tu": "hagas",
+        "el": "haga",
+        "nosotros": "hagamos",
+        "vosotros": "hagáis",
+        "ellos": "hagan"
+      },
+      "imperativo": {
+        "tu": "haz",
+        "usted": "haga",
+        "vosotros": "haced"
+      },
+      "gerundio": "haciendo",
+      "participio": "hecho"
+    },
+    "freq_rank": 5
+  },
+  "poder": {
+    "infinitive": "poder",
+    "translation": "können",
+    "cefr": "A1",
+    "pattern_tags": [
+      "stem-change-o-ue",
+      "irregular-indefinido",
+      "irregular-futuro"
+    ],
+    "irregularity_note": "Diptonga o>ue en presente, tiene raíz irregular pud- en indefinido y raíz podr- en futuro y condicional.",
+    "conjugations": {
+      "presente": {
+        "yo": "puedo",
+        "tu": "puedes",
+        "el": "puede",
+        "nosotros": "podemos",
+        "vosotros": "podéis",
+        "ellos": "pueden"
+      },
+      "indefinido": {
+        "yo": "pude",
+        "tu": "pudiste",
+        "el": "pudo",
+        "nosotros": "pudimos",
+        "vosotros": "pudisteis",
+        "ellos": "pudieron"
+      },
+      "imperfecto": {
+        "yo": "podía",
+        "tu": "podías",
+        "el": "podía",
+        "nosotros": "podíamos",
+        "vosotros": "podíais",
+        "ellos": "podían"
+      },
+      "futuro": {
+        "yo": "podré",
+        "tu": "podrás",
+        "el": "podrá",
+        "nosotros": "podremos",
+        "vosotros": "podréis",
+        "ellos": "podrán"
+      },
+      "condicional": {
+        "yo": "podría",
+        "tu": "podrías",
+        "el": "podría",
+        "nosotros": "podríamos",
+        "vosotros": "podríais",
+        "ellos": "podrían"
+      },
+      "subjuntivo_presente": {
+        "yo": "pueda",
+        "tu": "puedas",
+        "el": "pueda",
+        "nosotros": "podamos",
+        "vosotros": "podáis",
+        "ellos": "puedan"
+      },
+      "imperativo": {
+        "tu": "puede",
+        "usted": "pueda",
+        "vosotros": "poded"
+      },
+      "gerundio": "pudiendo",
+      "participio": "podido"
+    },
+    "freq_rank": 6
+  },
+  "decir": {
+    "infinitive": "decir",
+    "translation": "sagen",
+    "cefr": "A1",
+    "pattern_tags": [
+      "stem-change-e-i",
+      "g-verbs",
+      "irregular-indefinido",
+      "irregular-futuro",
+      "irregular-participio",
+      "irregular-imperativo"
+    ],
+    "irregularity_note": "Tiene yo digo, cambio e>i, raíz dij- en indefinido, futuro dir-, participio dicho e imperativo di.",
+    "conjugations": {
+      "presente": {
+        "yo": "digo",
+        "tu": "dices",
+        "el": "dice",
+        "nosotros": "decimos",
+        "vosotros": "decís",
+        "ellos": "dicen"
+      },
+      "indefinido": {
+        "yo": "dije",
+        "tu": "dijiste",
+        "el": "dijo",
+        "nosotros": "dijimos",
+        "vosotros": "dijisteis",
+        "ellos": "dijeron"
+      },
+      "imperfecto": {
+        "yo": "decía",
+        "tu": "decías",
+        "el": "decía",
+        "nosotros": "decíamos",
+        "vosotros": "decíais",
+        "ellos": "decían"
+      },
+      "futuro": {
+        "yo": "diré",
+        "tu": "dirás",
+        "el": "dirá",
+        "nosotros": "diremos",
+        "vosotros": "diréis",
+        "ellos": "dirán"
+      },
+      "condicional": {
+        "yo": "diría",
+        "tu": "dirías",
+        "el": "diría",
+        "nosotros": "diríamos",
+        "vosotros": "diríais",
+        "ellos": "dirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "diga",
+        "tu": "digas",
+        "el": "diga",
+        "nosotros": "digamos",
+        "vosotros": "digáis",
+        "ellos": "digan"
+      },
+      "imperativo": {
+        "tu": "di",
+        "usted": "diga",
+        "vosotros": "decid"
+      },
+      "gerundio": "diciendo",
+      "participio": "dicho"
+    },
+    "freq_rank": 7
+  },
+  "ir": {
+    "infinitive": "ir",
+    "translation": "gehen",
+    "cefr": "A1",
+    "pattern_tags": [
+      "irregular-indefinido",
+      "irregular-imperativo"
+    ],
+    "irregularity_note": "Es muy irregular: presente voy/vas, imperfecto iba, indefinido fui (igual que ser) e imperativo ve.",
+    "conjugations": {
+      "presente": {
+        "yo": "voy",
+        "tu": "vas",
+        "el": "va",
+        "nosotros": "vamos",
+        "vosotros": "vais",
+        "ellos": "van"
+      },
+      "indefinido": {
+        "yo": "fui",
+        "tu": "fuiste",
+        "el": "fue",
+        "nosotros": "fuimos",
+        "vosotros": "fuisteis",
+        "ellos": "fueron"
+      },
+      "imperfecto": {
+        "yo": "iba",
+        "tu": "ibas",
+        "el": "iba",
+        "nosotros": "íbamos",
+        "vosotros": "ibais",
+        "ellos": "iban"
+      },
+      "futuro": {
+        "yo": "iré",
+        "tu": "irás",
+        "el": "irá",
+        "nosotros": "iremos",
+        "vosotros": "iréis",
+        "ellos": "irán"
+      },
+      "condicional": {
+        "yo": "iría",
+        "tu": "irías",
+        "el": "iría",
+        "nosotros": "iríamos",
+        "vosotros": "iríais",
+        "ellos": "irían"
+      },
+      "subjuntivo_presente": {
+        "yo": "vaya",
+        "tu": "vayas",
+        "el": "vaya",
+        "nosotros": "vayamos",
+        "vosotros": "vayáis",
+        "ellos": "vayan"
+      },
+      "imperativo": {
+        "tu": "ve",
+        "usted": "vaya",
+        "vosotros": "id"
+      },
+      "gerundio": "yendo",
+      "participio": "ido"
+    },
+    "freq_rank": 8
+  },
+  "ver": {
+    "infinitive": "ver",
+    "translation": "sehen",
+    "cefr": "A1",
+    "pattern_tags": [
+      "irregular-participio"
+    ],
+    "irregularity_note": "Tiene yo veo, imperfecto conserva la e (veía) y participio irregular visto.",
+    "conjugations": {
+      "presente": {
+        "yo": "veo",
+        "tu": "ves",
+        "el": "ve",
+        "nosotros": "vemos",
+        "vosotros": "veis",
+        "ellos": "ven"
+      },
+      "indefinido": {
+        "yo": "vi",
+        "tu": "viste",
+        "el": "vio",
+        "nosotros": "vimos",
+        "vosotros": "visteis",
+        "ellos": "vieron"
+      },
+      "imperfecto": {
+        "yo": "veía",
+        "tu": "veías",
+        "el": "veía",
+        "nosotros": "veíamos",
+        "vosotros": "veíais",
+        "ellos": "veían"
+      },
+      "futuro": {
+        "yo": "veré",
+        "tu": "verás",
+        "el": "verá",
+        "nosotros": "veremos",
+        "vosotros": "veréis",
+        "ellos": "verán"
+      },
+      "condicional": {
+        "yo": "vería",
+        "tu": "verías",
+        "el": "vería",
+        "nosotros": "veríamos",
+        "vosotros": "veríais",
+        "ellos": "verían"
+      },
+      "subjuntivo_presente": {
+        "yo": "vea",
+        "tu": "veas",
+        "el": "vea",
+        "nosotros": "veamos",
+        "vosotros": "veáis",
+        "ellos": "vean"
+      },
+      "imperativo": {
+        "tu": "ve",
+        "usted": "vea",
+        "vosotros": "ved"
+      },
+      "gerundio": "viendo",
+      "participio": "visto"
+    },
+    "freq_rank": 9
+  },
+  "dar": {
+    "infinitive": "dar",
+    "translation": "geben",
+    "cefr": "A1",
+    "pattern_tags": [
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Tiene yo doy y un indefinido irregular sin tilde (di, dio) con terminaciones de la segunda conjugación.",
+    "conjugations": {
+      "presente": {
+        "yo": "doy",
+        "tu": "das",
+        "el": "da",
+        "nosotros": "damos",
+        "vosotros": "dais",
+        "ellos": "dan"
+      },
+      "indefinido": {
+        "yo": "di",
+        "tu": "diste",
+        "el": "dio",
+        "nosotros": "dimos",
+        "vosotros": "disteis",
+        "ellos": "dieron"
+      },
+      "imperfecto": {
+        "yo": "daba",
+        "tu": "dabas",
+        "el": "daba",
+        "nosotros": "dábamos",
+        "vosotros": "dabais",
+        "ellos": "daban"
+      },
+      "futuro": {
+        "yo": "daré",
+        "tu": "darás",
+        "el": "dará",
+        "nosotros": "daremos",
+        "vosotros": "daréis",
+        "ellos": "darán"
+      },
+      "condicional": {
+        "yo": "daría",
+        "tu": "darías",
+        "el": "daría",
+        "nosotros": "daríamos",
+        "vosotros": "daríais",
+        "ellos": "darían"
+      },
+      "subjuntivo_presente": {
+        "yo": "dé",
+        "tu": "des",
+        "el": "dé",
+        "nosotros": "demos",
+        "vosotros": "deis",
+        "ellos": "den"
+      },
+      "imperativo": {
+        "tu": "da",
+        "usted": "dé",
+        "vosotros": "dad"
+      },
+      "gerundio": "dando",
+      "participio": "dado"
+    },
+    "freq_rank": 10
+  },
+  "saber": {
+    "infinitive": "saber",
+    "translation": "wissen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "irregular-indefinido",
+      "irregular-futuro"
+    ],
+    "irregularity_note": "Tiene 'yo sé' irregular, pretérito fuerte 'supe' y futuro 'sabré'.",
+    "conjugations": {
+      "presente": {
+        "yo": "sé",
+        "tu": "sabes",
+        "el": "sabe",
+        "nosotros": "sabemos",
+        "vosotros": "sabéis",
+        "ellos": "saben"
+      },
+      "indefinido": {
+        "yo": "supe",
+        "tu": "supiste",
+        "el": "supo",
+        "nosotros": "supimos",
+        "vosotros": "supisteis",
+        "ellos": "supieron"
+      },
+      "imperfecto": {
+        "yo": "sabía",
+        "tu": "sabías",
+        "el": "sabía",
+        "nosotros": "sabíamos",
+        "vosotros": "sabíais",
+        "ellos": "sabían"
+      },
+      "futuro": {
+        "yo": "sabré",
+        "tu": "sabrás",
+        "el": "sabrá",
+        "nosotros": "sabremos",
+        "vosotros": "sabréis",
+        "ellos": "sabrán"
+      },
+      "condicional": {
+        "yo": "sabría",
+        "tu": "sabrías",
+        "el": "sabría",
+        "nosotros": "sabríamos",
+        "vosotros": "sabríais",
+        "ellos": "sabrían"
+      },
+      "subjuntivo_presente": {
+        "yo": "sepa",
+        "tu": "sepas",
+        "el": "sepa",
+        "nosotros": "sepamos",
+        "vosotros": "sepáis",
+        "ellos": "sepan"
+      },
+      "imperativo": {
+        "tu": "sabe",
+        "usted": "sepa",
+        "vosotros": "sabed"
+      },
+      "gerundio": "sabiendo",
+      "participio": "sabido"
+    },
+    "freq_rank": 11
+  },
+  "querer": {
+    "infinitive": "querer",
+    "translation": "wollen",
+    "cefr": "A1",
+    "pattern_tags": [
+      "stem-change-e-ie",
+      "irregular-indefinido",
+      "irregular-futuro"
+    ],
+    "irregularity_note": "Diptonga e→ie, tiene pretérito fuerte 'quise' y futuro 'querré'.",
+    "conjugations": {
+      "presente": {
+        "yo": "quiero",
+        "tu": "quieres",
+        "el": "quiere",
+        "nosotros": "queremos",
+        "vosotros": "queréis",
+        "ellos": "quieren"
+      },
+      "indefinido": {
+        "yo": "quise",
+        "tu": "quisiste",
+        "el": "quiso",
+        "nosotros": "quisimos",
+        "vosotros": "quisisteis",
+        "ellos": "quisieron"
+      },
+      "imperfecto": {
+        "yo": "quería",
+        "tu": "querías",
+        "el": "quería",
+        "nosotros": "queríamos",
+        "vosotros": "queríais",
+        "ellos": "querían"
+      },
+      "futuro": {
+        "yo": "querré",
+        "tu": "querrás",
+        "el": "querrá",
+        "nosotros": "querremos",
+        "vosotros": "querréis",
+        "ellos": "querrán"
+      },
+      "condicional": {
+        "yo": "querría",
+        "tu": "querrías",
+        "el": "querría",
+        "nosotros": "querríamos",
+        "vosotros": "querríais",
+        "ellos": "querrían"
+      },
+      "subjuntivo_presente": {
+        "yo": "quiera",
+        "tu": "quieras",
+        "el": "quiera",
+        "nosotros": "queramos",
+        "vosotros": "queráis",
+        "ellos": "quieran"
+      },
+      "imperativo": {
+        "tu": "quiere",
+        "usted": "quiera",
+        "vosotros": "quered"
+      },
+      "gerundio": "queriendo",
+      "participio": "querido"
+    },
+    "freq_rank": 12
+  },
+  "poner": {
+    "infinitive": "poner",
+    "translation": "legen/stellen/setzen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "g-verbs",
+      "irregular-indefinido",
+      "irregular-futuro",
+      "irregular-participio",
+      "irregular-imperativo"
+    ],
+    "irregularity_note": "Tiene 'yo pongo', pretérito fuerte 'puse', futuro 'pondré', participio 'puesto' e imperativo 'pon'.",
+    "conjugations": {
+      "presente": {
+        "yo": "pongo",
+        "tu": "pones",
+        "el": "pone",
+        "nosotros": "ponemos",
+        "vosotros": "ponéis",
+        "ellos": "ponen"
+      },
+      "indefinido": {
+        "yo": "puse",
+        "tu": "pusiste",
+        "el": "puso",
+        "nosotros": "pusimos",
+        "vosotros": "pusisteis",
+        "ellos": "pusieron"
+      },
+      "imperfecto": {
+        "yo": "ponía",
+        "tu": "ponías",
+        "el": "ponía",
+        "nosotros": "poníamos",
+        "vosotros": "poníais",
+        "ellos": "ponían"
+      },
+      "futuro": {
+        "yo": "pondré",
+        "tu": "pondrás",
+        "el": "pondrá",
+        "nosotros": "pondremos",
+        "vosotros": "pondréis",
+        "ellos": "pondrán"
+      },
+      "condicional": {
+        "yo": "pondría",
+        "tu": "pondrías",
+        "el": "pondría",
+        "nosotros": "pondríamos",
+        "vosotros": "pondríais",
+        "ellos": "pondrían"
+      },
+      "subjuntivo_presente": {
+        "yo": "ponga",
+        "tu": "pongas",
+        "el": "ponga",
+        "nosotros": "pongamos",
+        "vosotros": "pongáis",
+        "ellos": "pongan"
+      },
+      "imperativo": {
+        "tu": "pon",
+        "usted": "ponga",
+        "vosotros": "poned"
+      },
+      "gerundio": "poniendo",
+      "participio": "puesto"
+    },
+    "freq_rank": 13
+  },
+  "venir": {
+    "infinitive": "venir",
+    "translation": "kommen",
+    "cefr": "A1",
+    "pattern_tags": [
+      "g-verbs",
+      "stem-change-e-ie",
+      "irregular-indefinido",
+      "irregular-futuro",
+      "irregular-imperativo"
+    ],
+    "irregularity_note": "Tiene 'yo vengo', diptonga e→ie, pretérito fuerte 'vine', futuro 'vendré' e imperativo 'ven'.",
+    "conjugations": {
+      "presente": {
+        "yo": "vengo",
+        "tu": "vienes",
+        "el": "viene",
+        "nosotros": "venimos",
+        "vosotros": "venís",
+        "ellos": "vienen"
+      },
+      "indefinido": {
+        "yo": "vine",
+        "tu": "viniste",
+        "el": "vino",
+        "nosotros": "vinimos",
+        "vosotros": "vinisteis",
+        "ellos": "vinieron"
+      },
+      "imperfecto": {
+        "yo": "venía",
+        "tu": "venías",
+        "el": "venía",
+        "nosotros": "veníamos",
+        "vosotros": "veníais",
+        "ellos": "venían"
+      },
+      "futuro": {
+        "yo": "vendré",
+        "tu": "vendrás",
+        "el": "vendrá",
+        "nosotros": "vendremos",
+        "vosotros": "vendréis",
+        "ellos": "vendrán"
+      },
+      "condicional": {
+        "yo": "vendría",
+        "tu": "vendrías",
+        "el": "vendría",
+        "nosotros": "vendríamos",
+        "vosotros": "vendríais",
+        "ellos": "vendrían"
+      },
+      "subjuntivo_presente": {
+        "yo": "venga",
+        "tu": "vengas",
+        "el": "venga",
+        "nosotros": "vengamos",
+        "vosotros": "vengáis",
+        "ellos": "vengan"
+      },
+      "imperativo": {
+        "tu": "ven",
+        "usted": "venga",
+        "vosotros": "venid"
+      },
+      "gerundio": "viniendo",
+      "participio": "venido"
+    },
+    "freq_rank": 14
+  },
+  "salir": {
+    "infinitive": "salir",
+    "translation": "hinausgehen/ausgehen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "g-verbs",
+      "irregular-futuro",
+      "irregular-imperativo"
+    ],
+    "irregularity_note": "Tiene 'yo salgo', futuro 'saldré' e imperativo 'sal'.",
+    "conjugations": {
+      "presente": {
+        "yo": "salgo",
+        "tu": "sales",
+        "el": "sale",
+        "nosotros": "salimos",
+        "vosotros": "salís",
+        "ellos": "salen"
+      },
+      "indefinido": {
+        "yo": "salí",
+        "tu": "saliste",
+        "el": "salió",
+        "nosotros": "salimos",
+        "vosotros": "salisteis",
+        "ellos": "salieron"
+      },
+      "imperfecto": {
+        "yo": "salía",
+        "tu": "salías",
+        "el": "salía",
+        "nosotros": "salíamos",
+        "vosotros": "salíais",
+        "ellos": "salían"
+      },
+      "futuro": {
+        "yo": "saldré",
+        "tu": "saldrás",
+        "el": "saldrá",
+        "nosotros": "saldremos",
+        "vosotros": "saldréis",
+        "ellos": "saldrán"
+      },
+      "condicional": {
+        "yo": "saldría",
+        "tu": "saldrías",
+        "el": "saldría",
+        "nosotros": "saldríamos",
+        "vosotros": "saldríais",
+        "ellos": "saldrían"
+      },
+      "subjuntivo_presente": {
+        "yo": "salga",
+        "tu": "salgas",
+        "el": "salga",
+        "nosotros": "salgamos",
+        "vosotros": "salgáis",
+        "ellos": "salgan"
+      },
+      "imperativo": {
+        "tu": "sal",
+        "usted": "salga",
+        "vosotros": "salid"
+      },
+      "gerundio": "saliendo",
+      "participio": "salido"
+    },
+    "freq_rank": 15
+  },
+  "volver": {
+    "infinitive": "volver",
+    "translation": "zurückkehren",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-o-ue",
+      "irregular-participio"
+    ],
+    "irregularity_note": "Diptonga o>ue en presente y tiene participio irregular (vuelto).",
+    "conjugations": {
+      "presente": {
+        "yo": "vuelvo",
+        "tu": "vuelves",
+        "el": "vuelve",
+        "nosotros": "volvemos",
+        "vosotros": "volvéis",
+        "ellos": "vuelven"
+      },
+      "indefinido": {
+        "yo": "volví",
+        "tu": "volviste",
+        "el": "volvió",
+        "nosotros": "volvimos",
+        "vosotros": "volvisteis",
+        "ellos": "volvieron"
+      },
+      "imperfecto": {
+        "yo": "volvía",
+        "tu": "volvías",
+        "el": "volvía",
+        "nosotros": "volvíamos",
+        "vosotros": "volvíais",
+        "ellos": "volvían"
+      },
+      "futuro": {
+        "yo": "volveré",
+        "tu": "volverás",
+        "el": "volverá",
+        "nosotros": "volveremos",
+        "vosotros": "volveréis",
+        "ellos": "volverán"
+      },
+      "condicional": {
+        "yo": "volvería",
+        "tu": "volverías",
+        "el": "volvería",
+        "nosotros": "volveríamos",
+        "vosotros": "volveríais",
+        "ellos": "volverían"
+      },
+      "subjuntivo_presente": {
+        "yo": "vuelva",
+        "tu": "vuelvas",
+        "el": "vuelva",
+        "nosotros": "volvamos",
+        "vosotros": "volváis",
+        "ellos": "vuelvan"
+      },
+      "imperativo": {
+        "tu": "vuelve",
+        "usted": "vuelva",
+        "vosotros": "volved"
+      },
+      "gerundio": "volviendo",
+      "participio": "vuelto"
+    },
+    "freq_rank": 16
+  },
+  "conocer": {
+    "infinitive": "conocer",
+    "translation": "kennen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "zc-verbs"
+    ],
+    "irregularity_note": "En la primera persona del presente añade z (conozco).",
+    "conjugations": {
+      "presente": {
+        "yo": "conozco",
+        "tu": "conoces",
+        "el": "conoce",
+        "nosotros": "conocemos",
+        "vosotros": "conocéis",
+        "ellos": "conocen"
+      },
+      "indefinido": {
+        "yo": "conocí",
+        "tu": "conociste",
+        "el": "conoció",
+        "nosotros": "conocimos",
+        "vosotros": "conocisteis",
+        "ellos": "conocieron"
+      },
+      "imperfecto": {
+        "yo": "conocía",
+        "tu": "conocías",
+        "el": "conocía",
+        "nosotros": "conocíamos",
+        "vosotros": "conocíais",
+        "ellos": "conocían"
+      },
+      "futuro": {
+        "yo": "conoceré",
+        "tu": "conocerás",
+        "el": "conocerá",
+        "nosotros": "conoceremos",
+        "vosotros": "conoceréis",
+        "ellos": "conocerán"
+      },
+      "condicional": {
+        "yo": "conocería",
+        "tu": "conocerías",
+        "el": "conocería",
+        "nosotros": "conoceríamos",
+        "vosotros": "conoceríais",
+        "ellos": "conocerían"
+      },
+      "subjuntivo_presente": {
+        "yo": "conozca",
+        "tu": "conozcas",
+        "el": "conozca",
+        "nosotros": "conozcamos",
+        "vosotros": "conozcáis",
+        "ellos": "conozcan"
+      },
+      "imperativo": {
+        "tu": "conoce",
+        "usted": "conozca",
+        "vosotros": "conoced"
+      },
+      "gerundio": "conociendo",
+      "participio": "conocido"
+    },
+    "freq_rank": 17
+  },
+  "sentir": {
+    "infinitive": "sentir",
+    "translation": "fühlen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-ie",
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "Diptonga e>ie en presente y cambia e>i en el gerundio y la tercera persona del indefinido.",
+    "conjugations": {
+      "presente": {
+        "yo": "siento",
+        "tu": "sientes",
+        "el": "siente",
+        "nosotros": "sentimos",
+        "vosotros": "sentís",
+        "ellos": "sienten"
+      },
+      "indefinido": {
+        "yo": "sentí",
+        "tu": "sentiste",
+        "el": "sintió",
+        "nosotros": "sentimos",
+        "vosotros": "sentisteis",
+        "ellos": "sintieron"
+      },
+      "imperfecto": {
+        "yo": "sentía",
+        "tu": "sentías",
+        "el": "sentía",
+        "nosotros": "sentíamos",
+        "vosotros": "sentíais",
+        "ellos": "sentían"
+      },
+      "futuro": {
+        "yo": "sentiré",
+        "tu": "sentirás",
+        "el": "sentirá",
+        "nosotros": "sentiremos",
+        "vosotros": "sentiréis",
+        "ellos": "sentirán"
+      },
+      "condicional": {
+        "yo": "sentiría",
+        "tu": "sentirías",
+        "el": "sentiría",
+        "nosotros": "sentiríamos",
+        "vosotros": "sentiríais",
+        "ellos": "sentirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "sienta",
+        "tu": "sientas",
+        "el": "sienta",
+        "nosotros": "sintamos",
+        "vosotros": "sintáis",
+        "ellos": "sientan"
+      },
+      "imperativo": {
+        "tu": "siente",
+        "usted": "sienta",
+        "vosotros": "sentid"
+      },
+      "gerundio": "sintiendo",
+      "participio": "sentido"
+    },
+    "freq_rank": 18
+  },
+  "traer": {
+    "infinitive": "traer",
+    "translation": "bringen",
+    "cefr": "B1",
+    "pattern_tags": [
+      "g-verbs",
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Tiene g en la primera persona del presente (traigo) y pretérito fuerte con j (traje).",
+    "conjugations": {
+      "presente": {
+        "yo": "traigo",
+        "tu": "traes",
+        "el": "trae",
+        "nosotros": "traemos",
+        "vosotros": "traéis",
+        "ellos": "traen"
+      },
+      "indefinido": {
+        "yo": "traje",
+        "tu": "trajiste",
+        "el": "trajo",
+        "nosotros": "trajimos",
+        "vosotros": "trajisteis",
+        "ellos": "trajeron"
+      },
+      "imperfecto": {
+        "yo": "traía",
+        "tu": "traías",
+        "el": "traía",
+        "nosotros": "traíamos",
+        "vosotros": "traíais",
+        "ellos": "traían"
+      },
+      "futuro": {
+        "yo": "traeré",
+        "tu": "traerás",
+        "el": "traerá",
+        "nosotros": "traeremos",
+        "vosotros": "traeréis",
+        "ellos": "traerán"
+      },
+      "condicional": {
+        "yo": "traería",
+        "tu": "traerías",
+        "el": "traería",
+        "nosotros": "traeríamos",
+        "vosotros": "traeríais",
+        "ellos": "traerían"
+      },
+      "subjuntivo_presente": {
+        "yo": "traiga",
+        "tu": "traigas",
+        "el": "traiga",
+        "nosotros": "traigamos",
+        "vosotros": "traigáis",
+        "ellos": "traigan"
+      },
+      "imperativo": {
+        "tu": "trae",
+        "usted": "traiga",
+        "vosotros": "traed"
+      },
+      "gerundio": "trayendo",
+      "participio": "traído"
+    },
+    "freq_rank": 19
+  },
+  "pensar": {
+    "infinitive": "pensar",
+    "translation": "denken",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-ie"
+    ],
+    "irregularity_note": "Diptonga e>ie en las formas tónicas del presente.",
+    "conjugations": {
+      "presente": {
+        "yo": "pienso",
+        "tu": "piensas",
+        "el": "piensa",
+        "nosotros": "pensamos",
+        "vosotros": "pensáis",
+        "ellos": "piensan"
+      },
+      "indefinido": {
+        "yo": "pensé",
+        "tu": "pensaste",
+        "el": "pensó",
+        "nosotros": "pensamos",
+        "vosotros": "pensasteis",
+        "ellos": "pensaron"
+      },
+      "imperfecto": {
+        "yo": "pensaba",
+        "tu": "pensabas",
+        "el": "pensaba",
+        "nosotros": "pensábamos",
+        "vosotros": "pensabais",
+        "ellos": "pensaban"
+      },
+      "futuro": {
+        "yo": "pensaré",
+        "tu": "pensarás",
+        "el": "pensará",
+        "nosotros": "pensaremos",
+        "vosotros": "pensaréis",
+        "ellos": "pensarán"
+      },
+      "condicional": {
+        "yo": "pensaría",
+        "tu": "pensarías",
+        "el": "pensaría",
+        "nosotros": "pensaríamos",
+        "vosotros": "pensaríais",
+        "ellos": "pensarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "piense",
+        "tu": "pienses",
+        "el": "piense",
+        "nosotros": "pensemos",
+        "vosotros": "penséis",
+        "ellos": "piensen"
+      },
+      "imperativo": {
+        "tu": "piensa",
+        "usted": "piense",
+        "vosotros": "pensad"
+      },
+      "gerundio": "pensando",
+      "participio": "pensado"
+    },
+    "freq_rank": 20
+  },
+  "seguir": {
+    "infinitive": "seguir",
+    "translation": "folgen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-i",
+      "g-verbs",
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Cambia e por i en el radical y pierde la u ante a/o (sigo, sigue).",
+    "conjugations": {
+      "presente": {
+        "yo": "sigo",
+        "tu": "sigues",
+        "el": "sigue",
+        "nosotros": "seguimos",
+        "vosotros": "seguís",
+        "ellos": "siguen"
+      },
+      "indefinido": {
+        "yo": "seguí",
+        "tu": "seguiste",
+        "el": "siguió",
+        "nosotros": "seguimos",
+        "vosotros": "seguisteis",
+        "ellos": "siguieron"
+      },
+      "imperfecto": {
+        "yo": "seguía",
+        "tu": "seguías",
+        "el": "seguía",
+        "nosotros": "seguíamos",
+        "vosotros": "seguíais",
+        "ellos": "seguían"
+      },
+      "futuro": {
+        "yo": "seguiré",
+        "tu": "seguirás",
+        "el": "seguirá",
+        "nosotros": "seguiremos",
+        "vosotros": "seguiréis",
+        "ellos": "seguirán"
+      },
+      "condicional": {
+        "yo": "seguiría",
+        "tu": "seguirías",
+        "el": "seguiría",
+        "nosotros": "seguiríamos",
+        "vosotros": "seguiríais",
+        "ellos": "seguirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "siga",
+        "tu": "sigas",
+        "el": "siga",
+        "nosotros": "sigamos",
+        "vosotros": "sigáis",
+        "ellos": "sigan"
+      },
+      "imperativo": {
+        "tu": "sigue",
+        "usted": "siga",
+        "vosotros": "seguid"
+      },
+      "gerundio": "siguiendo",
+      "participio": "seguido"
+    },
+    "freq_rank": 21
+  },
+  "encontrar": {
+    "infinitive": "encontrar",
+    "translation": "finden",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-o-ue"
+    ],
+    "irregularity_note": "Cambia o por ue en las formas tónicas (encuentro, encuentra).",
+    "conjugations": {
+      "presente": {
+        "yo": "encuentro",
+        "tu": "encuentras",
+        "el": "encuentra",
+        "nosotros": "encontramos",
+        "vosotros": "encontráis",
+        "ellos": "encuentran"
+      },
+      "indefinido": {
+        "yo": "encontré",
+        "tu": "encontraste",
+        "el": "encontró",
+        "nosotros": "encontramos",
+        "vosotros": "encontrasteis",
+        "ellos": "encontraron"
+      },
+      "imperfecto": {
+        "yo": "encontraba",
+        "tu": "encontrabas",
+        "el": "encontraba",
+        "nosotros": "encontrábamos",
+        "vosotros": "encontrabais",
+        "ellos": "encontraban"
+      },
+      "futuro": {
+        "yo": "encontraré",
+        "tu": "encontrarás",
+        "el": "encontrará",
+        "nosotros": "encontraremos",
+        "vosotros": "encontraréis",
+        "ellos": "encontrarán"
+      },
+      "condicional": {
+        "yo": "encontraría",
+        "tu": "encontrarías",
+        "el": "encontraría",
+        "nosotros": "encontraríamos",
+        "vosotros": "encontraríais",
+        "ellos": "encontrarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "encuentre",
+        "tu": "encuentres",
+        "el": "encuentre",
+        "nosotros": "encontremos",
+        "vosotros": "encontréis",
+        "ellos": "encuentren"
+      },
+      "imperativo": {
+        "tu": "encuentra",
+        "usted": "encuentre",
+        "vosotros": "encontrad"
+      },
+      "gerundio": "encontrando",
+      "participio": "encontrado"
+    },
+    "freq_rank": 22
+  },
+  "empezar": {
+    "infinitive": "empezar",
+    "translation": "anfangen",
+    "cefr": "A1",
+    "pattern_tags": [
+      "stem-change-e-ie",
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Cambia e por ie y la z pasa a c ante e (empiezo, empecé).",
+    "conjugations": {
+      "presente": {
+        "yo": "empiezo",
+        "tu": "empiezas",
+        "el": "empieza",
+        "nosotros": "empezamos",
+        "vosotros": "empezáis",
+        "ellos": "empiezan"
+      },
+      "indefinido": {
+        "yo": "empecé",
+        "tu": "empezaste",
+        "el": "empezó",
+        "nosotros": "empezamos",
+        "vosotros": "empezasteis",
+        "ellos": "empezaron"
+      },
+      "imperfecto": {
+        "yo": "empezaba",
+        "tu": "empezabas",
+        "el": "empezaba",
+        "nosotros": "empezábamos",
+        "vosotros": "empezabais",
+        "ellos": "empezaban"
+      },
+      "futuro": {
+        "yo": "empezaré",
+        "tu": "empezarás",
+        "el": "empezará",
+        "nosotros": "empezaremos",
+        "vosotros": "empezaréis",
+        "ellos": "empezarán"
+      },
+      "condicional": {
+        "yo": "empezaría",
+        "tu": "empezarías",
+        "el": "empezaría",
+        "nosotros": "empezaríamos",
+        "vosotros": "empezaríais",
+        "ellos": "empezarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "empiece",
+        "tu": "empieces",
+        "el": "empiece",
+        "nosotros": "empecemos",
+        "vosotros": "empecéis",
+        "ellos": "empiecen"
+      },
+      "imperativo": {
+        "tu": "empieza",
+        "usted": "empiece",
+        "vosotros": "empezad"
+      },
+      "gerundio": "empezando",
+      "participio": "empezado"
+    },
+    "freq_rank": 23
+  },
+  "entender": {
+    "infinitive": "entender",
+    "translation": "verstehen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-ie"
+    ],
+    "irregularity_note": "Cambia e por ie en las formas tónicas (entiendo, entiende).",
+    "conjugations": {
+      "presente": {
+        "yo": "entiendo",
+        "tu": "entiendes",
+        "el": "entiende",
+        "nosotros": "entendemos",
+        "vosotros": "entendéis",
+        "ellos": "entienden"
+      },
+      "indefinido": {
+        "yo": "entendí",
+        "tu": "entendiste",
+        "el": "entendió",
+        "nosotros": "entendimos",
+        "vosotros": "entendisteis",
+        "ellos": "entendieron"
+      },
+      "imperfecto": {
+        "yo": "entendía",
+        "tu": "entendías",
+        "el": "entendía",
+        "nosotros": "entendíamos",
+        "vosotros": "entendíais",
+        "ellos": "entendían"
+      },
+      "futuro": {
+        "yo": "entenderé",
+        "tu": "entenderás",
+        "el": "entenderá",
+        "nosotros": "entenderemos",
+        "vosotros": "entenderéis",
+        "ellos": "entenderán"
+      },
+      "condicional": {
+        "yo": "entendería",
+        "tu": "entenderías",
+        "el": "entendería",
+        "nosotros": "entenderíamos",
+        "vosotros": "entenderíais",
+        "ellos": "entenderían"
+      },
+      "subjuntivo_presente": {
+        "yo": "entienda",
+        "tu": "entiendas",
+        "el": "entienda",
+        "nosotros": "entendamos",
+        "vosotros": "entendáis",
+        "ellos": "entiendan"
+      },
+      "imperativo": {
+        "tu": "entiende",
+        "usted": "entienda",
+        "vosotros": "entended"
+      },
+      "gerundio": "entendiendo",
+      "participio": "entendido"
+    },
+    "freq_rank": 24
+  },
+  "pedir": {
+    "infinitive": "pedir",
+    "translation": "bitten",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "Cambia e por i en el radical (pido, pidió, pidiendo).",
+    "conjugations": {
+      "presente": {
+        "yo": "pido",
+        "tu": "pides",
+        "el": "pide",
+        "nosotros": "pedimos",
+        "vosotros": "pedís",
+        "ellos": "piden"
+      },
+      "indefinido": {
+        "yo": "pedí",
+        "tu": "pediste",
+        "el": "pidió",
+        "nosotros": "pedimos",
+        "vosotros": "pedisteis",
+        "ellos": "pidieron"
+      },
+      "imperfecto": {
+        "yo": "pedía",
+        "tu": "pedías",
+        "el": "pedía",
+        "nosotros": "pedíamos",
+        "vosotros": "pedíais",
+        "ellos": "pedían"
+      },
+      "futuro": {
+        "yo": "pediré",
+        "tu": "pedirás",
+        "el": "pedirá",
+        "nosotros": "pediremos",
+        "vosotros": "pediréis",
+        "ellos": "pedirán"
+      },
+      "condicional": {
+        "yo": "pediría",
+        "tu": "pedirías",
+        "el": "pediría",
+        "nosotros": "pediríamos",
+        "vosotros": "pediríais",
+        "ellos": "pedirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "pida",
+        "tu": "pidas",
+        "el": "pida",
+        "nosotros": "pidamos",
+        "vosotros": "pidáis",
+        "ellos": "pidan"
+      },
+      "imperativo": {
+        "tu": "pide",
+        "usted": "pida",
+        "vosotros": "pedid"
+      },
+      "gerundio": "pidiendo",
+      "participio": "pedido"
+    },
+    "freq_rank": 25
+  },
+  "recordar": {
+    "infinitive": "recordar",
+    "translation": "sich erinnern",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-o-ue"
+    ],
+    "irregularity_note": "La o de la raíz cambia a ue en las formas tónicas.",
+    "conjugations": {
+      "presente": {
+        "yo": "recuerdo",
+        "tu": "recuerdas",
+        "el": "recuerda",
+        "nosotros": "recordamos",
+        "vosotros": "recordáis",
+        "ellos": "recuerdan"
+      },
+      "indefinido": {
+        "yo": "recordé",
+        "tu": "recordaste",
+        "el": "recordó",
+        "nosotros": "recordamos",
+        "vosotros": "recordasteis",
+        "ellos": "recordaron"
+      },
+      "imperfecto": {
+        "yo": "recordaba",
+        "tu": "recordabas",
+        "el": "recordaba",
+        "nosotros": "recordábamos",
+        "vosotros": "recordabais",
+        "ellos": "recordaban"
+      },
+      "futuro": {
+        "yo": "recordaré",
+        "tu": "recordarás",
+        "el": "recordará",
+        "nosotros": "recordaremos",
+        "vosotros": "recordaréis",
+        "ellos": "recordarán"
+      },
+      "condicional": {
+        "yo": "recordaría",
+        "tu": "recordarías",
+        "el": "recordaría",
+        "nosotros": "recordaríamos",
+        "vosotros": "recordaríais",
+        "ellos": "recordarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "recuerde",
+        "tu": "recuerdes",
+        "el": "recuerde",
+        "nosotros": "recordemos",
+        "vosotros": "recordéis",
+        "ellos": "recuerden"
+      },
+      "imperativo": {
+        "tu": "recuerda",
+        "usted": "recuerde",
+        "vosotros": "recordad"
+      },
+      "gerundio": "recordando",
+      "participio": "recordado"
+    },
+    "freq_rank": 26
+  },
+  "contar": {
+    "infinitive": "contar",
+    "translation": "zählen, erzählen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-o-ue"
+    ],
+    "irregularity_note": "La o de la raíz cambia a ue en las formas tónicas.",
+    "conjugations": {
+      "presente": {
+        "yo": "cuento",
+        "tu": "cuentas",
+        "el": "cuenta",
+        "nosotros": "contamos",
+        "vosotros": "contáis",
+        "ellos": "cuentan"
+      },
+      "indefinido": {
+        "yo": "conté",
+        "tu": "contaste",
+        "el": "contó",
+        "nosotros": "contamos",
+        "vosotros": "contasteis",
+        "ellos": "contaron"
+      },
+      "imperfecto": {
+        "yo": "contaba",
+        "tu": "contabas",
+        "el": "contaba",
+        "nosotros": "contábamos",
+        "vosotros": "contabais",
+        "ellos": "contaban"
+      },
+      "futuro": {
+        "yo": "contaré",
+        "tu": "contarás",
+        "el": "contará",
+        "nosotros": "contaremos",
+        "vosotros": "contaréis",
+        "ellos": "contarán"
+      },
+      "condicional": {
+        "yo": "contaría",
+        "tu": "contarías",
+        "el": "contaría",
+        "nosotros": "contaríamos",
+        "vosotros": "contaríais",
+        "ellos": "contarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "cuente",
+        "tu": "cuentes",
+        "el": "cuente",
+        "nosotros": "contemos",
+        "vosotros": "contéis",
+        "ellos": "cuenten"
+      },
+      "imperativo": {
+        "tu": "cuenta",
+        "usted": "cuente",
+        "vosotros": "contad"
+      },
+      "gerundio": "contando",
+      "participio": "contado"
+    },
+    "freq_rank": 27
+  },
+  "dormir": {
+    "infinitive": "dormir",
+    "translation": "schlafen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-o-ue",
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Cambia o a ue en presente y o a u en la 3ª persona del indefinido y en el gerundio.",
+    "conjugations": {
+      "presente": {
+        "yo": "duermo",
+        "tu": "duermes",
+        "el": "duerme",
+        "nosotros": "dormimos",
+        "vosotros": "dormís",
+        "ellos": "duermen"
+      },
+      "indefinido": {
+        "yo": "dormí",
+        "tu": "dormiste",
+        "el": "durmió",
+        "nosotros": "dormimos",
+        "vosotros": "dormisteis",
+        "ellos": "durmieron"
+      },
+      "imperfecto": {
+        "yo": "dormía",
+        "tu": "dormías",
+        "el": "dormía",
+        "nosotros": "dormíamos",
+        "vosotros": "dormíais",
+        "ellos": "dormían"
+      },
+      "futuro": {
+        "yo": "dormiré",
+        "tu": "dormirás",
+        "el": "dormirá",
+        "nosotros": "dormiremos",
+        "vosotros": "dormiréis",
+        "ellos": "dormirán"
+      },
+      "condicional": {
+        "yo": "dormiría",
+        "tu": "dormirías",
+        "el": "dormiría",
+        "nosotros": "dormiríamos",
+        "vosotros": "dormiríais",
+        "ellos": "dormirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "duerma",
+        "tu": "duermas",
+        "el": "duerma",
+        "nosotros": "durmamos",
+        "vosotros": "durmáis",
+        "ellos": "duerman"
+      },
+      "imperativo": {
+        "tu": "duerme",
+        "usted": "duerma",
+        "vosotros": "dormid"
+      },
+      "gerundio": "durmiendo",
+      "participio": "dormido"
+    },
+    "freq_rank": 28
+  },
+  "morir": {
+    "infinitive": "morir",
+    "translation": "sterben",
+    "cefr": "B1",
+    "pattern_tags": [
+      "stem-change-o-ue",
+      "irregular-indefinido",
+      "irregular-participio"
+    ],
+    "irregularity_note": "Cambia o a ue, o a u en la 3ª persona y el gerundio, y tiene participio irregular muerto.",
+    "conjugations": {
+      "presente": {
+        "yo": "muero",
+        "tu": "mueres",
+        "el": "muere",
+        "nosotros": "morimos",
+        "vosotros": "morís",
+        "ellos": "mueren"
+      },
+      "indefinido": {
+        "yo": "morí",
+        "tu": "moriste",
+        "el": "murió",
+        "nosotros": "morimos",
+        "vosotros": "moristeis",
+        "ellos": "murieron"
+      },
+      "imperfecto": {
+        "yo": "moría",
+        "tu": "morías",
+        "el": "moría",
+        "nosotros": "moríamos",
+        "vosotros": "moríais",
+        "ellos": "morían"
+      },
+      "futuro": {
+        "yo": "moriré",
+        "tu": "morirás",
+        "el": "morirá",
+        "nosotros": "moriremos",
+        "vosotros": "moriréis",
+        "ellos": "morirán"
+      },
+      "condicional": {
+        "yo": "moriría",
+        "tu": "morirías",
+        "el": "moriría",
+        "nosotros": "moriríamos",
+        "vosotros": "moriríais",
+        "ellos": "morirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "muera",
+        "tu": "mueras",
+        "el": "muera",
+        "nosotros": "muramos",
+        "vosotros": "muráis",
+        "ellos": "mueran"
+      },
+      "imperativo": {
+        "tu": "muere",
+        "usted": "muera",
+        "vosotros": "morid"
+      },
+      "gerundio": "muriendo",
+      "participio": "muerto"
+    },
+    "freq_rank": 29
+  },
+  "oír": {
+    "infinitive": "oír",
+    "translation": "hören",
+    "cefr": "A2",
+    "pattern_tags": [
+      "g-verbs",
+      "y-verbs"
+    ],
+    "irregularity_note": "Añade g en la 1ª persona (oigo) e i pasa a y ante vocal (oye, oyeron).",
+    "conjugations": {
+      "presente": {
+        "yo": "oigo",
+        "tu": "oyes",
+        "el": "oye",
+        "nosotros": "oímos",
+        "vosotros": "oís",
+        "ellos": "oyen"
+      },
+      "indefinido": {
+        "yo": "oí",
+        "tu": "oíste",
+        "el": "oyó",
+        "nosotros": "oímos",
+        "vosotros": "oísteis",
+        "ellos": "oyeron"
+      },
+      "imperfecto": {
+        "yo": "oía",
+        "tu": "oías",
+        "el": "oía",
+        "nosotros": "oíamos",
+        "vosotros": "oíais",
+        "ellos": "oían"
+      },
+      "futuro": {
+        "yo": "oiré",
+        "tu": "oirás",
+        "el": "oirá",
+        "nosotros": "oiremos",
+        "vosotros": "oiréis",
+        "ellos": "oirán"
+      },
+      "condicional": {
+        "yo": "oiría",
+        "tu": "oirías",
+        "el": "oiría",
+        "nosotros": "oiríamos",
+        "vosotros": "oiríais",
+        "ellos": "oirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "oiga",
+        "tu": "oigas",
+        "el": "oiga",
+        "nosotros": "oigamos",
+        "vosotros": "oigáis",
+        "ellos": "oigan"
+      },
+      "imperativo": {
+        "tu": "oye",
+        "usted": "oiga",
+        "vosotros": "oíd"
+      },
+      "gerundio": "oyendo",
+      "participio": "oído"
+    },
+    "freq_rank": 30
+  },
+  "caer": {
+    "infinitive": "caer",
+    "translation": "fallen",
+    "cefr": "B1",
+    "pattern_tags": [
+      "g-verbs",
+      "y-verbs",
+      "irregular-participio"
+    ],
+    "irregularity_note": "Tiene 'g' en la primera persona (caigo) y 'y' en el indefinido de tercera persona (cayó, cayeron).",
+    "conjugations": {
+      "presente": {
+        "yo": "caigo",
+        "tu": "caes",
+        "el": "cae",
+        "nosotros": "caemos",
+        "vosotros": "caéis",
+        "ellos": "caen"
+      },
+      "indefinido": {
+        "yo": "caí",
+        "tu": "caíste",
+        "el": "cayó",
+        "nosotros": "caímos",
+        "vosotros": "caísteis",
+        "ellos": "cayeron"
+      },
+      "imperfecto": {
+        "yo": "caía",
+        "tu": "caías",
+        "el": "caía",
+        "nosotros": "caíamos",
+        "vosotros": "caíais",
+        "ellos": "caían"
+      },
+      "futuro": {
+        "yo": "caeré",
+        "tu": "caerás",
+        "el": "caerá",
+        "nosotros": "caeremos",
+        "vosotros": "caeréis",
+        "ellos": "caerán"
+      },
+      "condicional": {
+        "yo": "caería",
+        "tu": "caerías",
+        "el": "caería",
+        "nosotros": "caeríamos",
+        "vosotros": "caeríais",
+        "ellos": "caerían"
+      },
+      "subjuntivo_presente": {
+        "yo": "caiga",
+        "tu": "caigas",
+        "el": "caiga",
+        "nosotros": "caigamos",
+        "vosotros": "caigáis",
+        "ellos": "caigan"
+      },
+      "imperativo": {
+        "tu": "cae",
+        "usted": "caiga",
+        "vosotros": "caed"
+      },
+      "gerundio": "cayendo",
+      "participio": "caído"
+    },
+    "freq_rank": 31
+  },
+  "leer": {
+    "infinitive": "leer",
+    "translation": "lesen",
+    "cefr": "A1",
+    "pattern_tags": [
+      "y-verbs"
+    ],
+    "irregularity_note": "La 'i' átona se convierte en 'y' en el indefinido (leyó, leyeron) y el gerundio (leyendo).",
+    "conjugations": {
+      "presente": {
+        "yo": "leo",
+        "tu": "lees",
+        "el": "lee",
+        "nosotros": "leemos",
+        "vosotros": "leéis",
+        "ellos": "leen"
+      },
+      "indefinido": {
+        "yo": "leí",
+        "tu": "leíste",
+        "el": "leyó",
+        "nosotros": "leímos",
+        "vosotros": "leísteis",
+        "ellos": "leyeron"
+      },
+      "imperfecto": {
+        "yo": "leía",
+        "tu": "leías",
+        "el": "leía",
+        "nosotros": "leíamos",
+        "vosotros": "leíais",
+        "ellos": "leían"
+      },
+      "futuro": {
+        "yo": "leeré",
+        "tu": "leerás",
+        "el": "leerá",
+        "nosotros": "leeremos",
+        "vosotros": "leeréis",
+        "ellos": "leerán"
+      },
+      "condicional": {
+        "yo": "leería",
+        "tu": "leerías",
+        "el": "leería",
+        "nosotros": "leeríamos",
+        "vosotros": "leeríais",
+        "ellos": "leerían"
+      },
+      "subjuntivo_presente": {
+        "yo": "lea",
+        "tu": "leas",
+        "el": "lea",
+        "nosotros": "leamos",
+        "vosotros": "leáis",
+        "ellos": "lean"
+      },
+      "imperativo": {
+        "tu": "lee",
+        "usted": "lea",
+        "vosotros": "leed"
+      },
+      "gerundio": "leyendo",
+      "participio": "leído"
+    },
+    "freq_rank": 32
+  },
+  "creer": {
+    "infinitive": "creer",
+    "translation": "glauben",
+    "cefr": "A2",
+    "pattern_tags": [
+      "y-verbs"
+    ],
+    "irregularity_note": "La 'i' átona se convierte en 'y' en el indefinido (creyó, creyeron) y el gerundio (creyendo).",
+    "conjugations": {
+      "presente": {
+        "yo": "creo",
+        "tu": "crees",
+        "el": "cree",
+        "nosotros": "creemos",
+        "vosotros": "creéis",
+        "ellos": "creen"
+      },
+      "indefinido": {
+        "yo": "creí",
+        "tu": "creíste",
+        "el": "creyó",
+        "nosotros": "creímos",
+        "vosotros": "creísteis",
+        "ellos": "creyeron"
+      },
+      "imperfecto": {
+        "yo": "creía",
+        "tu": "creías",
+        "el": "creía",
+        "nosotros": "creíamos",
+        "vosotros": "creíais",
+        "ellos": "creían"
+      },
+      "futuro": {
+        "yo": "creeré",
+        "tu": "creerás",
+        "el": "creerá",
+        "nosotros": "creeremos",
+        "vosotros": "creeréis",
+        "ellos": "creerán"
+      },
+      "condicional": {
+        "yo": "creería",
+        "tu": "creerías",
+        "el": "creería",
+        "nosotros": "creeríamos",
+        "vosotros": "creeríais",
+        "ellos": "creerían"
+      },
+      "subjuntivo_presente": {
+        "yo": "crea",
+        "tu": "creas",
+        "el": "crea",
+        "nosotros": "creamos",
+        "vosotros": "creáis",
+        "ellos": "crean"
+      },
+      "imperativo": {
+        "tu": "cree",
+        "usted": "crea",
+        "vosotros": "creed"
+      },
+      "gerundio": "creyendo",
+      "participio": "creído"
+    },
+    "freq_rank": 33
+  },
+  "construir": {
+    "infinitive": "construir",
+    "translation": "bauen",
+    "cefr": "B1",
+    "pattern_tags": [
+      "y-verbs"
+    ],
+    "irregularity_note": "Añade 'y' ante vocal fuerte (construyo, construye) y en el indefinido de tercera persona (construyó).",
+    "conjugations": {
+      "presente": {
+        "yo": "construyo",
+        "tu": "construyes",
+        "el": "construye",
+        "nosotros": "construimos",
+        "vosotros": "construís",
+        "ellos": "construyen"
+      },
+      "indefinido": {
+        "yo": "construí",
+        "tu": "construiste",
+        "el": "construyó",
+        "nosotros": "construimos",
+        "vosotros": "construisteis",
+        "ellos": "construyeron"
+      },
+      "imperfecto": {
+        "yo": "construía",
+        "tu": "construías",
+        "el": "construía",
+        "nosotros": "construíamos",
+        "vosotros": "construíais",
+        "ellos": "construían"
+      },
+      "futuro": {
+        "yo": "construiré",
+        "tu": "construirás",
+        "el": "construirá",
+        "nosotros": "construiremos",
+        "vosotros": "construiréis",
+        "ellos": "construirán"
+      },
+      "condicional": {
+        "yo": "construiría",
+        "tu": "construirías",
+        "el": "construiría",
+        "nosotros": "construiríamos",
+        "vosotros": "construiríais",
+        "ellos": "construirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "construya",
+        "tu": "construyas",
+        "el": "construya",
+        "nosotros": "construyamos",
+        "vosotros": "construyáis",
+        "ellos": "construyan"
+      },
+      "imperativo": {
+        "tu": "construye",
+        "usted": "construya",
+        "vosotros": "construid"
+      },
+      "gerundio": "construyendo",
+      "participio": "construido"
+    },
+    "freq_rank": 34
+  },
+  "huir": {
+    "infinitive": "huir",
+    "translation": "fliehen",
+    "cefr": "B1",
+    "pattern_tags": [
+      "y-verbs"
+    ],
+    "irregularity_note": "Añade 'y' ante vocal fuerte (huyo, huye) y en el indefinido de tercera persona (huyó).",
+    "conjugations": {
+      "presente": {
+        "yo": "huyo",
+        "tu": "huyes",
+        "el": "huye",
+        "nosotros": "huimos",
+        "vosotros": "huís",
+        "ellos": "huyen"
+      },
+      "indefinido": {
+        "yo": "hui",
+        "tu": "huiste",
+        "el": "huyó",
+        "nosotros": "huimos",
+        "vosotros": "huisteis",
+        "ellos": "huyeron"
+      },
+      "imperfecto": {
+        "yo": "huía",
+        "tu": "huías",
+        "el": "huía",
+        "nosotros": "huíamos",
+        "vosotros": "huíais",
+        "ellos": "huían"
+      },
+      "futuro": {
+        "yo": "huiré",
+        "tu": "huirás",
+        "el": "huirá",
+        "nosotros": "huiremos",
+        "vosotros": "huiréis",
+        "ellos": "huirán"
+      },
+      "condicional": {
+        "yo": "huiría",
+        "tu": "huirías",
+        "el": "huiría",
+        "nosotros": "huiríamos",
+        "vosotros": "huiríais",
+        "ellos": "huirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "huya",
+        "tu": "huyas",
+        "el": "huya",
+        "nosotros": "huyamos",
+        "vosotros": "huyáis",
+        "ellos": "huyan"
+      },
+      "imperativo": {
+        "tu": "huye",
+        "usted": "huya",
+        "vosotros": "huid"
+      },
+      "gerundio": "huyendo",
+      "participio": "huido"
+    },
+    "freq_rank": 35
+  },
+  "jugar": {
+    "infinitive": "jugar",
+    "translation": "spielen",
+    "cefr": "A1",
+    "pattern_tags": [
+      "stem-change-o-ue",
+      "g-verbs",
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Cambia la u en ue en presente y añade una g ante e en el indefinido y subjuntivo.",
+    "conjugations": {
+      "presente": {
+        "yo": "juego",
+        "tu": "juegas",
+        "el": "juega",
+        "nosotros": "jugamos",
+        "vosotros": "jugáis",
+        "ellos": "juegan"
+      },
+      "indefinido": {
+        "yo": "jugué",
+        "tu": "jugaste",
+        "el": "jugó",
+        "nosotros": "jugamos",
+        "vosotros": "jugasteis",
+        "ellos": "jugaron"
+      },
+      "imperfecto": {
+        "yo": "jugaba",
+        "tu": "jugabas",
+        "el": "jugaba",
+        "nosotros": "jugábamos",
+        "vosotros": "jugabais",
+        "ellos": "jugaban"
+      },
+      "futuro": {
+        "yo": "jugaré",
+        "tu": "jugarás",
+        "el": "jugará",
+        "nosotros": "jugaremos",
+        "vosotros": "jugaréis",
+        "ellos": "jugarán"
+      },
+      "condicional": {
+        "yo": "jugaría",
+        "tu": "jugarías",
+        "el": "jugaría",
+        "nosotros": "jugaríamos",
+        "vosotros": "jugaríais",
+        "ellos": "jugarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "juegue",
+        "tu": "juegues",
+        "el": "juegue",
+        "nosotros": "juguemos",
+        "vosotros": "juguéis",
+        "ellos": "jueguen"
+      },
+      "imperativo": {
+        "tu": "juega",
+        "usted": "juegue",
+        "vosotros": "jugad"
+      },
+      "gerundio": "jugando",
+      "participio": "jugado"
+    },
+    "freq_rank": 36
+  },
+  "servir": {
+    "infinitive": "servir",
+    "translation": "servieren",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "Cambia la e en i en presente, indefinido de tercera persona, subjuntivo y gerundio.",
+    "conjugations": {
+      "presente": {
+        "yo": "sirvo",
+        "tu": "sirves",
+        "el": "sirve",
+        "nosotros": "servimos",
+        "vosotros": "servís",
+        "ellos": "sirven"
+      },
+      "indefinido": {
+        "yo": "serví",
+        "tu": "serviste",
+        "el": "sirvió",
+        "nosotros": "servimos",
+        "vosotros": "servisteis",
+        "ellos": "sirvieron"
+      },
+      "imperfecto": {
+        "yo": "servía",
+        "tu": "servías",
+        "el": "servía",
+        "nosotros": "servíamos",
+        "vosotros": "servíais",
+        "ellos": "servían"
+      },
+      "futuro": {
+        "yo": "serviré",
+        "tu": "servirás",
+        "el": "servirá",
+        "nosotros": "serviremos",
+        "vosotros": "serviréis",
+        "ellos": "servirán"
+      },
+      "condicional": {
+        "yo": "serviría",
+        "tu": "servirías",
+        "el": "serviría",
+        "nosotros": "serviríamos",
+        "vosotros": "serviríais",
+        "ellos": "servirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "sirva",
+        "tu": "sirvas",
+        "el": "sirva",
+        "nosotros": "sirvamos",
+        "vosotros": "sirváis",
+        "ellos": "sirvan"
+      },
+      "imperativo": {
+        "tu": "sirve",
+        "usted": "sirva",
+        "vosotros": "servid"
+      },
+      "gerundio": "sirviendo",
+      "participio": "servido"
+    },
+    "freq_rank": 37
+  },
+  "repetir": {
+    "infinitive": "repetir",
+    "translation": "wiederholen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "Cambia la e en i en presente, indefinido de tercera persona, subjuntivo y gerundio.",
+    "conjugations": {
+      "presente": {
+        "yo": "repito",
+        "tu": "repites",
+        "el": "repite",
+        "nosotros": "repetimos",
+        "vosotros": "repetís",
+        "ellos": "repiten"
+      },
+      "indefinido": {
+        "yo": "repetí",
+        "tu": "repetiste",
+        "el": "repitió",
+        "nosotros": "repetimos",
+        "vosotros": "repetisteis",
+        "ellos": "repitieron"
+      },
+      "imperfecto": {
+        "yo": "repetía",
+        "tu": "repetías",
+        "el": "repetía",
+        "nosotros": "repetíamos",
+        "vosotros": "repetíais",
+        "ellos": "repetían"
+      },
+      "futuro": {
+        "yo": "repetiré",
+        "tu": "repetirás",
+        "el": "repetirá",
+        "nosotros": "repetiremos",
+        "vosotros": "repetiréis",
+        "ellos": "repetirán"
+      },
+      "condicional": {
+        "yo": "repetiría",
+        "tu": "repetirías",
+        "el": "repetiría",
+        "nosotros": "repetiríamos",
+        "vosotros": "repetiríais",
+        "ellos": "repetirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "repita",
+        "tu": "repitas",
+        "el": "repita",
+        "nosotros": "repitamos",
+        "vosotros": "repitáis",
+        "ellos": "repitan"
+      },
+      "imperativo": {
+        "tu": "repite",
+        "usted": "repita",
+        "vosotros": "repetid"
+      },
+      "gerundio": "repitiendo",
+      "participio": "repetido"
+    },
+    "freq_rank": 38
+  },
+  "vestirse": {
+    "infinitive": "vestirse",
+    "translation": "sich anziehen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "Verbo reflexivo que cambia la e en i en presente, indefinido de tercera persona, subjuntivo y gerundio.",
+    "conjugations": {
+      "presente": {
+        "yo": "me visto",
+        "tu": "te vistes",
+        "el": "se viste",
+        "nosotros": "nos vestimos",
+        "vosotros": "os vestís",
+        "ellos": "se visten"
+      },
+      "indefinido": {
+        "yo": "me vestí",
+        "tu": "te vestiste",
+        "el": "se vistió",
+        "nosotros": "nos vestimos",
+        "vosotros": "os vestisteis",
+        "ellos": "se vistieron"
+      },
+      "imperfecto": {
+        "yo": "me vestía",
+        "tu": "te vestías",
+        "el": "se vestía",
+        "nosotros": "nos vestíamos",
+        "vosotros": "os vestíais",
+        "ellos": "se vestían"
+      },
+      "futuro": {
+        "yo": "me vestiré",
+        "tu": "te vestirás",
+        "el": "se vestirá",
+        "nosotros": "nos vestiremos",
+        "vosotros": "os vestiréis",
+        "ellos": "se vestirán"
+      },
+      "condicional": {
+        "yo": "me vestiría",
+        "tu": "te vestirías",
+        "el": "se vestiría",
+        "nosotros": "nos vestiríamos",
+        "vosotros": "os vestiríais",
+        "ellos": "se vestirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "me vista",
+        "tu": "te vistas",
+        "el": "se vista",
+        "nosotros": "nos vistamos",
+        "vosotros": "os vistáis",
+        "ellos": "se vistan"
+      },
+      "imperativo": {
+        "tu": "vístete",
+        "usted": "vístase",
+        "vosotros": "vestíos"
+      },
+      "gerundio": "vistiéndose",
+      "participio": "vestido"
+    },
+    "freq_rank": 39
+  },
+  "reír": {
+    "infinitive": "reír",
+    "translation": "lachen",
+    "cefr": "B1",
+    "pattern_tags": [
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "Cambia la e en i y contrae vocales, con tilde para deshacer diptongos.",
+    "conjugations": {
+      "presente": {
+        "yo": "río",
+        "tu": "ríes",
+        "el": "ríe",
+        "nosotros": "reímos",
+        "vosotros": "reís",
+        "ellos": "ríen"
+      },
+      "indefinido": {
+        "yo": "reí",
+        "tu": "reíste",
+        "el": "rió",
+        "nosotros": "reímos",
+        "vosotros": "reísteis",
+        "ellos": "rieron"
+      },
+      "imperfecto": {
+        "yo": "reía",
+        "tu": "reías",
+        "el": "reía",
+        "nosotros": "reíamos",
+        "vosotros": "reíais",
+        "ellos": "reían"
+      },
+      "futuro": {
+        "yo": "reiré",
+        "tu": "reirás",
+        "el": "reirá",
+        "nosotros": "reiremos",
+        "vosotros": "reiréis",
+        "ellos": "reirán"
+      },
+      "condicional": {
+        "yo": "reiría",
+        "tu": "reirías",
+        "el": "reiría",
+        "nosotros": "reiríamos",
+        "vosotros": "reiríais",
+        "ellos": "reirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "ría",
+        "tu": "rías",
+        "el": "ría",
+        "nosotros": "riamos",
+        "vosotros": "riais",
+        "ellos": "rían"
+      },
+      "imperativo": {
+        "tu": "ríe",
+        "usted": "ría",
+        "vosotros": "reíd"
+      },
+      "gerundio": "riendo",
+      "participio": "reído"
+    },
+    "freq_rank": 40
+  },
+  "comenzar": {
+    "infinitive": "comenzar",
+    "translation": "anfangen, beginnen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-ie",
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Diptonga e→ie en presente y cambia z→c ante e en el indefinido y subjuntivo.",
+    "conjugations": {
+      "presente": {
+        "yo": "comienzo",
+        "tu": "comienzas",
+        "el": "comienza",
+        "nosotros": "comenzamos",
+        "vosotros": "comenzáis",
+        "ellos": "comienzan"
+      },
+      "indefinido": {
+        "yo": "comencé",
+        "tu": "comenzaste",
+        "el": "comenzó",
+        "nosotros": "comenzamos",
+        "vosotros": "comenzasteis",
+        "ellos": "comenzaron"
+      },
+      "imperfecto": {
+        "yo": "comenzaba",
+        "tu": "comenzabas",
+        "el": "comenzaba",
+        "nosotros": "comenzábamos",
+        "vosotros": "comenzabais",
+        "ellos": "comenzaban"
+      },
+      "futuro": {
+        "yo": "comenzaré",
+        "tu": "comenzarás",
+        "el": "comenzará",
+        "nosotros": "comenzaremos",
+        "vosotros": "comenzaréis",
+        "ellos": "comenzarán"
+      },
+      "condicional": {
+        "yo": "comenzaría",
+        "tu": "comenzarías",
+        "el": "comenzaría",
+        "nosotros": "comenzaríamos",
+        "vosotros": "comenzaríais",
+        "ellos": "comenzarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "comience",
+        "tu": "comiences",
+        "el": "comience",
+        "nosotros": "comencemos",
+        "vosotros": "comencéis",
+        "ellos": "comiencen"
+      },
+      "imperativo": {
+        "tu": "comienza",
+        "usted": "comience",
+        "vosotros": "comenzad"
+      },
+      "gerundio": "comenzando",
+      "participio": "comenzado"
+    },
+    "freq_rank": 41
+  },
+  "perder": {
+    "infinitive": "perder",
+    "translation": "verlieren",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-ie"
+    ],
+    "irregularity_note": "Diptonga e→ie en las formas tónicas del presente.",
+    "conjugations": {
+      "presente": {
+        "yo": "pierdo",
+        "tu": "pierdes",
+        "el": "pierde",
+        "nosotros": "perdemos",
+        "vosotros": "perdéis",
+        "ellos": "pierden"
+      },
+      "indefinido": {
+        "yo": "perdí",
+        "tu": "perdiste",
+        "el": "perdió",
+        "nosotros": "perdimos",
+        "vosotros": "perdisteis",
+        "ellos": "perdieron"
+      },
+      "imperfecto": {
+        "yo": "perdía",
+        "tu": "perdías",
+        "el": "perdía",
+        "nosotros": "perdíamos",
+        "vosotros": "perdíais",
+        "ellos": "perdían"
+      },
+      "futuro": {
+        "yo": "perderé",
+        "tu": "perderás",
+        "el": "perderá",
+        "nosotros": "perderemos",
+        "vosotros": "perderéis",
+        "ellos": "perderán"
+      },
+      "condicional": {
+        "yo": "perdería",
+        "tu": "perderías",
+        "el": "perdería",
+        "nosotros": "perderíamos",
+        "vosotros": "perderíais",
+        "ellos": "perderían"
+      },
+      "subjuntivo_presente": {
+        "yo": "pierda",
+        "tu": "pierdas",
+        "el": "pierda",
+        "nosotros": "perdamos",
+        "vosotros": "perdáis",
+        "ellos": "pierdan"
+      },
+      "imperativo": {
+        "tu": "pierde",
+        "usted": "pierda",
+        "vosotros": "perded"
+      },
+      "gerundio": "perdiendo",
+      "participio": "perdido"
+    },
+    "freq_rank": 42
+  },
+  "mover": {
+    "infinitive": "mover",
+    "translation": "bewegen",
+    "cefr": "B1",
+    "pattern_tags": [
+      "stem-change-o-ue"
+    ],
+    "irregularity_note": "Diptonga o→ue en las formas tónicas del presente.",
+    "conjugations": {
+      "presente": {
+        "yo": "muevo",
+        "tu": "mueves",
+        "el": "mueve",
+        "nosotros": "movemos",
+        "vosotros": "movéis",
+        "ellos": "mueven"
+      },
+      "indefinido": {
+        "yo": "moví",
+        "tu": "moviste",
+        "el": "movió",
+        "nosotros": "movimos",
+        "vosotros": "movisteis",
+        "ellos": "movieron"
+      },
+      "imperfecto": {
+        "yo": "movía",
+        "tu": "movías",
+        "el": "movía",
+        "nosotros": "movíamos",
+        "vosotros": "movíais",
+        "ellos": "movían"
+      },
+      "futuro": {
+        "yo": "moveré",
+        "tu": "moverás",
+        "el": "moverá",
+        "nosotros": "moveremos",
+        "vosotros": "moveréis",
+        "ellos": "moverán"
+      },
+      "condicional": {
+        "yo": "movería",
+        "tu": "moverías",
+        "el": "movería",
+        "nosotros": "moveríamos",
+        "vosotros": "moveríais",
+        "ellos": "moverían"
+      },
+      "subjuntivo_presente": {
+        "yo": "mueva",
+        "tu": "muevas",
+        "el": "mueva",
+        "nosotros": "movamos",
+        "vosotros": "mováis",
+        "ellos": "muevan"
+      },
+      "imperativo": {
+        "tu": "mueve",
+        "usted": "mueva",
+        "vosotros": "moved"
+      },
+      "gerundio": "moviendo",
+      "participio": "movido"
+    },
+    "freq_rank": 43
+  },
+  "llover": {
+    "infinitive": "llover",
+    "translation": "regnen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-o-ue"
+    ],
+    "irregularity_note": "Es un verbo impersonal que solo se usa en tercera persona del singular y diptonga o→ue.",
+    "conjugations": {
+      "presente": {
+        "yo": "—",
+        "tu": "—",
+        "el": "llueve",
+        "nosotros": "—",
+        "vosotros": "—",
+        "ellos": "llueven"
+      },
+      "indefinido": {
+        "yo": "—",
+        "tu": "—",
+        "el": "llovió",
+        "nosotros": "—",
+        "vosotros": "—",
+        "ellos": "llovieron"
+      },
+      "imperfecto": {
+        "yo": "—",
+        "tu": "—",
+        "el": "llovía",
+        "nosotros": "—",
+        "vosotros": "—",
+        "ellos": "llovían"
+      },
+      "futuro": {
+        "yo": "—",
+        "tu": "—",
+        "el": "lloverá",
+        "nosotros": "—",
+        "vosotros": "—",
+        "ellos": "lloverán"
+      },
+      "condicional": {
+        "yo": "—",
+        "tu": "—",
+        "el": "llovería",
+        "nosotros": "—",
+        "vosotros": "—",
+        "ellos": "lloverían"
+      },
+      "subjuntivo_presente": {
+        "yo": "—",
+        "tu": "—",
+        "el": "llueva",
+        "nosotros": "—",
+        "vosotros": "—",
+        "ellos": "lluevan"
+      },
+      "imperativo": {
+        "tu": "—",
+        "usted": "—",
+        "vosotros": "—"
+      },
+      "gerundio": "lloviendo",
+      "participio": "llovido"
+    },
+    "freq_rank": 44
+  },
+  "probar": {
+    "infinitive": "probar",
+    "translation": "probieren, versuchen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-o-ue"
+    ],
+    "irregularity_note": "Diptonga o→ue en las formas tónicas del presente.",
+    "conjugations": {
+      "presente": {
+        "yo": "pruebo",
+        "tu": "pruebas",
+        "el": "prueba",
+        "nosotros": "probamos",
+        "vosotros": "probáis",
+        "ellos": "prueban"
+      },
+      "indefinido": {
+        "yo": "probé",
+        "tu": "probaste",
+        "el": "probó",
+        "nosotros": "probamos",
+        "vosotros": "probasteis",
+        "ellos": "probaron"
+      },
+      "imperfecto": {
+        "yo": "probaba",
+        "tu": "probabas",
+        "el": "probaba",
+        "nosotros": "probábamos",
+        "vosotros": "probabais",
+        "ellos": "probaban"
+      },
+      "futuro": {
+        "yo": "probaré",
+        "tu": "probarás",
+        "el": "probará",
+        "nosotros": "probaremos",
+        "vosotros": "probaréis",
+        "ellos": "probarán"
+      },
+      "condicional": {
+        "yo": "probaría",
+        "tu": "probarías",
+        "el": "probaría",
+        "nosotros": "probaríamos",
+        "vosotros": "probaríais",
+        "ellos": "probarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "pruebe",
+        "tu": "pruebes",
+        "el": "pruebe",
+        "nosotros": "probemos",
+        "vosotros": "probéis",
+        "ellos": "prueben"
+      },
+      "imperativo": {
+        "tu": "prueba",
+        "usted": "pruebe",
+        "vosotros": "probad"
+      },
+      "gerundio": "probando",
+      "participio": "probado"
+    },
+    "freq_rank": 45
+  },
+  "mostrar": {
+    "infinitive": "mostrar",
+    "translation": "zeigen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-o-ue"
+    ],
+    "irregularity_note": "Diptongación o>ue en las formas tónicas del presente.",
+    "conjugations": {
+      "presente": {
+        "yo": "muestro",
+        "tu": "muestras",
+        "el": "muestra",
+        "nosotros": "mostramos",
+        "vosotros": "mostráis",
+        "ellos": "muestran"
+      },
+      "indefinido": {
+        "yo": "mostré",
+        "tu": "mostraste",
+        "el": "mostró",
+        "nosotros": "mostramos",
+        "vosotros": "mostrasteis",
+        "ellos": "mostraron"
+      },
+      "imperfecto": {
+        "yo": "mostraba",
+        "tu": "mostrabas",
+        "el": "mostraba",
+        "nosotros": "mostrábamos",
+        "vosotros": "mostrabais",
+        "ellos": "mostraban"
+      },
+      "futuro": {
+        "yo": "mostraré",
+        "tu": "mostrarás",
+        "el": "mostrará",
+        "nosotros": "mostraremos",
+        "vosotros": "mostraréis",
+        "ellos": "mostrarán"
+      },
+      "condicional": {
+        "yo": "mostraría",
+        "tu": "mostrarías",
+        "el": "mostraría",
+        "nosotros": "mostraríamos",
+        "vosotros": "mostraríais",
+        "ellos": "mostrarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "muestre",
+        "tu": "muestres",
+        "el": "muestre",
+        "nosotros": "mostremos",
+        "vosotros": "mostréis",
+        "ellos": "muestren"
+      },
+      "imperativo": {
+        "tu": "muestra",
+        "usted": "muestre",
+        "vosotros": "mostrad"
+      },
+      "gerundio": "mostrando",
+      "participio": "mostrado"
+    },
+    "freq_rank": 46
+  },
+  "soler": {
+    "infinitive": "soler",
+    "translation": "pflegen (zu tun)",
+    "cefr": "B1",
+    "pattern_tags": [
+      "stem-change-o-ue"
+    ],
+    "irregularity_note": "Verbo defectivo con diptongación o>ue; carece de futuro, condicional e imperativo por su significado.",
+    "conjugations": {
+      "presente": {
+        "yo": "suelo",
+        "tu": "sueles",
+        "el": "suele",
+        "nosotros": "solemos",
+        "vosotros": "soléis",
+        "ellos": "suelen"
+      },
+      "indefinido": {
+        "yo": "solí",
+        "tu": "soliste",
+        "el": "solió",
+        "nosotros": "solimos",
+        "vosotros": "solisteis",
+        "ellos": "solieron"
+      },
+      "imperfecto": {
+        "yo": "solía",
+        "tu": "solías",
+        "el": "solía",
+        "nosotros": "solíamos",
+        "vosotros": "solíais",
+        "ellos": "solían"
+      },
+      "futuro": {
+        "yo": "—",
+        "tu": "—",
+        "el": "—",
+        "nosotros": "—",
+        "vosotros": "—",
+        "ellos": "—"
+      },
+      "condicional": {
+        "yo": "—",
+        "tu": "—",
+        "el": "—",
+        "nosotros": "—",
+        "vosotros": "—",
+        "ellos": "—"
+      },
+      "subjuntivo_presente": {
+        "yo": "suela",
+        "tu": "suelas",
+        "el": "suela",
+        "nosotros": "solamos",
+        "vosotros": "soláis",
+        "ellos": "suelan"
+      },
+      "imperativo": {
+        "tu": "—",
+        "usted": "—",
+        "vosotros": "—"
+      },
+      "gerundio": "soliendo",
+      "participio": "solido"
+    },
+    "freq_rank": 47
+  },
+  "costar": {
+    "infinitive": "costar",
+    "translation": "kosten",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-o-ue"
+    ],
+    "irregularity_note": "Diptongación o>ue en las formas tónicas del presente; se usa sobre todo en tercera persona.",
+    "conjugations": {
+      "presente": {
+        "yo": "cuesto",
+        "tu": "cuestas",
+        "el": "cuesta",
+        "nosotros": "costamos",
+        "vosotros": "costáis",
+        "ellos": "cuestan"
+      },
+      "indefinido": {
+        "yo": "costé",
+        "tu": "costaste",
+        "el": "costó",
+        "nosotros": "costamos",
+        "vosotros": "costasteis",
+        "ellos": "costaron"
+      },
+      "imperfecto": {
+        "yo": "costaba",
+        "tu": "costabas",
+        "el": "costaba",
+        "nosotros": "costábamos",
+        "vosotros": "costabais",
+        "ellos": "costaban"
+      },
+      "futuro": {
+        "yo": "costaré",
+        "tu": "costarás",
+        "el": "costará",
+        "nosotros": "costaremos",
+        "vosotros": "costaréis",
+        "ellos": "costarán"
+      },
+      "condicional": {
+        "yo": "costaría",
+        "tu": "costarías",
+        "el": "costaría",
+        "nosotros": "costaríamos",
+        "vosotros": "costaríais",
+        "ellos": "costarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "cueste",
+        "tu": "cuestes",
+        "el": "cueste",
+        "nosotros": "costemos",
+        "vosotros": "costéis",
+        "ellos": "cuesten"
+      },
+      "imperativo": {
+        "tu": "cuesta",
+        "usted": "cueste",
+        "vosotros": "costad"
+      },
+      "gerundio": "costando",
+      "participio": "costado"
+    },
+    "freq_rank": 48
+  },
+  "acostarse": {
+    "infinitive": "acostarse",
+    "translation": "sich hinlegen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-o-ue"
+    ],
+    "irregularity_note": "Verbo reflexivo con diptongación o>ue en las formas tónicas del presente.",
+    "conjugations": {
+      "presente": {
+        "yo": "me acuesto",
+        "tu": "te acuestas",
+        "el": "se acuesta",
+        "nosotros": "nos acostamos",
+        "vosotros": "os acostáis",
+        "ellos": "se acuestan"
+      },
+      "indefinido": {
+        "yo": "me acosté",
+        "tu": "te acostaste",
+        "el": "se acostó",
+        "nosotros": "nos acostamos",
+        "vosotros": "os acostasteis",
+        "ellos": "se acostaron"
+      },
+      "imperfecto": {
+        "yo": "me acostaba",
+        "tu": "te acostabas",
+        "el": "se acostaba",
+        "nosotros": "nos acostábamos",
+        "vosotros": "os acostabais",
+        "ellos": "se acostaban"
+      },
+      "futuro": {
+        "yo": "me acostaré",
+        "tu": "te acostarás",
+        "el": "se acostará",
+        "nosotros": "nos acostaremos",
+        "vosotros": "os acostaréis",
+        "ellos": "se acostarán"
+      },
+      "condicional": {
+        "yo": "me acostaría",
+        "tu": "te acostarías",
+        "el": "se acostaría",
+        "nosotros": "nos acostaríamos",
+        "vosotros": "os acostaríais",
+        "ellos": "se acostarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "me acueste",
+        "tu": "te acuestes",
+        "el": "se acueste",
+        "nosotros": "nos acostemos",
+        "vosotros": "os acostéis",
+        "ellos": "se acuesten"
+      },
+      "imperativo": {
+        "tu": "acuéstate",
+        "usted": "acuéstese",
+        "vosotros": "acostaos"
+      },
+      "gerundio": "acostándose",
+      "participio": "acostado"
+    },
+    "freq_rank": 49
+  },
+  "despertarse": {
+    "infinitive": "despertarse",
+    "translation": "aufwachen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-ie"
+    ],
+    "irregularity_note": "Verbo reflexivo con diptongación e>ie en las formas tónicas del presente.",
+    "conjugations": {
+      "presente": {
+        "yo": "me despierto",
+        "tu": "te despiertas",
+        "el": "se despierta",
+        "nosotros": "nos despertamos",
+        "vosotros": "os despertáis",
+        "ellos": "se despiertan"
+      },
+      "indefinido": {
+        "yo": "me desperté",
+        "tu": "te despertaste",
+        "el": "se despertó",
+        "nosotros": "nos despertamos",
+        "vosotros": "os despertasteis",
+        "ellos": "se despertaron"
+      },
+      "imperfecto": {
+        "yo": "me despertaba",
+        "tu": "te despertabas",
+        "el": "se despertaba",
+        "nosotros": "nos despertábamos",
+        "vosotros": "os despertabais",
+        "ellos": "se despertaban"
+      },
+      "futuro": {
+        "yo": "me despertaré",
+        "tu": "te despertarás",
+        "el": "se despertará",
+        "nosotros": "nos despertaremos",
+        "vosotros": "os despertaréis",
+        "ellos": "se despertarán"
+      },
+      "condicional": {
+        "yo": "me despertaría",
+        "tu": "te despertarías",
+        "el": "se despertaría",
+        "nosotros": "nos despertaríamos",
+        "vosotros": "os despertaríais",
+        "ellos": "se despertarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "me despierte",
+        "tu": "te despiertes",
+        "el": "se despierte",
+        "nosotros": "nos despertemos",
+        "vosotros": "os despertéis",
+        "ellos": "se despierten"
+      },
+      "imperativo": {
+        "tu": "despiértate",
+        "usted": "despiértese",
+        "vosotros": "despertaos"
+      },
+      "gerundio": "despertándose",
+      "participio": "despertado"
+    },
+    "freq_rank": 50
+  },
+  "cerrar": {
+    "infinitive": "cerrar",
+    "translation": "schließen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-ie"
+    ],
+    "irregularity_note": "La e de la raíz cambia a ie en las formas tónicas.",
+    "conjugations": {
+      "presente": {
+        "yo": "cierro",
+        "tu": "cierras",
+        "el": "cierra",
+        "nosotros": "cerramos",
+        "vosotros": "cerráis",
+        "ellos": "cierran"
+      },
+      "indefinido": {
+        "yo": "cerré",
+        "tu": "cerraste",
+        "el": "cerró",
+        "nosotros": "cerramos",
+        "vosotros": "cerrasteis",
+        "ellos": "cerraron"
+      },
+      "imperfecto": {
+        "yo": "cerraba",
+        "tu": "cerrabas",
+        "el": "cerraba",
+        "nosotros": "cerrábamos",
+        "vosotros": "cerrabais",
+        "ellos": "cerraban"
+      },
+      "futuro": {
+        "yo": "cerraré",
+        "tu": "cerrarás",
+        "el": "cerrará",
+        "nosotros": "cerraremos",
+        "vosotros": "cerraréis",
+        "ellos": "cerrarán"
+      },
+      "condicional": {
+        "yo": "cerraría",
+        "tu": "cerrarías",
+        "el": "cerraría",
+        "nosotros": "cerraríamos",
+        "vosotros": "cerraríais",
+        "ellos": "cerrarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "cierre",
+        "tu": "cierres",
+        "el": "cierre",
+        "nosotros": "cerremos",
+        "vosotros": "cerréis",
+        "ellos": "cierren"
+      },
+      "imperativo": {
+        "tu": "cierra",
+        "usted": "cierre",
+        "vosotros": "cerrad"
+      },
+      "gerundio": "cerrando",
+      "participio": "cerrado"
+    },
+    "freq_rank": 51
+  },
+  "sentarse": {
+    "infinitive": "sentarse",
+    "translation": "sich setzen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-ie"
+    ],
+    "irregularity_note": "Verbo reflexivo con cambio de raíz e a ie en las formas tónicas.",
+    "conjugations": {
+      "presente": {
+        "yo": "me siento",
+        "tu": "te sientas",
+        "el": "se sienta",
+        "nosotros": "nos sentamos",
+        "vosotros": "os sentáis",
+        "ellos": "se sientan"
+      },
+      "indefinido": {
+        "yo": "me senté",
+        "tu": "te sentaste",
+        "el": "se sentó",
+        "nosotros": "nos sentamos",
+        "vosotros": "os sentasteis",
+        "ellos": "se sentaron"
+      },
+      "imperfecto": {
+        "yo": "me sentaba",
+        "tu": "te sentabas",
+        "el": "se sentaba",
+        "nosotros": "nos sentábamos",
+        "vosotros": "os sentabais",
+        "ellos": "se sentaban"
+      },
+      "futuro": {
+        "yo": "me sentaré",
+        "tu": "te sentarás",
+        "el": "se sentará",
+        "nosotros": "nos sentaremos",
+        "vosotros": "os sentaréis",
+        "ellos": "se sentarán"
+      },
+      "condicional": {
+        "yo": "me sentaría",
+        "tu": "te sentarías",
+        "el": "se sentaría",
+        "nosotros": "nos sentaríamos",
+        "vosotros": "os sentaríais",
+        "ellos": "se sentarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "me siente",
+        "tu": "te sientes",
+        "el": "se siente",
+        "nosotros": "nos sentemos",
+        "vosotros": "os sentéis",
+        "ellos": "se sienten"
+      },
+      "imperativo": {
+        "tu": "siéntate",
+        "usted": "siéntese",
+        "vosotros": "sentaos"
+      },
+      "gerundio": "sentándose",
+      "participio": "sentado"
+    },
+    "freq_rank": 52
+  },
+  "preferir": {
+    "infinitive": "preferir",
+    "translation": "vorziehen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "stem-change-e-ie",
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "La e cambia a ie en formas tónicas y a i en el indefinido, gerundio y subjuntivo.",
+    "conjugations": {
+      "presente": {
+        "yo": "prefiero",
+        "tu": "prefieres",
+        "el": "prefiere",
+        "nosotros": "preferimos",
+        "vosotros": "preferís",
+        "ellos": "prefieren"
+      },
+      "indefinido": {
+        "yo": "preferí",
+        "tu": "preferiste",
+        "el": "prefirió",
+        "nosotros": "preferimos",
+        "vosotros": "preferisteis",
+        "ellos": "prefirieron"
+      },
+      "imperfecto": {
+        "yo": "prefería",
+        "tu": "preferías",
+        "el": "prefería",
+        "nosotros": "preferíamos",
+        "vosotros": "preferíais",
+        "ellos": "preferían"
+      },
+      "futuro": {
+        "yo": "preferiré",
+        "tu": "preferirás",
+        "el": "preferirá",
+        "nosotros": "preferiremos",
+        "vosotros": "preferiréis",
+        "ellos": "preferirán"
+      },
+      "condicional": {
+        "yo": "preferiría",
+        "tu": "preferirías",
+        "el": "preferiría",
+        "nosotros": "preferiríamos",
+        "vosotros": "preferiríais",
+        "ellos": "preferirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "prefiera",
+        "tu": "prefieras",
+        "el": "prefiera",
+        "nosotros": "prefiramos",
+        "vosotros": "prefiráis",
+        "ellos": "prefieran"
+      },
+      "imperativo": {
+        "tu": "prefiere",
+        "usted": "prefiera",
+        "vosotros": "preferid"
+      },
+      "gerundio": "prefiriendo",
+      "participio": "preferido"
+    },
+    "freq_rank": 53
+  },
+  "mentir": {
+    "infinitive": "mentir",
+    "translation": "lügen",
+    "cefr": "B1",
+    "pattern_tags": [
+      "stem-change-e-ie",
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "La e cambia a ie en formas tónicas y a i en el indefinido, gerundio y subjuntivo.",
+    "conjugations": {
+      "presente": {
+        "yo": "miento",
+        "tu": "mientes",
+        "el": "miente",
+        "nosotros": "mentimos",
+        "vosotros": "mentís",
+        "ellos": "mienten"
+      },
+      "indefinido": {
+        "yo": "mentí",
+        "tu": "mentiste",
+        "el": "mintió",
+        "nosotros": "mentimos",
+        "vosotros": "mentisteis",
+        "ellos": "mintieron"
+      },
+      "imperfecto": {
+        "yo": "mentía",
+        "tu": "mentías",
+        "el": "mentía",
+        "nosotros": "mentíamos",
+        "vosotros": "mentíais",
+        "ellos": "mentían"
+      },
+      "futuro": {
+        "yo": "mentiré",
+        "tu": "mentirás",
+        "el": "mentirá",
+        "nosotros": "mentiremos",
+        "vosotros": "mentiréis",
+        "ellos": "mentirán"
+      },
+      "condicional": {
+        "yo": "mentiría",
+        "tu": "mentirías",
+        "el": "mentiría",
+        "nosotros": "mentiríamos",
+        "vosotros": "mentiríais",
+        "ellos": "mentirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "mienta",
+        "tu": "mientas",
+        "el": "mienta",
+        "nosotros": "mintamos",
+        "vosotros": "mintáis",
+        "ellos": "mientan"
+      },
+      "imperativo": {
+        "tu": "miente",
+        "usted": "mienta",
+        "vosotros": "mentid"
+      },
+      "gerundio": "mintiendo",
+      "participio": "mentido"
+    },
+    "freq_rank": 54
+  },
+  "divertirse": {
+    "infinitive": "divertirse",
+    "translation": "sich amüsieren",
+    "cefr": "B1",
+    "pattern_tags": [
+      "stem-change-e-ie",
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "Verbo reflexivo con cambio de e a ie en formas tónicas y a i en indefinido, gerundio y subjuntivo.",
+    "conjugations": {
+      "presente": {
+        "yo": "me divierto",
+        "tu": "te diviertes",
+        "el": "se divierte",
+        "nosotros": "nos divertimos",
+        "vosotros": "os divertís",
+        "ellos": "se divierten"
+      },
+      "indefinido": {
+        "yo": "me divertí",
+        "tu": "te divertiste",
+        "el": "se divirtió",
+        "nosotros": "nos divertimos",
+        "vosotros": "os divertisteis",
+        "ellos": "se divirtieron"
+      },
+      "imperfecto": {
+        "yo": "me divertía",
+        "tu": "te divertías",
+        "el": "se divertía",
+        "nosotros": "nos divertíamos",
+        "vosotros": "os divertíais",
+        "ellos": "se divertían"
+      },
+      "futuro": {
+        "yo": "me divertiré",
+        "tu": "te divertirás",
+        "el": "se divertirá",
+        "nosotros": "nos divertiremos",
+        "vosotros": "os divertiréis",
+        "ellos": "se divertirán"
+      },
+      "condicional": {
+        "yo": "me divertiría",
+        "tu": "te divertirías",
+        "el": "se divertiría",
+        "nosotros": "nos divertiríamos",
+        "vosotros": "os divertiríais",
+        "ellos": "se divertirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "me divierta",
+        "tu": "te diviertas",
+        "el": "se divierta",
+        "nosotros": "nos divirtamos",
+        "vosotros": "os divirtáis",
+        "ellos": "se diviertan"
+      },
+      "imperativo": {
+        "tu": "diviértete",
+        "usted": "diviértase",
+        "vosotros": "divertíos"
+      },
+      "gerundio": "divirtiéndose",
+      "participio": "divertido"
+    },
+    "freq_rank": 55
+  },
+  "elegir": {
+    "infinitive": "elegir",
+    "translation": "wählen",
+    "cefr": "B1",
+    "pattern_tags": [
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "Cambia e por i en presente e indefinido y pierde la u ante o/a.",
+    "conjugations": {
+      "presente": {
+        "yo": "elijo",
+        "tu": "eliges",
+        "el": "elige",
+        "nosotros": "elegimos",
+        "vosotros": "elegís",
+        "ellos": "eligen"
+      },
+      "indefinido": {
+        "yo": "elegí",
+        "tu": "elegiste",
+        "el": "eligió",
+        "nosotros": "elegimos",
+        "vosotros": "elegisteis",
+        "ellos": "eligieron"
+      },
+      "imperfecto": {
+        "yo": "elegía",
+        "tu": "elegías",
+        "el": "elegía",
+        "nosotros": "elegíamos",
+        "vosotros": "elegíais",
+        "ellos": "elegían"
+      },
+      "futuro": {
+        "yo": "elegiré",
+        "tu": "elegirás",
+        "el": "elegirá",
+        "nosotros": "elegiremos",
+        "vosotros": "elegiréis",
+        "ellos": "elegirán"
+      },
+      "condicional": {
+        "yo": "elegiría",
+        "tu": "elegirías",
+        "el": "elegiría",
+        "nosotros": "elegiríamos",
+        "vosotros": "elegiríais",
+        "ellos": "elegirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "elija",
+        "tu": "elijas",
+        "el": "elija",
+        "nosotros": "elijamos",
+        "vosotros": "elijáis",
+        "ellos": "elijan"
+      },
+      "imperativo": {
+        "tu": "elige",
+        "usted": "elija",
+        "vosotros": "elegid"
+      },
+      "gerundio": "eligiendo",
+      "participio": "elegido"
+    },
+    "freq_rank": 56
+  },
+  "corregir": {
+    "infinitive": "corregir",
+    "translation": "korrigieren",
+    "cefr": "B1",
+    "pattern_tags": [
+      "stem-change-e-i"
+    ],
+    "irregularity_note": "Cambia e por i en presente e indefinido y pierde la u ante o/a.",
+    "conjugations": {
+      "presente": {
+        "yo": "corrijo",
+        "tu": "corriges",
+        "el": "corrige",
+        "nosotros": "corregimos",
+        "vosotros": "corregís",
+        "ellos": "corrigen"
+      },
+      "indefinido": {
+        "yo": "corregí",
+        "tu": "corregiste",
+        "el": "corrigió",
+        "nosotros": "corregimos",
+        "vosotros": "corregisteis",
+        "ellos": "corrigieron"
+      },
+      "imperfecto": {
+        "yo": "corregía",
+        "tu": "corregías",
+        "el": "corregía",
+        "nosotros": "corregíamos",
+        "vosotros": "corregíais",
+        "ellos": "corregían"
+      },
+      "futuro": {
+        "yo": "corregiré",
+        "tu": "corregirás",
+        "el": "corregirá",
+        "nosotros": "corregiremos",
+        "vosotros": "corregiréis",
+        "ellos": "corregirán"
+      },
+      "condicional": {
+        "yo": "corregiría",
+        "tu": "corregirías",
+        "el": "corregiría",
+        "nosotros": "corregiríamos",
+        "vosotros": "corregiríais",
+        "ellos": "corregirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "corrija",
+        "tu": "corrijas",
+        "el": "corrija",
+        "nosotros": "corrijamos",
+        "vosotros": "corrijáis",
+        "ellos": "corrijan"
+      },
+      "imperativo": {
+        "tu": "corrige",
+        "usted": "corrija",
+        "vosotros": "corregid"
+      },
+      "gerundio": "corrigiendo",
+      "participio": "corregido"
+    },
+    "freq_rank": 57
+  },
+  "conducir": {
+    "infinitive": "conducir",
+    "translation": "fahren",
+    "cefr": "A2",
+    "pattern_tags": [
+      "zc-verbs",
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Añade zc ante o/a y tiene pretérito fuerte en -duje.",
+    "conjugations": {
+      "presente": {
+        "yo": "conduzco",
+        "tu": "conduces",
+        "el": "conduce",
+        "nosotros": "conducimos",
+        "vosotros": "conducís",
+        "ellos": "conducen"
+      },
+      "indefinido": {
+        "yo": "conduje",
+        "tu": "condujiste",
+        "el": "condujo",
+        "nosotros": "condujimos",
+        "vosotros": "condujisteis",
+        "ellos": "condujeron"
+      },
+      "imperfecto": {
+        "yo": "conducía",
+        "tu": "conducías",
+        "el": "conducía",
+        "nosotros": "conducíamos",
+        "vosotros": "conducíais",
+        "ellos": "conducían"
+      },
+      "futuro": {
+        "yo": "conduciré",
+        "tu": "conducirás",
+        "el": "conducirá",
+        "nosotros": "conduciremos",
+        "vosotros": "conduciréis",
+        "ellos": "conducirán"
+      },
+      "condicional": {
+        "yo": "conduciría",
+        "tu": "conducirías",
+        "el": "conduciría",
+        "nosotros": "conduciríamos",
+        "vosotros": "conduciríais",
+        "ellos": "conducirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "conduzca",
+        "tu": "conduzcas",
+        "el": "conduzca",
+        "nosotros": "conduzcamos",
+        "vosotros": "conduzcáis",
+        "ellos": "conduzcan"
+      },
+      "imperativo": {
+        "tu": "conduce",
+        "usted": "conduzca",
+        "vosotros": "conducid"
+      },
+      "gerundio": "conduciendo",
+      "participio": "conducido"
+    },
+    "freq_rank": 58
+  },
+  "traducir": {
+    "infinitive": "traducir",
+    "translation": "übersetzen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "zc-verbs",
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Añade zc ante o/a y tiene pretérito fuerte en -duje.",
+    "conjugations": {
+      "presente": {
+        "yo": "traduzco",
+        "tu": "traduces",
+        "el": "traduce",
+        "nosotros": "traducimos",
+        "vosotros": "traducís",
+        "ellos": "traducen"
+      },
+      "indefinido": {
+        "yo": "traduje",
+        "tu": "tradujiste",
+        "el": "tradujo",
+        "nosotros": "tradujimos",
+        "vosotros": "tradujisteis",
+        "ellos": "tradujeron"
+      },
+      "imperfecto": {
+        "yo": "traducía",
+        "tu": "traducías",
+        "el": "traducía",
+        "nosotros": "traducíamos",
+        "vosotros": "traducíais",
+        "ellos": "traducían"
+      },
+      "futuro": {
+        "yo": "traduciré",
+        "tu": "traducirás",
+        "el": "traducirá",
+        "nosotros": "traduciremos",
+        "vosotros": "traduciréis",
+        "ellos": "traducirán"
+      },
+      "condicional": {
+        "yo": "traduciría",
+        "tu": "traducirías",
+        "el": "traduciría",
+        "nosotros": "traduciríamos",
+        "vosotros": "traduciríais",
+        "ellos": "traducirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "traduzca",
+        "tu": "traduzcas",
+        "el": "traduzca",
+        "nosotros": "traduzcamos",
+        "vosotros": "traduzcáis",
+        "ellos": "traduzcan"
+      },
+      "imperativo": {
+        "tu": "traduce",
+        "usted": "traduzca",
+        "vosotros": "traducid"
+      },
+      "gerundio": "traduciendo",
+      "participio": "traducido"
+    },
+    "freq_rank": 59
+  },
+  "producir": {
+    "infinitive": "producir",
+    "translation": "produzieren",
+    "cefr": "B1",
+    "pattern_tags": [
+      "zc-verbs",
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Añade zc ante o/a y tiene pretérito fuerte en -duje.",
+    "conjugations": {
+      "presente": {
+        "yo": "produzco",
+        "tu": "produces",
+        "el": "produce",
+        "nosotros": "producimos",
+        "vosotros": "producís",
+        "ellos": "producen"
+      },
+      "indefinido": {
+        "yo": "produje",
+        "tu": "produjiste",
+        "el": "produjo",
+        "nosotros": "produjimos",
+        "vosotros": "produjisteis",
+        "ellos": "produjeron"
+      },
+      "imperfecto": {
+        "yo": "producía",
+        "tu": "producías",
+        "el": "producía",
+        "nosotros": "producíamos",
+        "vosotros": "producíais",
+        "ellos": "producían"
+      },
+      "futuro": {
+        "yo": "produciré",
+        "tu": "producirás",
+        "el": "producirá",
+        "nosotros": "produciremos",
+        "vosotros": "produciréis",
+        "ellos": "producirán"
+      },
+      "condicional": {
+        "yo": "produciría",
+        "tu": "producirías",
+        "el": "produciría",
+        "nosotros": "produciríamos",
+        "vosotros": "produciríais",
+        "ellos": "producirían"
+      },
+      "subjuntivo_presente": {
+        "yo": "produzca",
+        "tu": "produzcas",
+        "el": "produzca",
+        "nosotros": "produzcamos",
+        "vosotros": "produzcáis",
+        "ellos": "produzcan"
+      },
+      "imperativo": {
+        "tu": "produce",
+        "usted": "produzca",
+        "vosotros": "producid"
+      },
+      "gerundio": "produciendo",
+      "participio": "producido"
+    },
+    "freq_rank": 60
+  },
+  "caber": {
+    "infinitive": "caber",
+    "translation": "passen",
+    "cefr": "B2",
+    "pattern_tags": [
+      "g-verbs",
+      "irregular-indefinido",
+      "irregular-futuro"
+    ],
+    "irregularity_note": "Presente irregular (quepo), pretérito indefinido con raíz cup- y futuro con raíz cabr-.",
+    "conjugations": {
+      "presente": {
+        "yo": "quepo",
+        "tu": "cabes",
+        "el": "cabe",
+        "nosotros": "cabemos",
+        "vosotros": "cabéis",
+        "ellos": "caben"
+      },
+      "indefinido": {
+        "yo": "cupe",
+        "tu": "cupiste",
+        "el": "cupo",
+        "nosotros": "cupimos",
+        "vosotros": "cupisteis",
+        "ellos": "cupieron"
+      },
+      "imperfecto": {
+        "yo": "cabía",
+        "tu": "cabías",
+        "el": "cabía",
+        "nosotros": "cabíamos",
+        "vosotros": "cabíais",
+        "ellos": "cabían"
+      },
+      "futuro": {
+        "yo": "cabré",
+        "tu": "cabrás",
+        "el": "cabrá",
+        "nosotros": "cabremos",
+        "vosotros": "cabréis",
+        "ellos": "cabrán"
+      },
+      "condicional": {
+        "yo": "cabría",
+        "tu": "cabrías",
+        "el": "cabría",
+        "nosotros": "cabríamos",
+        "vosotros": "cabríais",
+        "ellos": "cabrían"
+      },
+      "subjuntivo_presente": {
+        "yo": "quepa",
+        "tu": "quepas",
+        "el": "quepa",
+        "nosotros": "quepamos",
+        "vosotros": "quepáis",
+        "ellos": "quepan"
+      },
+      "imperativo": {
+        "tu": "cabe",
+        "usted": "quepa",
+        "vosotros": "cabed"
+      },
+      "gerundio": "cabiendo",
+      "participio": "cabido"
+    },
+    "freq_rank": 61
+  },
+  "valer": {
+    "infinitive": "valer",
+    "translation": "wert sein",
+    "cefr": "B1",
+    "pattern_tags": [
+      "g-verbs",
+      "irregular-futuro"
+    ],
+    "irregularity_note": "Presente irregular (valgo) y futuro con raíz valdr-.",
+    "conjugations": {
+      "presente": {
+        "yo": "valgo",
+        "tu": "vales",
+        "el": "vale",
+        "nosotros": "valemos",
+        "vosotros": "valéis",
+        "ellos": "valen"
+      },
+      "indefinido": {
+        "yo": "valí",
+        "tu": "valiste",
+        "el": "valió",
+        "nosotros": "valimos",
+        "vosotros": "valisteis",
+        "ellos": "valieron"
+      },
+      "imperfecto": {
+        "yo": "valía",
+        "tu": "valías",
+        "el": "valía",
+        "nosotros": "valíamos",
+        "vosotros": "valíais",
+        "ellos": "valían"
+      },
+      "futuro": {
+        "yo": "valdré",
+        "tu": "valdrás",
+        "el": "valdrá",
+        "nosotros": "valdremos",
+        "vosotros": "valdréis",
+        "ellos": "valdrán"
+      },
+      "condicional": {
+        "yo": "valdría",
+        "tu": "valdrías",
+        "el": "valdría",
+        "nosotros": "valdríamos",
+        "vosotros": "valdríais",
+        "ellos": "valdrían"
+      },
+      "subjuntivo_presente": {
+        "yo": "valga",
+        "tu": "valgas",
+        "el": "valga",
+        "nosotros": "valgamos",
+        "vosotros": "valgáis",
+        "ellos": "valgan"
+      },
+      "imperativo": {
+        "tu": "vale",
+        "usted": "valga",
+        "vosotros": "valed"
+      },
+      "gerundio": "valiendo",
+      "participio": "valido"
+    },
+    "freq_rank": 62
+  },
+  "andar": {
+    "infinitive": "andar",
+    "translation": "gehen",
+    "cefr": "A2",
+    "pattern_tags": [
+      "irregular-indefinido"
+    ],
+    "irregularity_note": "Pretérito indefinido irregular con raíz anduv-.",
+    "conjugations": {
+      "presente": {
+        "yo": "ando",
+        "tu": "andas",
+        "el": "anda",
+        "nosotros": "andamos",
+        "vosotros": "andáis",
+        "ellos": "andan"
+      },
+      "indefinido": {
+        "yo": "anduve",
+        "tu": "anduviste",
+        "el": "anduvo",
+        "nosotros": "anduvimos",
+        "vosotros": "anduvisteis",
+        "ellos": "anduvieron"
+      },
+      "imperfecto": {
+        "yo": "andaba",
+        "tu": "andabas",
+        "el": "andaba",
+        "nosotros": "andábamos",
+        "vosotros": "andabais",
+        "ellos": "andaban"
+      },
+      "futuro": {
+        "yo": "andaré",
+        "tu": "andarás",
+        "el": "andará",
+        "nosotros": "andaremos",
+        "vosotros": "andaréis",
+        "ellos": "andarán"
+      },
+      "condicional": {
+        "yo": "andaría",
+        "tu": "andarías",
+        "el": "andaría",
+        "nosotros": "andaríamos",
+        "vosotros": "andaríais",
+        "ellos": "andarían"
+      },
+      "subjuntivo_presente": {
+        "yo": "ande",
+        "tu": "andes",
+        "el": "ande",
+        "nosotros": "andemos",
+        "vosotros": "andéis",
+        "ellos": "anden"
+      },
+      "imperativo": {
+        "tu": "anda",
+        "usted": "ande",
+        "vosotros": "andad"
+      },
+      "gerundio": "andando",
+      "participio": "andado"
+    },
+    "freq_rank": 63
+  }
+}
