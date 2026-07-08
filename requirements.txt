@@ -1,12 +1,11 @@
-# Slice 0 — nur das, um analyze() laufen zu lassen:
+# lengua backend — gepinnte Deps
 anthropic>=0.40
 python-dotenv>=1.0
 
-# --- ab Slice 1 (Persistenz) dazunehmen: ---
-# fastapi>=0.115
-# uvicorn>=0.32
-# supabase>=2.9
+# Slice 1 — Persistenz + API
+fastapi>=0.115
+uvicorn>=0.32
+supabase>=2.9
 
-# --- ab Slice 3 (Telegram + Sprache) dazunehmen: ---
-# python-telegram-bot>=21
+# --- später (Sprache): ---
 # openai>=1.50        # nur für Whisper-Transkription; Fotos brauchen KEIN extra OCR (Claude nimmt Bilder direkt)

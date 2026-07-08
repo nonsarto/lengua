@@ -160,6 +160,18 @@ create index on concept_state (user_id, state);
 create index on vocab_items (user_id, srs_due);
 create index on concept_evidence (concept_id);
 
--- ---------- RLS (turn on before this ever leaves your machine) ----------
--- alter table <each> enable row level security;
--- then a policy: user_id = auth.uid()
+-- ---------- RLS (on from day one — CLAUDE.md golden rule) ----------
+-- The backend writes with the service role key (bypasses RLS); the browser never talks to
+-- Supabase directly. No anon policies exist, so with RLS enabled the anon key can read NOTHING.
+-- When real multi-user auth arrives, add policies like: using (user_id = auth.uid()).
+alter table user_settings      enable row level security;
+alter table captures           enable row level security;
+alter table concepts           enable row level security;
+alter table concept_state      enable row level security;
+alter table concept_evidence   enable row level security;
+alter table corrections        enable row level security;
+alter table situations         enable row level security;
+alter table vocab_items        enable row level security;
+alter table verbs              enable row level security;
+alter table situation_vocab    enable row level security;
+alter table situation_concepts enable row level security;
