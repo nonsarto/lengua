@@ -93,15 +93,19 @@ export default function Gramatica() {
         </section>
       )}
 
+      {/* Referencia — plegada por defecto: se abre lo que se busca, el resto calla */}
       {clusters.map(({ cat, items }) => (
-        <section key={cat} className="mb-6">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
-            {cat} <span className="font-normal text-stone-300">· {items.length}</span>
-          </h2>
-          <div className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+        <details key={cat} className="group mb-2 rounded-xl border border-stone-200 bg-white">
+          <summary className="flex cursor-pointer select-none items-center justify-between p-3.5 text-sm font-semibold uppercase tracking-wide text-stone-500 [&::-webkit-details-marker]:hidden">
+            <span>
+              {cat} <span className="font-normal text-stone-300">· {items.length}</span>
+            </span>
+            <span className="text-stone-300 transition-transform group-open:rotate-90">›</span>
+          </summary>
+          <div className="divide-y divide-stone-100 border-t border-stone-100">
             {items.map((c) => <Row key={c.slug} c={c} />)}
           </div>
-        </section>
+        </details>
       ))}
     </>
   );
