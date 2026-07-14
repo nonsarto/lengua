@@ -292,10 +292,12 @@ def _conj_drills(db, shaky: list[dict], limit: int = 5,
         table = (verb.get("conjugations") or {}).get(tense)
         if table is None:
             continue
-        if isinstance(table, str):                      # gerundio/participio: single form
+        if isinstance(table, str):                      # gerundi/participi: single form
             person, answer = None, table
         else:
-            pool = PERSONS if tense != "imperativo" else list(table)
+            # Sprachneutral: Standard-Personen, die die Tabelle kennt (der Imperativ
+            # hat eigene Keys wie usted/voste — dann die Tabellen-Keys selbst).
+            pool = [p for p in PERSONS if p in table] or list(table)
             # Stem changes only hit the stressed stem — nosotros/vosotros don't diphthongize,
             # so drilling them there would miss the very thing the pattern is about.
             if matched[0].startswith(PACK.STEM_CHANGE_PREFIX):

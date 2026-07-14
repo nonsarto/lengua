@@ -1,0 +1,107 @@
+{
+  "verbs-incoatius": {
+    "label": "Verbs incoatius (-eix-)",
+    "ctype": "pattern_family",
+    "cefr": "A2",
+    "explanation": "La majoria de verbs de la tercera conjugació (-ir) afegeixen l'increment -eix- a les persones del singular i a la tercera del plural del present: serveixo, serveixes, serveix, servim, serviu, serveixen. Els anomenem incoatius. Uns quants verbs freqüents NO el porten (dormir, sortir, obrir, sentir, venir, tenir): són els purs.",
+    "rule_of_thumb": "Verb en -ir? Per defecte hi va -eix-: serveix, prefereix, decideix. Els purs (dormir, sortir, obrir...) són la llista curta que cal memoritzar.",
+    "german_pitfall": "Weder Deutsch noch Spanisch haben etwas Vergleichbares (spanisch 'servir' macht sirve, katalanisch serveix!) — der häufigste Konjugationsfehler von Spanisch-Sprechern. Im Zweifel bei -ir-Verben: MIT -eix-.",
+    "paradigm": null,
+    "member_verbs": ["servir", "preferir", "decidir", "traduir", "produir", "construir", "afegir", "repetir", "vestir", "patir", "existir", "dirigir", "gaudir", "reduir"],
+    "default_exercises": [
+      {"q": "En aquest bar ___ (servir) tapes fins a mitjanit.", "a": "serveixen"},
+      {"q": "Jo ___ (preferir) el te al cafè.", "a": "prefereixo"},
+      {"q": "Ella ___ (traduir) llibres de l'alemany.", "a": "tradueix"}
+    ]
+  },
+  "verbs-velaritzats": {
+    "label": "Verbs velaritzats (-c a la 1a persona)",
+    "ctype": "pattern_family",
+    "cefr": "A2",
+    "explanation": "Molts verbs de la segona conjugació fan la primera persona del present en -c: bec (beure), dec (deure), dic (dir), duc (dur), prenc (prendre), vinc (venir), tinc (tenir), visc (viure). Aquesta c velar reapareix al subjuntiu (begui, digui, prengui) i sovint al passat i al participi.",
+    "rule_of_thumb": "Si la primera persona fa -c (tinc, vinc, dic), el subjuntiu hi construeix a sobre: tingui, vingui, digui.",
+    "german_pitfall": "Ähnlich den spanischen g-Verben (tengo/tinc), aber mit -c statt -go. Wer Spanisch kann, sagt gern *tengo statt tinc — die katalanische Endung ist kürzer und hart: tinc, vinc, visc.",
+    "paradigm": null,
+    "member_verbs": ["tenir", "venir", "dir", "dur", "beure", "deure", "prendre", "aprendre", "entendre", "viure", "escriure", "creure", "caure", "moure"],
+    "default_exercises": [
+      {"q": "Jo ___ (tenir) trenta anys.", "a": "tinc"},
+      {"q": "___ (venir, jo) de la feina ara mateix.", "a": "Vinc"},
+      {"q": "No ___ (beure, jo) alcohol.", "a": "bec"}
+    ]
+  },
+  "canvi-ortografic": {
+    "label": "Canvis ortogràfics (ç/c, g/gu, j/g, qu/c)",
+    "ctype": "pattern_family",
+    "cefr": "A2",
+    "explanation": "Per mantenir el so de l'arrel, l'ortografia canvia davant de certes vocals: començar → comencem (ç→c), jugar → juguem (g→gu), pagar → paguem, buscar → busquem (c→qu), menjar → mengem (j→g). El so no canvia mai — només la lletra.",
+    "rule_of_thumb": "El so mana: si la terminació comença amb e/i, l'arrel s'adapta per sonar igual (jugo → juguem, no *jugem).",
+    "german_pitfall": "Reine Rechtschreibsache, keine neue Form — wie deutsches 'k/ck'. Merkhilfe: ç nur vor a/o/u (començo), vor e/i einfaches c (comences). Falsch geschriebene Formen wie *jugem statt juguem sind DER Klassiker.",
+    "paradigm": null,
+    "member_verbs": ["començar", "jugar", "pagar", "buscar", "menjar", "viatjar", "apagar", "atacar", "practicar", "arriscar", "avançar", "envejar"],
+    "default_exercises": [
+      {"q": "Nosaltres ___ (jugar) a futbol els dissabtes.", "a": "juguem"},
+      {"q": "___ (començar, nosaltres) a les nou.", "a": "Comencem"},
+      {"q": "Què ___ (menjar, nosaltres) avui?", "a": "mengem"}
+    ]
+  },
+  "alternanca-o-u": {
+    "label": "Alternança o/u (surto, cullo, cuso)",
+    "ctype": "pattern_family",
+    "cefr": "A2",
+    "explanation": "Un grup petit però molt freqüent de verbs en -ir canvia la o de l'arrel per u a les formes on la síl·laba és tònica: sortir → surto, surts, surt, sortim, sortiu, surten. També collir (cullo), cosir (cuso), tossir (tusso), escopir. A les formes de nosaltres i vosaltres la o es manté perquè l'accent cau a la terminació.",
+    "rule_of_thumb": "On l'accent pica l'arrel, la o es torna u: SURto però sorTIM. Igual que el castellà 'puedo/podemos', però amb o→u.",
+    "german_pitfall": "Wie die spanischen Diphthong-Verben (puedo/podemos), nur wird o zu u statt zu ue: surto/sortim. Betonung entscheidet — nosaltres/vosaltres behalten immer das o.",
+    "paradigm": null,
+    "member_verbs": ["sortir", "collir", "cosir", "tossir", "escopir"],
+    "default_exercises": [
+      {"q": "Jo ___ (sortir) de casa a les vuit.", "a": "surto"},
+      {"q": "Nosaltres ___ (sortir) més tard.", "a": "sortim"},
+      {"q": "Ella ___ (collir) tomàquets de l'hort.", "a": "cull"}
+    ]
+  },
+  "participis-irregulars": {
+    "label": "Participis irregulars",
+    "ctype": "pattern_family",
+    "cefr": "A2",
+    "explanation": "Els verbs més freqüents tenen participis irregulars que cal memoritzar: fer → fet, dir → dit, veure → vist, escriure → escrit, obrir → obert, morir → mort, prendre → pres, posar → post/posat, treure → tret, riure → rigut, ser → estat/sigut, cobrir → cobert.",
+    "rule_of_thumb": "Els curts són els irregulars: fet, dit, vist, tret, pres, obert, mort, escrit.",
+    "german_pitfall": "Wie die starken Partizipien im Deutschen (getan, gesehen) — einfach auswendig. Aus dem Spanischen übertragen klappt oft (hecho→fet, visto→vist, abierto→obert), aber nicht immer: escrito→escrit, tomado→pres!",
+    "paradigm": null,
+    "member_verbs": ["fer", "dir", "veure", "escriure", "obrir", "morir", "prendre", "treure", "riure", "cobrir", "ser", "posar"],
+    "default_exercises": [
+      {"q": "Has ___ (veure) la nova sèrie?", "a": "vist"},
+      {"q": "Qui ha ___ (obrir) la porta?", "a": "obert"},
+      {"q": "Ja he ___ (escriure) el correu.", "a": "escrit"}
+    ]
+  },
+  "imperatius-irregulars": {
+    "label": "Imperatius irregulars",
+    "ctype": "pattern_family",
+    "cefr": "B1",
+    "explanation": "Alguns imperatius de tu no segueixen la regla general: digues (dir), vés (anar), fes (fer), tingues (tenir), vine (venir), sigues (ser), estigues (estar), sàpigues (saber). Són formes molt freqüents en la parla diària: vine aquí!, fes-ho!, digues-m'ho!",
+    "rule_of_thumb": "Els vuit màgics: digues, vés, fes, tingues, vine, sigues, estigues, sàpigues.",
+    "german_pitfall": "Wie die deutschen unregelmäßigen Imperative ('sei!', 'gib!'). Vorsicht Spanisch-Transfer: 'ven' → katalanisch VINE, 'haz' → FES, 'di' → DIGUES — die Formen sind länger als die spanischen.",
+    "paradigm": null,
+    "member_verbs": ["dir", "anar", "fer", "tenir", "venir", "ser", "estar", "saber"],
+    "default_exercises": [
+      {"q": "___ (venir, tu) aquí un moment!", "a": "Vine"},
+      {"q": "___ (fer, tu) els deures abans de sopar!", "a": "Fes"},
+      {"q": "___ (dir, tu)-me la veritat!", "a": "Digues"}
+    ]
+  },
+  "futurs-irregulars": {
+    "label": "Futurs irregulars",
+    "ctype": "pattern_family",
+    "cefr": "B1",
+    "explanation": "Uns quants verbs molt freqüents canvien l'arrel al futur (i al condicional): fer → faré, tenir → tindré, venir → vindré, poder → podré, voler → voldré, saber → sabré, haver → hauré, valer → valdré, anar → aniré. Les terminacions són les normals.",
+    "rule_of_thumb": "L'arrel curta del futur serveix també per al condicional: tindré → tindria, voldré → voldria.",
+    "german_pitfall": "Parallel zum Spanischen (tendré/tindré, querré/voldré), aber die Formen unterscheiden sich im Detail — voldré (nicht *querré), vindré (nicht *vendré). Einmal die Kurz-Wurzeln lernen, gilt für Futur UND Konditional.",
+    "paradigm": null,
+    "member_verbs": ["fer", "tenir", "venir", "poder", "voler", "saber", "haver", "valer", "anar", "caldre"],
+    "default_exercises": [
+      {"q": "Demà no ___ (poder, jo) venir.", "a": "podré"},
+      {"q": "___ (tenir, tu) temps la setmana que ve?", "a": "Tindràs"},
+      {"q": "Ells ___ (voler) veure el pis primer.", "a": "voldran"}
+    ]
+  }
+}

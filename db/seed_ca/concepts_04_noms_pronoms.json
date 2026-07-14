@@ -1,0 +1,227 @@
+{
+  "genere-i-nombre": {
+    "label": "Gènere i nombre",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "Els noms catalans són masculins o femenins. El femení sovint es forma afegint -a (noi/noia, gat/gata) o canviant la terminació (actor/actriu). El plural afegeix -s; les paraules acabades en -a fan -es amb possibles canvis ortogràfics: casa → cases, plaça → places, platja → platges. Les acabades en -s, -ç, -x fan -os: braç → braços.",
+    "rule_of_thumb": "Plural: +s. Si acaba en -a: -es (casa → cases). Vigila l'ortografia: ç→c, j→g, gu→gü.",
+    "german_pitfall": "Nur zwei Genera (kein Neutrum!), und das Genus stimmt oft nicht mit dem Deutschen überein: el problema (maskulin!), la llet (feminin, 'die Milch' passt). Vom Spanischen her passt fast alles — Ausnahmen wie 'la dent' (sp. el diente), 'les llegums' merken.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Plural de «la plaça»?", "a": "les places"},
+      {"q": "Plural de «el braç»?", "a": "els braços"},
+      {"q": "Femení de «el noi»?", "a": "la noia"}
+    ]
+  },
+  "articles-definits": {
+    "label": "Articles definits (el, la, els, les)",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "Els articles definits són el, la, els, les. Davant de vocal o h muda, el i la s'apostrofen: l'home, l'escola, l'hora. Excepció: la NO s'apostrofa davant de i/u àtones (la universitat, la idea). El català usa l'article més que l'alemany: davant de noms de persona (la Maria, en Joan) i en expressions generals (m'agrada el cafè).",
+    "rule_of_thumb": "Vocal a l'inici? Apostrofa: l'amic, l'escola. Però: la universitat, la idea (i/u àtona).",
+    "german_pitfall": "Vor Vokal wird apostrophiert — das kennt weder Deutsch noch Spanisch (sp. 'la escuela', kat. l'escola!). Und vor Namen steht ein Artikel: la Maria, en Joan — auf Deutsch klingt 'die Maria' regional, hier ist es Standard.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "___ escola és nova.", "a": "L'"},
+      {"q": "___ universitat de Barcelona.", "a": "La"},
+      {"q": "___ home del temps ha dit que plourà.", "a": "L'"}
+    ]
+  },
+  "apostrofacio": {
+    "label": "L'apostrofació (l', d', m', s', n')",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "L'apòstrof marca l'elisió d'una vocal davant de vocal o h: l'amic, d'aigua, m'agrada, s'obre, n'hi ha. S'apostrofen els articles el/la, la preposició de i els pronoms febles em/et/es/en. Recorda: la no s'apostrofa davant i/u àtones (la idea) i de no s'apostrofa davant u/i consonàntiques (de iogurt).",
+    "rule_of_thumb": "Vocal + vocal = apòstrof: d'Alemanya, m'agrada, l'hotel. En cas de dubte, llegeix-ho en veu alta — si sona enganxat, apostrofa.",
+    "german_pitfall": "Für Deutsche völlig neu: Wörter verschmelzen schriftlich. 'de + Alemanya' wird d'Alemanya, 'em + agrada' wird m'agrada. Das Spanische apostrophiert nie — daher schreiben Spanisch-Gewohnte oft falsch *me agrada.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Soc ___ (de) Alemanya.", "a": "d'"},
+      {"q": "___ (em) agrada molt aquest barri.", "a": "M'"},
+      {"q": "___ (la) illa de Mallorca.", "a": "L'"}
+    ]
+  },
+  "contraccions": {
+    "label": "Contraccions (al, del, pel, cal, can)",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "Les preposicions a, de i per es contrauen amb l'article el: al mercat, del barri, pel carrer; i amb els: als, dels, pels. Davant de vocal no hi ha contracció sinó apòstrof: a l'hotel, de l'escola. Bonus molt català: ca (casa) + article: cal Pep (a casa del Pep), can Fuster.",
+    "rule_of_thumb": "a+el=al, de+el=del, per+el=pel (+ plurals als/dels/pels). Davant vocal: a l', de l'.",
+    "german_pitfall": "Wie deutsche Verschmelzungen (zum, beim), aber PFLICHT, nicht optional: *a el mercat ist immer falsch. Neu gegenüber dem Spanischen: pel (per+el) und die Ortsnamen mit can/cal.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Vaig ___ (a + el) mercat de la Boqueria.", "a": "al"},
+      {"q": "Vinc ___ (de + el) gimnàs.", "a": "del"},
+      {"q": "Passegem ___ (per + el) passeig de Gràcia.", "a": "pel"}
+    ]
+  },
+  "article-personal": {
+    "label": "L'article personal (en, na)",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "Davant de noms de persona s'usa l'article personal: en Joan, la Maria (i en registres tradicionals na Maria). Davant de vocal: l'Anna, l'Oriol. És obligatori en la llengua parlada de Catalunya: ha vingut en Pere, truca a la Núria.",
+    "rule_of_thumb": "Els noms de persona porten article: en/la (l' davant vocal). En Marc i la Laia.",
+    "german_pitfall": "'Der Joan' und 'die Maria' sind hier Standard und höflich-normal — nicht salopp wie im Deutschen. Auf Spanisch wäre 'la María' eher abwertend; auf Katalanisch fehlt etwas, wenn der Artikel NICHT da ist.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "___ Joan treballa amb mi.", "a": "En"},
+      {"q": "Has vist ___ Anna?", "a": "l'"},
+      {"q": "___ Maria i ___ Pere venen a sopar.", "a": "La / en"}
+    ]
+  },
+  "demostratius": {
+    "label": "Demostratius (aquest, aquell)",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "El català central té DOS graus de proximitat: aquest (a prop, 'dieser hier') i aquell (lluny, 'jener dort'): aquest bar, aquella muntanya. Formes: aquest/aquesta/aquests/aquestes i aquell/aquella/aquells/aquelles. Els neutres: això (això és bo) i allò.",
+    "rule_of_thumb": "A prop = aquest, lluny = aquell. Per a coses sense nom: això / allò.",
+    "german_pitfall": "Einfacher als Spanisch: nur ZWEI Stufen (aquest/aquell), das mittlere 'ese' existiert im Zentralkatalanischen nicht. Wer Spanisch denkt, sucht vergeblich nach 'ese' — nimm je nach Nähe aquest oder aquell.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "___ llibre (aquí) és meu.", "a": "Aquest"},
+      {"q": "___ muntanyes (allà lluny) són el Montseny.", "a": "Aquelles"},
+      {"q": "Què és ___ que portes a la mà?", "a": "això"}
+    ]
+  },
+  "possessius": {
+    "label": "Possessius (el meu, la teva...)",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "Els possessius porten article: el meu pis, la teva germana, els nostres amics. Formes: meu/meva, teu/teva, seu/seva, nostre/nostra, vostre/vostra (+ plurals). Amb parts del cos i roba, el català prefereix l'article sol: em rento les mans (no *les meves mans).",
+    "rule_of_thumb": "Article + possessiu: EL meu cotxe, LA meva feina. Cos i roba: només article (em poso la jaqueta).",
+    "german_pitfall": "Doppelt anders als Deutsch: es heißt wörtlich 'das mein Auto' (el meu cotxe) — der Artikel gehört dazu. Und bei Körperteilen kein Possessiv: em rento les mans = 'ich wasche mir die Hände' (wie im Deutschen mit Dativ!).",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "___ ___ pis és al Raval. (mein)", "a": "El meu"},
+      {"q": "___ ___ germana viu a Berlín. (deine)", "a": "La teva"},
+      {"q": "Em rento ___ mans abans de dinar.", "a": "les"}
+    ]
+  },
+  "quantitatius": {
+    "label": "Quantitatius (molt, gaire, força, prou)",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "Molt concorda amb el nom (molta gent, molts dies). En frases negatives i preguntes, molt se substitueix per gaire: no tinc gaire temps, hi ha gaire cua? Altres quantitatius molt catalans: força (bastant: força bé), prou (suficient: ja en tinc prou), una mica (un poc).",
+    "rule_of_thumb": "Afirmatiu: molt. Negatiu o pregunta: gaire. No tinc gaire gana, però tinc molta set.",
+    "german_pitfall": "gaire hat keine deutsche oder spanische Entsprechung: es ist 'viel' in Verneinung/Frage (wie englisch 'much' vs 'a lot'). *No tinc molt temps klingt kastilianisch — no tinc gaire temps ist echtes Katalanisch.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "No tinc ___ gana avui.", "a": "gaire"},
+      {"q": "Hi havia ___ gent a la platja. (viel)", "a": "molta"},
+      {"q": "Ja en tinc ___, gràcies. (genug)", "a": "prou"}
+    ]
+  },
+  "pronoms-febles-od": {
+    "label": "Pronoms febles: objecte directe",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "L'objecte directe es pronominalitza amb el, la, els, les (coses o persones concretes): el veig (el llibre / en Joan), la compro. Davant de vocal: l'agafo. Darrere d'infinitiu o imperatiu s'hi enganxen: vull comprar-lo, agafa'l. Per a coses indeterminades s'usa en (vegeu el capítol del pronom en).",
+    "rule_of_thumb": "El/la/els/les davant del verb; -lo/-la/-los/-les darrere de l'infinitiu: la veig / vull veure-la.",
+    "german_pitfall": "Die Pronomen kleben am Verb und verändern sich je nach Position und Lautumgebung (el / l' / -lo / 'l) — das ist das schwerste Kapitel des Katalanischen. Geduld: erst Position lernen (vor konjugiertem Verb, hinter Infinitiv), dann Formen.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Has llegit el llibre? — Sí, ___ he llegit.", "a": "l'"},
+      {"q": "Veus la Maria? — No, no ___ veig.", "a": "la"},
+      {"q": "On són les claus? Vull agafar-___.", "a": "les"}
+    ]
+  },
+  "pronoms-febles-oi": {
+    "label": "Pronoms febles: objecte indirecte",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "L'objecte indirecte (a qui?) es pronominalitza amb li (singular) i els (plural): li dono el llibre (a ella), els he escrit (als pares). Les altres persones: em, et, ens, us. Li no canvia de gènere: serveix per a ell i per a ella.",
+    "rule_of_thumb": "A ell/a ella = li. A ells/a elles = els. Li truco demà.",
+    "german_pitfall": "li = ihm UND ihr (kein Genus!). Und anders als im Spanischen wird li vor lo/la nicht zu 'se': die Kombination heißt l'hi / li ho (siehe Kombinations-Kapitel) — nie *se lo wie im Spanischen.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "___ he dit la veritat (a la Maria).", "a": "Li"},
+      {"q": "___ escriuré un correu (als clients).", "a": "Els"},
+      {"q": "Què ___ regalem a l'àvia?", "a": "li"}
+    ]
+  },
+  "combinacio-pronoms-febles": {
+    "label": "Combinacions de pronoms febles",
+    "ctype": "grammar",
+    "cefr": "B2",
+    "explanation": "Quan es combinen dos pronoms, l'ordre és: indirecte + directe: me'l dones (em + el), te la porto, li ho dic (li + ho: 'ich sage es ihm'). La combinació li + el es fa l'hi en la parla: dona-l'hi (dona-li el llibre). Són formes que s'aprenen més per l'oïda que per la taula.",
+    "rule_of_thumb": "Primer la persona, després la cosa: me'l, te la, us ho. 'Li ho' de la norma sona l'hi al carrer.",
+    "german_pitfall": "Deutsch stellt auch um ('gibst du es mir'), aber hier verschmelzen die Wörter schriftlich: me'l, te'ls, l'hi. Nicht vom Spanischen 'se lo' ableiten — das katalanische Gegenstück ist li ho / l'hi.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Em dones el pa? — Sí, ___ dono. (em + el)", "a": "te'l"},
+      {"q": "Li has dit la veritat? — Sí, ___ he dit. (li + ho)", "a": "li ho / l'hi"},
+      {"q": "Ens porteu les begudes? — Ara ___ portem. (us + les)", "a": "us les"}
+    ]
+  },
+  "pronom-en": {
+    "label": "El pronom en",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "El pronom en substitueix quantitats i complements amb de: Vols cafè? — En vull una mica. Quantes en tens? — En tinc tres. També ve amb certs verbs: anar-se'n (marxar), en parlem demà (de això). Formes: en, n' (davant vocal), 'n / -ne (darrere).",
+    "rule_of_thumb": "Quantitat sense nom = en: en tinc dos, no en queda. I 'me'n vaig' = ich gehe (weg).",
+    "german_pitfall": "Der größte Katalanisch-Klassiker — Deutsch und Spanisch haben NICHTS Vergleichbares (frz. 'en' schon). Bei Mengen ist er PFLICHT: 'Tens fills?' → *Tinc dos ist falsch, es muss 'En tinc dos' heißen. Früh automatisieren!",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Vols vi? — Sí, ___ vull una copa.", "a": "en"},
+      {"q": "Quants germans tens? — ___ tinc dos.", "a": "En"},
+      {"q": "Ja és tard, me ___ vaig.", "a": "'n"}
+    ]
+  },
+  "pronom-hi": {
+    "label": "El pronom hi",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "El pronom hi substitueix llocs i complements amb a/en/amb: Vas al mercat? — Sí, hi vaig cada dissabte. També apareix en verbs fixos: haver-hi (hi ha), pensar-hi (hi pensaré), veure-hi (no m'hi veig). No es tradueix — assenyala.",
+    "rule_of_thumb": "Lloc ja esmentat = hi: hi vaig, hi viu, hi ha. 'Hi penses?' = denkst du daran?",
+    "german_pitfall": "Ähnlich deutschem 'da(ran/rin/hin)': hi vaig = ich gehe (da)hin, hi penso = ich denke daran. Spanisch hat kein Gegenstück ('voy' allein reicht dort) — deshalb vergessen es alle: *Sí, vaig ist falsch, richtig: Sí, HI vaig.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Vas sovint a la platja? — Sí, ___ vaig cada diumenge.", "a": "hi"},
+      {"q": "Has pensat en el regal? — Sí, ___ he pensat.", "a": "hi"},
+      {"q": "Que ___ ha algú?", "a": "hi"}
+    ]
+  },
+  "pronoms-forts": {
+    "label": "Pronoms forts (mi, tu, ell...)",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "Després de preposició s'usen els pronoms forts: per a mi, amb tu, sense ell, entre nosaltres. Amb amb, la primera persona és mi: amb mi (no *amb jo). El subjecte (jo, tu...) normalment s'omet i només s'usa per contrastar: JO ho faig, tu descansa.",
+    "rule_of_thumb": "Darrere de preposició: mi (jo) i tu: per a mi, amb tu. La resta són com el subjecte: amb ell, per a nosaltres.",
+    "german_pitfall": "Anders als Spanisch gibt es kein 'conmigo/contigo' — einfach amb mi, amb tu. Und Subjektpronomen nur zur Betonung: wer immer 'jo' sagt, klingt wie eine wörtliche Übersetzung aus dem Deutschen.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Aquest regal és per a ___. (für mich)", "a": "mi"},
+      {"q": "Vens ___ ___ al cine? (mit mir)", "a": "amb mi"},
+      {"q": "Entre ___ i ___ ho farem. (du und ich)", "a": "tu / jo"}
+    ]
+  },
+  "tu-vs-voste": {
+    "label": "Tu vs. vostè",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "Tu és el tracte normal a Catalunya — s'usa amb desconeguts de la teva edat, a botigues, a bars. Vostè (amb el verb en tercera persona: vostè parla) es reserva per a gent gran, tràmits formals i contextos molt respectuosos. El plural de vostè és vostès; el de tu, vosaltres.",
+    "rule_of_thumb": "En cas de dubte a Barcelona: tu. Vostè per a gent gran i finestretes oficials.",
+    "german_pitfall": "Viel lockerer als das deutsche Sie: die Verkäuferin, der Kellner, die Nachbarin — alles tu. Wer aus deutscher Höflichkeit vostè sagt, schafft ungewollte Distanz. vostè + 3. Person nicht vergessen: vostè PARLA (nicht *vostè parles).",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Al forn de pa, a la dependenta jove: «Què ___ (voler, tu/vostè)?» — tria el tracte natural.", "a": "vols (tu)"},
+      {"q": "A un senyor de 80 anys: «___ (poder) seure aquí, si vol.»", "a": "Pot"},
+      {"q": "Plural de «tu» i de «vostè»?", "a": "vosaltres / vostès"}
+    ]
+  }
+}

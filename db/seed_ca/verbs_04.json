@@ -1,0 +1,226 @@
+{
+  "servir": {
+    "translation": "servieren, dienen", "cefr": "A2",
+    "pattern_tags": ["verbs-incoatius"],
+    "irregularity_note": "Incoatiu model: serveixo, servim.",
+    "conjugations": {
+      "present": {"jo": "serveixo", "tu": "serveixes", "ell": "serveix", "nosaltres": "servim", "vosaltres": "serviu", "ells": "serveixen"},
+      "imperfet": {"jo": "servia", "tu": "servies", "ell": "servia", "nosaltres": "servíem", "vosaltres": "servíeu", "ells": "servien"},
+      "futur": {"jo": "serviré", "tu": "serviràs", "ell": "servirà", "nosaltres": "servirem", "vosaltres": "servireu", "ells": "serviran"},
+      "condicional": {"jo": "serviria", "tu": "serviries", "ell": "serviria", "nosaltres": "serviríem", "vosaltres": "serviríeu", "ells": "servirien"},
+      "subjuntiu_present": {"jo": "serveixi", "tu": "serveixis", "ell": "serveixi", "nosaltres": "servim", "vosaltres": "serviu", "ells": "serveixin"},
+      "imperatiu": {"tu": "serveix", "voste": "serveixi", "vosaltres": "serviu"},
+      "gerundi": "servint", "participi": "servit"
+    }
+  },
+  "preferir": {
+    "translation": "vorziehen, lieber mögen", "cefr": "A2",
+    "pattern_tags": ["verbs-incoatius"],
+    "irregularity_note": "Incoatiu: prefereixo.",
+    "conjugations": {
+      "present": {"jo": "prefereixo", "tu": "prefereixes", "ell": "prefereix", "nosaltres": "preferim", "vosaltres": "preferiu", "ells": "prefereixen"},
+      "imperfet": {"jo": "preferia", "tu": "preferies", "ell": "preferia", "nosaltres": "preferíem", "vosaltres": "preferíeu", "ells": "preferien"},
+      "futur": {"jo": "preferiré", "tu": "preferiràs", "ell": "preferirà", "nosaltres": "preferirem", "vosaltres": "preferireu", "ells": "preferiran"},
+      "condicional": {"jo": "preferiria", "tu": "preferiries", "ell": "preferiria", "nosaltres": "preferiríem", "vosaltres": "preferiríeu", "ells": "preferirien"},
+      "subjuntiu_present": {"jo": "prefereixi", "tu": "prefereixis", "ell": "prefereixi", "nosaltres": "preferim", "vosaltres": "preferiu", "ells": "prefereixin"},
+      "imperatiu": {"tu": "prefereix", "voste": "prefereixi", "vosaltres": "preferiu"},
+      "gerundi": "preferint", "participi": "preferit"
+    }
+  },
+  "decidir": {
+    "translation": "entscheiden", "cefr": "A2",
+    "pattern_tags": ["verbs-incoatius"],
+    "irregularity_note": "Incoatiu: decideixo.",
+    "conjugations": {
+      "present": {"jo": "decideixo", "tu": "decideixes", "ell": "decideix", "nosaltres": "decidim", "vosaltres": "decidiu", "ells": "decideixen"},
+      "imperfet": {"jo": "decidia", "tu": "decidies", "ell": "decidia", "nosaltres": "decidíem", "vosaltres": "decidíeu", "ells": "decidien"},
+      "futur": {"jo": "decidiré", "tu": "decidiràs", "ell": "decidirà", "nosaltres": "decidirem", "vosaltres": "decidireu", "ells": "decidiran"},
+      "condicional": {"jo": "decidiria", "tu": "decidiries", "ell": "decidiria", "nosaltres": "decidiríem", "vosaltres": "decidiríeu", "ells": "decidirien"},
+      "subjuntiu_present": {"jo": "decideixi", "tu": "decideixis", "ell": "decideixi", "nosaltres": "decidim", "vosaltres": "decidiu", "ells": "decideixin"},
+      "imperatiu": {"tu": "decideix", "voste": "decideixi", "vosaltres": "decidiu"},
+      "gerundi": "decidint", "participi": "decidit"
+    }
+  },
+  "llegir": {
+    "translation": "lesen", "cefr": "A1",
+    "pattern_tags": ["verbs-incoatius", "canvi-ortografic"],
+    "irregularity_note": "Incoatiu amb g/j: llegeixo, llegim.",
+    "conjugations": {
+      "present": {"jo": "llegeixo", "tu": "llegeixes", "ell": "llegeix", "nosaltres": "llegim", "vosaltres": "llegiu", "ells": "llegeixen"},
+      "imperfet": {"jo": "llegia", "tu": "llegies", "ell": "llegia", "nosaltres": "llegíem", "vosaltres": "llegíeu", "ells": "llegien"},
+      "futur": {"jo": "llegiré", "tu": "llegiràs", "ell": "llegirà", "nosaltres": "llegirem", "vosaltres": "llegireu", "ells": "llegiran"},
+      "condicional": {"jo": "llegiria", "tu": "llegiries", "ell": "llegiria", "nosaltres": "llegiríem", "vosaltres": "llegiríeu", "ells": "llegirien"},
+      "subjuntiu_present": {"jo": "llegeixi", "tu": "llegeixis", "ell": "llegeixi", "nosaltres": "llegim", "vosaltres": "llegiu", "ells": "llegeixin"},
+      "imperatiu": {"tu": "llegeix", "voste": "llegeixi", "vosaltres": "llegiu"},
+      "gerundi": "llegint", "participi": "llegit"
+    }
+  },
+  "traduir": {
+    "translation": "übersetzen", "cefr": "B1",
+    "pattern_tags": ["verbs-incoatius"],
+    "irregularity_note": "Incoatiu; participi amb dièresi: traduït.",
+    "conjugations": {
+      "present": {"jo": "tradueixo", "tu": "tradueixes", "ell": "tradueix", "nosaltres": "traduïm", "vosaltres": "traduïu", "ells": "tradueixen"},
+      "imperfet": {"jo": "traduïa", "tu": "traduïes", "ell": "traduïa", "nosaltres": "traduíem", "vosaltres": "traduíeu", "ells": "traduïen"},
+      "futur": {"jo": "traduiré", "tu": "traduiràs", "ell": "traduirà", "nosaltres": "traduirem", "vosaltres": "traduireu", "ells": "traduiran"},
+      "condicional": {"jo": "traduiria", "tu": "traduiries", "ell": "traduiria", "nosaltres": "traduiríem", "vosaltres": "traduiríeu", "ells": "traduirien"},
+      "subjuntiu_present": {"jo": "tradueixi", "tu": "tradueixis", "ell": "tradueixi", "nosaltres": "traduïm", "vosaltres": "traduïu", "ells": "tradueixin"},
+      "imperatiu": {"tu": "tradueix", "voste": "tradueixi", "vosaltres": "traduïu"},
+      "gerundi": "traduint", "participi": "traduït"
+    }
+  },
+  "construir": {
+    "translation": "bauen", "cefr": "B1",
+    "pattern_tags": ["verbs-incoatius"],
+    "irregularity_note": "Incoatiu; participi construït.",
+    "conjugations": {
+      "present": {"jo": "construeixo", "tu": "construeixes", "ell": "construeix", "nosaltres": "construïm", "vosaltres": "construïu", "ells": "construeixen"},
+      "imperfet": {"jo": "construïa", "tu": "construïes", "ell": "construïa", "nosaltres": "construíem", "vosaltres": "construíeu", "ells": "construïen"},
+      "futur": {"jo": "construiré", "tu": "construiràs", "ell": "construirà", "nosaltres": "construirem", "vosaltres": "construireu", "ells": "construiran"},
+      "condicional": {"jo": "construiria", "tu": "construiries", "ell": "construiria", "nosaltres": "construiríem", "vosaltres": "construiríeu", "ells": "construirien"},
+      "subjuntiu_present": {"jo": "construeixi", "tu": "construeixis", "ell": "construeixi", "nosaltres": "construïm", "vosaltres": "construïu", "ells": "construeixin"},
+      "imperatiu": {"tu": "construeix", "voste": "construeixi", "vosaltres": "construïu"},
+      "gerundi": "construint", "participi": "construït"
+    }
+  },
+  "conduir": {
+    "translation": "fahren (ein Fahrzeug), Auto fahren", "cefr": "B1",
+    "pattern_tags": ["verbs-incoatius"],
+    "irregularity_note": "Incoatiu; participi conduït.",
+    "conjugations": {
+      "present": {"jo": "condueixo", "tu": "condueixes", "ell": "condueix", "nosaltres": "conduïm", "vosaltres": "conduïu", "ells": "condueixen"},
+      "imperfet": {"jo": "conduïa", "tu": "conduïes", "ell": "conduïa", "nosaltres": "conduíem", "vosaltres": "conduíeu", "ells": "conduïen"},
+      "futur": {"jo": "conduiré", "tu": "conduiràs", "ell": "conduirà", "nosaltres": "conduirem", "vosaltres": "conduireu", "ells": "conduiran"},
+      "condicional": {"jo": "conduiria", "tu": "conduiries", "ell": "conduiria", "nosaltres": "conduiríem", "vosaltres": "conduiríeu", "ells": "conduirien"},
+      "subjuntiu_present": {"jo": "condueixi", "tu": "condueixis", "ell": "condueixi", "nosaltres": "conduïm", "vosaltres": "conduïu", "ells": "condueixin"},
+      "imperatiu": {"tu": "condueix", "voste": "condueixi", "vosaltres": "conduïu"},
+      "gerundi": "conduint", "participi": "conduït"
+    }
+  },
+  "patir": {
+    "translation": "leiden, sich sorgen", "cefr": "A2",
+    "pattern_tags": ["verbs-incoatius"],
+    "irregularity_note": "Incoatiu: pateixo (no pateixis! = mach dir keine Sorgen).",
+    "conjugations": {
+      "present": {"jo": "pateixo", "tu": "pateixes", "ell": "pateix", "nosaltres": "patim", "vosaltres": "patiu", "ells": "pateixen"},
+      "imperfet": {"jo": "patia", "tu": "paties", "ell": "patia", "nosaltres": "patíem", "vosaltres": "patíeu", "ells": "patien"},
+      "futur": {"jo": "patiré", "tu": "patiràs", "ell": "patirà", "nosaltres": "patirem", "vosaltres": "patireu", "ells": "patiran"},
+      "condicional": {"jo": "patiria", "tu": "patiries", "ell": "patiria", "nosaltres": "patiríem", "vosaltres": "patiríeu", "ells": "patirien"},
+      "subjuntiu_present": {"jo": "pateixi", "tu": "pateixis", "ell": "pateixi", "nosaltres": "patim", "vosaltres": "patiu", "ells": "pateixin"},
+      "imperatiu": {"tu": "pateix", "voste": "pateixi", "vosaltres": "patiu"},
+      "gerundi": "patint", "participi": "patit"
+    }
+  },
+  "vestir": {
+    "translation": "anziehen, kleiden", "cefr": "A2",
+    "pattern_tags": ["verbs-incoatius"],
+    "irregularity_note": "Incoatiu: vesteixo (vestir-se = sich anziehen).",
+    "conjugations": {
+      "present": {"jo": "vesteixo", "tu": "vesteixes", "ell": "vesteix", "nosaltres": "vestim", "vosaltres": "vestiu", "ells": "vesteixen"},
+      "imperfet": {"jo": "vestia", "tu": "vesties", "ell": "vestia", "nosaltres": "vestíem", "vosaltres": "vestíeu", "ells": "vestien"},
+      "futur": {"jo": "vestiré", "tu": "vestiràs", "ell": "vestirà", "nosaltres": "vestirem", "vosaltres": "vestireu", "ells": "vestiran"},
+      "condicional": {"jo": "vestiria", "tu": "vestiries", "ell": "vestiria", "nosaltres": "vestiríem", "vosaltres": "vestiríeu", "ells": "vestirien"},
+      "subjuntiu_present": {"jo": "vesteixi", "tu": "vesteixis", "ell": "vesteixi", "nosaltres": "vestim", "vosaltres": "vestiu", "ells": "vesteixin"},
+      "imperatiu": {"tu": "vesteix", "voste": "vesteixi", "vosaltres": "vestiu"},
+      "gerundi": "vestint", "participi": "vestit"
+    }
+  },
+  "gaudir": {
+    "translation": "genießen", "cefr": "B1",
+    "pattern_tags": ["verbs-incoatius"],
+    "irregularity_note": "Incoatiu: gaudeixo (gaudir de = genießen).",
+    "conjugations": {
+      "present": {"jo": "gaudeixo", "tu": "gaudeixes", "ell": "gaudeix", "nosaltres": "gaudim", "vosaltres": "gaudiu", "ells": "gaudeixen"},
+      "imperfet": {"jo": "gaudia", "tu": "gaudies", "ell": "gaudia", "nosaltres": "gaudíem", "vosaltres": "gaudíeu", "ells": "gaudien"},
+      "futur": {"jo": "gaudiré", "tu": "gaudiràs", "ell": "gaudirà", "nosaltres": "gaudirem", "vosaltres": "gaudireu", "ells": "gaudiran"},
+      "condicional": {"jo": "gaudiria", "tu": "gaudiries", "ell": "gaudiria", "nosaltres": "gaudiríem", "vosaltres": "gaudiríeu", "ells": "gaudirien"},
+      "subjuntiu_present": {"jo": "gaudeixi", "tu": "gaudeixis", "ell": "gaudeixi", "nosaltres": "gaudim", "vosaltres": "gaudiu", "ells": "gaudeixin"},
+      "imperatiu": {"tu": "gaudeix", "voste": "gaudeixi", "vosaltres": "gaudiu"},
+      "gerundi": "gaudint", "participi": "gaudit"
+    }
+  },
+  "jugar": {
+    "translation": "spielen", "cefr": "A1",
+    "pattern_tags": ["canvi-ortografic"],
+    "irregularity_note": "g→gu davant e/i: juguem, jugui.",
+    "conjugations": {
+      "present": {"jo": "jugo", "tu": "jugues", "ell": "juga", "nosaltres": "juguem", "vosaltres": "jugueu", "ells": "juguen"},
+      "imperfet": {"jo": "jugava", "tu": "jugaves", "ell": "jugava", "nosaltres": "jugàvem", "vosaltres": "jugàveu", "ells": "jugaven"},
+      "futur": {"jo": "jugaré", "tu": "jugaràs", "ell": "jugarà", "nosaltres": "jugarem", "vosaltres": "jugareu", "ells": "jugaran"},
+      "condicional": {"jo": "jugaria", "tu": "jugaries", "ell": "jugaria", "nosaltres": "jugaríem", "vosaltres": "jugaríeu", "ells": "jugarien"},
+      "subjuntiu_present": {"jo": "jugui", "tu": "juguis", "ell": "jugui", "nosaltres": "juguem", "vosaltres": "jugueu", "ells": "juguin"},
+      "imperatiu": {"tu": "juga", "voste": "jugui", "vosaltres": "jugueu"},
+      "gerundi": "jugant", "participi": "jugat"
+    }
+  },
+  "començar": {
+    "translation": "anfangen, beginnen", "cefr": "A1",
+    "pattern_tags": ["canvi-ortografic"],
+    "irregularity_note": "ç→c davant e/i: comencem, comenci.",
+    "conjugations": {
+      "present": {"jo": "començo", "tu": "comences", "ell": "comença", "nosaltres": "comencem", "vosaltres": "comenceu", "ells": "comencen"},
+      "imperfet": {"jo": "començava", "tu": "començaves", "ell": "començava", "nosaltres": "començàvem", "vosaltres": "començàveu", "ells": "començaven"},
+      "futur": {"jo": "començaré", "tu": "començaràs", "ell": "començarà", "nosaltres": "començarem", "vosaltres": "començareu", "ells": "començaran"},
+      "condicional": {"jo": "començaria", "tu": "començaries", "ell": "començaria", "nosaltres": "començaríem", "vosaltres": "començaríeu", "ells": "començarien"},
+      "subjuntiu_present": {"jo": "comenci", "tu": "comencis", "ell": "comenci", "nosaltres": "comencem", "vosaltres": "comenceu", "ells": "comencin"},
+      "imperatiu": {"tu": "comença", "voste": "comenci", "vosaltres": "comenceu"},
+      "gerundi": "començant", "participi": "començat"
+    }
+  },
+  "pagar": {
+    "translation": "bezahlen", "cefr": "A1",
+    "pattern_tags": ["canvi-ortografic"],
+    "irregularity_note": "g→gu davant e/i: paguem, pagui.",
+    "conjugations": {
+      "present": {"jo": "pago", "tu": "pagues", "ell": "paga", "nosaltres": "paguem", "vosaltres": "pagueu", "ells": "paguen"},
+      "imperfet": {"jo": "pagava", "tu": "pagaves", "ell": "pagava", "nosaltres": "pagàvem", "vosaltres": "pagàveu", "ells": "pagaven"},
+      "futur": {"jo": "pagaré", "tu": "pagaràs", "ell": "pagarà", "nosaltres": "pagarem", "vosaltres": "pagareu", "ells": "pagaran"},
+      "condicional": {"jo": "pagaria", "tu": "pagaries", "ell": "pagaria", "nosaltres": "pagaríem", "vosaltres": "pagaríeu", "ells": "pagarien"},
+      "subjuntiu_present": {"jo": "pagui", "tu": "paguis", "ell": "pagui", "nosaltres": "paguem", "vosaltres": "pagueu", "ells": "paguin"},
+      "imperatiu": {"tu": "paga", "voste": "pagui", "vosaltres": "pagueu"},
+      "gerundi": "pagant", "participi": "pagat"
+    }
+  },
+  "buscar": {
+    "translation": "suchen", "cefr": "A1",
+    "pattern_tags": ["canvi-ortografic"],
+    "irregularity_note": "c→qu davant e/i: busquem, busqui.",
+    "conjugations": {
+      "present": {"jo": "busco", "tu": "busques", "ell": "busca", "nosaltres": "busquem", "vosaltres": "busqueu", "ells": "busquen"},
+      "imperfet": {"jo": "buscava", "tu": "buscaves", "ell": "buscava", "nosaltres": "buscàvem", "vosaltres": "buscàveu", "ells": "buscaven"},
+      "futur": {"jo": "buscaré", "tu": "buscaràs", "ell": "buscarà", "nosaltres": "buscarem", "vosaltres": "buscareu", "ells": "buscaran"},
+      "condicional": {"jo": "buscaria", "tu": "buscaries", "ell": "buscaria", "nosaltres": "buscaríem", "vosaltres": "buscaríeu", "ells": "buscarien"},
+      "subjuntiu_present": {"jo": "busqui", "tu": "busquis", "ell": "busqui", "nosaltres": "busquem", "vosaltres": "busqueu", "ells": "busquin"},
+      "imperatiu": {"tu": "busca", "voste": "busqui", "vosaltres": "busqueu"},
+      "gerundi": "buscant", "participi": "buscat"
+    }
+  },
+  "menjar": {
+    "translation": "essen", "cefr": "A1",
+    "pattern_tags": ["canvi-ortografic"],
+    "irregularity_note": "j→g davant e/i: mengem, mengi.",
+    "conjugations": {
+      "present": {"jo": "menjo", "tu": "menges", "ell": "menja", "nosaltres": "mengem", "vosaltres": "mengeu", "ells": "mengen"},
+      "imperfet": {"jo": "menjava", "tu": "menjaves", "ell": "menjava", "nosaltres": "menjàvem", "vosaltres": "menjàveu", "ells": "menjaven"},
+      "futur": {"jo": "menjaré", "tu": "menjaràs", "ell": "menjarà", "nosaltres": "menjarem", "vosaltres": "menjareu", "ells": "menjaran"},
+      "condicional": {"jo": "menjaria", "tu": "menjaries", "ell": "menjaria", "nosaltres": "menjaríem", "vosaltres": "menjaríeu", "ells": "menjarien"},
+      "subjuntiu_present": {"jo": "mengi", "tu": "mengis", "ell": "mengi", "nosaltres": "mengem", "vosaltres": "mengeu", "ells": "mengin"},
+      "imperatiu": {"tu": "menja", "voste": "mengi", "vosaltres": "mengeu"},
+      "gerundi": "menjant", "participi": "menjat"
+    }
+  },
+  "rebre": {
+    "translation": "erhalten, empfangen", "cefr": "A2",
+    "pattern_tags": [],
+    "irregularity_note": "rebo, reps, rep; participi rebut.",
+    "conjugations": {
+      "present": {"jo": "rebo", "tu": "reps", "ell": "rep", "nosaltres": "rebem", "vosaltres": "rebeu", "ells": "reben"},
+      "imperfet": {"jo": "rebia", "tu": "rebies", "ell": "rebia", "nosaltres": "rebíem", "vosaltres": "rebíeu", "ells": "rebien"},
+      "futur": {"jo": "rebré", "tu": "rebràs", "ell": "rebrà", "nosaltres": "rebrem", "vosaltres": "rebreu", "ells": "rebran"},
+      "condicional": {"jo": "rebria", "tu": "rebries", "ell": "rebria", "nosaltres": "rebríem", "vosaltres": "rebríeu", "ells": "rebrien"},
+      "subjuntiu_present": {"jo": "rebi", "tu": "rebis", "ell": "rebi", "nosaltres": "rebem", "vosaltres": "rebeu", "ells": "rebin"},
+      "imperatiu": {"tu": "rep", "voste": "rebi", "vosaltres": "rebeu"},
+      "gerundi": "rebent", "participi": "rebut"
+    }
+  }
+}

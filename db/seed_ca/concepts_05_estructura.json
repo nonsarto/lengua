@@ -1,0 +1,257 @@
+{
+  "negacio": {
+    "label": "La negació (no... pas, res, mai, ningú)",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "La negació bàsica és no davant del verb: no ho sé. Els negatius res (nichts), mai (nie), ningú (niemand), cap (kein) i enlloc (nirgends) conviuen amb no: no he vist ningú, no hi ha res. El reforç pas nega expectatives: no és pas car (és ist doch nicht etwa teuer).",
+    "rule_of_thumb": "No + verb, i els negatius es queden: no veig res, no ve mai ningú.",
+    "german_pitfall": "Doppelte Verneinung ist Pflicht, kein Fehler: 'no he vist res' = wörtlich 'ich habe nichts nicht gesehen'. Deutsch erlaubt nur eine Negation — hier verstärken sie sich, statt sich aufzuheben.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "No conec ___ en aquest barri. (niemanden)", "a": "ningú"},
+      {"q": "___ he estat ___ a Mallorca. (nie)", "a": "No / mai"},
+      {"q": "No hi ha ___ a la nevera. (nichts)", "a": "res"}
+    ]
+  },
+  "interrogatius": {
+    "label": "Interrogatius (què, qui, on, quan, com, quant, quin)",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "Els interrogatius: què (was), qui (wer), on (wo), quan (wann), com (wie), per què (warum), quant/quanta (wie viel) i quin/quina (welcher, concorda: quina hora és?). En preguntes de sí/no sovint s'hi posa que al davant: que véns?",
+    "rule_of_thumb": "Quin concorda: quin dia, quina hora, quins llibres, quines coses.",
+    "german_pitfall": "què (was) und que (dass/als Fragepartikel) unterscheiden sich nur durch den Akzent — beim Schreiben aufpassen. per què (warum, getrennt) vs. perquè (weil, zusammen) ist die zweite Akzentfalle.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "___ hora és?", "a": "Quina"},
+      {"q": "___ vius, a quin barri?", "a": "On"},
+      {"q": "___ ___ no has vingut? (warum)", "a": "Per què"}
+    ]
+  },
+  "relatives": {
+    "label": "Oracions de relatiu (que, què, qui, on)",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "El relatiu universal és que (sense accent): el pis que vull, la noia que canta. Darrere de preposició s'usa què (coses) o qui (persones): el tema de què parlàvem, l'amic amb qui visc. Per a llocs: on (el barri on visc).",
+    "rule_of_thumb": "Sense preposició: que. Amb preposició: de què / amb qui / en què. Lloc: on.",
+    "german_pitfall": "Deutsch dekliniert Relativpronomen (der/dessen/dem) — Katalanisch löst alles mit que + Präposition-Varianten. Kastilianismus-Alarm: *el que für 'was' (siehe Kapitel el-que-neutre) und *que su statt 'el ... del qual'.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "El llibre ___ llegeixo és en català.", "a": "que"},
+      {"q": "L'amiga amb ___ vaig viatjar viu a Girona.", "a": "qui"},
+      {"q": "El poble ___ vam néixer és petit.", "a": "on"}
+    ]
+  },
+  "estil-indirecte": {
+    "label": "Estil indirecte",
+    "ctype": "grammar",
+    "cefr": "B2",
+    "explanation": "Per reproduir paraules d'altri: diu que + indicatiu (diu que ve), va dir que + canvi de temps (va dir que vindria). Les preguntes indirectes usen si (em va preguntar si tenia temps) o l'interrogatiu (em va preguntar on vivia). Els temps retrocedeixen com en alemany: present → imperfet, futur → condicional.",
+    "rule_of_thumb": "Va dir que... i el temps fa un pas enrere: 'vindré' → va dir que vindria.",
+    "german_pitfall": "Kein Konjunktiv I wie im Deutschen ('er sagte, er komme') — Katalanisch verschiebt einfach die Zeit: va dir que venia/vindria. Die Logik ist wie im Englischen (backshift).",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "«Vindré demà» → Va dir que ___ l'endemà.", "a": "vindria"},
+      {"q": "«On vius?» → Em va preguntar on ___.", "a": "vivia"},
+      {"q": "«Tens gana?» → Em va preguntar ___ tenia gana.", "a": "si"}
+    ]
+  },
+  "condicional-real": {
+    "label": "Condicionals reals (si + present)",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "Les condicions possibles usen si + present d'indicatiu, i el resultat en present o futur: si plou, ens quedem a casa; si tinc temps, vindré. Mai subjuntiu ni futur darrere d'aquest si: *si tindré és impossible.",
+    "rule_of_thumb": "Si + present, resultat en futur: si puc, vindré.",
+    "german_pitfall": "Wie im Deutschen ('wenn es regnet, bleiben wir') — aber nach si steht NIE Futur: *si vindràs ist falsch (deutsche Interferenz von 'wenn du kommen wirst'), richtig: si véns.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Si ___ (ploure) demà, no anirem a la platja.", "a": "plou"},
+      {"q": "Si ___ (tenir, jo) temps, t'ajudaré.", "a": "tinc"},
+      {"q": "Si véns aviat, ___ (sopar, nosaltres) junts.", "a": "soparem"}
+    ]
+  },
+  "condicional-irreal": {
+    "label": "Condicionals irreals (si + subjuntiu imperfet)",
+    "ctype": "grammar",
+    "cefr": "B2",
+    "explanation": "Les condicions irreals o poc probables usen si + imperfet de subjuntiu i el resultat en condicional: si tingués més diners, compraria un pis més gran; si fos tu, no ho faria. Per al passat irreal: si hagués sabut..., hauria vingut.",
+    "rule_of_thumb": "La parella fixa: si + -és/-ís (tingués, dormís), resultat en -ria (compraria).",
+    "german_pitfall": "Deutsch nutzt zweimal Konjunktiv II ('hätte... würde') — Katalanisch trennt streng: im si-Satz NUR Subjuntiu (tingués), im Hauptsatz NUR Konditional (compraria). *Si tindria ist der klassische Deutschen-Fehler.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Si ___ (ser, jo) tu, aniria al metge.", "a": "fos"},
+      {"q": "Si visquéssim al centre, no ___ (necessitar) cotxe.", "a": "necessitaríem"},
+      {"q": "Si ___ (saber, jo) català perfecte, llegiria Rodoreda.", "a": "sabés"}
+    ]
+  },
+  "passiva-pronominal": {
+    "label": "La passiva pronominal (es + verb)",
+    "ctype": "grammar",
+    "cefr": "B2",
+    "explanation": "Per a processos generals i instruccions s'usa es + verb en tercera persona, concordant amb el subjecte: es lloga pis, es venen entrades, aquí es parla català. També per a impersonals: es diu que..., no es pot fumar. És molt més freqüent que la passiva amb ser.",
+    "rule_of_thumb": "'Man macht...' = es + verb: es parla, es ven, es diu. Plural si la cosa és plural: es venEN pisos.",
+    "german_pitfall": "Deckt deutsches 'man' ab (es diu = man sagt) UND Passiv (es venen = werden verkauft). Kongruenz nicht vergessen: 'es venen entrades', nicht *es ven entrades.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Aquí ___ (parlar) català i castellà.", "a": "es parlen"},
+      {"q": "___ (llogar) habitació al Born.", "a": "Es lloga"},
+      {"q": "No ___ (poder) entrar amb menjar.", "a": "es pot"}
+    ]
+  },
+  "comparatius": {
+    "label": "Comparatius (més... que, tan... com)",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "Superioritat: més + adjectiu + que (més car que). Inferioritat: menys... que. Igualtat: tan + adjectiu + com (tan alt com tu) i tant + nom + com (tanta gent com ahir). Irregulars: millor (més bo), pitjor (més dolent), major, menor.",
+    "rule_of_thumb": "més... que / menys... que / tan... com. Bo → millor, dolent → pitjor.",
+    "german_pitfall": "Kein Komparativ-Suffix wie deutsches '-er': alles mit més ('größer' = més gran). tan vor Adjektiv, tant vor Nomen — der kleine t-Unterschied fällt Deutschen schwer.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "El metro és ___ ràpid ___ el bus.", "a": "més / que"},
+      {"q": "Aquest bar és ___ bo ___ l'altre. (genauso gut wie)", "a": "tan / com"},
+      {"q": "Aquest vi és ___ que l'altre. (besser)", "a": "millor"}
+    ]
+  },
+  "superlatius": {
+    "label": "Superlatius (el més..., -íssim)",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "El superlatiu relatiu: el/la més + adjectiu (+ de): el barri més bonic de la ciutat. L'absolut es fa amb -íssim: boníssim, caríssim, moltíssim — o amb molt: molt bo. Els irregulars segueixen: el millor, el pitjor.",
+    "rule_of_thumb": "El més gran de tots. I per exagerar amb estil: -íssim (el sopar era boníssim!).",
+    "german_pitfall": "Nach dem Superlativ steht de, nicht 'in': 'der beste Bar DER Stadt' = el millor bar DE la ciutat. Das -íssim entspricht deutschem 'super-/mega-', klingt aber erwachsen und normal.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "És el restaurant ___ ___ del barri. (der beste)", "a": "més bo / millor"},
+      {"q": "El pa d'aquest forn és ___ (bo, absolut!).", "a": "boníssim"},
+      {"q": "La Sagrada Família és el monument ___ visitat ___ Barcelona.", "a": "més / de"}
+    ]
+  },
+  "adverbis-ment": {
+    "label": "Adverbis en -ment",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "Els adverbis de manera es formen amb el femení de l'adjectiu + -ment: ràpida → ràpidament, tranquil·la → tranquil·lament. Si hi ha dos adverbis seguits, el català pot deixar -ment només al primer: parla clarament i pausada.",
+    "rule_of_thumb": "Femení + -ment: lenta → lentament. Fàcil → fàcilment (no canvia si l'adjectiu és invariable).",
+    "german_pitfall": "Deutsch braucht kein Suffix ('schnell' ist Adjektiv und Adverb) — hier heißt es ràpid (Adj.) vs. ràpidament (Adv.). Basis ist IMMER die weibliche Form: lentAment.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Adverbi de «lent»?", "a": "lentament"},
+      {"q": "Parla més ___ (clar), si us plau.", "a": "clarament"},
+      {"q": "Adverbi de «fàcil»?", "a": "fàcilment"}
+    ]
+  },
+  "subjuntiu-desencadenants": {
+    "label": "Desencadenants del subjuntiu",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "El subjuntiu apareix després de: voluntat i desig (vull que, espero que), emoció (m'alegro que, em sap greu que), dubte i negació d'opinió (no crec que, dubto que), valoracions (és important que, cal que) i finalitat (perquè + subjuntiu = damit). Amb crec que (afirmatiu) va indicatiu.",
+    "rule_of_thumb": "Vull / espero / no crec / és important / cal + QUE → subjuntiu. Crec que (sense no) → indicatiu.",
+    "german_pitfall": "Merke die Asymmetrie: crec que VE (Indikativ) aber no crec que VINGUI (Subjuntiu) — die Verneinung allein löst den Wechsel aus. Und perquè + Subjuntiu heißt 'damit', + Indikativ 'weil'!",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Espero que ___ (tenir, tu) sort.", "a": "tinguis"},
+      {"q": "No crec que ___ (ploure) demà.", "a": "plogui"},
+      {"q": "És important que ___ (arribar, nosaltres) d'hora.", "a": "arribem"}
+    ]
+  },
+  "caiguda-preposicions": {
+    "label": "Caiguda de preposicions davant 'que'",
+    "ctype": "grammar",
+    "cefr": "B2",
+    "explanation": "Davant de la conjunció que, les preposicions a, de, en, amb cauen: m'alegro QUE hagis vingut (no *m'alegro de que), estic segur QUE funcionarà, confio QUE tot anirà bé. Davant d'infinitiu, la preposició es queda: m'alegro DE veure't.",
+    "rule_of_thumb": "Preposició + que? La preposició fora: content QUE vinguis, però content DE venir.",
+    "german_pitfall": "Genau umgekehrt wie im Spanischen, wo 'me alegro DE QUE' korrekt ist — auf Katalanisch fällt das de weg. Wer *de que schreibt, outet sich sofort als Spanisch-Denker.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "M'alegro ___ hagis trobat pis. (de + que?)", "a": "que"},
+      {"q": "Estic content ___ veure't. (de + infinitiu)", "a": "de"},
+      {"q": "Corregeix: *Estic segur de que vindrà.", "a": "Estic segur que vindrà."}
+    ]
+  },
+  "el-que-neutre": {
+    "label": "'El que' i el fals 'lo'",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "El català no té l'article neutre lo del castellà. Per a 'das, was' s'usa el que (el que dius és veritat) o allò que. Per a 'lo bueno' del castellà: el bo (millor: la part bona / el que és bo). Formes com *lo important o *lo que passa són castellanismes molt estesos però incorrectes.",
+    "rule_of_thumb": "Mai 'lo': el que dius (das, was du sagst), el més important (das Wichtigste).",
+    "german_pitfall": "Für Spanisch-Sprecher DIE Stolperfalle: 'lo que', 'lo bueno', 'lo importante' — alles ohne lo: el que, el que és bo, l'important. Wenn dir ein 'lo' rausrutscht, war es Spanisch.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Corregeix: *No entenc lo que dius.", "a": "No entenc el que dius."},
+      {"q": "___ ___ important és la salut. (das Wichtigste)", "a": "El més"},
+      {"q": "Fes ___ ___ vulguis. (was auch immer)", "a": "el que"}
+    ]
+  },
+  "expressio-hores": {
+    "label": "Les hores: el sistema de quarts",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "El català central diu les hores amb quarts referits a l'hora SEGÜENT: un quart de vuit = 7:15, dos quarts de vuit = 7:30, tres quarts de vuit = 7:45. Les vuit = 8:00. Amb minuts: un quart i cinc de vuit = 7:20. És únic al món i molt viu a Barcelona.",
+    "rule_of_thumb": "El quart anuncia l'hora que VE: dos quarts de nou = 8:30 (halb neun!).",
+    "german_pitfall": "Überraschung: Das System funktioniert wie süddeutsches 'viertel acht / halb acht / dreiviertel acht'! dos quarts de vuit = halb acht = 7:30. Wer aus Süddeutschland kommt, hat hier einen echten Heimvorteil — Spanier verzweifeln daran.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "«Dos quarts de deu» — quina hora és?", "a": "9:30 (halb zehn)"},
+      {"q": "Com es diu «7:45» amb quarts?", "a": "tres quarts de vuit"},
+      {"q": "«Un quart de sis» — quina hora és?", "a": "5:15 (viertel sechs)"}
+    ]
+  },
+  "per-vs-per-a": {
+    "label": "Per vs. per a",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "Per expressa causa, mitjà, lloc de pas i agent: ho faig per tu (deinetwegen), parlem per telèfon, passejo pel barri. Per a expressa destinació i finalitat amb noms: un regal per a tu (für dich), bo per a la salut. Davant d'infinitiu, la llengua parlada de Barcelona usa gairebé sempre per.",
+    "rule_of_thumb": "Destinatari o finalitat (für) = per a. Causa, mitjà o camí (wegen/durch) = per.",
+    "german_pitfall": "Deutsch 'für' = meist per a, 'wegen/durch' = per. Feiner als spanisch por/para und die Grenze liegt anders: 'ho faig per tu' kann 'deinetwegen' UND 'für dich (dir zuliebe)' sein — Kontext entscheidet.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Aquest regal és ___ ___ la teva mare. (für)", "a": "per a"},
+      {"q": "Hem vingut ___ tu. (deinetwegen)", "a": "per"},
+      {"q": "Parlem ___ telèfon demà. (per/per a?)", "a": "per"}
+    ]
+  },
+  "preposicions-a-en-amb": {
+    "label": "Preposicions a, en, amb",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "A indica lloc i direcció (soc a casa, vaig a Girona), en s'usa davant d'indefinits i per a 'dins' (en un pis, en aquell moment), amb vol dir 'mit' (amb tu, amb sucre). Davant d'infinitiu, en canvia el sentit: en arribar = quan arribi (beim Ankommen).",
+    "rule_of_thumb": "Lloc concret: a (a Barcelona, a casa). 'Mit': amb. 'En + infinitiu' = quan: en sortir de casa...",
+    "german_pitfall": "'in Barcelona' heißt A Barcelona (nicht en!) — die deutsche in/an-Logik hilft nicht. Und amb (mit) klingt wie 'am' — Hörfalle am Anfang: 'amb tu' = mit dir.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Visc ___ Barcelona, ___ un pis petit.", "a": "a / en"},
+      {"q": "Vinc ___ tu al mercat. (mit)", "a": "amb"},
+      {"q": "___ arribar a casa, truca'm. (beim Ankommen / sobald)", "a": "En"}
+    ]
+  },
+  "des-de-fa-durant": {
+    "label": "Des de, fa, durant",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "Fa + temps = 'vor' (fa dos anys = vor zwei Jahren) o durada fins ara amb que: fa dos anys que visc aquí (ich wohne seit zwei Jahren hier). Des de = 'seit' amb data concreta: des del 2022, des de dilluns. Durant = 'während/lang': durant tres hores.",
+    "rule_of_thumb": "Moment concret: des de (des del gener). Quantitat de temps: fa... que (fa tres mesos que estudio).",
+    "german_pitfall": "Deutsches 'seit' spaltet sich: seit + Datum = des de, seit + Dauer = fa ... que. 'Ich lerne seit 3 Monaten' = FA tres mesos QUE estudio — die fa-que-Klammer gibt es im Deutschen nicht.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Visc a Barcelona ___ ___ 2023. (seit)", "a": "des del"},
+      {"q": "___ sis mesos ___ estudio català. (seit 6 Monaten)", "a": "Fa / que"},
+      {"q": "Vam parlar ___ dues hores. (zwei Stunden lang)", "a": "durant"}
+    ]
+  }
+}

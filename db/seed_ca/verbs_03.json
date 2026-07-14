@@ -1,0 +1,212 @@
+{
+  "obrir": {
+    "translation": "öffnen", "cefr": "A1",
+    "pattern_tags": ["participis-irregulars"],
+    "irregularity_note": "Tercera pura (sense -eix-); participi obert.",
+    "conjugations": {
+      "present": {"jo": "obro", "tu": "obres", "ell": "obre", "nosaltres": "obrim", "vosaltres": "obriu", "ells": "obren"},
+      "imperfet": {"jo": "obria", "tu": "obries", "ell": "obria", "nosaltres": "obríem", "vosaltres": "obríeu", "ells": "obrien"},
+      "futur": {"jo": "obriré", "tu": "obriràs", "ell": "obrirà", "nosaltres": "obrirem", "vosaltres": "obrireu", "ells": "obriran"},
+      "condicional": {"jo": "obriria", "tu": "obriries", "ell": "obriria", "nosaltres": "obriríem", "vosaltres": "obriríeu", "ells": "obririen"},
+      "subjuntiu_present": {"jo": "obri", "tu": "obris", "ell": "obri", "nosaltres": "obrim", "vosaltres": "obriu", "ells": "obrin"},
+      "imperatiu": {"tu": "obre", "voste": "obri", "vosaltres": "obriu"},
+      "gerundi": "obrint", "participi": "obert"
+    }
+  },
+  "omplir": {
+    "translation": "füllen", "cefr": "B1",
+    "pattern_tags": ["participis-irregulars"],
+    "irregularity_note": "Tercera pura; participi omplert.",
+    "conjugations": {
+      "present": {"jo": "omplo", "tu": "omples", "ell": "omple", "nosaltres": "omplim", "vosaltres": "ompliu", "ells": "omplen"},
+      "imperfet": {"jo": "omplia", "tu": "omplies", "ell": "omplia", "nosaltres": "omplíem", "vosaltres": "omplíeu", "ells": "omplien"},
+      "futur": {"jo": "ompliré", "tu": "ompliràs", "ell": "omplirà", "nosaltres": "omplirem", "vosaltres": "omplireu", "ells": "ompliran"},
+      "condicional": {"jo": "ompliria", "tu": "ompliries", "ell": "ompliria", "nosaltres": "ompliríem", "vosaltres": "ompliríeu", "ells": "omplirien"},
+      "subjuntiu_present": {"jo": "ompli", "tu": "omplis", "ell": "ompli", "nosaltres": "omplim", "vosaltres": "ompliu", "ells": "omplin"},
+      "imperatiu": {"tu": "omple", "voste": "ompli", "vosaltres": "ompliu"},
+      "gerundi": "omplint", "participi": "omplert"
+    }
+  },
+  "morir": {
+    "translation": "sterben", "cefr": "A2",
+    "pattern_tags": ["participis-irregulars"],
+    "irregularity_note": "Tercera pura; participi mort.",
+    "conjugations": {
+      "present": {"jo": "moro", "tu": "mors", "ell": "mor", "nosaltres": "morim", "vosaltres": "moriu", "ells": "moren"},
+      "imperfet": {"jo": "moria", "tu": "mories", "ell": "moria", "nosaltres": "moríem", "vosaltres": "moríeu", "ells": "morien"},
+      "futur": {"jo": "moriré", "tu": "moriràs", "ell": "morirà", "nosaltres": "morirem", "vosaltres": "morireu", "ells": "moriran"},
+      "condicional": {"jo": "moriria", "tu": "moriries", "ell": "moriria", "nosaltres": "moriríem", "vosaltres": "moriríeu", "ells": "moririen"},
+      "subjuntiu_present": {"jo": "mori", "tu": "moris", "ell": "mori", "nosaltres": "morim", "vosaltres": "moriu", "ells": "morin"},
+      "imperatiu": {"tu": "mor", "voste": "mori", "vosaltres": "moriu"},
+      "gerundi": "morint", "participi": "mort"
+    }
+  },
+  "córrer": {
+    "translation": "laufen, rennen", "cefr": "A2",
+    "pattern_tags": [],
+    "irregularity_note": "Participi corregut; futur correré.",
+    "conjugations": {
+      "present": {"jo": "corro", "tu": "corres", "ell": "corre", "nosaltres": "correm", "vosaltres": "correu", "ells": "corren"},
+      "imperfet": {"jo": "corria", "tu": "corries", "ell": "corria", "nosaltres": "corríem", "vosaltres": "corríeu", "ells": "corrien"},
+      "futur": {"jo": "correré", "tu": "correràs", "ell": "correrà", "nosaltres": "correrem", "vosaltres": "correreu", "ells": "correran"},
+      "condicional": {"jo": "correria", "tu": "correries", "ell": "correria", "nosaltres": "correríem", "vosaltres": "correríeu", "ells": "correrien"},
+      "subjuntiu_present": {"jo": "corri", "tu": "corris", "ell": "corri", "nosaltres": "correm", "vosaltres": "correu", "ells": "corrin"},
+      "imperatiu": {"tu": "corre", "voste": "corri", "vosaltres": "correu"},
+      "gerundi": "corrent", "participi": "corregut"
+    }
+  },
+  "sortir": {
+    "translation": "hinausgehen, ausgehen", "cefr": "A1",
+    "pattern_tags": ["alternanca-o-u"],
+    "irregularity_note": "o→u a les formes tòniques: surto, surts, surt, surten.",
+    "conjugations": {
+      "present": {"jo": "surto", "tu": "surts", "ell": "surt", "nosaltres": "sortim", "vosaltres": "sortiu", "ells": "surten"},
+      "imperfet": {"jo": "sortia", "tu": "sorties", "ell": "sortia", "nosaltres": "sortíem", "vosaltres": "sortíeu", "ells": "sortien"},
+      "futur": {"jo": "sortiré", "tu": "sortiràs", "ell": "sortirà", "nosaltres": "sortirem", "vosaltres": "sortireu", "ells": "sortiran"},
+      "condicional": {"jo": "sortiria", "tu": "sortiries", "ell": "sortiria", "nosaltres": "sortiríem", "vosaltres": "sortiríeu", "ells": "sortirien"},
+      "subjuntiu_present": {"jo": "surti", "tu": "surtis", "ell": "surti", "nosaltres": "sortim", "vosaltres": "sortiu", "ells": "surtin"},
+      "imperatiu": {"tu": "surt", "voste": "surti", "vosaltres": "sortiu"},
+      "gerundi": "sortint", "participi": "sortit"
+    }
+  },
+  "collir": {
+    "translation": "pflücken, ernten", "cefr": "B1",
+    "pattern_tags": ["alternanca-o-u"],
+    "irregularity_note": "o→u a les formes tòniques: cullo, culls, cull, cullen.",
+    "conjugations": {
+      "present": {"jo": "cullo", "tu": "culls", "ell": "cull", "nosaltres": "collim", "vosaltres": "colliu", "ells": "cullen"},
+      "imperfet": {"jo": "collia", "tu": "collies", "ell": "collia", "nosaltres": "collíem", "vosaltres": "collíeu", "ells": "collien"},
+      "futur": {"jo": "colliré", "tu": "colliràs", "ell": "collirà", "nosaltres": "collirem", "vosaltres": "collireu", "ells": "colliran"},
+      "condicional": {"jo": "colliria", "tu": "colliries", "ell": "colliria", "nosaltres": "colliríem", "vosaltres": "colliríeu", "ells": "collirien"},
+      "subjuntiu_present": {"jo": "culli", "tu": "cullis", "ell": "culli", "nosaltres": "collim", "vosaltres": "colliu", "ells": "cullin"},
+      "imperatiu": {"tu": "cull", "voste": "culli", "vosaltres": "colliu"},
+      "gerundi": "collint", "participi": "collit"
+    }
+  },
+  "cosir": {
+    "translation": "nähen", "cefr": "B2",
+    "pattern_tags": ["alternanca-o-u"],
+    "irregularity_note": "o→u: cuso, cuses, cus, cusen.",
+    "conjugations": {
+      "present": {"jo": "cuso", "tu": "cuses", "ell": "cus", "nosaltres": "cosim", "vosaltres": "cosiu", "ells": "cusen"},
+      "imperfet": {"jo": "cosia", "tu": "cosies", "ell": "cosia", "nosaltres": "cosíem", "vosaltres": "cosíeu", "ells": "cosien"},
+      "futur": {"jo": "cosiré", "tu": "cosiràs", "ell": "cosirà", "nosaltres": "cosirem", "vosaltres": "cosireu", "ells": "cosiran"},
+      "condicional": {"jo": "cosiria", "tu": "cosiries", "ell": "cosiria", "nosaltres": "cosiríem", "vosaltres": "cosiríeu", "ells": "cosirien"},
+      "subjuntiu_present": {"jo": "cusi", "tu": "cusis", "ell": "cusi", "nosaltres": "cosim", "vosaltres": "cosiu", "ells": "cusin"},
+      "imperatiu": {"tu": "cus", "voste": "cusi", "vosaltres": "cosiu"},
+      "gerundi": "cosint", "participi": "cosit"
+    }
+  },
+  "tossir": {
+    "translation": "husten", "cefr": "B2",
+    "pattern_tags": ["alternanca-o-u"],
+    "irregularity_note": "o→u: tusso, tusses, tus, tussen.",
+    "conjugations": {
+      "present": {"jo": "tusso", "tu": "tusses", "ell": "tus", "nosaltres": "tossim", "vosaltres": "tossiu", "ells": "tussen"},
+      "imperfet": {"jo": "tossia", "tu": "tossies", "ell": "tossia", "nosaltres": "tossíem", "vosaltres": "tossíeu", "ells": "tossien"},
+      "futur": {"jo": "tossiré", "tu": "tossiràs", "ell": "tossirà", "nosaltres": "tossirem", "vosaltres": "tossireu", "ells": "tossiran"},
+      "condicional": {"jo": "tossiria", "tu": "tossiries", "ell": "tossiria", "nosaltres": "tossiríem", "vosaltres": "tossiríeu", "ells": "tossirien"},
+      "subjuntiu_present": {"jo": "tussi", "tu": "tussis", "ell": "tussi", "nosaltres": "tossim", "vosaltres": "tossiu", "ells": "tussin"},
+      "imperatiu": {"tu": "tus", "voste": "tussi", "vosaltres": "tossiu"},
+      "gerundi": "tossint", "participi": "tossit"
+    }
+  },
+  "dormir": {
+    "translation": "schlafen", "cefr": "A1",
+    "pattern_tags": [],
+    "irregularity_note": "Tercera pura (sense -eix-): dormo.",
+    "conjugations": {
+      "present": {"jo": "dormo", "tu": "dorms", "ell": "dorm", "nosaltres": "dormim", "vosaltres": "dormiu", "ells": "dormen"},
+      "imperfet": {"jo": "dormia", "tu": "dormies", "ell": "dormia", "nosaltres": "dormíem", "vosaltres": "dormíeu", "ells": "dormien"},
+      "futur": {"jo": "dormiré", "tu": "dormiràs", "ell": "dormirà", "nosaltres": "dormirem", "vosaltres": "dormireu", "ells": "dormiran"},
+      "condicional": {"jo": "dormiria", "tu": "dormiries", "ell": "dormiria", "nosaltres": "dormiríem", "vosaltres": "dormiríeu", "ells": "dormirien"},
+      "subjuntiu_present": {"jo": "dormi", "tu": "dormis", "ell": "dormi", "nosaltres": "dormim", "vosaltres": "dormiu", "ells": "dormin"},
+      "imperatiu": {"tu": "dorm", "voste": "dormi", "vosaltres": "dormiu"},
+      "gerundi": "dormint", "participi": "dormit"
+    }
+  },
+  "sentir": {
+    "translation": "hören, fühlen", "cefr": "A1",
+    "pattern_tags": [],
+    "irregularity_note": "Tercera pura: sento (ho sento = es tut mir leid).",
+    "conjugations": {
+      "present": {"jo": "sento", "tu": "sents", "ell": "sent", "nosaltres": "sentim", "vosaltres": "sentiu", "ells": "senten"},
+      "imperfet": {"jo": "sentia", "tu": "senties", "ell": "sentia", "nosaltres": "sentíem", "vosaltres": "sentíeu", "ells": "sentien"},
+      "futur": {"jo": "sentiré", "tu": "sentiràs", "ell": "sentirà", "nosaltres": "sentirem", "vosaltres": "sentireu", "ells": "sentiran"},
+      "condicional": {"jo": "sentiria", "tu": "sentiries", "ell": "sentiria", "nosaltres": "sentiríem", "vosaltres": "sentiríeu", "ells": "sentirien"},
+      "subjuntiu_present": {"jo": "senti", "tu": "sentis", "ell": "senti", "nosaltres": "sentim", "vosaltres": "sentiu", "ells": "sentin"},
+      "imperatiu": {"tu": "sent", "voste": "senti", "vosaltres": "sentiu"},
+      "gerundi": "sentint", "participi": "sentit"
+    }
+  },
+  "fugir": {
+    "translation": "fliehen", "cefr": "B1",
+    "pattern_tags": ["canvi-ortografic"],
+    "irregularity_note": "Tercera pura amb g/j: fujo, fuges, fuig.",
+    "conjugations": {
+      "present": {"jo": "fujo", "tu": "fuges", "ell": "fuig", "nosaltres": "fugim", "vosaltres": "fugiu", "ells": "fugen"},
+      "imperfet": {"jo": "fugia", "tu": "fugies", "ell": "fugia", "nosaltres": "fugíem", "vosaltres": "fugíeu", "ells": "fugien"},
+      "futur": {"jo": "fugiré", "tu": "fugiràs", "ell": "fugirà", "nosaltres": "fugirem", "vosaltres": "fugireu", "ells": "fugiran"},
+      "condicional": {"jo": "fugiria", "tu": "fugiries", "ell": "fugiria", "nosaltres": "fugiríem", "vosaltres": "fugiríeu", "ells": "fugirien"},
+      "subjuntiu_present": {"jo": "fugi", "tu": "fugis", "ell": "fugi", "nosaltres": "fugim", "vosaltres": "fugiu", "ells": "fugin"},
+      "imperatiu": {"tu": "fuig", "voste": "fugi", "vosaltres": "fugiu"},
+      "gerundi": "fugint", "participi": "fugit"
+    }
+  },
+  "cabre": {
+    "translation": "hineinpassen", "cefr": "B2",
+    "pattern_tags": [],
+    "irregularity_note": "Subjuntiu càpiga; futur cabré.",
+    "conjugations": {
+      "present": {"jo": "cabo", "tu": "caps", "ell": "cap", "nosaltres": "cabem", "vosaltres": "cabeu", "ells": "caben"},
+      "imperfet": {"jo": "cabia", "tu": "cabies", "ell": "cabia", "nosaltres": "cabíem", "vosaltres": "cabíeu", "ells": "cabien"},
+      "futur": {"jo": "cabré", "tu": "cabràs", "ell": "cabrà", "nosaltres": "cabrem", "vosaltres": "cabreu", "ells": "cabran"},
+      "condicional": {"jo": "cabria", "tu": "cabries", "ell": "cabria", "nosaltres": "cabríem", "vosaltres": "cabríeu", "ells": "cabrien"},
+      "subjuntiu_present": {"jo": "càpiga", "tu": "càpigues", "ell": "càpiga", "nosaltres": "capiguem", "vosaltres": "capigueu", "ells": "càpiguen"},
+      "imperatiu": {"tu": "—", "voste": "—", "vosaltres": "—"},
+      "gerundi": "cabent", "participi": "cabut"
+    }
+  },
+  "valer": {
+    "translation": "wert sein, gelten", "cefr": "A2",
+    "pattern_tags": ["verbs-velaritzats", "futurs-irregulars"],
+    "irregularity_note": "valc, valgui; futur valdré (quant val? = was kostet das?).",
+    "conjugations": {
+      "present": {"jo": "valc", "tu": "vals", "ell": "val", "nosaltres": "valem", "vosaltres": "valeu", "ells": "valen"},
+      "imperfet": {"jo": "valia", "tu": "valies", "ell": "valia", "nosaltres": "valíem", "vosaltres": "valíeu", "ells": "valien"},
+      "futur": {"jo": "valdré", "tu": "valdràs", "ell": "valdrà", "nosaltres": "valdrem", "vosaltres": "valdreu", "ells": "valdran"},
+      "condicional": {"jo": "valdria", "tu": "valdries", "ell": "valdria", "nosaltres": "valdríem", "vosaltres": "valdríeu", "ells": "valdrien"},
+      "subjuntiu_present": {"jo": "valgui", "tu": "valguis", "ell": "valgui", "nosaltres": "valguem", "vosaltres": "valgueu", "ells": "valguin"},
+      "imperatiu": {"tu": "val", "voste": "valgui", "vosaltres": "valeu"},
+      "gerundi": "valent", "participi": "valgut"
+    }
+  },
+  "caldre": {
+    "translation": "nötig sein (man muss)", "cefr": "A2",
+    "pattern_tags": ["futurs-irregulars"],
+    "irregularity_note": "Defectiu: només tercera persona (cal, calen, calia, caldrà, calgui).",
+    "conjugations": {
+      "present": {"jo": "—", "tu": "—", "ell": "cal", "nosaltres": "—", "vosaltres": "—", "ells": "calen"},
+      "imperfet": {"jo": "—", "tu": "—", "ell": "calia", "nosaltres": "—", "vosaltres": "—", "ells": "calien"},
+      "futur": {"jo": "—", "tu": "—", "ell": "caldrà", "nosaltres": "—", "vosaltres": "—", "ells": "caldran"},
+      "condicional": {"jo": "—", "tu": "—", "ell": "caldria", "nosaltres": "—", "vosaltres": "—", "ells": "caldrien"},
+      "subjuntiu_present": {"jo": "—", "tu": "—", "ell": "calgui", "nosaltres": "—", "vosaltres": "—", "ells": "calguin"},
+      "imperatiu": {"tu": "—", "voste": "—", "vosaltres": "—"},
+      "gerundi": "calent", "participi": "calgut"
+    }
+  },
+  "ploure": {
+    "translation": "regnen", "cefr": "A1",
+    "pattern_tags": [],
+    "irregularity_note": "Defectiu: només tercera del singular (plou, plovia, plourà, plogui).",
+    "conjugations": {
+      "present": {"jo": "—", "tu": "—", "ell": "plou", "nosaltres": "—", "vosaltres": "—", "ells": "—"},
+      "imperfet": {"jo": "—", "tu": "—", "ell": "plovia", "nosaltres": "—", "vosaltres": "—", "ells": "—"},
+      "futur": {"jo": "—", "tu": "—", "ell": "plourà", "nosaltres": "—", "vosaltres": "—", "ells": "—"},
+      "condicional": {"jo": "—", "tu": "—", "ell": "plouria", "nosaltres": "—", "vosaltres": "—", "ells": "—"},
+      "subjuntiu_present": {"jo": "—", "tu": "—", "ell": "plogui", "nosaltres": "—", "vosaltres": "—", "ells": "—"},
+      "imperatiu": {"tu": "—", "voste": "—", "vosaltres": "—"},
+      "gerundi": "plovent", "participi": "plogut"
+    }
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "aprendre": {
+    "translation": "lernen", "cefr": "A1",
+    "pattern_tags": ["verbs-velaritzats", "participis-irregulars"],
+    "irregularity_note": "Com prendre: aprenc, après.",
+    "conjugations": {
+      "present": {"jo": "aprenc", "tu": "aprens", "ell": "aprèn", "nosaltres": "aprenem", "vosaltres": "apreneu", "ells": "aprenen"},
+      "imperfet": {"jo": "aprenia", "tu": "aprenies", "ell": "aprenia", "nosaltres": "apreníem", "vosaltres": "apreníeu", "ells": "aprenien"},
+      "futur": {"jo": "aprendré", "tu": "aprendràs", "ell": "aprendrà", "nosaltres": "aprendrem", "vosaltres": "aprendreu", "ells": "aprendran"},
+      "condicional": {"jo": "aprendria", "tu": "aprendries", "ell": "aprendria", "nosaltres": "aprendríem", "vosaltres": "aprendríeu", "ells": "aprendrien"},
+      "subjuntiu_present": {"jo": "aprengui", "tu": "aprenguis", "ell": "aprengui", "nosaltres": "aprenguem", "vosaltres": "aprengueu", "ells": "aprenguin"},
+      "imperatiu": {"tu": "aprèn", "voste": "aprengui", "vosaltres": "apreneu"},
+      "gerundi": "aprenent", "participi": "après"
+    }
+  },
+  "entendre": {
+    "translation": "verstehen", "cefr": "A1",
+    "pattern_tags": ["verbs-velaritzats", "participis-irregulars"],
+    "irregularity_note": "entenc, entès.",
+    "conjugations": {
+      "present": {"jo": "entenc", "tu": "entens", "ell": "entén", "nosaltres": "entenem", "vosaltres": "enteneu", "ells": "entenen"},
+      "imperfet": {"jo": "entenia", "tu": "entenies", "ell": "entenia", "nosaltres": "enteníem", "vosaltres": "enteníeu", "ells": "entenien"},
+      "futur": {"jo": "entendré", "tu": "entendràs", "ell": "entendrà", "nosaltres": "entendrem", "vosaltres": "entendreu", "ells": "entendran"},
+      "condicional": {"jo": "entendria", "tu": "entendries", "ell": "entendria", "nosaltres": "entendríem", "vosaltres": "entendríeu", "ells": "entendrien"},
+      "subjuntiu_present": {"jo": "entengui", "tu": "entenguis", "ell": "entengui", "nosaltres": "entenguem", "vosaltres": "entengueu", "ells": "entenguin"},
+      "imperatiu": {"tu": "entén", "voste": "entengui", "vosaltres": "enteneu"},
+      "gerundi": "entenent", "participi": "entès"
+    }
+  },
+  "vendre": {
+    "translation": "verkaufen", "cefr": "A2",
+    "pattern_tags": ["verbs-velaritzats"],
+    "irregularity_note": "venc, venut — no confondre amb venir (vinc).",
+    "conjugations": {
+      "present": {"jo": "venc", "tu": "vens", "ell": "ven", "nosaltres": "venem", "vosaltres": "veneu", "ells": "venen"},
+      "imperfet": {"jo": "venia", "tu": "venies", "ell": "venia", "nosaltres": "veníem", "vosaltres": "veníeu", "ells": "venien"},
+      "futur": {"jo": "vendré", "tu": "vendràs", "ell": "vendrà", "nosaltres": "vendrem", "vosaltres": "vendreu", "ells": "vendran"},
+      "condicional": {"jo": "vendria", "tu": "vendries", "ell": "vendria", "nosaltres": "vendríem", "vosaltres": "vendríeu", "ells": "vendrien"},
+      "subjuntiu_present": {"jo": "vengui", "tu": "venguis", "ell": "vengui", "nosaltres": "venguem", "vosaltres": "vengueu", "ells": "venguin"},
+      "imperatiu": {"tu": "ven", "voste": "vengui", "vosaltres": "veneu"},
+      "gerundi": "venent", "participi": "venut"
+    }
+  },
+  "beure": {
+    "translation": "trinken", "cefr": "A1",
+    "pattern_tags": ["verbs-velaritzats"],
+    "irregularity_note": "bec, begui, begut; arrel bev- a l'imperfet.",
+    "conjugations": {
+      "present": {"jo": "bec", "tu": "beus", "ell": "beu", "nosaltres": "bevem", "vosaltres": "beveu", "ells": "beuen"},
+      "imperfet": {"jo": "bevia", "tu": "bevies", "ell": "bevia", "nosaltres": "bevíem", "vosaltres": "bevíeu", "ells": "bevien"},
+      "futur": {"jo": "beuré", "tu": "beuràs", "ell": "beurà", "nosaltres": "beurem", "vosaltres": "beureu", "ells": "beuran"},
+      "condicional": {"jo": "beuria", "tu": "beuries", "ell": "beuria", "nosaltres": "beuríem", "vosaltres": "beuríeu", "ells": "beurien"},
+      "subjuntiu_present": {"jo": "begui", "tu": "beguis", "ell": "begui", "nosaltres": "beguem", "vosaltres": "begueu", "ells": "beguin"},
+      "imperatiu": {"tu": "beu", "voste": "begui", "vosaltres": "beveu"},
+      "gerundi": "bevent", "participi": "begut"
+    }
+  },
+  "creure": {
+    "translation": "glauben", "cefr": "A2",
+    "pattern_tags": ["verbs-velaritzats"],
+    "irregularity_note": "crec, cregui, cregut; imperfet creia.",
+    "conjugations": {
+      "present": {"jo": "crec", "tu": "creus", "ell": "creu", "nosaltres": "creiem", "vosaltres": "creieu", "ells": "creuen"},
+      "imperfet": {"jo": "creia", "tu": "creies", "ell": "creia", "nosaltres": "crèiem", "vosaltres": "crèieu", "ells": "creien"},
+      "futur": {"jo": "creuré", "tu": "creuràs", "ell": "creurà", "nosaltres": "creurem", "vosaltres": "creureu", "ells": "creuran"},
+      "condicional": {"jo": "creuria", "tu": "creuries", "ell": "creuria", "nosaltres": "creuríem", "vosaltres": "creuríeu", "ells": "creurien"},
+      "subjuntiu_present": {"jo": "cregui", "tu": "creguis", "ell": "cregui", "nosaltres": "creguem", "vosaltres": "cregueu", "ells": "creguin"},
+      "imperatiu": {"tu": "creu", "voste": "cregui", "vosaltres": "creieu"},
+      "gerundi": "creient", "participi": "cregut"
+    }
+  },
+  "caure": {
+    "translation": "fallen", "cefr": "A2",
+    "pattern_tags": ["verbs-velaritzats"],
+    "irregularity_note": "caic, caigui, caigut; imperfet queia.",
+    "conjugations": {
+      "present": {"jo": "caic", "tu": "caus", "ell": "cau", "nosaltres": "caiem", "vosaltres": "caieu", "ells": "cauen"},
+      "imperfet": {"jo": "queia", "tu": "queies", "ell": "queia", "nosaltres": "quèiem", "vosaltres": "quèieu", "ells": "queien"},
+      "futur": {"jo": "cauré", "tu": "cauràs", "ell": "caurà", "nosaltres": "caurem", "vosaltres": "caureu", "ells": "cauran"},
+      "condicional": {"jo": "cauria", "tu": "cauries", "ell": "cauria", "nosaltres": "cauríem", "vosaltres": "cauríeu", "ells": "caurien"},
+      "subjuntiu_present": {"jo": "caigui", "tu": "caiguis", "ell": "caigui", "nosaltres": "caiguem", "vosaltres": "caigueu", "ells": "caiguin"},
+      "imperatiu": {"tu": "cau", "voste": "caigui", "vosaltres": "caieu"},
+      "gerundi": "caient", "participi": "caigut"
+    }
+  },
+  "escriure": {
+    "translation": "schreiben", "cefr": "A1",
+    "pattern_tags": ["verbs-velaritzats", "participis-irregulars"],
+    "irregularity_note": "escric, escrit; arrel escriv- a l'imperfet i el gerundi.",
+    "conjugations": {
+      "present": {"jo": "escric", "tu": "escrius", "ell": "escriu", "nosaltres": "escrivim", "vosaltres": "escriviu", "ells": "escriuen"},
+      "imperfet": {"jo": "escrivia", "tu": "escrivies", "ell": "escrivia", "nosaltres": "escrivíem", "vosaltres": "escrivíeu", "ells": "escrivien"},
+      "futur": {"jo": "escriuré", "tu": "escriuràs", "ell": "escriurà", "nosaltres": "escriurem", "vosaltres": "escriureu", "ells": "escriuran"},
+      "condicional": {"jo": "escriuria", "tu": "escriuries", "ell": "escriuria", "nosaltres": "escriuríem", "vosaltres": "escriuríeu", "ells": "escriurien"},
+      "subjuntiu_present": {"jo": "escrigui", "tu": "escriguis", "ell": "escrigui", "nosaltres": "escriguem", "vosaltres": "escrigueu", "ells": "escriguin"},
+      "imperatiu": {"tu": "escriu", "voste": "escrigui", "vosaltres": "escriviu"},
+      "gerundi": "escrivint", "participi": "escrit"
+    }
+  },
+  "viure": {
+    "translation": "leben, wohnen", "cefr": "A1",
+    "pattern_tags": ["verbs-velaritzats"],
+    "irregularity_note": "visc, visqui, viscut.",
+    "conjugations": {
+      "present": {"jo": "visc", "tu": "vius", "ell": "viu", "nosaltres": "vivim", "vosaltres": "viviu", "ells": "viuen"},
+      "imperfet": {"jo": "vivia", "tu": "vivies", "ell": "vivia", "nosaltres": "vivíem", "vosaltres": "vivíeu", "ells": "vivien"},
+      "futur": {"jo": "viuré", "tu": "viuràs", "ell": "viurà", "nosaltres": "viurem", "vosaltres": "viureu", "ells": "viuran"},
+      "condicional": {"jo": "viuria", "tu": "viuries", "ell": "viuria", "nosaltres": "viuríem", "vosaltres": "viuríeu", "ells": "viurien"},
+      "subjuntiu_present": {"jo": "visqui", "tu": "visquis", "ell": "visqui", "nosaltres": "visquem", "vosaltres": "visqueu", "ells": "visquin"},
+      "imperatiu": {"tu": "viu", "voste": "visqui", "vosaltres": "viviu"},
+      "gerundi": "vivint", "participi": "viscut"
+    }
+  },
+  "riure": {
+    "translation": "lachen", "cefr": "A2",
+    "pattern_tags": ["verbs-velaritzats", "participis-irregulars"],
+    "irregularity_note": "ric, rigui, rigut; imperfet reia.",
+    "conjugations": {
+      "present": {"jo": "ric", "tu": "rius", "ell": "riu", "nosaltres": "riem", "vosaltres": "rieu", "ells": "riuen"},
+      "imperfet": {"jo": "reia", "tu": "reies", "ell": "reia", "nosaltres": "rèiem", "vosaltres": "rèieu", "ells": "reien"},
+      "futur": {"jo": "riuré", "tu": "riuràs", "ell": "riurà", "nosaltres": "riurem", "vosaltres": "riureu", "ells": "riuran"},
+      "condicional": {"jo": "riuria", "tu": "riuries", "ell": "riuria", "nosaltres": "riuríem", "vosaltres": "riuríeu", "ells": "riurien"},
+      "subjuntiu_present": {"jo": "rigui", "tu": "riguis", "ell": "rigui", "nosaltres": "riguem", "vosaltres": "rigueu", "ells": "riguin"},
+      "imperatiu": {"tu": "riu", "voste": "rigui", "vosaltres": "rieu"},
+      "gerundi": "rient", "participi": "rigut"
+    }
+  },
+  "treure": {
+    "translation": "herausnehmen, wegnehmen", "cefr": "A2",
+    "pattern_tags": ["verbs-velaritzats", "participis-irregulars"],
+    "irregularity_note": "trec, tregui, tret; arrel tra- a nosaltres/vosaltres (traiem).",
+    "conjugations": {
+      "present": {"jo": "trec", "tu": "treus", "ell": "treu", "nosaltres": "traiem", "vosaltres": "traieu", "ells": "treuen"},
+      "imperfet": {"jo": "treia", "tu": "treies", "ell": "treia", "nosaltres": "trèiem", "vosaltres": "trèieu", "ells": "treien"},
+      "futur": {"jo": "trauré", "tu": "trauràs", "ell": "traurà", "nosaltres": "traurem", "vosaltres": "traureu", "ells": "trauran"},
+      "condicional": {"jo": "trauria", "tu": "trauries", "ell": "trauria", "nosaltres": "trauríem", "vosaltres": "trauríeu", "ells": "traurien"},
+      "subjuntiu_present": {"jo": "tregui", "tu": "treguis", "ell": "tregui", "nosaltres": "traguem", "vosaltres": "tragueu", "ells": "treguin"},
+      "imperatiu": {"tu": "treu", "voste": "tregui", "vosaltres": "traieu"},
+      "gerundi": "traient", "participi": "tret"
+    }
+  },
+  "conèixer": {
+    "translation": "kennen, kennenlernen", "cefr": "A1",
+    "pattern_tags": ["verbs-velaritzats"],
+    "irregularity_note": "conec, conegui, conegut.",
+    "conjugations": {
+      "present": {"jo": "conec", "tu": "coneixes", "ell": "coneix", "nosaltres": "coneixem", "vosaltres": "coneixeu", "ells": "coneixen"},
+      "imperfet": {"jo": "coneixia", "tu": "coneixies", "ell": "coneixia", "nosaltres": "coneixíem", "vosaltres": "coneixíeu", "ells": "coneixien"},
+      "futur": {"jo": "coneixeré", "tu": "coneixeràs", "ell": "coneixerà", "nosaltres": "coneixerem", "vosaltres": "coneixereu", "ells": "coneixeran"},
+      "condicional": {"jo": "coneixeria", "tu": "coneixeries", "ell": "coneixeria", "nosaltres": "coneixeríem", "vosaltres": "coneixeríeu", "ells": "coneixerien"},
+      "subjuntiu_present": {"jo": "conegui", "tu": "coneguis", "ell": "conegui", "nosaltres": "coneguem", "vosaltres": "conegueu", "ells": "coneguin"},
+      "imperatiu": {"tu": "coneix", "voste": "conegui", "vosaltres": "coneixeu"},
+      "gerundi": "coneixent", "participi": "conegut"
+    }
+  },
+  "néixer": {
+    "translation": "geboren werden", "cefr": "A2",
+    "pattern_tags": ["participis-irregulars"],
+    "irregularity_note": "Participi nascut; arrel naix-/neix- alterna.",
+    "conjugations": {
+      "present": {"jo": "neixo", "tu": "neixes", "ell": "neix", "nosaltres": "naixem", "vosaltres": "naixeu", "ells": "neixen"},
+      "imperfet": {"jo": "naixia", "tu": "naixies", "ell": "naixia", "nosaltres": "naixíem", "vosaltres": "naixíeu", "ells": "naixien"},
+      "futur": {"jo": "naixeré", "tu": "naixeràs", "ell": "naixerà", "nosaltres": "naixerem", "vosaltres": "naixereu", "ells": "naixeran"},
+      "condicional": {"jo": "naixeria", "tu": "naixeries", "ell": "naixeria", "nosaltres": "naixeríem", "vosaltres": "naixeríeu", "ells": "naixerien"},
+      "subjuntiu_present": {"jo": "neixi", "tu": "neixis", "ell": "neixi", "nosaltres": "naixem", "vosaltres": "naixeu", "ells": "neixin"},
+      "imperatiu": {"tu": "neix", "voste": "neixi", "vosaltres": "naixeu"},
+      "gerundi": "naixent", "participi": "nascut"
+    }
+  },
+  "aparèixer": {
+    "translation": "erscheinen, auftauchen", "cefr": "B1",
+    "pattern_tags": ["verbs-velaritzats"],
+    "irregularity_note": "aparec/apareixo, aparegui, aparegut.",
+    "conjugations": {
+      "present": {"jo": "apareixo", "tu": "apareixes", "ell": "apareix", "nosaltres": "apareixem", "vosaltres": "apareixeu", "ells": "apareixen"},
+      "imperfet": {"jo": "apareixia", "tu": "apareixies", "ell": "apareixia", "nosaltres": "apareixíem", "vosaltres": "apareixíeu", "ells": "apareixien"},
+      "futur": {"jo": "apareixeré", "tu": "apareixeràs", "ell": "apareixerà", "nosaltres": "apareixerem", "vosaltres": "apareixereu", "ells": "apareixeran"},
+      "condicional": {"jo": "apareixeria", "tu": "apareixeries", "ell": "apareixeria", "nosaltres": "apareixeríem", "vosaltres": "apareixeríeu", "ells": "apareixerien"},
+      "subjuntiu_present": {"jo": "aparegui", "tu": "apareguis", "ell": "aparegui", "nosaltres": "apareguem", "vosaltres": "aparegueu", "ells": "apareguin"},
+      "imperatiu": {"tu": "apareix", "voste": "aparegui", "vosaltres": "apareixeu"},
+      "gerundi": "apareixent", "participi": "aparegut"
+    }
+  },
+  "moure": {
+    "translation": "bewegen", "cefr": "B1",
+    "pattern_tags": ["verbs-velaritzats"],
+    "irregularity_note": "moc, mogui, mogut; arrel mov- a l'imperfet.",
+    "conjugations": {
+      "present": {"jo": "moc", "tu": "mous", "ell": "mou", "nosaltres": "movem", "vosaltres": "moveu", "ells": "mouen"},
+      "imperfet": {"jo": "movia", "tu": "movies", "ell": "movia", "nosaltres": "movíem", "vosaltres": "movíeu", "ells": "movien"},
+      "futur": {"jo": "mouré", "tu": "mouràs", "ell": "mourà", "nosaltres": "mourem", "vosaltres": "moureu", "ells": "mouran"},
+      "condicional": {"jo": "mouria", "tu": "mouries", "ell": "mouria", "nosaltres": "mouríem", "vosaltres": "mouríeu", "ells": "mourien"},
+      "subjuntiu_present": {"jo": "mogui", "tu": "moguis", "ell": "mogui", "nosaltres": "moguem", "vosaltres": "mogueu", "ells": "moguin"},
+      "imperatiu": {"tu": "mou", "voste": "mogui", "vosaltres": "moveu"},
+      "gerundi": "movent", "participi": "mogut"
+    }
+  },
+  "seure": {
+    "translation": "sitzen", "cefr": "A2",
+    "pattern_tags": ["verbs-velaritzats"],
+    "irregularity_note": "sec, segui, segut; imperfet seia.",
+    "conjugations": {
+      "present": {"jo": "sec", "tu": "seus", "ell": "seu", "nosaltres": "seiem", "vosaltres": "seieu", "ells": "seuen"},
+      "imperfet": {"jo": "seia", "tu": "seies", "ell": "seia", "nosaltres": "sèiem", "vosaltres": "sèieu", "ells": "seien"},
+      "futur": {"jo": "seuré", "tu": "seuràs", "ell": "seurà", "nosaltres": "seurem", "vosaltres": "seureu", "ells": "seuran"},
+      "condicional": {"jo": "seuria", "tu": "seuries", "ell": "seuria", "nosaltres": "seuríem", "vosaltres": "seuríeu", "ells": "seurien"},
+      "subjuntiu_present": {"jo": "segui", "tu": "seguis", "ell": "segui", "nosaltres": "seguem", "vosaltres": "segueu", "ells": "seguin"},
+      "imperatiu": {"tu": "seu", "voste": "segui", "vosaltres": "seieu"},
+      "gerundi": "seient", "participi": "segut"
+    }
+  },
+  "respondre": {
+    "translation": "antworten", "cefr": "A2",
+    "pattern_tags": ["verbs-velaritzats", "participis-irregulars"],
+    "irregularity_note": "responc, respost.",
+    "conjugations": {
+      "present": {"jo": "responc", "tu": "respons", "ell": "respon", "nosaltres": "responem", "vosaltres": "responeu", "ells": "responen"},
+      "imperfet": {"jo": "responia", "tu": "responies", "ell": "responia", "nosaltres": "responíem", "vosaltres": "responíeu", "ells": "responien"},
+      "futur": {"jo": "respondré", "tu": "respondràs", "ell": "respondrà", "nosaltres": "respondrem", "vosaltres": "respondreu", "ells": "respondran"},
+      "condicional": {"jo": "respondria", "tu": "respondries", "ell": "respondria", "nosaltres": "respondríem", "vosaltres": "respondríeu", "ells": "respondrien"},
+      "subjuntiu_present": {"jo": "respongui", "tu": "responguis", "ell": "respongui", "nosaltres": "responguem", "vosaltres": "respongueu", "ells": "responguin"},
+      "imperatiu": {"tu": "respon", "voste": "respongui", "vosaltres": "responeu"},
+      "gerundi": "responent", "participi": "respost"
+    }
+  }
+}

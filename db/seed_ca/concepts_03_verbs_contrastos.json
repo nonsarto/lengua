@@ -1,0 +1,152 @@
+{
+  "ser-vs-estar-ca": {
+    "label": "Ser vs. estar (a la catalana)",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "En català, ser s'usa per a identitat, qualitats i — atenció — també per a la localització simple de coses i persones: la Núria és a casa, el llibre és a la taula. Estar expressa estats transitoris (estic cansat), resultats (la porta està oberta) i durada en un lloc (m'estic a Barcelona des del 2020). El repartiment NO és el mateix que en castellà.",
+    "rule_of_thumb": "On és? → ser (és a casa). Com està? → estar (està cansat). Per dir on és algú ara mateix, el català clàssic fa servir SER.",
+    "german_pitfall": "Doppelte Falle: Deutsch hat nur 'sein', und wer Spanisch kann, überträgt 'está en casa' — auf Katalanisch klassisch 'és a casa'! Ort = ser, Zustand = estar. Das ist DIE Abweichung vom Spanischen schlechthin.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "La Maria ___ a l'oficina ara.", "a": "és"},
+      {"q": "Avui ___ (jo) molt cansat.", "a": "estic"},
+      {"q": "Les claus ___ al calaix.", "a": "són"}
+    ]
+  },
+  "haver-hi": {
+    "label": "Haver-hi (hi ha)",
+    "ctype": "grammar",
+    "cefr": "A1",
+    "explanation": "Per expressar existència s'usa haver-hi: hi ha una farmàcia al costat, hi havia molta gent, hi haurà festa. El pronom hi forma part del verb i no es pot ometre mai. En la llengua parlada de Barcelona sovint es concorda en plural (hi han coses), però la forma normativa és invariable: hi ha coses.",
+    "rule_of_thumb": "'Es gibt' = hi ha. El hi hi va sempre enganxat: hi ha, hi havia, hi haurà.",
+    "german_pitfall": "'Es gibt' = hi ha — aber das hi NIE weglassen (*ha una farmàcia ist falsch). Spanisch-Falle: 'hay' enthält kein sichtbares Pronomen, katalanisch schon: hi + ha.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "___ una fleca aquí a prop?", "a": "Hi ha"},
+      {"q": "Ahir ___ molta cua al CAP.", "a": "hi havia"},
+      {"q": "Demà ___ mercat a la plaça.", "a": "hi haurà"}
+    ]
+  },
+  "verbs-tipus-agradar": {
+    "label": "Verbs tipus agradar",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "Amb agradar, el que t'agrada és el subjecte i tu ets l'objecte indirecte: m'agrada el cafè, m'agraden les tapes. El verb concorda amb la cosa, no amb la persona. Funcionen igual: encantar, interessar, molestar, fer mal, costar, semblar, tocar (em toca pagar).",
+    "rule_of_thumb": "Una cosa → agrada; més d'una → agradEN: m'agrada el vi, m'agraden els vins.",
+    "german_pitfall": "Wie 'mir gefällt/gefallen' im Deutschen — die Struktur kennst du also schon! Fehlerquelle ist die Kongruenz: bei Plural nicht das -n vergessen (m'agradeN les tapes).",
+    "paradigm": null,
+    "member_verbs": ["agradar", "encantar", "interessar", "molestar", "costar", "semblar", "tocar", "faltar", "doldre"],
+    "default_exercises": [
+      {"q": "M'___ (agradar) molt les pel·lícules velles.", "a": "agraden"},
+      {"q": "Li ___ (interessar) la història de la ciutat.", "a": "interessa"},
+      {"q": "Em ___ (fer) mal els peus.", "a": "fan"}
+    ]
+  },
+  "verbs-reflexius": {
+    "label": "Verbs reflexius",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "Els verbs reflexius porten un pronom que concorda amb el subjecte: em llevo, et dutxes, es vesteix, ens n'anem. Davant de vocal o h, el pronom s'apostrofa: m'aixeco, s'ha llevat. Molts verbs de rutina diària són reflexius: llevar-se, dutxar-se, vestir-se, asseure's, quedar-se, anar-se'n.",
+    "rule_of_thumb": "El pronom va DAVANT del verb conjugat (em llevo) i DARRERE de l'infinitiu i l'imperatiu (llevar-me, lleva't).",
+    "german_pitfall": "Wie deutsche Reflexivverben ('sich waschen'), aber jede Person hat ihr eigenes Pronomen (em/et/es/ens/us/es), nicht nur 'sich'. Und vor Vokal wird apostrophiert: m'aixeco, nicht *em aixeco.",
+    "paradigm": null,
+    "member_verbs": ["llevar-se", "dutxar-se", "vestir-se", "asseure's", "quedar-se", "anar-se'n", "despertar-se", "adormir-se", "rentar-se", "trobar-se"],
+    "default_exercises": [
+      {"q": "Cada dia ___ (llevar-se, jo) a les set.", "a": "em llevo"},
+      {"q": "Ella ___ (dutxar-se) al vespre.", "a": "es dutxa"},
+      {"q": "___ (asseure's, tu) aquí, si us plau!", "a": "Seu / Asseu-te"}
+    ]
+  },
+  "perifrasis-obligacio": {
+    "label": "Obligació: haver de i caldre",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "L'obligació s'expressa amb haver de + infinitiu (he de treballar) o amb caldre, un verb impersonal molt català: cal reservar taula, em cal més temps, no cal que vinguis. Per a prohibicions i normes: no es pot + infinitiu.",
+    "rule_of_thumb": "Personal: he de + infinitiu. Impersonal ('man muss'): cal + infinitiu. Innecessari: no cal.",
+    "german_pitfall": "ACHTUNG Spanisch-Transfer: *tinc que (von 'tengo que') ist der Kastilianismus Nummer eins — richtig ist HE DE. Und cal = 'man muss / es ist nötig' hat keine spanische Entsprechung — sehr katalanisch, sehr nützlich: no cal = 'nicht nötig'.",
+    "paradigm": null,
+    "member_verbs": ["haver de", "caldre", "poder"],
+    "default_exercises": [
+      {"q": "Demà ___ (haver, jo) de matinar.", "a": "he"},
+      {"q": "___ reservar taula? — No, no ___.", "a": "Cal / cal"},
+      {"q": "No ___ que portis res a la festa.", "a": "cal"}
+    ]
+  },
+  "acabar-de": {
+    "label": "Acabar de + infinitiu",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "Acabar de + infinitiu expressa una acció acabada fa un moment: acabo d'arribar (ich bin gerade angekommen), acabem de dinar. En passat imperfet expressa 'gerade erst': acabava d'entrar quan va sonar el telèfon.",
+    "rule_of_thumb": "'Gerade eben passiert' = acabo de + infinitiu. Present del verb acabar, mai passat perifràstic.",
+    "german_pitfall": "Das Deutsche braucht ein Adverb ('gerade eben angekommen'), Katalanisch ein Verb: acabo d'arribar. Nicht mit dem Perfekt mischen: *acabo d'he arribat ist falsch — immer Infinitiv.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "___ (acabar, jo) d'arribar a casa.", "a": "Acabo"},
+      {"q": "El tren ___ de sortir — l'hem perdut!", "a": "acaba"},
+      {"q": "___ (acabar, nosaltres) de sopar fa cinc minuts.", "a": "Acabem"}
+    ]
+  },
+  "estar-gerundi": {
+    "label": "Estar + gerundi",
+    "ctype": "grammar",
+    "cefr": "A2",
+    "explanation": "Estar + gerundi expressa una acció en curs ara mateix: estic treballant, estàs escoltant? S'usa per a accions concretes en desenvolupament, no per a costums (per a costums, present simple: treballo a Gràcia). En passat: estava dormint quan vas trucar.",
+    "rule_of_thumb": "Passa ara mateix davant teu? estar + -ant/-ent/-int. És un costum? Present simple.",
+    "german_pitfall": "Deutsch drückt Verlauf mit 'gerade' aus — hier ist es eine Verbform: estic menjant. Nicht übertreiben: für Gewohnheiten und Dauerzustände einfaches Präsens (visc a Barcelona, NICHT *estic vivint a Barcelona).",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "No puc parlar, ___ (conduir, jo).", "a": "estic conduint"},
+      {"q": "Què ___ (fer, tu) ara? — ___ (cuinar).", "a": "estàs fent / Estic cuinant"},
+      {"q": "Quan vas trucar, ___ (dormir, ells).", "a": "estaven dormint"}
+    ]
+  },
+  "expressar-futur": {
+    "label": "Expressar el futur (sense 'vaig a')",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "El català expressa el futur amb el futur simple (demà aniré al metge) o amb el present + marcador temporal (demà tinc metge). La construcció castellana 'voy a + infinitiu' NO és futur en català: vaig a comprar només vol dir que hi vas físicament, i vaig comprar és passat!",
+    "rule_of_thumb": "Futur = futur simple (aniré) o present amb 'demà/després'. 'Vaig a + infinitiu' per a plans és un castellanisme.",
+    "german_pitfall": "Dreifache Verwirrung möglich: 'vaig a cantar' ist NICHT 'ich werde singen' (das wäre cantaré), sondern bestenfalls 'ich gehe (irgendwohin) singen' — und 'vaig cantar' ist 'ich sang'! Fürs Futur immer Futurform oder Präsens+Zeitwort.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Demà ___ (parlar, jo) amb el cap. (futur)", "a": "parlaré"},
+      {"q": "Corregeix: *Aquest estiu vaig a viatjar a Menorca.", "a": "Aquest estiu viatjaré a Menorca."},
+      {"q": "Què vol dir «vaig treballar»? (futur o passat?)", "a": "passat — ich arbeitete"}
+    ]
+  },
+  "passat-perifrastic-vs-perfet": {
+    "label": "Passat perifràstic vs. perfet",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "La regla és temporal i estricta: si l'acció ha passat AVUI (o dins d'un període encara obert: aquesta setmana, aquest any), perfet: avui he vist la Marta. Si el període és tancat (ahir, la setmana passada, el 2019), passat perifràstic: ahir vaig veure la Marta. La frontera és mitjanit.",
+    "rule_of_thumb": "Avui → he fet. Ahir (i abans) → vaig fer. La mitjanit talla.",
+    "german_pitfall": "Im Deutschen ist 'ich habe gestern gesehen' völlig normal — im Katalanischen unmöglich: *ahir he vist ist falsch, es MUSS 'ahir vaig veure' sein. Die Regel ist mechanischer als im Spanischen: einfach aufs Zeitwort schauen.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Avui ___ (esmorzar, jo) un croissant.", "a": "he esmorzat"},
+      {"q": "Ahir ___ (esmorzar, jo) a casa.", "a": "vaig esmorzar"},
+      {"q": "Aquesta setmana ___ (tenir, nosaltres) molta feina.", "a": "hem tingut"}
+    ]
+  },
+  "imperfet-vs-passat": {
+    "label": "Imperfet vs. passat perifràstic",
+    "ctype": "grammar",
+    "cefr": "B1",
+    "explanation": "L'imperfet descriu (com era, què passava, què feies habitualment); el passat perifràstic narra accions acabades (què va passar). En un relat conviuen: feia sol i no hi havia ningú (escenari) — de sobte va aparèixer un gos (acció). Els costums del passat sempre van en imperfet: abans anava a la platja cada dia.",
+    "rule_of_thumb": "Fotografia (com era) = imperfet. Pel·lícula (què va passar) = perifràstic.",
+    "german_pitfall": "Das deutsche Präteritum deckt beides ab ('es regnete' + 'plötzlich kam er') — Katalanisch trennt strikt. Signalwörter helfen: abans, cada dia, mentre → Imperfet; de sobte, ahir, un dia → Perifràstic.",
+    "paradigm": null,
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Quan ___ (ser, jo) petit, ___ (jugar) a bàsquet.", "a": "era / jugava"},
+      {"q": "___ (ploure) quan de sobte ___ (sortir) el sol.", "a": "Plovia / va sortir"},
+      {"q": "Mentre ___ (cuinar, ella), algú ___ (trucar) a la porta.", "a": "cuinava / va trucar"}
+    ]
+  }
+}

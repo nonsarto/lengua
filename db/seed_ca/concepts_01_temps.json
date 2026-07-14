@@ -1,0 +1,249 @@
+{
+  "present-indicatiu": {
+    "label": "Present d'indicatiu",
+    "ctype": "tense",
+    "cefr": "A1",
+    "explanation": "El present d'indicatiu expressa accions habituals, veritats generals i situacions actuals. En català els verbs es divideixen en tres conjugacions segons la terminació: -ar (parlar), -er/-re (témer, perdre) i -ir (dormir, servir). La primera persona del singular acaba en -o: parlo, perdo, dormo. Molts verbs de la tercera conjugació afegeixen -eix- (serveixo): són els incoatius.",
+    "rule_of_thumb": "Treus la terminació, mires la conjugació i hi poses la desinència. La primera persona sempre fa -o: parlo, perdo, dormo.",
+    "german_pitfall": "Anders als im Deutschen lässt man das Subjektpronomen fast immer weg (parlo = ich spreche). Und Achtung mit dem Spanischen: die 1. Person endet auf -o wie dort, aber die Nosaltres-Form auf -em/-im (parlem, dormim), nicht -amos/-imos.",
+    "paradigm": {
+      "ar": {"jo": "parlo", "tu": "parles", "ell": "parla", "nosaltres": "parlem", "vosaltres": "parleu", "ells": "parlen"},
+      "re": {"jo": "perdo", "tu": "perds", "ell": "perd", "nosaltres": "perdem", "vosaltres": "perdeu", "ells": "perden"},
+      "ir": {"jo": "dormo", "tu": "dorms", "ell": "dorm", "nosaltres": "dormim", "vosaltres": "dormiu", "ells": "dormen"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Jo ___ (parlar) tres idiomes.", "a": "parlo"},
+      {"q": "Nosaltres ___ (viure) a Gràcia.", "a": "vivim"},
+      {"q": "Elles ___ (perdre) sempre les claus.", "a": "perden"}
+    ]
+  },
+  "passat-perifrastic": {
+    "label": "Passat perifràstic (vaig + infinitiu)",
+    "ctype": "tense",
+    "cefr": "A2",
+    "explanation": "El passat perifràstic és LA forma catalana per parlar del passat acabat: es construeix amb l'auxiliar anar (vaig, vas, va, vam, vau, van) + infinitiu. Ahir vaig treballar molt. És una forma única del català — no existeix en castellà ni en cap altra llengua romànica gran. Substitueix el passat simple en la llengua parlada.",
+    "rule_of_thumb": "Passat acabat = vaig + infinitiu. No canvies mai el verb principal: vaig anar, vas fer, va dir.",
+    "german_pitfall": "Die größte Falle für alle, die Spanisch können: 'vaig parlar' sieht aus wie 'ich werde sprechen' (voy a hablar), heißt aber 'ich sprach'! Für die Zukunft benutzt Katalanisch das Futur (parlaré), NIE vaig + Infinitiv.",
+    "paradigm": {
+      "ar": {"jo": "vaig parlar", "tu": "vas parlar", "ell": "va parlar", "nosaltres": "vam parlar", "vosaltres": "vau parlar", "ells": "van parlar"},
+      "re": {"jo": "vaig perdre", "tu": "vas perdre", "ell": "va perdre", "nosaltres": "vam perdre", "vosaltres": "vau perdre", "ells": "van perdre"},
+      "ir": {"jo": "vaig dormir", "tu": "vas dormir", "ell": "va dormir", "nosaltres": "vam dormir", "vosaltres": "vau dormir", "ells": "van dormir"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Ahir ___ (anar, jo) al mercat.", "a": "vaig anar"},
+      {"q": "La setmana passada ___ (veure, nosaltres) una pel·lícula.", "a": "vam veure"},
+      {"q": "Dissabte ells ___ (fer) una festa.", "a": "van fer"}
+    ]
+  },
+  "perfet": {
+    "label": "Perfet (he + participi)",
+    "ctype": "tense",
+    "cefr": "A2",
+    "explanation": "El perfet es forma amb haver (he, has, ha, hem, heu, han) + participi: he parlat, has perdut, hem dormit. S'usa per a accions passades dins d'un període que encara dura — sobretot AVUI: avui he esmorzat tard. També per a experiències sense moment concret: he estat tres cops a Girona.",
+    "rule_of_thumb": "Si ha passat avui (o aquesta setmana, aquest any...), perfet. Si el període ja s'ha tancat, passat perifràstic.",
+    "german_pitfall": "Im Deutschen ist das Perfekt DIE Erzählform ('ich habe gestern gearbeitet') — im Katalanischen ist es strikt auf offene Zeiträume beschränkt: *ahir he treballat ist falsch, es muss 'ahir vaig treballar' heißen. Die Grenze ist härter als im Spanischen.",
+    "paradigm": {
+      "ar": {"jo": "he parlat", "tu": "has parlat", "ell": "ha parlat", "nosaltres": "hem parlat", "vosaltres": "heu parlat", "ells": "han parlat"},
+      "re": {"jo": "he perdut", "tu": "has perdut", "ell": "ha perdut", "nosaltres": "hem perdut", "vosaltres": "heu perdut", "ells": "han perdut"},
+      "ir": {"jo": "he dormit", "tu": "has dormit", "ell": "ha dormit", "nosaltres": "hem dormit", "vosaltres": "heu dormit", "ells": "han dormit"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Avui ___ (treballar, jo) vuit hores.", "a": "he treballat"},
+      {"q": "Aquest matí ___ (perdre, ell) el metro.", "a": "ha perdut"},
+      {"q": "Encara no ___ (menjar, nosaltres).", "a": "hem menjat"}
+    ]
+  },
+  "imperfet": {
+    "label": "Imperfet d'indicatiu",
+    "ctype": "tense",
+    "cefr": "B1",
+    "explanation": "L'imperfet descriu el passat: costums (abans fumava), descripcions (feia sol, la casa era gran) i accions en curs interrompudes (dormia quan vas trucar). Les terminacions: -ava per a la primera conjugació (parlava), -ia per a la segona i tercera (perdia, dormia). No diu que una acció s'acabés — la pinta.",
+    "rule_of_thumb": "L'imperfet pinta l'escenari; el perifràstic explica què va passar. 'Plovia (escenari) i vaig agafar el paraigua (acció).'",
+    "german_pitfall": "Das Deutsche hat nur EIN Präteritum für beides ('es regnete und ich nahm den Schirm') — im Katalanischen musst du bei jedem Satz entscheiden: Hintergrund/Gewohnheit → Imperfet, abgeschlossene Handlung → passat perifràstic.",
+    "paradigm": {
+      "ar": {"jo": "parlava", "tu": "parlaves", "ell": "parlava", "nosaltres": "parlàvem", "vosaltres": "parlàveu", "ells": "parlaven"},
+      "re": {"jo": "perdia", "tu": "perdies", "ell": "perdia", "nosaltres": "perdíem", "vosaltres": "perdíeu", "ells": "perdien"},
+      "ir": {"jo": "dormia", "tu": "dormies", "ell": "dormia", "nosaltres": "dormíem", "vosaltres": "dormíeu", "ells": "dormien"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Quan era petit, ___ (jugar, jo) al carrer.", "a": "jugava"},
+      {"q": "Ahir ___ (fer) molt de fred quan vam sortir.", "a": "feia"},
+      {"q": "Abans nosaltres ___ (viure) a València.", "a": "vivíem"}
+    ]
+  },
+  "plusquamperfet": {
+    "label": "Plusquamperfet (havia + participi)",
+    "ctype": "tense",
+    "cefr": "B1",
+    "explanation": "El plusquamperfet expressa una acció passada anterior a una altra acció passada: quan vaig arribar, el tren ja havia sortit. Es forma amb l'imperfet d'haver (havia, havies, havia, havíem, havíeu, havien) + participi. És el 'passat del passat'.",
+    "rule_of_thumb": "Dues accions al passat, una abans de l'altra? La primera va en plusquamperfet: ja havia marxat quan vas trucar.",
+    "german_pitfall": "Funktioniert wie das deutsche Plusquamperfekt ('war gegangen / hatte gemacht') — aber Katalanisch bildet ALLE Verben mit haver, nie mit ser: havia anat (nicht *era anat), genau wie 'ich war gegangen'.",
+    "paradigm": {
+      "ar": {"jo": "havia parlat", "tu": "havies parlat", "ell": "havia parlat", "nosaltres": "havíem parlat", "vosaltres": "havíeu parlat", "ells": "havien parlat"},
+      "re": {"jo": "havia perdut", "tu": "havies perdut", "ell": "havia perdut", "nosaltres": "havíem perdut", "vosaltres": "havíeu perdut", "ells": "havien perdut"},
+      "ir": {"jo": "havia dormit", "tu": "havies dormit", "ell": "havia dormit", "nosaltres": "havíem dormit", "vosaltres": "havíeu dormit", "ells": "havien dormit"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Quan vam arribar, la botiga ja ___ (tancar).", "a": "havia tancat"},
+      {"q": "No ___ (veure, jo) mai el mar abans d'aquell estiu.", "a": "havia vist"},
+      {"q": "Ells ja ___ (sopar) quan vaig trucar.", "a": "havien sopat"}
+    ]
+  },
+  "futur-simple": {
+    "label": "Futur simple",
+    "ctype": "tense",
+    "cefr": "B1",
+    "explanation": "El futur es forma afegint les terminacions -é, -às, -à, -em, -eu, -an a l'infinitiu sencer: parlaré, perdràs, dormirà. Expressa accions futures i, col·loquialment, també suposicions (ara seran les deu). Alguns verbs freqüents tenen l'arrel irregular: faré, tindré, vindré, podré, voldré, sabré, hauré.",
+    "rule_of_thumb": "Infinitiu + -é/-às/-à/-em/-eu/-an. Demà parlaré amb ella.",
+    "german_pitfall": "Wo das Deutsche einfach Präsens nimmt ('Morgen gehe ich zum Arzt'), verlangt Katalanisch das Futur: demà aniré al metge. Und NIE 'vaig a + Infinitiv' fürs Futur — das wäre ein Kastilianismus (und heißt auf Katalanisch schon 'ich ging').",
+    "paradigm": {
+      "ar": {"jo": "parlaré", "tu": "parlaràs", "ell": "parlarà", "nosaltres": "parlarem", "vosaltres": "parlareu", "ells": "parlaran"},
+      "re": {"jo": "perdré", "tu": "perdràs", "ell": "perdrà", "nosaltres": "perdrem", "vosaltres": "perdreu", "ells": "perdran"},
+      "ir": {"jo": "dormiré", "tu": "dormiràs", "ell": "dormirà", "nosaltres": "dormirem", "vosaltres": "dormireu", "ells": "dormiran"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Demà ___ (anar, jo) al mercat de Sant Antoni.", "a": "aniré"},
+      {"q": "L'any que ve ___ (viure, nosaltres) a Sants.", "a": "viurem"},
+      {"q": "Ells ___ (venir) a sopar dissabte.", "a": "vindran"}
+    ]
+  },
+  "condicional-simple": {
+    "label": "Condicional simple",
+    "ctype": "tense",
+    "cefr": "B1",
+    "explanation": "El condicional es forma amb l'infinitiu + les terminacions de l'imperfet de la segona conjugació: -ia, -ies, -ia, -íem, -íeu, -ien (parlaria, perdries, dormiria). Expressa cortesia (voldria un cafè), consells (hauries de descansar) i el resultat de condicions irreals (si pogués, viatjaria).",
+    "rule_of_thumb": "Per demanar amb educació: voldria, podria, m'agradaria. La mateixa arrel que el futur.",
+    "german_pitfall": "Entspricht dem deutschen 'würde + Infinitiv' oder 'hätte/könnte', ist aber EINE Verbform: parlaria = ich würde sprechen. Für Bestellungen merken: voldria (ich hätte gern), nicht *vull (zu direkt).",
+    "paradigm": {
+      "ar": {"jo": "parlaria", "tu": "parlaries", "ell": "parlaria", "nosaltres": "parlaríem", "vosaltres": "parlaríeu", "ells": "parlarien"},
+      "re": {"jo": "perdria", "tu": "perdries", "ell": "perdria", "nosaltres": "perdríem", "vosaltres": "perdríeu", "ells": "perdrien"},
+      "ir": {"jo": "dormiria", "tu": "dormiries", "ell": "dormiria", "nosaltres": "dormiríem", "vosaltres": "dormiríeu", "ells": "dormirien"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "___ (voler, jo) un tallat, si us plau.", "a": "Voldria"},
+      {"q": "Tu ___ (haver) de dormir més.", "a": "hauries"},
+      {"q": "Amb més temps, nosaltres ___ (viatjar) més.", "a": "viatjaríem"}
+    ]
+  },
+  "imperatiu": {
+    "label": "Imperatiu",
+    "ctype": "tense",
+    "cefr": "A2",
+    "explanation": "L'imperatiu dona ordres, consells i instruccions. Per a tu, la forma coincideix amb la tercera persona del present: parla!, beu!, obre! Per a vostè s'usa la forma del subjuntiu: parli!, begui! Per a vosaltres: parleu!, beveu! La negació sempre usa el subjuntiu: no parlis!, no begui!",
+    "rule_of_thumb": "Ordre a un amic = la forma d'ell/ella del present: parla, menja, obre. Prohibició = no + subjuntiu: no parlis.",
+    "german_pitfall": "Der verneinte Imperativ wechselt die Form! 'Sprich!' = parla!, aber 'Sprich nicht!' = no parlis! (Subjuntiu) — im Deutschen bleibt die Form gleich ('sprich / sprich nicht'), daher vergisst man den Wechsel leicht.",
+    "paradigm": {
+      "ar": {"jo": "—", "tu": "parla", "ell": "parli (vostè)", "nosaltres": "parlem", "vosaltres": "parleu", "ells": "parlin (vostès)"},
+      "re": {"jo": "—", "tu": "perd", "ell": "perdi (vostè)", "nosaltres": "perdem", "vosaltres": "perdeu", "ells": "perdin (vostès)"},
+      "ir": {"jo": "—", "tu": "dorm", "ell": "dormi (vostè)", "nosaltres": "dormim", "vosaltres": "dormiu", "ells": "dormin (vostès)"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "___ (parlar, tu) més a poc a poc, si us plau!", "a": "Parla"},
+      {"q": "___ (obrir, vosaltres) la finestra!", "a": "Obriu"},
+      {"q": "No ___ (fumar, tu) aquí!", "a": "fumis"}
+    ]
+  },
+  "subjuntiu-present": {
+    "label": "Present de subjuntiu",
+    "ctype": "tense",
+    "cefr": "B1",
+    "explanation": "El subjuntiu apareix després d'expressions de voluntat, dubte, emoció i valoració: vull que vinguis, no crec que sigui car, m'alegro que estiguis bé. Les terminacions inverteixen la vocal del present: -ar fa -i (parli), -er/-re i -ir fan -i també però amb canvis d'arrel freqüents (begui, dormi, serveixi).",
+    "rule_of_thumb": "Si hi ha un 'que' després de voler, esperar, dubtar o alegrar-se, el verb que ve va en subjuntiu: vull que parlis.",
+    "german_pitfall": "Das Deutsche hat keinen lebendigen Subjunktiv — 'Ich will, dass du kommst' nutzt einfach Indikativ. Der Auslöser ist mechanisch: Wunsch/Zweifel/Gefühl + que → Subjuntiu. Auswendig lernen: vull que VINGUIS, nicht *vull que véns.",
+    "paradigm": {
+      "ar": {"jo": "parli", "tu": "parlis", "ell": "parli", "nosaltres": "parlem", "vosaltres": "parleu", "ells": "parlin"},
+      "re": {"jo": "perdi", "tu": "perdis", "ell": "perdi", "nosaltres": "perdem", "vosaltres": "perdeu", "ells": "perdin"},
+      "ir": {"jo": "dormi", "tu": "dormis", "ell": "dormi", "nosaltres": "dormim", "vosaltres": "dormiu", "ells": "dormin"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Vull que ___ (venir, tu) a la festa.", "a": "vinguis"},
+      {"q": "No crec que ___ (ser) tan car.", "a": "sigui"},
+      {"q": "Espero que tot ___ (anar) bé.", "a": "vagi"}
+    ]
+  },
+  "subjuntiu-imperfet": {
+    "label": "Imperfet de subjuntiu",
+    "ctype": "tense",
+    "cefr": "B2",
+    "explanation": "L'imperfet de subjuntiu apareix en condicions irreals (si tingués temps...) i després de verbs de voluntat en passat (volia que vinguessis). Terminacions: -és/-essis per a -ar i -er/-re (parlés, perdés), -ís/-issis per a -ir (dormís). Sempre du accent a la primera i tercera persona.",
+    "rule_of_thumb": "Després de 'si' irreal: si tingués diners, compraria. La parella fixa: si + subjuntiu imperfet, condicional.",
+    "german_pitfall": "Entspricht dem deutschen Konjunktiv II ('wenn ich hätte... würde ich'): si tingués... compraria. Falle aus dem Spanischen: die Formen auf -ara/-iera (tuviera) existieren im Katalanischen nicht — nur -és/-ís (tingués, dormís).",
+    "paradigm": {
+      "ar": {"jo": "parlés", "tu": "parlessis", "ell": "parlés", "nosaltres": "parléssim", "vosaltres": "parléssiu", "ells": "parlessin"},
+      "re": {"jo": "perdés", "tu": "perdessis", "ell": "perdés", "nosaltres": "perdéssim", "vosaltres": "perdéssiu", "ells": "perdessin"},
+      "ir": {"jo": "dormís", "tu": "dormissis", "ell": "dormís", "nosaltres": "dormíssim", "vosaltres": "dormíssiu", "ells": "dormissin"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Si ___ (tenir, jo) més temps, aprendria més català.", "a": "tingués"},
+      {"q": "Volia que ___ (venir, tu) amb nosaltres.", "a": "vinguessis"},
+      {"q": "Si ___ (poder, nosaltres), viuríem vora el mar.", "a": "poguéssim"}
+    ]
+  },
+  "gerundi": {
+    "label": "El gerundi",
+    "ctype": "tense",
+    "cefr": "A2",
+    "explanation": "El gerundi es forma amb -ant (parlant), -ent (perdent) i -int (dormint). S'usa sobretot amb estar per a accions en curs (estic treballant) i per expressar manera (va aprendre escoltant). No s'ha d'usar per unir frases com en anglès.",
+    "rule_of_thumb": "-ar → -ant, -er/-re → -ent, -ir → -int. Estic menjant = ich esse gerade.",
+    "german_pitfall": "Das Deutsche hat keine Verlaufsform — 'ich arbeite' kann beides sein. Wenn etwas JETZT GERADE passiert, nimm estar + Gerundi: estic treballant. Nur Zustand? Dann einfaches Präsens: visc a Barcelona (nicht *estic vivint für Dauerzustände).",
+    "paradigm": {
+      "ar": {"jo": "parlant", "tu": "—", "ell": "—", "nosaltres": "—", "vosaltres": "—", "ells": "—"},
+      "re": {"jo": "perdent", "tu": "—", "ell": "—", "nosaltres": "—", "vosaltres": "—", "ells": "—"},
+      "ir": {"jo": "dormint", "tu": "—", "ell": "—", "nosaltres": "—", "vosaltres": "—", "ells": "—"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "Ara mateix estic ___ (llegir) un llibre.", "a": "llegint"},
+      {"q": "Estan ___ (parlar) per telèfon.", "a": "parlant"},
+      {"q": "Vaig aprendre català ___ (escoltar) la ràdio.", "a": "escoltant"}
+    ]
+  },
+  "participi": {
+    "label": "El participi",
+    "ctype": "tense",
+    "cefr": "A2",
+    "explanation": "El participi es forma amb -at (parlat), -ut (perdut) i -it (dormit). S'usa amb haver per als temps compostos (he parlat) i com a adjectiu, concordant en gènere i nombre (la porta oberta, les finestres tancades). Molts verbs freqüents el tenen irregular: fet, dit, vist, escrit, obert, mort.",
+    "rule_of_thumb": "-ar → -at, -er/-re → -ut, -ir → -it. Amb haver no concorda mai; com a adjectiu, sempre.",
+    "german_pitfall": "Wie das deutsche Partizip II, aber ohne ge-: parlat = gesprochen. Als Adjektiv MUSS es angeglichen werden (la finestra obertA), nach haver nie (he obert la finestra) — das Deutsche gleicht nie an, daher wird das -a gern vergessen.",
+    "paradigm": {
+      "ar": {"jo": "parlat", "tu": "—", "ell": "—", "nosaltres": "—", "vosaltres": "—", "ells": "—"},
+      "re": {"jo": "perdut", "tu": "—", "ell": "—", "nosaltres": "—", "vosaltres": "—", "ells": "—"},
+      "ir": {"jo": "dormit", "tu": "—", "ell": "—", "nosaltres": "—", "vosaltres": "—", "ells": "—"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "He ___ (perdre) les claus.", "a": "perdut"},
+      {"q": "La botiga està ___ (obrir).", "a": "oberta"},
+      {"q": "Encara no has ___ (fer) els deures?", "a": "fet"}
+    ]
+  },
+  "passat-simple": {
+    "label": "Passat simple (literari)",
+    "ctype": "tense",
+    "cefr": "B2",
+    "explanation": "El passat simple (parlà, perdé, dormí) significa el mateix que el passat perifràstic, però avui és gairebé exclusivament literari i formal — el trobaràs en novel·les, premsa i textos històrics, no al bar. Per entendre'l: parlà = va parlar. A València encara es fa servir parlant.",
+    "rule_of_thumb": "Llegeix-lo, no el parlis: parlà = va parlar. Si el sents en conversa, probablement és algú de València.",
+    "german_pitfall": "Reines Lese-Wissen für Bücher und Zeitungen — wie das deutsche Präteritum in der Literatur. Nicht aktiv benutzen (klingt in Barcelona geschwollen); im Gespräch immer passat perifràstic.",
+    "paradigm": {
+      "ar": {"jo": "parlí", "tu": "parlares", "ell": "parlà", "nosaltres": "parlàrem", "vosaltres": "parlàreu", "ells": "parlaren"},
+      "re": {"jo": "perdí", "tu": "perderes", "ell": "perdé", "nosaltres": "perdérem", "vosaltres": "perdéreu", "ells": "perderen"},
+      "ir": {"jo": "dormí", "tu": "dormires", "ell": "dormí", "nosaltres": "dormírem", "vosaltres": "dormíreu", "ells": "dormiren"}
+    },
+    "member_verbs": [],
+    "default_exercises": [
+      {"q": "«El rei ___ a la ciutat l'any 1358.» (arribar) — quina forma parlada seria?", "a": "arribà (= va arribar)"},
+      {"q": "«La guerra ___ tres anys.» (durar)", "a": "durà (= va durar)"},
+      {"q": "Tradueix a la forma parlada: «Ell escriví una carta.»", "a": "Ell va escriure una carta."}
+    ]
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "ser": {
+    "translation": "sein", "cefr": "A1",
+    "pattern_tags": ["participis-irregulars", "imperatius-irregulars"],
+    "irregularity_note": "Totalment irregular: soc, era, seré, sigui.",
+    "conjugations": {
+      "present": {"jo": "soc", "tu": "ets", "ell": "és", "nosaltres": "som", "vosaltres": "sou", "ells": "són"},
+      "imperfet": {"jo": "era", "tu": "eres", "ell": "era", "nosaltres": "érem", "vosaltres": "éreu", "ells": "eren"},
+      "futur": {"jo": "seré", "tu": "seràs", "ell": "serà", "nosaltres": "serem", "vosaltres": "sereu", "ells": "seran"},
+      "condicional": {"jo": "seria", "tu": "series", "ell": "seria", "nosaltres": "seríem", "vosaltres": "seríeu", "ells": "serien"},
+      "subjuntiu_present": {"jo": "sigui", "tu": "siguis", "ell": "sigui", "nosaltres": "siguem", "vosaltres": "sigueu", "ells": "siguin"},
+      "imperatiu": {"tu": "sigues", "voste": "sigui", "vosaltres": "sigueu"},
+      "gerundi": "sent", "participi": "estat"
+    }
+  },
+  "estar": {
+    "translation": "sich befinden, sein (Zustand)", "cefr": "A1",
+    "pattern_tags": ["imperatius-irregulars"],
+    "irregularity_note": "Arrel estigu- al subjuntiu i a l'imperatiu: estigui, estigues.",
+    "conjugations": {
+      "present": {"jo": "estic", "tu": "estàs", "ell": "està", "nosaltres": "estem", "vosaltres": "esteu", "ells": "estan"},
+      "imperfet": {"jo": "estava", "tu": "estaves", "ell": "estava", "nosaltres": "estàvem", "vosaltres": "estàveu", "ells": "estaven"},
+      "futur": {"jo": "estaré", "tu": "estaràs", "ell": "estarà", "nosaltres": "estarem", "vosaltres": "estareu", "ells": "estaran"},
+      "condicional": {"jo": "estaria", "tu": "estaries", "ell": "estaria", "nosaltres": "estaríem", "vosaltres": "estaríeu", "ells": "estarien"},
+      "subjuntiu_present": {"jo": "estigui", "tu": "estiguis", "ell": "estigui", "nosaltres": "estiguem", "vosaltres": "estigueu", "ells": "estiguin"},
+      "imperatiu": {"tu": "estigues", "voste": "estigui", "vosaltres": "estigueu"},
+      "gerundi": "estant", "participi": "estat"
+    }
+  },
+  "haver": {
+    "translation": "haben (Hilfsverb)", "cefr": "A1",
+    "pattern_tags": ["futurs-irregulars"],
+    "irregularity_note": "Auxiliar dels temps compostos; futur hauré, subjuntiu hagi.",
+    "conjugations": {
+      "present": {"jo": "he", "tu": "has", "ell": "ha", "nosaltres": "hem", "vosaltres": "heu", "ells": "han"},
+      "imperfet": {"jo": "havia", "tu": "havies", "ell": "havia", "nosaltres": "havíem", "vosaltres": "havíeu", "ells": "havien"},
+      "futur": {"jo": "hauré", "tu": "hauràs", "ell": "haurà", "nosaltres": "haurem", "vosaltres": "haureu", "ells": "hauran"},
+      "condicional": {"jo": "hauria", "tu": "hauries", "ell": "hauria", "nosaltres": "hauríem", "vosaltres": "hauríeu", "ells": "haurien"},
+      "subjuntiu_present": {"jo": "hagi", "tu": "hagis", "ell": "hagi", "nosaltres": "hàgim", "vosaltres": "hàgiu", "ells": "hagin"},
+      "imperatiu": {"tu": "—", "voste": "—", "vosaltres": "—"},
+      "gerundi": "havent", "participi": "hagut"
+    }
+  },
+  "tenir": {
+    "translation": "haben", "cefr": "A1",
+    "pattern_tags": ["verbs-velaritzats", "futurs-irregulars", "imperatius-irregulars"],
+    "irregularity_note": "tinc (velaritzat), futur tindré, imperatiu tingues/té.",
+    "conjugations": {
+      "present": {"jo": "tinc", "tu": "tens", "ell": "té", "nosaltres": "tenim", "vosaltres": "teniu", "ells": "tenen"},
+      "imperfet": {"jo": "tenia", "tu": "tenies", "ell": "tenia", "nosaltres": "teníem", "vosaltres": "teníeu", "ells": "tenien"},
+      "futur": {"jo": "tindré", "tu": "tindràs", "ell": "tindrà", "nosaltres": "tindrem", "vosaltres": "tindreu", "ells": "tindran"},
+      "condicional": {"jo": "tindria", "tu": "tindries", "ell": "tindria", "nosaltres": "tindríem", "vosaltres": "tindríeu", "ells": "tindrien"},
+      "subjuntiu_present": {"jo": "tingui", "tu": "tinguis", "ell": "tingui", "nosaltres": "tinguem", "vosaltres": "tingueu", "ells": "tinguin"},
+      "imperatiu": {"tu": "tingues", "voste": "tingui", "vosaltres": "tingueu"},
+      "gerundi": "tenint", "participi": "tingut"
+    }
+  },
+  "fer": {
+    "translation": "machen, tun", "cefr": "A1",
+    "pattern_tags": ["participis-irregulars", "futurs-irregulars", "imperatius-irregulars"],
+    "irregularity_note": "faig, feia, faré, fet — irregular a gairebé tot arreu.",
+    "conjugations": {
+      "present": {"jo": "faig", "tu": "fas", "ell": "fa", "nosaltres": "fem", "vosaltres": "feu", "ells": "fan"},
+      "imperfet": {"jo": "feia", "tu": "feies", "ell": "feia", "nosaltres": "fèiem", "vosaltres": "fèieu", "ells": "feien"},
+      "futur": {"jo": "faré", "tu": "faràs", "ell": "farà", "nosaltres": "farem", "vosaltres": "fareu", "ells": "faran"},
+      "condicional": {"jo": "faria", "tu": "faries", "ell": "faria", "nosaltres": "faríem", "vosaltres": "faríeu", "ells": "farien"},
+      "subjuntiu_present": {"jo": "faci", "tu": "facis", "ell": "faci", "nosaltres": "fem", "vosaltres": "feu", "ells": "facin"},
+      "imperatiu": {"tu": "fes", "voste": "faci", "vosaltres": "feu"},
+      "gerundi": "fent", "participi": "fet"
+    }
+  },
+  "anar": {
+    "translation": "gehen, fahren", "cefr": "A1",
+    "pattern_tags": ["futurs-irregulars", "imperatius-irregulars"],
+    "irregularity_note": "vaig/vas/va també són l'auxiliar del passat perifràstic; imperatiu vés.",
+    "conjugations": {
+      "present": {"jo": "vaig", "tu": "vas", "ell": "va", "nosaltres": "anem", "vosaltres": "aneu", "ells": "van"},
+      "imperfet": {"jo": "anava", "tu": "anaves", "ell": "anava", "nosaltres": "anàvem", "vosaltres": "anàveu", "ells": "anaven"},
+      "futur": {"jo": "aniré", "tu": "aniràs", "ell": "anirà", "nosaltres": "anirem", "vosaltres": "anireu", "ells": "aniran"},
+      "condicional": {"jo": "aniria", "tu": "aniries", "ell": "aniria", "nosaltres": "aniríem", "vosaltres": "aniríeu", "ells": "anirien"},
+      "subjuntiu_present": {"jo": "vagi", "tu": "vagis", "ell": "vagi", "nosaltres": "anem", "vosaltres": "aneu", "ells": "vagin"},
+      "imperatiu": {"tu": "vés", "voste": "vagi", "vosaltres": "aneu"},
+      "gerundi": "anant", "participi": "anat"
+    }
+  },
+  "poder": {
+    "translation": "können", "cefr": "A1",
+    "pattern_tags": ["futurs-irregulars"],
+    "irregularity_note": "puc, pugui; futur podré.",
+    "conjugations": {
+      "present": {"jo": "puc", "tu": "pots", "ell": "pot", "nosaltres": "podem", "vosaltres": "podeu", "ells": "poden"},
+      "imperfet": {"jo": "podia", "tu": "podies", "ell": "podia", "nosaltres": "podíem", "vosaltres": "podíeu", "ells": "podien"},
+      "futur": {"jo": "podré", "tu": "podràs", "ell": "podrà", "nosaltres": "podrem", "vosaltres": "podreu", "ells": "podran"},
+      "condicional": {"jo": "podria", "tu": "podries", "ell": "podria", "nosaltres": "podríem", "vosaltres": "podríeu", "ells": "podrien"},
+      "subjuntiu_present": {"jo": "pugui", "tu": "puguis", "ell": "pugui", "nosaltres": "puguem", "vosaltres": "pugueu", "ells": "puguin"},
+      "imperatiu": {"tu": "pugues", "voste": "pugui", "vosaltres": "pugueu"},
+      "gerundi": "podent", "participi": "pogut"
+    }
+  },
+  "voler": {
+    "translation": "wollen", "cefr": "A1",
+    "pattern_tags": ["futurs-irregulars"],
+    "irregularity_note": "vull, vulgui; futur voldré (voldria = ich möchte).",
+    "conjugations": {
+      "present": {"jo": "vull", "tu": "vols", "ell": "vol", "nosaltres": "volem", "vosaltres": "voleu", "ells": "volen"},
+      "imperfet": {"jo": "volia", "tu": "volies", "ell": "volia", "nosaltres": "volíem", "vosaltres": "volíeu", "ells": "volien"},
+      "futur": {"jo": "voldré", "tu": "voldràs", "ell": "voldrà", "nosaltres": "voldrem", "vosaltres": "voldreu", "ells": "voldran"},
+      "condicional": {"jo": "voldria", "tu": "voldries", "ell": "voldria", "nosaltres": "voldríem", "vosaltres": "voldríeu", "ells": "voldrien"},
+      "subjuntiu_present": {"jo": "vulgui", "tu": "vulguis", "ell": "vulgui", "nosaltres": "vulguem", "vosaltres": "vulgueu", "ells": "vulguin"},
+      "imperatiu": {"tu": "vulgues", "voste": "vulgui", "vosaltres": "vulgueu"},
+      "gerundi": "volent", "participi": "volgut"
+    }
+  },
+  "dir": {
+    "translation": "sagen", "cefr": "A1",
+    "pattern_tags": ["verbs-velaritzats", "participis-irregulars", "imperatius-irregulars"],
+    "irregularity_note": "dic, deia, dit; imperatiu digues.",
+    "conjugations": {
+      "present": {"jo": "dic", "tu": "dius", "ell": "diu", "nosaltres": "diem", "vosaltres": "dieu", "ells": "diuen"},
+      "imperfet": {"jo": "deia", "tu": "deies", "ell": "deia", "nosaltres": "dèiem", "vosaltres": "dèieu", "ells": "deien"},
+      "futur": {"jo": "diré", "tu": "diràs", "ell": "dirà", "nosaltres": "direm", "vosaltres": "direu", "ells": "diran"},
+      "condicional": {"jo": "diria", "tu": "diries", "ell": "diria", "nosaltres": "diríem", "vosaltres": "diríeu", "ells": "dirien"},
+      "subjuntiu_present": {"jo": "digui", "tu": "diguis", "ell": "digui", "nosaltres": "diguem", "vosaltres": "digueu", "ells": "diguin"},
+      "imperatiu": {"tu": "digues", "voste": "digui", "vosaltres": "digueu"},
+      "gerundi": "dient", "participi": "dit"
+    }
+  },
+  "venir": {
+    "translation": "kommen", "cefr": "A1",
+    "pattern_tags": ["verbs-velaritzats", "futurs-irregulars", "imperatius-irregulars"],
+    "irregularity_note": "vinc, vindré; imperatiu vine.",
+    "conjugations": {
+      "present": {"jo": "vinc", "tu": "vens", "ell": "ve", "nosaltres": "venim", "vosaltres": "veniu", "ells": "venen"},
+      "imperfet": {"jo": "venia", "tu": "venies", "ell": "venia", "nosaltres": "veníem", "vosaltres": "veníeu", "ells": "venien"},
+      "futur": {"jo": "vindré", "tu": "vindràs", "ell": "vindrà", "nosaltres": "vindrem", "vosaltres": "vindreu", "ells": "vindran"},
+      "condicional": {"jo": "vindria", "tu": "vindries", "ell": "vindria", "nosaltres": "vindríem", "vosaltres": "vindríeu", "ells": "vindrien"},
+      "subjuntiu_present": {"jo": "vingui", "tu": "vinguis", "ell": "vingui", "nosaltres": "vinguem", "vosaltres": "vingueu", "ells": "vinguin"},
+      "imperatiu": {"tu": "vine", "voste": "vingui", "vosaltres": "veniu"},
+      "gerundi": "venint", "participi": "vingut"
+    }
+  },
+  "veure": {
+    "translation": "sehen", "cefr": "A1",
+    "pattern_tags": ["participis-irregulars"],
+    "irregularity_note": "veig, veia, vist.",
+    "conjugations": {
+      "present": {"jo": "veig", "tu": "veus", "ell": "veu", "nosaltres": "veiem", "vosaltres": "veieu", "ells": "veuen"},
+      "imperfet": {"jo": "veia", "tu": "veies", "ell": "veia", "nosaltres": "vèiem", "vosaltres": "vèieu", "ells": "veien"},
+      "futur": {"jo": "veuré", "tu": "veuràs", "ell": "veurà", "nosaltres": "veurem", "vosaltres": "veureu", "ells": "veuran"},
+      "condicional": {"jo": "veuria", "tu": "veuries", "ell": "veuria", "nosaltres": "veuríem", "vosaltres": "veuríeu", "ells": "veurien"},
+      "subjuntiu_present": {"jo": "vegi", "tu": "vegis", "ell": "vegi", "nosaltres": "vegem", "vosaltres": "vegeu", "ells": "vegin"},
+      "imperatiu": {"tu": "veges", "voste": "vegi", "vosaltres": "vegeu"},
+      "gerundi": "veient", "participi": "vist"
+    }
+  },
+  "saber": {
+    "translation": "wissen, können (Fähigkeit)", "cefr": "A1",
+    "pattern_tags": ["futurs-irregulars", "imperatius-irregulars"],
+    "irregularity_note": "sé, sabré, sàpiga.",
+    "conjugations": {
+      "present": {"jo": "sé", "tu": "saps", "ell": "sap", "nosaltres": "sabem", "vosaltres": "sabeu", "ells": "saben"},
+      "imperfet": {"jo": "sabia", "tu": "sabies", "ell": "sabia", "nosaltres": "sabíem", "vosaltres": "sabíeu", "ells": "sabien"},
+      "futur": {"jo": "sabré", "tu": "sabràs", "ell": "sabrà", "nosaltres": "sabrem", "vosaltres": "sabreu", "ells": "sabran"},
+      "condicional": {"jo": "sabria", "tu": "sabries", "ell": "sabria", "nosaltres": "sabríem", "vosaltres": "sabríeu", "ells": "sabrien"},
+      "subjuntiu_present": {"jo": "sàpiga", "tu": "sàpigues", "ell": "sàpiga", "nosaltres": "sapiguem", "vosaltres": "sapigueu", "ells": "sàpiguen"},
+      "imperatiu": {"tu": "sàpigues", "voste": "sàpiga", "vosaltres": "sapigueu"},
+      "gerundi": "sabent", "participi": "sabut"
+    }
+  },
+  "donar": {
+    "translation": "geben", "cefr": "A1",
+    "pattern_tags": [],
+    "irregularity_note": "Regular de la primera conjugació.",
+    "conjugations": {
+      "present": {"jo": "dono", "tu": "dones", "ell": "dona", "nosaltres": "donem", "vosaltres": "doneu", "ells": "donen"},
+      "imperfet": {"jo": "donava", "tu": "donaves", "ell": "donava", "nosaltres": "donàvem", "vosaltres": "donàveu", "ells": "donaven"},
+      "futur": {"jo": "donaré", "tu": "donaràs", "ell": "donarà", "nosaltres": "donarem", "vosaltres": "donareu", "ells": "donaran"},
+      "condicional": {"jo": "donaria", "tu": "donaries", "ell": "donaria", "nosaltres": "donaríem", "vosaltres": "donaríeu", "ells": "donarien"},
+      "subjuntiu_present": {"jo": "doni", "tu": "donis", "ell": "doni", "nosaltres": "donem", "vosaltres": "doneu", "ells": "donin"},
+      "imperatiu": {"tu": "dona", "voste": "doni", "vosaltres": "doneu"},
+      "gerundi": "donant", "participi": "donat"
+    }
+  },
+  "dur": {
+    "translation": "tragen, bringen", "cefr": "A2",
+    "pattern_tags": ["verbs-velaritzats"],
+    "irregularity_note": "duc, duus, duu — molt curt; participi dut.",
+    "conjugations": {
+      "present": {"jo": "duc", "tu": "duus", "ell": "duu", "nosaltres": "duem", "vosaltres": "dueu", "ells": "duen"},
+      "imperfet": {"jo": "duia", "tu": "duies", "ell": "duia", "nosaltres": "dúiem", "vosaltres": "dúieu", "ells": "duien"},
+      "futur": {"jo": "duré", "tu": "duràs", "ell": "durà", "nosaltres": "durem", "vosaltres": "dureu", "ells": "duran"},
+      "condicional": {"jo": "duria", "tu": "duries", "ell": "duria", "nosaltres": "duríem", "vosaltres": "duríeu", "ells": "durien"},
+      "subjuntiu_present": {"jo": "dugui", "tu": "duguis", "ell": "dugui", "nosaltres": "duguem", "vosaltres": "dugueu", "ells": "duguin"},
+      "imperatiu": {"tu": "duu", "voste": "dugui", "vosaltres": "dueu"},
+      "gerundi": "duent", "participi": "dut"
+    }
+  },
+  "prendre": {
+    "translation": "nehmen", "cefr": "A2",
+    "pattern_tags": ["verbs-velaritzats", "participis-irregulars"],
+    "irregularity_note": "prenc, pres; la d desapareix fora de l'infinitiu i el futur.",
+    "conjugations": {
+      "present": {"jo": "prenc", "tu": "prens", "ell": "pren", "nosaltres": "prenem", "vosaltres": "preneu", "ells": "prenen"},
+      "imperfet": {"jo": "prenia", "tu": "prenies", "ell": "prenia", "nosaltres": "preníem", "vosaltres": "preníeu", "ells": "prenien"},
+      "futur": {"jo": "prendré", "tu": "prendràs", "ell": "prendrà", "nosaltres": "prendrem", "vosaltres": "prendreu", "ells": "prendran"},
+      "condicional": {"jo": "prendria", "tu": "prendries", "ell": "prendria", "nosaltres": "prendríem", "vosaltres": "prendríeu", "ells": "prendrien"},
+      "subjuntiu_present": {"jo": "prengui", "tu": "prenguis", "ell": "prengui", "nosaltres": "prenguem", "vosaltres": "prengueu", "ells": "prenguin"},
+      "imperatiu": {"tu": "pren", "voste": "prengui", "vosaltres": "preneu"},
+      "gerundi": "prenent", "participi": "pres"
+    }
+  },
+  "perdre": {
+    "translation": "verlieren", "cefr": "A2",
+    "pattern_tags": [],
+    "irregularity_note": "Model regular de la segona conjugació; participi perdut.",
+    "conjugations": {
+      "present": {"jo": "perdo", "tu": "perds", "ell": "perd", "nosaltres": "perdem", "vosaltres": "perdeu", "ells": "perden"},
+      "imperfet": {"jo": "perdia", "tu": "perdies", "ell": "perdia", "nosaltres": "perdíem", "vosaltres": "perdíeu", "ells": "perdien"},
+      "futur": {"jo": "perdré", "tu": "perdràs", "ell": "perdrà", "nosaltres": "perdrem", "vosaltres": "perdreu", "ells": "perdran"},
+      "condicional": {"jo": "perdria", "tu": "perdries", "ell": "perdria", "nosaltres": "perdríem", "vosaltres": "perdríeu", "ells": "perdrien"},
+      "subjuntiu_present": {"jo": "perdi", "tu": "perdis", "ell": "perdi", "nosaltres": "perdem", "vosaltres": "perdeu", "ells": "perdin"},
+      "imperatiu": {"tu": "perd", "voste": "perdi", "vosaltres": "perdeu"},
+      "gerundi": "perdent", "participi": "perdut"
+    }
+  }
+}
