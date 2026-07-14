@@ -122,10 +122,14 @@ If an image is attached, read the Spanish in it (sign, menu, letter, form) and t
 as the captured input (usually mode "decode").
 
 Field guidance:
-- "gist": plain German one-liner of what it means (for decode/listen); null otherwise.
+- "gist": plain German translation. For decode/listen: what the captured text means. For check:
+  the German meaning of the CORRECTED sentence (so the user sees what they actually said, fixed).
+  For brief: null.
 - "correction": only for check-mode errors; "why" is ONE short German sentence.
 - "region": use JSON null (not a string) when the item is standard/pan-hispanic; otherwise a
   lowercase region tag like "cataluña", "latam", "asturias", "andalucía".
+- "notes": GERMAN, 1-2 short sentences — grammatical peculiarities worth flagging in the text
+  (regionalisms, colloquial forms, notable constructions). Empty string if nothing stands out.
 - Keep lemmas to genuinely useful items, not every word.
 
 Slug rules: kebab-case, stable, conceptual not surface. A tense error goes on the tense concept

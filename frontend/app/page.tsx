@@ -17,7 +17,7 @@ function Band({ title, hint }: { title: string; hint: string }) {
 export default function Inicio() {
   return (
     <>
-      <h1 className="mb-6 text-2xl font-bold">lengua</h1>
+      <h1 className="mb-6 text-2xl font-bold">Inicio</h1>
       <Band title="En caliente" hint="Los conceptos recién promovidos aparecerán aquí." />
       <Band title="Para repasar" hint="Tu repaso del día, cuando haya vocabulario que repasar." />
       <Band title="Prep para hoy" hint="Preparación para tus citas de hoy." />

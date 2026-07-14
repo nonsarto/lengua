@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
 
@@ -36,8 +37,14 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${geistSans.variable} antialiased bg-[#faf7f2] text-stone-900`}>
+        {/* Wordmark arriba a la izquierda — también es el camino de vuelta a Inicio */}
+        <header className="mx-auto max-w-lg px-5 pt-[calc(env(safe-area-inset-top)+0.75rem)]">
+          <Link href="/" className="text-xl font-bold tracking-tight">
+            lengua<span className="text-amber-600">.</span>
+          </Link>
+        </header>
         {/* pb-28: espacio para la navegación inferior fija */}
-        <main className="mx-auto max-w-lg min-h-dvh px-5 pt-6 pb-28">{children}</main>
+        <main className="mx-auto max-w-lg min-h-dvh px-5 pt-4 pb-28">{children}</main>
         <BottomNav />
       </body>
     </html>

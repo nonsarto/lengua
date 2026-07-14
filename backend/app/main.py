@@ -59,12 +59,28 @@ def capture(body: CaptureIn) -> dict:
     capture_id = db.create_capture(user_id, body.text or "(foto)", result["mode"], body.source)
     written = apply_analysis(db, user_id, capture_id, result)
 
-    # 3. Micro-dose back to the UI: correction + one sentence why. No full lesson.
+    # 3. Micro-dose back to the UI: correction + translation + one sentence why. No full lesson.
     return {
         "capture_id": capture_id,
         "mode": result["mode"],
         "gist": result.get("gist"),
         "correction": result.get("correction"),
         "notes": result.get("notes", ""),
+        "concepts": [{"slug": c["slug"], "label": c["label"]} for c in result.get("concepts", [])],
         "written": written,   # what was filed silently (for debugging/curiosity)
     }
+
+
+@app.get("/captures")
+def captures(limit: int = 20) -> list[dict]:
+    """History for the Capturar screen: what you threw in, newest first."""
+    db = get_db()
+    user_id = db.get_or_create_user()
+    rows = db.list_captures(user_id, limit=min(limit, 50))
+    return [{
+        "id": r["id"],
+        "text": r["raw_text"],
+        "mode": r["kind"],
+        "created_at": r["created_at"],
+        "correction": (r["corrections"][0] if r.get("corrections") else None),
+    } for r in rows]

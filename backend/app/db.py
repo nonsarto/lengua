@@ -43,6 +43,15 @@ class Database:
         }).execute().data[0]
         return row["id"]
 
+    def list_captures(self, user_id: str, limit: int = 20) -> list[dict]:
+        """Recent captures, newest first, with their correction (if any) nested in."""
+        return (self.c.table("captures")
+                .select("id, raw_text, kind, created_at, corrections(wrong, correct)")
+                .eq("user_id", user_id)
+                .order("created_at", desc=True)
+                .limit(limit)
+                .execute().data)
+
     # ---------- concepts (slug reconciliation) ----------
     def get_or_create_concept(self, slug: str, label: str | None, cefr: str | None) -> dict:
         rows = self.c.table("concepts").select("*").eq("slug", slug).execute().data
