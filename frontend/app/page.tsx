@@ -1,13 +1,14 @@
 "use client";
 
 /**
- * Inicio — el pulso. Tres bandas: en caliente / para repasar / prep para hoy.
- * En 3 segundos sabes qué toca hoy. Los datos vienen de GET /inicio (todo determinista).
+ * Inicio/Inici — el pulso. Tres bandas: en caliente / para repasar / prep para hoy.
+ * Datos de GET /inicio (todo determinista); textos de lib/strings (es/ca).
  */
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { apiFetch } from "@/lib/api";
+import { S } from "@/lib/strings";
 
 type Inicio = {
   en_caliente: { slug: string; label: string; cefr: string | null; need_count: number; success_count: number }[];
@@ -45,23 +46,23 @@ export default function InicioPage() {
 
   return (
     <>
-      <h1 className="mb-6 text-2xl font-bold">Inicio</h1>
+      <h1 className="mb-6 text-2xl font-bold">{S.inicioTitle}</h1>
 
-      <Band title="En caliente">
+      <Band title={S.bandHot}>
         {!data?.en_caliente?.length ? (
-          <Empty hint="Los conceptos recién promovidos aparecerán aquí." />
+          <Empty hint={S.emptyHot} />
         ) : (
           <ul className="space-y-2">
             {data.en_caliente.map((c) => (
               <li key={c.slug}>
                 <Link
                   href={`/gramatica/${c.slug}`}
-                  className="flex items-center justify-between rounded-xl border border-amber-200 bg-amber-50/60 p-4 active:scale-[0.99]"
+                  className="flex items-center justify-between rounded-xl border border-accent-200 bg-accent-50/60 p-4 active:scale-[0.99]"
                 >
                   <div>
                     <p className="font-medium">{c.label}</p>
                     <p className="mt-0.5 text-xs text-stone-500">
-                      {c.need_count} {c.need_count === 1 ? "fallo" : "fallos"} capturados
+                      {S.errorsCaptured(c.need_count)}
                       {c.cefr ? ` · ${c.cefr}` : ""}
                     </p>
                   </div>
@@ -73,17 +74,15 @@ export default function InicioPage() {
         )}
       </Band>
 
-      <Band title="Para repasar">
+      <Band title={S.bandReview}>
         {!data || data.para_repasar.due === 0 ? (
-          <Empty hint="Tu repaso del día, cuando haya vocabulario que repasar." />
+          <Empty hint={S.emptyReview} />
         ) : (
           <Link
             href="/practicar"
             className="block rounded-xl border border-stone-200 bg-white p-4 active:scale-[0.99]"
           >
-            <p className="font-medium">
-              {data.para_repasar.due} {data.para_repasar.due === 1 ? "palabra" : "palabras"} para repasar
-            </p>
+            <p className="font-medium">{S.wordsToReview(data.para_repasar.due)}</p>
             <p className="mt-0.5 truncate text-xs text-stone-500">
               {data.para_repasar.preview.join(" · ")}
             </p>
@@ -91,9 +90,9 @@ export default function InicioPage() {
         )}
       </Band>
 
-      <Band title="Prep para hoy">
+      <Band title={S.bandPrep}>
         {!data?.prep_hoy?.length ? (
-          <Empty hint="Preparación para tus citas de hoy." />
+          <Empty hint={S.emptyPrep} />
         ) : (
           <ul className="space-y-2">
             {data.prep_hoy.map((s) => (
@@ -111,14 +110,10 @@ export default function InicioPage() {
         )}
       </Band>
 
-      {failed && (
-        <p className="mt-2 text-center text-xs text-stone-400">
-          (no se pudo cargar — ¿backend corriendo?)
-        </p>
-      )}
+      {failed && <p className="mt-2 text-center text-xs text-stone-400">{S.loadFailed}</p>}
 
       <p className="mt-8 text-center text-sm text-stone-400">
-        Captura algo de tu día con el botón <span className="font-semibold text-amber-600">+</span>
+        {S.captureHint} <span className="font-semibold text-accent-600">+</span>
       </p>
     </>
   );

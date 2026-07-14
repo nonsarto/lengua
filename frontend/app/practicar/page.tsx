@@ -1,26 +1,20 @@
 "use client";
 
 /**
- * Practicar — tres tipos de drill, UNA fuente. Primero eliges el sabor de la sesión
- * (mix / palabras / frases / conjugación); la selección sigue siendo determinista y
- * tira exactamente de donde cojea tu scoring. Solo el vocabulario mueve el SRS.
+ * Practicar — tres tipos de drill, UNA fuente. Primero eliges el sabor de la sesión;
+ * la selección es determinista y tira exactamente de donde cojea tu scoring.
+ * Solo el vocabulario mueve el SRS. Textos de lib/strings (es/ca).
  */
 
 import { useState } from "react";
 import Link from "next/link";
 import { apiFetch } from "@/lib/api";
+import { S } from "@/lib/strings";
 
 type Card =
   | { type: "vocab"; vocab_id: string; prompt: string; answer: string; register: string; is_phrase: boolean }
   | { type: "fix"; prompt: string; answer: string; concept_slug: string; concept_label: string }
   | { type: "conj"; verb: string; verb_de: string; tense: string; person: string | null; answer: string; pattern: string };
-
-const MODES = [
-  { tipo: "mix", label: "Mix", desc: "Un poco de todo — donde cojeas ahora" },
-  { tipo: "palabras", label: "Palabras", desc: "Solo vocabulario (SRS)" },
-  { tipo: "frases", label: "Frases", desc: "Frases con intención de tus preps" },
-  { tipo: "conjugacion", label: "Conjugación", desc: "Verbo · tiempo · persona → forma" },
-];
 
 export default function Practicar() {
   const [tipo, setTipo] = useState<string | null>(null);
@@ -79,9 +73,9 @@ export default function Practicar() {
   if (tipo === null) {
     return (
       <>
-        <h1 className="mb-4 text-2xl font-bold">Practicar</h1>
+        <h1 className="mb-4 text-2xl font-bold">{S.practicarTitle}</h1>
         <div className="space-y-2">
-          {MODES.map((m) => (
+          {S.modes.map((m) => (
             <button
               key={m.tipo}
               onClick={() => start(m.tipo)}
@@ -96,20 +90,18 @@ export default function Practicar() {
     );
   }
 
-  if (cards === null) return <p className="text-sm text-stone-400">preparando sesión…</p>;
+  if (cards === null) return <p className="text-sm text-stone-400">{S.preparingSession}</p>;
 
   // ---------- sin tarjetas ----------
   if (cards.length === 0)
     return (
       <>
-        <h1 className="mb-4 text-2xl font-bold">Practicar</h1>
+        <h1 className="mb-4 text-2xl font-bold">{S.practicarTitle}</h1>
         <p className="text-sm text-stone-500">
-          {loadFailed
-            ? "No se pudo cargar la sesión — ¿backend corriendo?"
-            : "Nada pendiente en esta categoría ahora mismo — captura más o prueba otro modo."}
+          {loadFailed ? S.sessionLoadFailed : S.nothingPending}
         </p>
         <button onClick={reset} className="mt-3 text-sm text-stone-500 underline-offset-2 hover:underline">
-          ← elegir otro modo
+          {S.chooseOther}
         </button>
       </>
     );
@@ -119,25 +111,25 @@ export default function Practicar() {
     const graded = tally.bien + tally.mal;
     return (
       <>
-        <h1 className="mb-4 text-2xl font-bold">Practicar</h1>
+        <h1 className="mb-4 text-2xl font-bold">{S.practicarTitle}</h1>
         <div className="rounded-xl border border-green-200 bg-green-50/60 p-6 text-center">
-          <p className="text-lg font-semibold text-green-800">Sesión terminada ✓</p>
-          <p className="mt-1 text-sm text-stone-600">{cards.length} tarjetas repasadas.</p>
+          <p className="text-lg font-semibold text-green-800">{S.sessionDone}</p>
+          <p className="mt-1 text-sm text-stone-600">{S.cardsReviewed(cards.length)}</p>
           {graded > 0 && (
             <p className="mt-2 text-sm">
-              <span className="font-semibold text-green-700">{tally.bien} bien</span>
+              <span className="font-semibold text-green-700">{tally.bien} {S.tallyGood}</span>
               {" · "}
-              <span className="font-semibold text-red-600">{tally.mal} mal</span>
+              <span className="font-semibold text-red-600">{tally.mal} {S.tallyBad}</span>
               {" · "}
               <span className="text-stone-500">{Math.round((tally.bien / graded) * 100)}%</span>
             </p>
           )}
           <div className="mt-4 flex justify-center gap-4 text-sm">
             <button onClick={reset} className="text-stone-600 underline-offset-2 hover:underline">
-              otra sesión
+              {S.anotherSession}
             </button>
             <Link href="/" className="text-stone-500 underline-offset-2 hover:underline">
-              → Inicio
+              {S.toInicio}
             </Link>
           </div>
         </div>
@@ -150,14 +142,14 @@ export default function Practicar() {
   return (
     <>
       <div className="mb-4 flex items-baseline justify-between">
-        <h1 className="text-2xl font-bold">Practicar</h1>
+        <h1 className="text-2xl font-bold">{S.practicarTitle}</h1>
         <span className="text-sm text-stone-400">{idx + 1} / {cards.length}</span>
       </div>
 
       {/* barra de progreso */}
       <div className="mb-5 h-1 rounded-full bg-stone-200">
         <div
-          className="h-1 rounded-full bg-amber-600 transition-all"
+          className="h-1 rounded-full bg-accent-600 transition-all"
           style={{ width: `${(idx / cards.length) * 100}%` }}
         />
       </div>
@@ -166,7 +158,7 @@ export default function Practicar() {
         {card.type === "vocab" && (
           <>
             <p className="text-xs uppercase tracking-wide text-stone-400">
-              {card.is_phrase ? "¿Cómo se dice esta frase?" : "¿Cómo se dice?"}
+              {card.is_phrase ? S.howToSayPhrase : S.howToSay}
             </p>
             <p className="mt-2 text-xl font-medium">🇩🇪 {card.prompt}</p>
           </>
@@ -174,14 +166,14 @@ export default function Practicar() {
         {card.type === "fix" && (
           <>
             <p className="text-xs uppercase tracking-wide text-stone-400">
-              Corrige tu frase · {card.concept_label}
+              {S.fixYourSentence} · {card.concept_label}
             </p>
             <p className="mt-2 text-xl font-medium text-red-700">{card.prompt}</p>
           </>
         )}
         {card.type === "conj" && (
           <>
-            <p className="text-xs uppercase tracking-wide text-stone-400">Conjuga</p>
+            <p className="text-xs uppercase tracking-wide text-stone-400">{S.conjugate}</p>
             <p className="mt-2 text-xl font-medium">
               {card.verb} <span className="text-sm text-stone-400">({card.verb_de})</span>
             </p>
@@ -203,7 +195,7 @@ export default function Practicar() {
               onClick={() => setRevealed(true)}
               className="w-full rounded-lg bg-stone-900 py-2.5 text-sm font-semibold text-white active:scale-[0.98]"
             >
-              mostrar
+              {S.showBtn}
             </button>
           ) : (
             <>
@@ -212,14 +204,14 @@ export default function Practicar() {
                 disabled={grading}
                 className="flex-1 rounded-lg border border-red-200 bg-red-50 py-2.5 text-sm font-semibold text-red-700 active:scale-[0.98] disabled:opacity-40"
               >
-                mal
+                {S.tallyBad}
               </button>
               <button
                 onClick={() => grade(true)}
                 disabled={grading}
                 className="flex-1 rounded-lg border border-green-200 bg-green-50 py-2.5 text-sm font-semibold text-green-700 active:scale-[0.98] disabled:opacity-40"
               >
-                bien
+                {S.tallyGood}
               </button>
             </>
           )}
@@ -231,7 +223,7 @@ export default function Practicar() {
               href={`/gramatica/${card.concept_slug}`}
               className="text-xs text-stone-400 underline-offset-2 hover:underline"
             >
-              → ver lección
+              {S.seeLesson}
             </Link>
           </p>
         )}

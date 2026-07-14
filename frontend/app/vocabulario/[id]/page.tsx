@@ -1,15 +1,15 @@
 "use client";
 
 /**
- * Un estante = una situación. Tres bloques del paquete de preparación:
- * vocabulario clave, frases con intención, y la gramática que esto activa —
- * ENLACES a los capítulos (con el porqué), nunca la explicación copiada.
+ * Un estante = una situación: vocabulario clave, frases con intención, y la gramática
+ * que esto activa — ENLACES a los capítulos (con el porqué), nunca la explicación copiada.
  */
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { apiFetch } from "@/lib/api";
+import { S } from "@/lib/strings";
 
 type Detail = {
   id: string;
@@ -32,21 +32,23 @@ export default function Estante() {
       .catch(() => setMissing(true));
   }, [id]);
 
-  if (missing) return <p className="text-sm text-stone-400">Esta situación no existe.</p>;
-  if (!d) return <p className="text-sm text-stone-400">cargando…</p>;
+  if (missing) return <p className="text-sm text-stone-400">{S.situationMissing}</p>;
+  if (!d) return <p className="text-sm text-stone-400">{S.loading}</p>;
 
   return (
     <>
       <p className="mb-1 text-xs text-stone-400">
-        <Link href="/vocabulario" className="underline-offset-2 hover:underline">Vocabulario</Link>
-        {" / situación"}
+        <Link href="/vocabulario" className="underline-offset-2 hover:underline">
+          {S.vocabularioTitle}
+        </Link>
+        {" / "}{S.shelfCrumb}
       </p>
       <h1 className="mb-5 text-2xl font-bold">{d.name}</h1>
 
       {d.words.length > 0 && (
         <section className="mb-6">
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
-            Vocabulario clave
+            {S.keyVocab}
           </h2>
           <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
             {d.words.map((w) => (
@@ -65,12 +67,12 @@ export default function Estante() {
       {d.phrases.length > 0 && (
         <section className="mb-6">
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
-            Frases con intención
+            {S.intentPhrases}
           </h2>
           <ul className="space-y-2">
             {d.phrases.map((p, i) => (
               <li key={i} className="rounded-xl border border-stone-200 bg-white p-3.5">
-                <p className="text-[11px] uppercase tracking-wide text-amber-700">{p.intent}</p>
+                <p className="text-[11px] uppercase tracking-wide text-accent-700">{p.intent}</p>
                 <p className="mt-1 text-base font-medium">{p.es}</p>
                 <p className="mt-0.5 text-sm text-stone-500">{p.de}</p>
               </li>
@@ -82,14 +84,14 @@ export default function Estante() {
       {d.concepts.length > 0 && (
         <section className="mb-6">
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
-            La gramática que esto activa
+            {S.activatedGrammar}
           </h2>
           <ul className="space-y-2">
             {d.concepts.map((c) => (
               <li key={c.slug}>
                 <Link
                   href={`/gramatica/${c.slug}`}
-                  className="block rounded-xl border border-amber-200 bg-amber-50/50 p-3.5 active:scale-[0.99]"
+                  className="block rounded-xl border border-accent-200 bg-accent-50/50 p-3.5 active:scale-[0.99]"
                 >
                   <p className="flex items-center justify-between font-medium">
                     {c.label} <span className="text-stone-400">→</span>

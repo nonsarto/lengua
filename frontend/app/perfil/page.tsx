@@ -1,11 +1,11 @@
 "use client";
 
-/** Perfil — quién eres, salir, y (solo admin) gestión de usuarios:
- *  crear cuentas con usuario+contraseña y resetear contraseñas. */
+/** Perfil — quién eres, salir, y (solo admin) gestión de usuarios. */
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { apiFetch, clearAuth, getUser } from "@/lib/api";
+import { S } from "@/lib/strings";
 
 type Row = {
   user_id: string;
@@ -51,10 +51,10 @@ export default function Perfil() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setMsg(data.detail ?? "Algo falló.");
+        setMsg(data.detail ?? S.somethingFailed);
         return;
       }
-      setMsg(`Usuario '${data.username}' creado ✓`);
+      setMsg(S.userCreated(data.username));
       setNewUser({ username: "", display_name: "", password: "" });
       const list = await apiFetch("/admin/users");
       if (list.ok) setUsers(await list.json());
@@ -64,7 +64,7 @@ export default function Perfil() {
   }
 
   async function resetPassword(u: Row) {
-    const pw = window.prompt(`Nueva contraseña para '${u.username}' (mín. 8):`);
+    const pw = window.prompt(S.newPassPrompt(u.username ?? "?"));
     if (!pw) return;
     const res = await apiFetch(`/admin/users/${u.user_id}/password`, {
       method: "POST",
@@ -72,32 +72,32 @@ export default function Perfil() {
       body: JSON.stringify({ password: pw }),
     });
     const data = await res.json().catch(() => ({}));
-    setMsg(res.ok ? `Contraseña de '${u.username}' cambiada ✓` : (data.detail ?? "Algo falló."));
+    setMsg(res.ok ? S.passChanged(u.username ?? "?") : (data.detail ?? S.somethingFailed));
   }
 
   return (
     <>
-      <h1 className="mb-4 text-2xl font-bold">Perfil</h1>
+      <h1 className="mb-4 text-2xl font-bold">{S.perfilTitle}</h1>
 
       <div className="mb-6 rounded-xl border border-stone-200 bg-white p-4">
         <p className="font-medium">{me?.display_name ?? "—"}</p>
         <p className="mt-0.5 text-sm text-stone-500">
           @{me?.username}
-          {me?.level_estimate ? ` · nivel ~${me.level_estimate}` : ""}
-          {me?.is_admin ? " · admin" : ""}
+          {me?.level_estimate ? ` · ${S.levelPrefix}${me.level_estimate}` : ""}
+          {me?.is_admin ? ` · ${S.adminTag}` : ""}
         </p>
         <button
           onClick={logout}
           className="mt-3 rounded-lg border border-stone-300 px-4 py-2 text-sm active:scale-95"
         >
-          Salir
+          {S.logoutBtn}
         </button>
       </div>
 
       {me?.is_admin && (
         <section>
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
-            Usuarios
+            {S.usersTitle}
           </h2>
 
           <div className="mb-3 divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
@@ -106,53 +106,53 @@ export default function Perfil() {
                 <div>
                   <p className="font-medium">
                     {u.display_name}{" "}
-                    {u.is_admin && <span className="text-xs text-amber-700">admin</span>}
+                    {u.is_admin && <span className="text-xs text-accent-700">{S.adminTag}</span>}
                   </p>
                   <p className="text-xs text-stone-400">
                     @{u.username}
                     {u.level_estimate ? ` · ~${u.level_estimate}` : ""}
-                    {!u.onboarded_at ? " · test pendiente" : ""}
+                    {!u.onboarded_at ? ` · ${S.testPending}` : ""}
                   </p>
                 </div>
                 <button
                   onClick={() => resetPassword(u)}
                   className="text-xs text-stone-500 underline-offset-2 hover:underline"
                 >
-                  contraseña
+                  {S.passwordBtn}
                 </button>
               </div>
             ))}
           </div>
 
           <form onSubmit={createUser} className="rounded-xl border border-stone-200 bg-white p-4">
-            <p className="mb-2 text-sm font-semibold">Nuevo usuario</p>
+            <p className="mb-2 text-sm font-semibold">{S.newUserTitle}</p>
             <div className="space-y-2">
               <input
                 value={newUser.username}
                 onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
-                placeholder="usuario (solo letras/números)"
+                placeholder={S.userPlaceholder}
                 autoCapitalize="none"
-                className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm outline-none focus:border-amber-500"
+                className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm outline-none focus:border-accent-500"
               />
               <input
                 value={newUser.display_name}
                 onChange={(e) => setNewUser({ ...newUser, display_name: e.target.value })}
-                placeholder="nombre visible"
-                className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm outline-none focus:border-amber-500"
+                placeholder={S.namePlaceholder}
+                className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm outline-none focus:border-accent-500"
               />
               <input
                 value={newUser.password}
                 onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-                placeholder="contraseña (mín. 8)"
+                placeholder={S.passPlaceholder}
                 type="password"
-                className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm outline-none focus:border-amber-500"
+                className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm outline-none focus:border-accent-500"
               />
               <button
                 type="submit"
                 disabled={busy || !newUser.username || newUser.password.length < 8}
-                className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
+                className="rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
               >
-                crear
+                {S.createBtn}
               </button>
             </div>
           </form>

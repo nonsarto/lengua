@@ -1,10 +1,11 @@
 "use client";
 
-/** Entrar — el admin crea las cuentas, aquí solo se entra. El token vive 30 días. */
+/** Entrar — el admin crea las cuentas, aquí solo se entra. Token: 30 días. */
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { apiFetch, setAuth, type User } from "@/lib/api";
+import { S } from "@/lib/strings";
 
 export default function Login() {
   const router = useRouter();
@@ -24,14 +25,14 @@ export default function Login() {
         body: JSON.stringify({ username, password }),
       });
       if (!res.ok) {
-        setError(res.status === 401 ? "Usuario o contraseña incorrectos." : "Algo falló.");
+        setError(res.status === 401 ? S.loginWrong : S.loginFailed);
         return;
       }
       const data: { token: string; user: User } = await res.json();
       setAuth(data.token, data.user);
       router.push(data.user.onboarded ? "/" : "/nivel");
     } catch {
-      setError("No hay conexión con el backend.");
+      setError(S.loginNoBackend);
     } finally {
       setBusy(false);
     }
@@ -39,31 +40,31 @@ export default function Login() {
 
   return (
     <div className="flex min-h-[70dvh] flex-col justify-center">
-      <h1 className="mb-1 text-2xl font-bold">Hola 👋</h1>
-      <p className="mb-6 text-sm text-stone-500">Entra para seguir aprendiendo.</p>
+      <h1 className="mb-1 text-2xl font-bold">{S.loginHello}</h1>
+      <p className="mb-6 text-sm text-stone-500">{S.loginSub}</p>
 
       <form onSubmit={submit} className="space-y-3">
         <input
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="usuario"
+          placeholder={S.loginUser}
           autoCapitalize="none"
           autoCorrect="off"
-          className="w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-base outline-none focus:border-amber-500"
+          className="w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-base outline-none focus:border-accent-500"
         />
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="contraseña"
+          placeholder={S.loginPass}
           type="password"
-          className="w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-base outline-none focus:border-amber-500"
+          className="w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-base outline-none focus:border-accent-500"
         />
         <button
           type="submit"
           disabled={busy || !username || !password}
-          className="w-full rounded-xl bg-amber-600 py-3 text-base font-semibold text-white disabled:opacity-40 active:scale-[0.99]"
+          className="w-full rounded-xl bg-accent-600 py-3 text-base font-semibold text-white disabled:opacity-40 active:scale-[0.99]"
         >
-          {busy ? "entrando…" : "Entrar"}
+          {busy ? S.loggingIn : S.loginBtn}
         </button>
       </form>
 

@@ -1,3 +1,5 @@
+import { S } from "@/lib/strings";
+
 /** Una sola fuente para la URL del backend: env explícita o el mismo host en el puerto 8000
  *  (funciona en localhost Y desde el iPhone en la red local sin configurar nada). */
 export const API =
@@ -58,16 +60,11 @@ export async function apiFetch(path: string, init?: RequestInit): Promise<Respon
 }
 
 // ---------- estados de concepto ----------
-export const STATE_LABEL: Record<string, string> = {
-  sin_ver: "sin ver",
-  visto: "visto",
-  flojo: "flojo",
-  aprendiendo: "aprendiendo",
-  dominado: "dominado",
-};
+// Labels aus dem Sprachpaket; die Werte selbst sind sprachneutrale Identifier.
+export const STATE_LABEL: Record<string, string> = S.stateLabels;
 
 export const STATE_STYLE: Record<string, string> = {
-  aprendiendo: "bg-amber-100 text-amber-800",
+  aprendiendo: "bg-accent-100 text-accent-800",
   flojo: "bg-orange-50 text-orange-700",
   visto: "bg-stone-100 text-stone-500",
   dominado: "bg-green-50 text-green-700",

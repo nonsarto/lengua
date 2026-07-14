@@ -1,13 +1,13 @@
 "use client";
 
 /**
- * Cuatro LUGARES donde vive el aprendizaje acumulado + UNA acción persistente en el centro.
- * Los cuatro motivos de captura NO son cuatro pestañas — todos pasan por Capturar.
- * Iconos: SVG monocromo (currentColor), targets táctiles generosos (44px+).
+ * Quatre LLOCS on viu l'aprenentatge acumulat + UNA acció persistent al centre.
+ * Labels + Sprache kommen aus lib/strings (NEXT_PUBLIC_LANG).
  */
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { S } from "@/lib/strings";
 
 const stroke = {
   fill: "none",
@@ -64,23 +64,23 @@ function PlaceLink({ href, label, icon }: { href: string; label: string; icon: s
 
 export default function BottomNav() {
   const pathname = usePathname();
-  // sin nav en login y durante el test de nivel — primero entrar/terminar
+  // sense nav al login ni durant el test de nivell
   if (pathname === "/login" || pathname === "/nivel") return null;
   return (
     <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-stone-200 bg-[#faf7f2]/95 backdrop-blur pb-[max(env(safe-area-inset-bottom),0.75rem)]">
       <div className="mx-auto flex max-w-lg items-end justify-between px-3 py-1.5">
-        <PlaceLink href="/" label="Inicio" icon="inicio" />
-        <PlaceLink href="/gramatica" label="Gramática" icon="gramatica" />
-        {/* La acción — grande, en el centro, siempre a mano (el momento del bar) */}
+        <PlaceLink href="/" label={S.navInicio} icon="inicio" />
+        <PlaceLink href="/gramatica" label={S.navGramatica} icon="gramatica" />
+        {/* L'acció — gran, al centre, sempre a mà */}
         <Link
           href="/capturar"
-          aria-label="Capturar"
-          className="-mt-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-amber-600 text-3xl font-light text-white shadow-lg shadow-amber-600/30 active:scale-95 transition-transform"
+          aria-label={S.navCapturar}
+          className="-mt-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-accent-600 text-3xl font-light text-white shadow-lg shadow-accent-600/30 active:scale-95 transition-transform"
         >
           +
         </Link>
-        <PlaceLink href="/vocabulario" label="Vocabulario" icon="vocabulario" />
-        <PlaceLink href="/practicar" label="Practicar" icon="practicar" />
+        <PlaceLink href="/vocabulario" label={S.navVocabulario} icon="vocabulario" />
+        <PlaceLink href="/practicar" label={S.navPracticar} icon="practicar" />
       </div>
     </nav>
   );

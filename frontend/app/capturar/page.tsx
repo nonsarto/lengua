@@ -2,15 +2,15 @@
 
 /**
  * Capturar — la única puerta de entrada. UNA superficie, SIN menú de modo:
- * el usuario tira lo que sea (texto o foto) y analyze() infiere la intención después.
- * La respuesta es una microdosis: corrección + traducción + una frase de porqué —
- * y el resto se archiva en silencio. Debajo: el historial de capturas recientes.
+ * el usuario tira lo que sea (texto o foto) y analyze() infiere la intención.
+ * Microdosis de vuelta + archivo silencioso. Textos de lib/strings (es/ca).
  * Deep-link: /capturar?mode=camera|voz|texto
  */
 
 import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { apiFetch } from "@/lib/api";
+import { S } from "@/lib/strings";
 
 type Correction = { wrong: string; correct: string; why: string; concept_slug: string };
 
@@ -44,20 +44,13 @@ async function fileToJpegB64(file: File, maxSide = 1568): Promise<string> {
   return canvas.toDataURL("image/jpeg", 0.85).split(",")[1];
 }
 
-const MODE_LABEL: Record<string, string> = {
-  check: "revisado",
-  decode: "descifrado",
-  brief: "preparación",
-  listen: "escuchado",
-};
-
 function timeAgo(iso: string): string {
   const mins = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
-  if (mins < 1) return "ahora";
-  if (mins < 60) return `hace ${mins} min`;
+  if (mins < 1) return S.timeNow;
+  if (mins < 60) return S.timeMin(mins);
   const hours = Math.round(mins / 60);
-  if (hours < 24) return `hace ${hours} h`;
-  return `hace ${Math.round(hours / 24)} d`;
+  if (hours < 24) return S.timeH(hours);
+  return S.timeD(Math.round(hours / 24));
 }
 
 function CapturarInner() {
@@ -78,7 +71,6 @@ function CapturarInner() {
     else textRef.current?.focus();
   }, [mode]);
 
-  // Historial al entrar (silencioso — si el backend no está, simplemente no hay lista)
   useEffect(() => {
     apiFetch(`/captures?limit=15`)
       .then((r) => (r.ok ? r.json() : []))
@@ -86,7 +78,6 @@ function CapturarInner() {
       .catch(() => {});
   }, []);
 
-  // Vista previa de la foto (y limpieza del object URL)
   useEffect(() => {
     if (!photo) {
       setPhotoUrl(null);
@@ -120,7 +111,7 @@ function CapturarInner() {
       setHistory((h) => [
         {
           id: data.capture_id,
-          text: sentText || "(foto)",
+          text: sentText || S.photoFallback,
           mode: data.mode,
           created_at: new Date().toISOString(),
           correction: data.correction,
@@ -131,7 +122,7 @@ function CapturarInner() {
       setPhoto(null);
       if (fileRef.current) fileRef.current.value = "";
     } catch (e) {
-      setError(e instanceof Error ? e.message : "algo falló");
+      setError(e instanceof Error ? e.message : "?");
     } finally {
       setBusy(false);
     }
@@ -139,22 +130,18 @@ function CapturarInner() {
 
   return (
     <>
-      <h1 className="mb-4 text-2xl font-bold">Capturar</h1>
+      <h1 className="mb-4 text-2xl font-bold">{S.capturarTitle}</h1>
 
       {/* LA superficie — sin menú previo. Texto, foto, lo que sea. */}
-      <div className="rounded-xl border border-stone-300 bg-white focus-within:border-amber-500">
+      <div className="rounded-xl border border-stone-300 bg-white focus-within:border-accent-500">
         {photoUrl && (
           <div className="flex items-center gap-3 border-b border-stone-100 p-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={photoUrl}
-              alt="Foto capturada"
-              className="h-16 w-16 rounded-lg object-cover"
-            />
-            <span className="text-sm text-stone-500">Foto lista para analizar</span>
+            <img src={photoUrl} alt="Foto" className="h-16 w-16 rounded-lg object-cover" />
+            <span className="text-sm text-stone-500">{S.photoReady}</span>
             <button
               onClick={() => setPhoto(null)}
-              aria-label="Quitar foto"
+              aria-label={S.photoRemove}
               className="ml-auto flex h-8 w-8 items-center justify-center rounded-full text-stone-400 hover:bg-stone-100"
             >
               ✕
@@ -167,10 +154,10 @@ function CapturarInner() {
           onChange={(e) => setText(e.target.value)}
           placeholder={
             mode === "voz"
-              ? "La voz llega pronto — de momento, escribe lo que oíste…"
+              ? S.placeholderVoice
               : photoUrl
-                ? "Contexto opcional para la foto…"
-                : "Lo que dijiste, lo que viste, lo que no entendiste…"
+                ? S.placeholderPhotoContext
+                : S.placeholderDefault
           }
           rows={4}
           className="w-full resize-none rounded-xl bg-transparent p-4 text-base outline-none"
@@ -182,7 +169,7 @@ function CapturarInner() {
           onClick={() => fileRef.current?.click()}
           className="rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm active:scale-95"
         >
-          📷 Cámara
+          📷 {S.cameraBtn}
         </button>
         <input
           ref={fileRef}
@@ -195,15 +182,15 @@ function CapturarInner() {
         <button
           onClick={submit}
           disabled={busy || (!text.trim() && !photo)}
-          className="ml-auto rounded-lg bg-amber-600 px-6 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
+          className="ml-auto rounded-lg bg-accent-600 px-6 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
         >
-          {busy ? "analizando…" : "Capturar"}
+          {busy ? S.analyzing : S.captureBtn}
         </button>
       </div>
 
       {error && (
         <p className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">
-          No se pudo capturar ({error}). ¿Está corriendo el backend?
+          {S.captureFailed(error)}
         </p>
       )}
 
@@ -211,7 +198,7 @@ function CapturarInner() {
       {result && (
         <div className="mt-6 rounded-xl border border-stone-200 bg-white p-4">
           <span className="mb-2 inline-block rounded-full bg-stone-100 px-2 py-0.5 text-[11px] uppercase tracking-wide text-stone-500">
-            {MODE_LABEL[result.mode] ?? result.mode}
+            {S.modeLabels[result.mode] ?? result.mode}
           </span>
 
           {result.correction && (
@@ -225,19 +212,22 @@ function CapturarInner() {
           )}
 
           {!result.correction && result.mode === "check" && (
-            <p className="text-base text-green-700">✓ Correcto.</p>
+            <p className="text-base text-green-700">{S.correctMark}</p>
           )}
 
-          {/* brief: el paquete de preparación está montado — un enlace, no la lección entera */}
+          {/* brief: paquete listo — un enlace, no la lección entera */}
           {result.written?.situation && (
             <a
               href={`/vocabulario/${result.written.situation.id}`}
-              className="mb-2 block rounded-lg border border-amber-300 bg-amber-50/70 p-3 active:scale-[0.99]"
+              className="mb-2 block rounded-lg border border-accent-300 bg-accent-50/70 p-3 active:scale-[0.99]"
             >
               <p className="font-medium">📦 {result.written.situation.name}</p>
               <p className="mt-0.5 text-sm text-stone-600">
-                {result.written.situation.vocab} palabras · {result.written.situation.phrases} frases
-                · {result.written.situation.concepts.length} conceptos activados → ver paquete
+                {S.packageReady(
+                  result.written.situation.vocab,
+                  result.written.situation.phrases,
+                  result.written.situation.concepts.length,
+                )}
               </p>
             </a>
           )}
@@ -249,7 +239,6 @@ function CapturarInner() {
             </p>
           )}
 
-          {/* Particularidades gramaticales del texto */}
           {result.notes && <p className="mt-2 text-sm text-stone-600">{result.notes}</p>}
 
           {result.concepts.length > 0 && (
@@ -266,13 +255,13 @@ function CapturarInner() {
           )}
 
           <p className="mt-3 flex items-center justify-between text-xs text-stone-400">
-            <span>guardado en silencio ✓</span>
+            <span>{S.savedSilently}</span>
             {result.correction && (
               <a
                 href={`/gramatica/${result.correction.concept_slug}`}
                 className="text-stone-500 underline-offset-2 hover:underline"
               >
-                → ver lección
+                {S.seeLesson}
               </a>
             )}
           </p>
@@ -283,7 +272,7 @@ function CapturarInner() {
       {history.length > 0 && (
         <section className="mt-8">
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
-            Últimas capturas
+            {S.historyTitle}
           </h2>
           <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
             {history.map((h) => (
@@ -291,7 +280,7 @@ function CapturarInner() {
                 <p className="flex items-baseline justify-between gap-2">
                   <span className="truncate text-sm text-stone-700">{h.text}</span>
                   <span className="shrink-0 text-[11px] text-stone-400">
-                    {MODE_LABEL[h.mode] ?? h.mode} · {timeAgo(h.created_at)}
+                    {S.modeLabels[h.mode] ?? h.mode} · {timeAgo(h.created_at)}
                   </span>
                 </p>
                 {h.correction && (

@@ -1,15 +1,15 @@
 "use client";
 
 /**
- * Test de nivel — 12 preguntas, ~3 minutos, una por concepto-firma de cada banda (A1-B2).
- * Un toque por pregunta, sin revelar (rápido). La evaluación es determinista y SIEMBRA
- * tus estados: lo que falles aparece directamente en "Lo tuyo ahora".
+ * Test de nivel/nivell — 12 preguntas, ~3 minutos, una por concepto-firma (A1-B2).
+ * Un toque por pregunta. La evaluación determinista SIEMBRA tus estados.
  */
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { apiFetch, updateStoredUser } from "@/lib/api";
+import { S } from "@/lib/strings";
 
 type Question = { id: string; band: string; q: string; options: string[] };
 type Result = { level: string; correct: number; total: number;
@@ -62,17 +62,13 @@ export default function Nivel() {
     return (
       <div className="flex min-h-[70dvh] flex-col justify-center">
         <div className="rounded-xl border border-green-200 bg-green-50/60 p-6 text-center">
-          <p className="text-sm uppercase tracking-wide text-stone-500">Tu nivel aproximado</p>
+          <p className="text-sm uppercase tracking-wide text-stone-500">{S.yourLevel}</p>
           <p className="mt-1 text-4xl font-bold text-green-800">{result.level}</p>
-          <p className="mt-2 text-sm text-stone-600">
-            {result.correct} de {result.total} correctas.
-          </p>
+          <p className="mt-2 text-sm text-stone-600">{S.correctOf(result.correct, result.total)}</p>
         </div>
         {result.weak.length > 0 && (
-          <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50/60 p-4">
-            <p className="text-sm font-semibold text-amber-800">
-              Tus primeros puntos flojos — ya están en tu Gramática:
-            </p>
+          <div className="mt-4 rounded-xl border border-accent-200 bg-accent-50/60 p-4">
+            <p className="text-sm font-semibold text-accent-800">{S.weakIntro}</p>
             <ul className="mt-1 text-sm text-stone-700">
               {result.weak.map((w) => (
                 <li key={w.slug}>· {w.label}</li>
@@ -82,31 +78,29 @@ export default function Nivel() {
         )}
         <Link
           href="/"
-          className="mt-6 rounded-xl bg-amber-600 py-3 text-center text-base font-semibold text-white active:scale-[0.99]"
+          className="mt-6 rounded-xl bg-accent-600 py-3 text-center text-base font-semibold text-white active:scale-[0.99]"
         >
-          Empezar →
+          {S.startBtn}
         </Link>
       </div>
     );
   }
 
-  if (!questions) return <p className="text-sm text-stone-400">cargando…</p>;
+  if (!questions) return <p className="text-sm text-stone-400">{S.loading}</p>;
 
   const q = questions[idx];
 
   return (
     <>
       <div className="mb-2 flex items-baseline justify-between">
-        <h1 className="text-2xl font-bold">Test de nivel</h1>
+        <h1 className="text-2xl font-bold">{S.nivelTitle}</h1>
         <span className="text-sm text-stone-400">{idx + 1} / {questions.length}</span>
       </div>
-      <p className="mb-4 text-xs text-stone-400">
-        ~3 minutos · si no lo sabes, elige cualquiera — así sabemos dónde empezar.
-      </p>
+      <p className="mb-4 text-xs text-stone-400">{S.nivelHint}</p>
 
       <div className="mb-5 h-1 rounded-full bg-stone-200">
         <div
-          className="h-1 rounded-full bg-amber-600 transition-all"
+          className="h-1 rounded-full bg-accent-600 transition-all"
           style={{ width: `${(idx / questions.length) * 100}%` }}
         />
       </div>
@@ -120,14 +114,14 @@ export default function Nivel() {
               key={i}
               onClick={() => answer(i)}
               disabled={busy}
-              className="block w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-left text-base active:scale-[0.99] active:border-amber-500 disabled:opacity-40"
+              className="block w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-left text-base active:scale-[0.99] active:border-accent-500 disabled:opacity-40"
             >
               {opt}
             </button>
           ))}
         </div>
       </div>
-      {busy && <p className="mt-3 text-center text-sm text-stone-400">evaluando…</p>}
+      {busy && <p className="mt-3 text-center text-sm text-stone-400">{S.evaluating}</p>}
     </>
   );
 }

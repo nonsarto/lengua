@@ -1,16 +1,16 @@
 "use client";
 
 /**
- * Un capítulo = dos capas.
- * MANTO personal (solo tuyo): si el concepto está promovido, el capítulo ABRE con tus
- * errores reales — "esto es lo que te pasa" — y la regla viene detrás, como explicación.
- * CUERPO compartido (congelado tras revisión): explicación, regla de oro, la trampa
- * alemana, paradigma, ejercicios. Un capítulo tranquilo muestra solo el cuerpo.
+ * Un capítulo = dos capas: MANTO personal (tus errores primero, si está caliente) +
+ * CUERPO compartido (explicación, regla de oro, trampa alemana, paradigma, ejercicios).
+ * Textos de lib/strings (es/ca); las personas del paradigma también.
  */
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { apiFetch, STATE_LABEL, STATE_STYLE } from "@/lib/api";
+import { S } from "@/lib/strings";
 
 type Detail = {
   slug: string;
@@ -26,11 +26,6 @@ type Detail = {
   reviewed: boolean;
   corrections: { wrong: string; correct: string; created_at: string }[];
   state: { state: string; need_count: number; success_count: number; priority: number };
-};
-
-const PERSONS = ["yo", "tu", "el", "nosotros", "vosotros", "ellos"];
-const PERSON_LABEL: Record<string, string> = {
-  yo: "yo", tu: "tú", el: "él/ella", nosotros: "nosotros", vosotros: "vosotros", ellos: "ellos/ellas",
 };
 
 export default function Capitulo() {
@@ -61,8 +56,8 @@ export default function Capitulo() {
     }
   }
 
-  if (missing) return <p className="text-sm text-stone-400">Este capítulo no existe.</p>;
-  if (!d) return <p className="text-sm text-stone-400">cargando…</p>;
+  if (missing) return <p className="text-sm text-stone-400">{S.chapterMissing}</p>;
+  if (!d) return <p className="text-sm text-stone-400">{S.loading}</p>;
 
   const promoted = d.state.state === "aprendiendo" || d.state.state === "flojo";
 
@@ -73,15 +68,15 @@ export default function Capitulo() {
         <span className={`rounded-full px-1.5 py-px ${STATE_STYLE[d.state.state]}`}>
           {STATE_LABEL[d.state.state]}
         </span>
-        {!d.reviewed && <span className="text-stone-300">borrador — sin revisar</span>}
+        {!d.reviewed && <span className="text-stone-300">{S.draftLong}</span>}
       </p>
       <h1 className="mb-4 text-2xl font-bold">{d.label}</h1>
 
       {/* EL MANTO — tus errores primero, si el capítulo está caliente */}
       {promoted && d.corrections.length > 0 && (
-        <section className="mb-6 rounded-xl border border-amber-300 bg-amber-50/70 p-4">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-amber-800">
-            Esto es lo que te pasa
+        <section className="mb-6 rounded-xl border border-accent-300 bg-accent-50/70 p-4">
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-accent-800">
+            {S.yourProblem}
           </h2>
           <ul className="space-y-2">
             {d.corrections.slice(0, 3).map((c, i) => (
@@ -91,28 +86,22 @@ export default function Capitulo() {
               </li>
             ))}
           </ul>
-          <p className="mt-2 text-xs text-amber-700">
-            {d.state.need_count} {d.state.need_count === 1 ? "vez" : "veces"} capturado — la regla de abajo explica tu problema.
-          </p>
+          <p className="mt-2 text-xs text-accent-700">{S.timesCaptured(d.state.need_count)}</p>
         </section>
       )}
 
       {/* Capítulo borrador sin cuerpo: nació de una captura, el contenido llega a demanda */}
       {!d.explanation && (
         <div className="mb-4 rounded-xl border border-dashed border-stone-300 bg-white p-5 text-center">
-          <p className="text-sm text-stone-500">
-            Este capítulo nació de tus capturas y aún no tiene contenido.
-          </p>
+          <p className="text-sm text-stone-500">{S.draftEmpty}</p>
           <button
             onClick={generate}
             disabled={generating}
-            className="mt-3 rounded-lg bg-amber-600 px-5 py-2 text-sm font-semibold text-white disabled:opacity-50 active:scale-95"
+            className="mt-3 rounded-lg bg-accent-600 px-5 py-2 text-sm font-semibold text-white disabled:opacity-50 active:scale-95"
           >
-            {generating ? "escribiendo el capítulo… (medio minuto)" : "✨ Generar contenido"}
+            {generating ? S.generating : S.generateBtn}
           </button>
-          {genError && (
-            <p className="mt-2 text-xs text-red-600">No se pudo generar — inténtalo otra vez.</p>
-          )}
+          {genError && <p className="mt-2 text-xs text-red-600">{S.generateFailed}</p>}
         </div>
       )}
 
@@ -122,7 +111,7 @@ export default function Capitulo() {
       {d.rule_of_thumb && (
         <div className="mb-4 rounded-xl border border-stone-200 bg-white p-4">
           <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
-            Regla de oro
+            {S.ruleOfThumb}
           </h3>
           <p className="text-base">{d.rule_of_thumb}</p>
         </div>
@@ -131,7 +120,7 @@ export default function Capitulo() {
       {d.german_pitfall && (
         <div className="mb-4 rounded-xl border border-orange-200 bg-orange-50/60 p-4">
           <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-orange-700">
-            ⚠️ La trampa alemana
+            {S.germanPitfall}
           </h3>
           <p className="text-base">{d.german_pitfall}</p>
         </div>
@@ -140,7 +129,7 @@ export default function Capitulo() {
       {d.paradigm && (
         <div className="mb-4 overflow-x-auto rounded-xl border border-stone-200 bg-white p-4">
           <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
-            Paradigma
+            {S.paradigm}
           </h3>
           <table className="w-full text-sm">
             <thead>
@@ -152,9 +141,9 @@ export default function Capitulo() {
               </tr>
             </thead>
             <tbody>
-              {PERSONS.map((p) => (
+              {S.persons.map((p) => (
                 <tr key={p} className="border-t border-stone-100">
-                  <td className="py-1 pr-3 text-stone-400">{PERSON_LABEL[p]}</td>
+                  <td className="py-1 pr-3 text-stone-400">{S.personLabels[p]}</td>
                   {Object.keys(d.paradigm!).map((g) => (
                     <td key={g} className="py-1 pr-3">{d.paradigm![g][p]}</td>
                   ))}
@@ -168,7 +157,7 @@ export default function Capitulo() {
       {d.member_verbs && d.member_verbs.length > 0 && (
         <div className="mb-4">
           <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
-            Verbos de este patrón
+            {S.patternVerbs}
           </h3>
           <div className="flex flex-wrap gap-1.5">
             {d.member_verbs.map((v) => (
@@ -183,7 +172,7 @@ export default function Capitulo() {
       {d.default_exercises && d.default_exercises.length > 0 && (
         <div className="mb-4 rounded-xl border border-stone-200 bg-white p-4">
           <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
-            Para probar
+            {S.tryIt}
           </h3>
           <ul className="space-y-2">
             {d.default_exercises.map((ex, i) => (
@@ -197,6 +186,12 @@ export default function Capitulo() {
           </ul>
         </div>
       )}
+
+      <p className="mt-6">
+        <Link href="/gramatica" className="text-sm text-stone-400 underline-offset-2 hover:underline">
+          ← {S.gramaticaTitle}
+        </Link>
+      </p>
     </>
   );
 }
