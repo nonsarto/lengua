@@ -7,7 +7,9 @@ create extension if not exists "pgcrypto";
 
 -- ---------- enums ----------
 create type capture_kind   as enum ('decode', 'check', 'brief', 'listen');
-create type concept_state  as enum ('sin_ver', 'visto', 'flojo', 'aprendiendo', 'dominado');
+-- '_t' suffix: a table named concept_state exists below, and Postgres gives every table an
+-- implicit composite type of the same name — an enum called plain 'concept_state' collides.
+create type concept_state_t as enum ('sin_ver', 'visto', 'flojo', 'aprendiendo', 'dominado');
 create type concept_type   as enum ('grammar', 'tense', 'pattern_family');
 create type evidence_kind  as enum ('encounter', 'error', 'success');
 create type register_t     as enum ('formal', 'neutral', 'coloquial');
@@ -66,7 +68,7 @@ create table concept_state (
   concept_id       uuid not null references concepts(id),
   need_count       int not null default 0,
   success_count    int not null default 0,
-  state            concept_state not null default 'sin_ver',
+  state            concept_state_t not null default 'sin_ver',
   relevance_boost  int not null default 0,
   boost_expires_at timestamptz,                    -- after a situation's date passes, boost decays
   last_seen        timestamptz,
