@@ -10,10 +10,7 @@
 
 import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-
-const API =
-  process.env.NEXT_PUBLIC_API_URL ??
-  (typeof window !== "undefined" ? `http://${window.location.hostname}:8000` : "");
+import { API } from "@/lib/api";
 
 type Correction = { wrong: string; correct: string; why: string; concept_slug: string };
 
@@ -254,7 +251,10 @@ function CapturarInner() {
           <p className="mt-3 flex items-center justify-between text-xs text-stone-400">
             <span>guardado en silencio ✓</span>
             {result.correction && (
-              <a href="/gramatica" className="text-stone-500 underline-offset-2 hover:underline">
+              <a
+                href={`/gramatica/${result.correction.concept_slug}`}
+                className="text-stone-500 underline-offset-2 hover:underline"
+              >
                 → ver lección
               </a>
             )}

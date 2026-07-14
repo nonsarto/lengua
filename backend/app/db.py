@@ -98,6 +98,61 @@ class Database:
             "wrong": wrong, "correct": correct, "concept_id": concept_id,
         }).execute()
 
+    # ---------- reading surfaces (Slice 5) ----------
+    def list_concepts_with_state(self, user_id: str) -> list[dict]:
+        """All concepts + this user's state merged in (zeros where never touched)."""
+        concepts = (self.c.table("concepts")
+                    .select("id, slug, label, ctype, cefr, reviewed").execute().data)
+        states = (self.c.table("concept_state").select("*")
+                  .eq("user_id", user_id).execute().data)
+        by_cid = {s["concept_id"]: s for s in states}
+        out = []
+        for concept in concepts:
+            s = by_cid.get(concept["id"], {})
+            out.append({
+                **concept,
+                "state": s.get("state", "sin_ver"),
+                "need_count": s.get("need_count", 0),
+                "success_count": s.get("success_count", 0),
+                "relevance_boost": s.get("relevance_boost", 0),
+                "boost_expires_at": s.get("boost_expires_at"),
+                "updated_at": s.get("updated_at"),
+            })
+        return out
+
+    def get_concept_detail(self, user_id: str, slug: str) -> dict | None:
+        """One chapter: shared body + personal mantle (state, your actual error sentences)."""
+        rows = self.c.table("concepts").select("*").eq("slug", slug).execute().data
+        if not rows:
+            return None
+        concept = rows[0]
+        states = (self.c.table("concept_state").select("*")
+                  .eq("user_id", user_id).eq("concept_id", concept["id"]).execute().data)
+        corrections = (self.c.table("corrections")
+                       .select("wrong, correct, created_at")
+                       .eq("user_id", user_id).eq("concept_id", concept["id"])
+                       .order("created_at", desc=True).limit(10).execute().data)
+        return {**concept, "user_state": states[0] if states else None, "corrections": corrections}
+
+    def hot_concepts(self, user_id: str, limit: int = 5) -> list[dict]:
+        """'En caliente': freshly promoted concepts, newest movement first."""
+        states = (self.c.table("concept_state")
+                  .select("need_count, success_count, state, updated_at, concepts(slug, label, cefr)")
+                  .eq("user_id", user_id).eq("state", "aprendiendo")
+                  .order("updated_at", desc=True).limit(limit).execute().data)
+        return [{
+            "slug": s["concepts"]["slug"], "label": s["concepts"]["label"],
+            "cefr": s["concepts"]["cefr"], "need_count": s["need_count"],
+            "success_count": s["success_count"],
+        } for s in states]
+
+    def due_vocab(self, user_id: str, limit: int = 5) -> tuple[int, list[str]]:
+        """SRS-due vocab: count + a small preview. The drill itself is Slice 6."""
+        res = (self.c.table("vocab_items").select("term", count="exact")
+               .eq("user_id", user_id).lte("srs_due", "now()")
+               .order("srs_due").limit(limit).execute())
+        return res.count or 0, [r["term"] for r in res.data]
+
     # ---------- vocab ----------
     def upsert_vocab_item(self, user_id: str, lemma: dict, source_capture_id: str) -> dict | None:
         """Insert if the term is new for this user; existing terms are left alone

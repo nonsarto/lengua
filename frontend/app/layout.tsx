@@ -27,6 +27,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1, // se siente nativo: sin pinch-zoom en la chrome
   themeColor: "#faf7f2",
+  viewportFit: "cover", // sin esto, env(safe-area-inset-*) es 0 y la nav pega al borde
 };
 
 export default function RootLayout({
@@ -38,10 +39,12 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${geistSans.variable} antialiased bg-[#faf7f2] text-stone-900`}>
         {/* Wordmark arriba a la izquierda — también es el camino de vuelta a Inicio */}
-        <header className="mx-auto max-w-lg px-5 pt-[calc(env(safe-area-inset-top)+0.75rem)]">
-          <Link href="/" className="text-xl font-bold tracking-tight">
-            lengua<span className="text-amber-600">.</span>
-          </Link>
+        <header className="border-b border-amber-600/70">
+          <div className="mx-auto max-w-lg px-5 pt-[calc(env(safe-area-inset-top)+0.75rem)] pb-2.5">
+            <Link href="/" className="text-xl font-bold tracking-tight">
+              lengua<span className="text-amber-600">.</span>
+            </Link>
+          </div>
         </header>
         {/* pb-28: espacio para la navegación inferior fija */}
         <main className="mx-auto max-w-lg min-h-dvh px-5 pt-4 pb-28">{children}</main>

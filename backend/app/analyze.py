@@ -21,7 +21,17 @@ import json
 import os
 from anthropic import Anthropic
 
-client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+# Lazy: the deterministic half of this module (apply_analysis, compute_priority, ...)
+# must be importable without an API key — only analyze() itself needs the client.
+_client: Anthropic | None = None
+
+
+def _get_client() -> Anthropic:
+    global _client
+    if _client is None:
+        _client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    return _client
+
 
 # Sonnet is the right workhorse for this extraction task: fast, cheap, strong at tagging.
 MODEL = "claude-sonnet-5"
@@ -159,7 +169,7 @@ def analyze(raw_text: str, variety: str = "peninsular",
             {"type": "text", "text": raw_text or "(foto capturada)"},
         ]
 
-    resp = client.messages.create(
+    resp = _get_client().messages.create(
         model=MODEL,
         max_tokens=2000,
         thinking={"type": "disabled"},  # pure extraction — no thinking tokens competing with output
@@ -184,7 +194,25 @@ def analyze(raw_text: str, variety: str = "peninsular",
 # The db object is implemented in db.py; this seam stays here so it's obvious
 # that scoring/promotion/state transitions are code, never the model.
 # ---------------------------------------------------------------------------
+from datetime import datetime, timezone
+
 NEED_THRESHOLD = 4  # tune with real data, later. Maybe ratio-based instead of fixed.
+
+
+def compute_priority(state: dict, now: datetime | None = None) -> int:
+    """Chapter priority = durable need + temporary relevance boost.
+    The two forces live in SEPARATE columns and only meet here, at read time:
+    need persists until mastered; the boost dies with its expiry date."""
+    now = now or datetime.now(timezone.utc)
+    need = max(0, state["need_count"] - state["success_count"])
+    boost = 0
+    expires = state.get("boost_expires_at")
+    if state.get("relevance_boost") and expires:
+        if isinstance(expires, str):
+            expires = datetime.fromisoformat(expires.replace("Z", "+00:00"))
+        if now < expires:
+            boost = state["relevance_boost"]
+    return need + boost
 
 
 def apply_analysis(db, user_id: str, capture_id: str, result: dict) -> dict:
@@ -232,3 +260,5 @@ def _recompute_state(state: dict, evidence: str) -> None:
         state["state"] = "dominado"                   # demote back to quiet reference
     elif evidence == "error":
         state["state"] = "flojo"                      # errors below threshold: shaky but not promoted
+    elif evidence == "success" and state["state"] == "sin_ver":
+        state["state"] = "visto"                      # produced correctly without ever struggling

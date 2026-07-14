@@ -64,7 +64,7 @@ function PlaceLink({ href, label, icon }: { href: string; label: string; icon: s
 
 export default function BottomNav() {
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-stone-200 bg-[#faf7f2]/95 backdrop-blur pb-[env(safe-area-inset-bottom)]">
+    <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-stone-200 bg-[#faf7f2]/95 backdrop-blur pb-[max(env(safe-area-inset-bottom),0.75rem)]">
       <div className="mx-auto flex max-w-lg items-end justify-between px-3 py-1.5">
         <PlaceLink href="/" label="Inicio" icon="inicio" />
         <PlaceLink href="/gramatica" label="Gramática" icon="gramatica" />
