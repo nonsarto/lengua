@@ -12,7 +12,7 @@ import { API } from "@/lib/api";
 type Inicio = {
   en_caliente: { slug: string; label: string; cefr: string | null; need_count: number; success_count: number }[];
   para_repasar: { due: number; preview: string[] };
-  prep_hoy: unknown[];
+  prep_hoy: { id: string; name: string }[];
 };
 
 function Band({ title, children }: { title: string; children: React.ReactNode }) {
@@ -92,7 +92,23 @@ export default function InicioPage() {
       </Band>
 
       <Band title="Prep para hoy">
-        <Empty hint="Preparación para tus citas de hoy." />
+        {!data?.prep_hoy?.length ? (
+          <Empty hint="Preparación para tus citas de hoy." />
+        ) : (
+          <ul className="space-y-2">
+            {data.prep_hoy.map((s) => (
+              <li key={s.id}>
+                <Link
+                  href={`/vocabulario/${s.id}`}
+                  className="flex items-center justify-between rounded-xl border border-stone-200 bg-white p-4 active:scale-[0.99]"
+                >
+                  <p className="font-medium">📦 {s.name}</p>
+                  <span className="text-stone-400">→</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </Band>
 
       {failed && (

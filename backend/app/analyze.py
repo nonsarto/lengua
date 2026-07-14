@@ -109,8 +109,62 @@ ANALYSIS_SCHEMA = {
             },
         },
         "notes": {"type": "string"},
+        "brief": {
+            "anyOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "situation_name": {"type": "string"},
+                        "key_vocab": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "term": {"type": "string"},
+                                    "translation": {"type": "string"},
+                                    "register": {"type": "string",
+                                                 "enum": ["formal", "neutral", "coloquial"]},
+                                    "region": _NULLABLE_STR,
+                                },
+                                "required": ["term", "translation", "register", "region"],
+                                "additionalProperties": False,
+                            },
+                        },
+                        "phrases": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "intent": {"type": "string"},
+                                    "es": {"type": "string"},
+                                    "de": {"type": "string"},
+                                },
+                                "required": ["intent", "es", "de"],
+                                "additionalProperties": False,
+                            },
+                        },
+                        "concepts": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "slug": {"type": "string"},
+                                    "label": {"type": "string"},
+                                    "why": {"type": "string"},
+                                },
+                                "required": ["slug", "label", "why"],
+                                "additionalProperties": False,
+                            },
+                        },
+                    },
+                    "required": ["situation_name", "key_vocab", "phrases", "concepts"],
+                    "additionalProperties": False,
+                },
+                {"type": "null"},
+            ]
+        },
     },
-    "required": ["mode", "gist", "correction", "lemmas", "concepts", "verbs", "notes"],
+    "required": ["mode", "gist", "correction", "lemmas", "concepts", "verbs", "notes", "brief"],
     "additionalProperties": False,
 }
 
@@ -141,6 +195,16 @@ Field guidance:
 - "notes": GERMAN, 1-2 short sentences — grammatical peculiarities worth flagging in the text
   (regionalisms, colloquial forms, notable constructions). Empty string if nothing stands out.
 - Keep lemmas to genuinely useful items, not every word.
+- "brief": ONLY for mode "brief", null otherwise. The prep package for the described situation:
+  * "situation_name": short shelf name in Spanish (2-4 words, e.g. "reunión de reorganización").
+  * "key_vocab": 8-15 genuinely situation-specific items, register matching the situation.
+  * "phrases": 5-8 sentences WITH INTENT — things you DO with language there (proponer algo,
+    discrepar con tacto, ganar tiempo, pedir aclaración...). "intent" is the Spanish intent
+    label, "es" the phrase, "de" the German meaning.
+  * "concepts": 2-4 grammar concepts this situation ACTIVATES, with canonical slugs and "why" =
+    ONE German sentence explaining why this grammar matters here. LINK concepts — never copy
+    grammar explanations into the package.
+  In brief mode leave lemmas/concepts/verbs EMPTY (everything lives in the package).
 
 Slug rules: kebab-case, stable, conceptual not surface. A tense error goes on the tense concept
 AND on the violated pattern-family (e.g. 'no quero' -> concept slug 'stem-change-e-ie',
@@ -171,7 +235,7 @@ def analyze(raw_text: str, variety: str = "peninsular",
 
     resp = _get_client().messages.create(
         model=MODEL,
-        max_tokens=2000,
+        max_tokens=3000,  # brief packages are the biggest legitimate output
         thinking={"type": "disabled"},  # pure extraction — no thinking tokens competing with output
         system=SYSTEM_PROMPT.replace("{variety}", variety),
         messages=[{"role": "user", "content": content}],
@@ -197,6 +261,26 @@ def analyze(raw_text: str, variety: str = "peninsular",
 from datetime import datetime, timezone
 
 NEED_THRESHOLD = 4  # tune with real data, later. Maybe ratio-based instead of fixed.
+BOOST_AMOUNT = 5    # relevance boost a brief puts on its linked concepts ...
+BOOST_DAYS = 7      # ... and how long it lives. Decays via compute_priority, never mixed into need.
+
+
+def srs_update(item: dict, correct: bool, now: datetime | None = None) -> dict:
+    """SM-2-lite, deterministic. Wrong answers reset to 'due now'; right answers stretch
+    the interval by the ease factor. Returns only the fields to persist."""
+    from datetime import timedelta
+    now = now or datetime.now(timezone.utc)
+    ease, reps, interval = item["srs_ease"], item["srs_reps"], item["srs_interval_days"]
+    if correct:
+        reps += 1
+        interval = 1 if reps == 1 else 3 if reps == 2 else max(1, round(interval * ease))
+        ease = min(2.8, ease + 0.05)
+    else:
+        reps, interval = 0, 0
+        ease = max(1.3, round(ease - 0.2, 2))
+    due = now + timedelta(days=interval)
+    return {"srs_ease": ease, "srs_reps": reps,
+            "srs_interval_days": interval, "srs_due": due.isoformat()}
 
 
 def compute_priority(state: dict, now: datetime | None = None) -> int:
@@ -239,11 +323,44 @@ def apply_analysis(db, user_id: str, capture_id: str, result: dict) -> dict:
         written["correction"] = {"wrong": corr["wrong"], "correct": corr["correct"]}
 
     for lemma in result.get("lemmas", []):
-        item = db.upsert_vocab_item(user_id, lemma, source_capture_id=capture_id)
-        if item:
+        _, created = db.get_or_create_vocab_item(user_id, lemma, source_capture_id=capture_id)
+        if created:
             written["vocab"].append(lemma["term"])
 
+    brief = result.get("brief")
+    if brief:
+        written["situation"] = _apply_brief(db, user_id, capture_id, brief)
+
     return written
+
+
+def _apply_brief(db, user_id: str, capture_id: str, brief: dict) -> dict:
+    """A brief creates a shelf: situation + vocab + intent-phrases (same store), plus
+    LINKS to grammar chapters with a temporary boost. Grammar is never copied in."""
+    sit = db.get_or_create_situation(user_id, brief["situation_name"])
+
+    for item in brief["key_vocab"]:
+        vid, _ = db.get_or_create_vocab_item(user_id, item, source_capture_id=capture_id,
+                                             situation_id=sit["id"])
+        db.add_vocab_to_situation(sit["id"], vid)
+
+    for ph in brief["phrases"]:
+        vid, _ = db.get_or_create_vocab_item(
+            user_id,
+            {"term": ph["es"], "translation": ph["de"], "register": "neutral", "region": None},
+            source_capture_id=capture_id, situation_id=sit["id"],
+            tags=["frase", ph["intent"]],
+        )
+        db.add_vocab_to_situation(sit["id"], vid)
+
+    for c in brief["concepts"]:
+        concept = db.get_or_create_concept(c["slug"], c["label"], None)
+        db.link_situation_concept(sit["id"], concept["id"], c["why"])
+        db.boost_concept(user_id, concept["id"], BOOST_AMOUNT, BOOST_DAYS)
+
+    return {"id": sit["id"], "name": sit["name"],
+            "vocab": len(brief["key_vocab"]), "phrases": len(brief["phrases"]),
+            "concepts": [c["slug"] for c in brief["concepts"]]}
 
 
 def _recompute_state(state: dict, evidence: str) -> None:

@@ -153,6 +153,7 @@ create table situation_vocab (
 create table situation_concepts (
   situation_id uuid not null references situations(id),
   concept_id   uuid not null references concepts(id),
+  why          text,   -- one sentence: why this grammar matters HERE (link, never a copy)
   primary key (situation_id, concept_id)
 );
 

@@ -20,6 +20,9 @@ type CaptureResult = {
   correction: Correction | null;
   notes: string;
   concepts: { slug: string; label: string }[];
+  written?: {
+    situation?: { id: string; name: string; vocab: number; phrases: number; concepts: string[] };
+  };
 };
 
 type HistoryItem = {
@@ -223,6 +226,20 @@ function CapturarInner() {
 
           {!result.correction && result.mode === "check" && (
             <p className="text-base text-green-700">✓ Correcto.</p>
+          )}
+
+          {/* brief: el paquete de preparación está montado — un enlace, no la lección entera */}
+          {result.written?.situation && (
+            <a
+              href={`/vocabulario/${result.written.situation.id}`}
+              className="mb-2 block rounded-lg border border-amber-300 bg-amber-50/70 p-3 active:scale-[0.99]"
+            >
+              <p className="font-medium">📦 {result.written.situation.name}</p>
+              <p className="mt-0.5 text-sm text-stone-600">
+                {result.written.situation.vocab} palabras · {result.written.situation.phrases} frases
+                · {result.written.situation.concepts.length} conceptos activados → ver paquete
+              </p>
+            </a>
           )}
 
           {/* La traducción alemana — del texto descifrado o de la frase corregida */}
