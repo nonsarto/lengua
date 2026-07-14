@@ -210,7 +210,75 @@ Slug rules: kebab-case, stable, conceptual not surface. A tense error goes on th
 AND on the violated pattern-family (e.g. 'no quero' -> concept slug 'stem-change-e-ie',
 evidence 'error'), not on the single verb. Prefer reusing obvious canonical slugs
 (ser-vs-estar, indefinido-vs-perfecto, subjuntivo-presente, por-vs-para, stem-change-e-ie,
-g-verbs, ...)."""
+g-verbs, ...). Concept "label" fields are short chapter titles in SPANISH (the UI language),
+never German. Only tag GRAMMAR phenomena (structures, tenses, patterns, register/variety) —
+never vocabulary-topic pseudo-concepts like 'vocabulario-publicidad'."""
+
+
+# --------------------------------------------------------------------------- chapter bodies
+# On-demand content for LLM-proposed draft concepts (the seed covers the curated backbone;
+# concepts born from captures start as slug+label only). Same content rules as
+# seed_reference.py, same human gate: the result stays reviewed=false.
+CHAPTER_MODEL = "claude-opus-4-8"  # one-time content work — quality over cost, like the seed
+
+CHAPTER_BODY_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "label": {"type": "string"},
+        "explanation": {"type": "string"},
+        "rule_of_thumb": {"type": "string"},
+        "german_pitfall": {"type": "string"},
+        "member_verbs": {"type": "array", "items": {"type": "string"}},
+        "default_exercises": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {"q": {"type": "string"}, "a": {"type": "string"}},
+                "required": ["q", "a"],
+                "additionalProperties": False,
+            },
+        },
+    },
+    "required": ["label", "explanation", "rule_of_thumb", "german_pitfall",
+                 "member_verbs", "default_exercises"],
+    "additionalProperties": False,
+}
+
+CHAPTER_SYSTEM = """You write the reference content ("shared body") of ONE Spanish-grammar
+chapter for a German speaker living in Barcelona. Target production variety: peninsular.
+Language rules:
+- "label": a short chapter title in SPANISH (the UI language) — clean up the given label if
+  it is German or clumsy.
+- "explanation": simple, clear Spanish (3-6 sentences, aimed at the concept's CEFR level).
+- "rule_of_thumb": 1-2 short Spanish sentences — the thing you'd say in a bar to explain it.
+- "german_pitfall": GERMAN, 1-3 sentences. The contrastive trap for German speakers
+  specifically (interference from German grammar). The most valuable field — be concrete.
+- "member_verbs": ONLY if this is a verb-pattern family (8-15 frequent members); else [].
+- "default_exercises": 3 simple fill-in exercises (q with a gap, a with the solution). Spanish.
+Accuracy over flourish. This draft gets human-reviewed before it is frozen."""
+
+
+def generate_chapter_body(slug: str, label: str, cefr: str | None) -> dict:
+    """Fill a draft concept with reference content — returns the column dict to persist."""
+    resp = _get_client().messages.create(
+        model=CHAPTER_MODEL,
+        max_tokens=2500,
+        system=CHAPTER_SYSTEM,
+        messages=[{"role": "user", "content":
+                   f"Write the chapter body for: slug '{slug}', current label '{label}',"
+                   f" CEFR level {cefr or 'unknown'}."}],
+        output_config={"format": {"type": "json_schema", "schema": CHAPTER_BODY_SCHEMA}},
+    )
+    body = json.loads(next(b.text for b in resp.content if b.type == "text"))
+    return {
+        "label": body["label"],
+        "explanation": body["explanation"],
+        "rule_of_thumb": body["rule_of_thumb"],
+        "german_pitfall": body["german_pitfall"],
+        "member_verbs": body["member_verbs"] or None,
+        "default_exercises": body["default_exercises"],
+        "reviewed": False,  # the human gate stays — approve is a separate act
+    }
 
 
 def _clean_region(value):

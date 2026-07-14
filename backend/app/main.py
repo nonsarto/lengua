@@ -19,7 +19,8 @@ from pydantic import BaseModel
 
 import random
 
-from analyze import analyze, apply_analysis, compute_priority, srs_update
+from analyze import (analyze, apply_analysis, compute_priority, generate_chapter_body,
+                     srs_update)
 from db import get_db
 
 app = FastAPI(title="lengua")
@@ -313,6 +314,22 @@ def situation_detail(situation_id: str) -> dict:
                for i in detail["items"] if "frase" in (i.get("tags") or [])]
     return {"id": detail["id"], "name": detail["name"], "is_seed": detail["is_seed"],
             "words": words, "phrases": phrases, "concepts": detail["concepts"]}
+
+
+@app.post("/concepts/{slug}/generate")
+def concept_generate(slug: str) -> dict:
+    """Fill an empty draft chapter (born from a capture) with reference content on demand.
+    Stays reviewed=false — freezing remains a human act."""
+    db = get_db()
+    user_id = db.get_or_create_user()
+    detail = db.get_concept_detail(user_id, slug)
+    if detail is None:
+        raise HTTPException(404, f"Concepto '{slug}' no existe.")
+    if detail.get("explanation"):
+        raise HTTPException(409, "Este capítulo ya tiene contenido.")
+    body = generate_chapter_body(slug, detail["label"], detail.get("cefr"))
+    db.update_concept_body(slug, body)
+    return concept_detail(slug)
 
 
 @app.get("/captures")

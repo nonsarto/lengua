@@ -37,6 +37,8 @@ export default function Capitulo() {
   const { slug } = useParams<{ slug: string }>();
   const [d, setD] = useState<Detail | null>(null);
   const [missing, setMissing] = useState(false);
+  const [generating, setGenerating] = useState(false);
+  const [genError, setGenError] = useState(false);
 
   useEffect(() => {
     fetch(`${API}/concepts/${slug}`)
@@ -44,6 +46,20 @@ export default function Capitulo() {
       .then(setD)
       .catch(() => setMissing(true));
   }, [slug]);
+
+  async function generate() {
+    setGenerating(true);
+    setGenError(false);
+    try {
+      const res = await fetch(`${API}/concepts/${slug}/generate`, { method: "POST" });
+      if (!res.ok) throw new Error();
+      setD(await res.json());
+    } catch {
+      setGenError(true);
+    } finally {
+      setGenerating(false);
+    }
+  }
 
   if (missing) return <p className="text-sm text-stone-400">Este capítulo no existe.</p>;
   if (!d) return <p className="text-sm text-stone-400">cargando…</p>;
@@ -79,6 +95,25 @@ export default function Capitulo() {
             {d.state.need_count} {d.state.need_count === 1 ? "vez" : "veces"} capturado — la regla de abajo explica tu problema.
           </p>
         </section>
+      )}
+
+      {/* Capítulo borrador sin cuerpo: nació de una captura, el contenido llega a demanda */}
+      {!d.explanation && (
+        <div className="mb-4 rounded-xl border border-dashed border-stone-300 bg-white p-5 text-center">
+          <p className="text-sm text-stone-500">
+            Este capítulo nació de tus capturas y aún no tiene contenido.
+          </p>
+          <button
+            onClick={generate}
+            disabled={generating}
+            className="mt-3 rounded-lg bg-amber-600 px-5 py-2 text-sm font-semibold text-white disabled:opacity-50 active:scale-95"
+          >
+            {generating ? "escribiendo el capítulo… (medio minuto)" : "✨ Generar contenido"}
+          </button>
+          {genError && (
+            <p className="mt-2 text-xs text-red-600">No se pudo generar — inténtalo otra vez.</p>
+          )}
+        </div>
       )}
 
       {/* EL CUERPO — la referencia compartida */}

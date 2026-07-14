@@ -120,6 +120,9 @@ class Database:
             })
         return out
 
+    def update_concept_body(self, slug: str, fields: dict) -> None:
+        self.c.table("concepts").update(fields).eq("slug", slug).execute()
+
     def get_concept_detail(self, user_id: str, slug: str) -> dict | None:
         """One chapter: shared body + personal mantle (state, your actual error sentences)."""
         rows = self.c.table("concepts").select("*").eq("slug", slug).execute().data
