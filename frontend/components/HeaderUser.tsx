@@ -5,15 +5,18 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { getUser } from "@/lib/api";
 
 export default function HeaderUser() {
+  const pathname = usePathname();
   const [initial, setInitial] = useState<string | null>(null);
 
+  // re-lee el login en cada navegación — tras entrar, el círculo aparece al instante
   useEffect(() => {
     const u = getUser();
-    if (u) setInitial((u.display_name || u.username || "?")[0].toUpperCase());
-  }, []);
+    setInitial(u ? (u.display_name || u.username || "?")[0].toUpperCase() : null);
+  }, [pathname]);
 
   if (!initial) return null;
 
