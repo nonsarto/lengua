@@ -21,12 +21,15 @@ from pydantic import BaseModel
 import random
 
 import onboarding
+from lang import get_lang
+
+PACK = get_lang()
 from analyze import (analyze, apply_analysis, compute_priority, generate_chapter_body,
                      srs_update)
 from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
 
-app = FastAPI(title="lengua")
+app = FastAPI(title=PACK.APP_NAME)
 
 app.add_middleware(
     CORSMiddleware,
@@ -174,7 +177,8 @@ def capture(body: CaptureIn, user: dict = Depends(current_user)) -> dict:
 
     # 1. The one LLM seam — with the existing backbone in view, so slugs get REUSED
     #    at the source instead of spawning near-duplicates.
-    result = analyze(body.text, image_b64=body.image_b64,
+    result = analyze(body.text, variety=user.get("production_variety"),
+                     image_b64=body.image_b64,
                      image_media_type=body.image_media_type,
                      known_slugs=db.list_concept_slugs())
 
@@ -208,40 +212,15 @@ def inicio(user: dict = Depends(current_user)) -> dict:
     }
 
 
-# Deterministic chapter clusters. ctype covers tenses & conjugation patterns; the broad
-# 'grammar' bucket is split by curated slug — new LLM-proposed slugs land in 'Otros'
-# until a human sorts them (same spirit as reviewed=false).
-GRAMMAR_CLUSTER: dict[str, str] = {
-    **{s: "Estructura de la frase" for s in (
-        "negacion-doble", "interrogativos", "relativos", "estilo-indirecto",
-        "condicional-real", "condicional-irreal", "se-impersonal-pasivo", "voz-pasiva",
-        "comparativos", "superlativos", "adverbios-mente",
-        "desencadenantes-subjuntivo", "subjuntivo-vs-indicativo")},
-    **{s: "Verbos y contrastes" for s in (
-        "ser-vs-estar", "estar-vs-hay", "saber-vs-conocer", "pedir-vs-preguntar",
-        "ir-vs-venir", "llevar-vs-traer", "quedar-vs-quedarse", "verbos-tipo-gustar",
-        "verbos-reflexivos", "obligacion", "acabar-de", "perifrasis-verbales",
-        "estar-participio", "futuro-de-probabilidad")},
-    **{s: "Sustantivos y adjetivos" for s in (
-        "genero-y-numero", "articulos", "concordancia-adjetivo", "demostrativos",
-        "posesivos", "apocope", "muy-vs-mucho")},
-    **{s: "Pronombres" for s in (
-        "pronombres-od", "pronombres-oi", "combinacion-pronombres", "tuteo-vs-usted",
-        "vosotros-vs-ustedes", "a-personal")},
-    **{s: "Preposiciones" for s in (
-        "por-vs-para", "preposiciones-a-en-de", "desde-hace-durante", "ya-vs-todavia")},
-    # tense-contrast concepts are ctype 'grammar' but thematically belong to the tenses
-    **{s: "Tiempos" for s in ("indefinido-vs-perfecto", "indefinido-vs-imperfecto",
-                              "perfecto-subjuntivo")},
-}
+GRAMMAR_CLUSTER = PACK.GRAMMAR_CLUSTER
 
 
 def _concept_category(row: dict) -> str:
     if row["ctype"] == "tense":
-        return "Tiempos"
+        return PACK.CLUSTER_TENSE_LABEL
     if row["ctype"] == "pattern_family":
-        return "Conjugación"
-    return GRAMMAR_CLUSTER.get(row["slug"], "Otros")
+        return PACK.CLUSTER_PATTERN_LABEL
+    return GRAMMAR_CLUSTER.get(row["slug"], PACK.CLUSTER_OTHER_LABEL)
 
 
 @app.get("/concepts")
@@ -290,27 +269,10 @@ def concept_detail(slug: str, user: dict = Depends(current_user)) -> dict:
 # exactly the items where your scoring wobbles (due SRS, shaky concepts, shaky patterns).
 # ---------------------------------------------------------------------------
 
-# Which conjugation table a shaky concept exercises. Pattern families mostly live in the
-# present; the strong-preterite family in the indefinido; tense concepts in themselves.
-PATTERN_TENSE = {
-    "stem-change-e-ie": "presente", "stem-change-o-ue": "presente", "stem-change-e-i": "presente",
-    "g-verbs": "presente", "zc-verbs": "presente", "y-verbs": "presente",
-    "irregular-indefinido": "indefinido", "irregular-futuro": "futuro",
-    "irregular-participio": "participio", "irregular-imperativo": "imperativo",
-    "presente-indicativo": "presente", "indefinido": "indefinido", "imperfecto": "imperfecto",
-    "futuro-simple": "futuro", "condicional-simple": "condicional",
-    "subjuntivo-presente": "subjuntivo_presente",
-    "indefinido-vs-perfecto": "indefinido", "perfecto": "participio",
-}
-TENSE_LABEL = {
-    "presente": "presente", "indefinido": "indefinido", "imperfecto": "imperfecto",
-    "futuro": "futuro", "condicional": "condicional",
-    "subjuntivo_presente": "subjuntivo presente", "imperativo": "imperativo",
-    "participio": "participio", "gerundio": "gerundio",
-}
-PERSONS = ["yo", "tu", "el", "nosotros", "vosotros", "ellos"]
-PERSON_LABEL = {"yo": "yo", "tu": "tú", "el": "él/ella", "nosotros": "nosotros",
-                "vosotros": "vosotros", "ellos": "ellos/ellas", "usted": "usted"}
+PATTERN_TENSE = PACK.PATTERN_TENSE
+TENSE_LABEL = PACK.TENSE_LABEL
+PERSONS = PACK.PERSONS
+PERSON_LABEL = PACK.PERSON_LABEL
 
 
 def _conj_drills(db, shaky: list[dict], limit: int = 5,
@@ -320,7 +282,7 @@ def _conj_drills(db, shaky: list[dict], limit: int = 5,
     slugs = [s["slug"] for s in shaky if s["slug"] in PATTERN_TENSE]
     verbs = db.verbs_for_patterns(slugs) or (db.frequent_verbs() if (slugs or always) else [])
     if not slugs and always:
-        slugs = ["presente-indicativo"]
+        slugs = [PACK.DEFAULT_DRILL_TENSE_SLUG]
     drills: list[dict] = []
     for verb in verbs:
         if len(drills) >= limit:
@@ -336,8 +298,8 @@ def _conj_drills(db, shaky: list[dict], limit: int = 5,
             pool = PERSONS if tense != "imperativo" else list(table)
             # Stem changes only hit the stressed stem — nosotros/vosotros don't diphthongize,
             # so drilling them there would miss the very thing the pattern is about.
-            if matched[0].startswith("stem-change"):
-                pool = [p for p in pool if p not in ("nosotros", "vosotros")]
+            if matched[0].startswith(PACK.STEM_CHANGE_PREFIX):
+                pool = [p for p in pool if p not in PACK.STEM_UNSTRESSED]
             candidates = [p for p in pool if table.get(p) and table[p] != "—"]
             if not candidates:
                 continue

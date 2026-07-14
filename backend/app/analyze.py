@@ -21,6 +21,10 @@ import json
 import os
 from anthropic import Anthropic
 
+from lang import get_lang
+
+PACK = get_lang()
+
 # Lazy: the deterministic half of this module (apply_analysis, compute_priority, ...)
 # must be importable without an API key — only analyze() itself needs the client.
 _client: Anthropic | None = None
@@ -168,51 +172,7 @@ ANALYSIS_SCHEMA = {
     "additionalProperties": False,
 }
 
-SYSTEM_PROMPT = """You are the analysis engine of a Spanish-learning tool for a German speaker
-living in Barcelona. You receive a snippet the user captured from real life and return a
-structured analysis (the response format is enforced — focus on getting the content right).
-
-The user's production target variety is {variety} (default peninsular / Barcelona). But for
-COMPREHENSION, treat all varieties as valid — never mark a Latin-American or regional form as
-"wrong", only note its region.
-
-First infer the MODE from the input:
-- "check"  : the user produced Spanish and implicitly asks if it's right.
-- "decode" : the user captured something they don't understand (a sign, overheard speech, text).
-- "brief"  : the user asks to be prepared for a situation ("prepárame para...", "mañana tengo...").
-- "listen" : a transcript of someone else speaking (fast, colloquial, possibly regional).
-
-If an image is attached, read the Spanish in it (sign, menu, letter, form) and treat that text
-as the captured input (usually mode "decode").
-
-Field guidance:
-- "gist": plain German translation. For decode/listen: what the captured text means. For check:
-  the German meaning of the CORRECTED sentence (so the user sees what they actually said, fixed).
-  For brief: null.
-- "correction": only for check-mode errors; "why" is ONE short German sentence.
-- "region": use JSON null (not a string) when the item is standard/pan-hispanic; otherwise a
-  lowercase region tag like "cataluña", "latam", "asturias", "andalucía".
-- "notes": GERMAN, 1-2 short sentences — grammatical peculiarities worth flagging in the text
-  (regionalisms, colloquial forms, notable constructions). Empty string if nothing stands out.
-- Keep lemmas to genuinely useful items, not every word.
-- "brief": ONLY for mode "brief", null otherwise. The prep package for the described situation:
-  * "situation_name": short shelf name in Spanish (2-4 words, e.g. "reunión de reorganización").
-  * "key_vocab": 8-15 genuinely situation-specific items, register matching the situation.
-  * "phrases": 5-8 sentences WITH INTENT — things you DO with language there (proponer algo,
-    discrepar con tacto, ganar tiempo, pedir aclaración...). "intent" is the Spanish intent
-    label, "es" the phrase, "de" the German meaning.
-  * "concepts": 2-4 grammar concepts this situation ACTIVATES, with canonical slugs and "why" =
-    ONE German sentence explaining why this grammar matters here. LINK concepts — never copy
-    grammar explanations into the package.
-  In brief mode leave lemmas/concepts/verbs EMPTY (everything lives in the package).
-
-Slug rules: kebab-case, stable, conceptual not surface. A tense error goes on the tense concept
-AND on the violated pattern-family (e.g. 'no quero' -> concept slug 'stem-change-e-ie',
-evidence 'error'), not on the single verb. Prefer reusing obvious canonical slugs
-(ser-vs-estar, indefinido-vs-perfecto, subjuntivo-presente, por-vs-para, stem-change-e-ie,
-g-verbs, ...). Concept "label" fields are short chapter titles in SPANISH (the UI language),
-never German. Only tag GRAMMAR phenomena (structures, tenses, patterns, register/variety) —
-never vocabulary-topic pseudo-concepts like 'vocabulario-publicidad'."""
+SYSTEM_PROMPT = PACK.SYSTEM_PROMPT
 
 
 # --------------------------------------------------------------------------- chapter bodies
@@ -244,18 +204,7 @@ CHAPTER_BODY_SCHEMA = {
     "additionalProperties": False,
 }
 
-CHAPTER_SYSTEM = """You write the reference content ("shared body") of ONE Spanish-grammar
-chapter for a German speaker living in Barcelona. Target production variety: peninsular.
-Language rules:
-- "label": a short chapter title in SPANISH (the UI language) — clean up the given label if
-  it is German or clumsy.
-- "explanation": simple, clear Spanish (3-6 sentences, aimed at the concept's CEFR level).
-- "rule_of_thumb": 1-2 short Spanish sentences — the thing you'd say in a bar to explain it.
-- "german_pitfall": GERMAN, 1-3 sentences. The contrastive trap for German speakers
-  specifically (interference from German grammar). The most valuable field — be concrete.
-- "member_verbs": ONLY if this is a verb-pattern family (8-15 frequent members); else [].
-- "default_exercises": 3 simple fill-in exercises (q with a gap, a with the solution). Spanish.
-Accuracy over flourish. This draft gets human-reviewed before it is frozen."""
+CHAPTER_SYSTEM = PACK.CHAPTER_SYSTEM
 
 
 def generate_chapter_body(slug: str, label: str, cefr: str | None) -> dict:
@@ -289,7 +238,7 @@ def _clean_region(value):
     return None if v in ("null", "none", "") else v
 
 
-def analyze(raw_text: str, variety: str = "peninsular",
+def analyze(raw_text: str, variety: str | None = None,
             image_b64: str | None = None, image_media_type: str = "image/jpeg",
             known_slugs: list[str] | None = None) -> dict:
     """One brain for all four capture modes. Optionally takes a photo (base64) — Claude
@@ -303,7 +252,7 @@ def analyze(raw_text: str, variety: str = "peninsular",
             {"type": "text", "text": raw_text or "(foto capturada)"},
         ]
 
-    system = SYSTEM_PROMPT.replace("{variety}", variety)
+    system = SYSTEM_PROMPT.replace("{variety}", variety or PACK.DEFAULT_VARIETY)
     if known_slugs:
         system += (
             "\n\nEXISTING concept slugs — ALWAYS reuse one of these when it covers the "
