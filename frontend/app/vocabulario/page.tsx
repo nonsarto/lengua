@@ -18,6 +18,7 @@ export default function Vocabulario() {
   const router = useRouter();
   const [shelves, setShelves] = useState<Shelf[] | null>(null);
   const [loose, setLoose] = useState<Loose[]>([]);
+  const [due, setDue] = useState(0);
   const [newName, setNewName] = useState("");
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState(false);
@@ -28,6 +29,7 @@ export default function Vocabulario() {
       .then((d) => {
         setShelves(d.situations);
         setLoose(d.sueltas);
+        setDue(d.due ?? 0);
       })
       .catch(() => setShelves([]));
   }, []);
@@ -55,7 +57,14 @@ export default function Vocabulario() {
 
   return (
     <>
-      <h1 className="mb-4 text-2xl font-bold">Vocabulario</h1>
+      <h1 className="mb-1 text-2xl font-bold">Vocabulario</h1>
+      {due > 0 ? (
+        <Link href="/practicar" className="mb-4 inline-block text-xs text-amber-700 underline-offset-2 hover:underline">
+          {due} para repasar hoy → Practicar
+        </Link>
+      ) : (
+        <p className="mb-4 text-xs text-stone-400">todo repasado por hoy ✓</p>
+      )}
 
       {/* nueva situación — la IA la monta (vía analyze, modo brief) */}
       <div className="mb-6 flex gap-2">

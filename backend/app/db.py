@@ -266,10 +266,16 @@ class Database:
                 .order("created_at", desc=True).limit(5).execute().data)
 
     # ---------- practicar (drill selection — pulls exactly where scoring wobbles) ----------
-    def due_vocab_items(self, user_id: str, limit: int = 8) -> list[dict]:
-        return (self.c.table("vocab_items").select("*")
-                .eq("user_id", user_id).lte("srs_due", "now()")
-                .order("srs_due").limit(limit).execute().data)
+    def due_vocab_items(self, user_id: str, limit: int = 8,
+                        phrases: bool | None = None) -> list[dict]:
+        """SRS-due items. phrases=True → only intent-phrases, False → only words, None → both."""
+        q = (self.c.table("vocab_items").select("*")
+             .eq("user_id", user_id).lte("srs_due", "now()"))
+        if phrases is True:
+            q = q.contains("tags", ["frase"])
+        elif phrases is False:
+            q = q.not_.contains("tags", ["frase"])
+        return q.order("srs_due").limit(limit).execute().data
 
     def shaky_concepts(self, user_id: str) -> list[dict]:
         """Concepts whose state wobbles — the drill source."""

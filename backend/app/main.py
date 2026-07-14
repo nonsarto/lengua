@@ -87,6 +87,41 @@ def inicio() -> dict:
     }
 
 
+# Deterministic chapter clusters. ctype covers tenses & conjugation patterns; the broad
+# 'grammar' bucket is split by curated slug — new LLM-proposed slugs land in 'Otros'
+# until a human sorts them (same spirit as reviewed=false).
+GRAMMAR_CLUSTER: dict[str, str] = {
+    **{s: "Estructura de la frase" for s in (
+        "negacion-doble", "interrogativos", "relativos", "estilo-indirecto",
+        "condicional-real", "condicional-irreal", "se-impersonal-pasivo", "voz-pasiva",
+        "comparativos", "superlativos", "adverbios-mente",
+        "desencadenantes-subjuntivo", "subjuntivo-vs-indicativo")},
+    **{s: "Verbos y contrastes" for s in (
+        "ser-vs-estar", "estar-vs-hay", "saber-vs-conocer", "pedir-vs-preguntar",
+        "ir-vs-venir", "llevar-vs-traer", "quedar-vs-quedarse", "verbos-tipo-gustar",
+        "verbos-reflexivos", "obligacion", "acabar-de", "perifrasis-verbales",
+        "estar-participio", "futuro-de-probabilidad")},
+    **{s: "Sustantivos y adjetivos" for s in (
+        "genero-y-numero", "articulos", "concordancia-adjetivo", "demostrativos",
+        "posesivos", "apocope", "muy-vs-mucho")},
+    **{s: "Pronombres" for s in (
+        "pronombres-od", "pronombres-oi", "combinacion-pronombres", "tuteo-vs-usted",
+        "vosotros-vs-ustedes", "a-personal")},
+    **{s: "Preposiciones" for s in (
+        "por-vs-para", "preposiciones-a-en-de", "desde-hace-durante", "ya-vs-todavia")},
+    # tense-contrast concepts are ctype 'grammar' but thematically belong to the tenses
+    **{s: "Tiempos" for s in ("indefinido-vs-perfecto", "indefinido-vs-imperfecto")},
+}
+
+
+def _concept_category(row: dict) -> str:
+    if row["ctype"] == "tense":
+        return "Tiempos"
+    if row["ctype"] == "pattern_family":
+        return "Conjugación"
+    return GRAMMAR_CLUSTER.get(row["slug"], "Otros")
+
+
 @app.get("/concepts")
 def concepts_list() -> list[dict]:
     """Chapter list, priority-sorted: hot ones on top, mastered ones sink into quiet
@@ -96,6 +131,7 @@ def concepts_list() -> list[dict]:
     rows = db.list_concepts_with_state(user_id)
     for r in rows:
         r["priority"] = compute_priority(r)
+        r["category"] = _concept_category(r)
         r.pop("relevance_boost", None)
         r.pop("boost_expires_at", None)
         r.pop("id", None)
@@ -153,11 +189,14 @@ PERSON_LABEL = {"yo": "yo", "tu": "tú", "el": "él/ella", "nosotros": "nosotros
                 "vosotros": "vosotros", "ellos": "ellos/ellas", "usted": "usted"}
 
 
-def _conj_drills(db, shaky: list[dict], limit: int = 5) -> list[dict]:
-    """Verb+tense+person cards from the shaky pattern families / tenses."""
+def _conj_drills(db, shaky: list[dict], limit: int = 5,
+                 always: bool = False) -> list[dict]:
+    """Verb+tense+person cards from the shaky pattern families / tenses. With always=True
+    (dedicated conjugation session) falls back to frequent verbs in the present."""
     slugs = [s["slug"] for s in shaky if s["slug"] in PATTERN_TENSE]
-    verbs = db.verbs_for_patterns([s for s in slugs if not s.endswith("-vs-perfecto")]) \
-        or (db.frequent_verbs() if slugs else [])
+    verbs = db.verbs_for_patterns(slugs) or (db.frequent_verbs() if (slugs or always) else [])
+    if not slugs and always:
+        slugs = ["presente-indicativo"]
     drills: list[dict] = []
     for verb in verbs:
         if len(drills) >= limit:
@@ -188,34 +227,46 @@ def _conj_drills(db, shaky: list[dict], limit: int = 5) -> list[dict]:
     return drills
 
 
-@app.get("/practicar/session")
-def practicar_session() -> dict:
-    db = get_db()
-    user_id = db.get_or_create_user()
-    items: list[dict] = []
+def _vocab_cards(db, user_id: str, limit: int, phrases: bool | None) -> list[dict]:
+    return [{"type": "vocab", "vocab_id": v["id"], "prompt": v["translation"],
+             "answer": v["term"], "register": v["register"],
+             "is_phrase": "frase" in (v.get("tags") or [])}
+            for v in db.due_vocab_items(user_id, limit=limit, phrases=phrases)]
 
-    # 1) Vokabel-Recall: SRS-fällige Items (Herkunft hat die Startposition geseedet)
-    for v in db.due_vocab_items(user_id, limit=8):
-        items.append({"type": "vocab", "vocab_id": v["id"], "prompt": v["translation"],
-                      "answer": v["term"], "register": v["register"],
-                      "is_phrase": "frase" in (v.get("tags") or [])})
 
-    # 2) Konzept-Anwendung: deine ECHTEN Fehlersätze wackliger Konzepte, nicht generisch
-    shaky = db.shaky_concepts(user_id)
-    seen: set[tuple[str, str]] = set()
+def _fix_cards(db, user_id: str, shaky: list[dict], limit: int = 5) -> list[dict]:
+    items, seen = [], set()
     for corr in db.corrections_for_concepts(user_id, [s["concept_id"] for s in shaky]):
         key = (corr["wrong"], corr["correct"])
-        if key in seen or len(seen) >= 5:
+        if key in seen or len(items) >= limit:
             continue
         seen.add(key)
         items.append({"type": "fix", "prompt": corr["wrong"], "answer": corr["correct"],
                       "concept_slug": corr["concepts"]["slug"],
                       "concept_label": corr["concepts"]["label"]})
+    return items
 
-    # 3) Konjugations-Drill: aus wackligen Mustern/Tempora
-    items.extend(_conj_drills(db, shaky))
 
-    return {"items": items}
+@app.get("/practicar/session")
+def practicar_session(tipo: str = "mix") -> dict:
+    """Four session flavors, one store. mix = a bit of everything where your scoring
+    wobbles; palabras/frases = pure SRS recall; conjugacion = verb forms only."""
+    db = get_db()
+    user_id = db.get_or_create_user()
+
+    if tipo == "palabras":
+        items = _vocab_cards(db, user_id, 15, phrases=False)
+    elif tipo == "frases":
+        items = _vocab_cards(db, user_id, 15, phrases=True)
+    elif tipo == "conjugacion":
+        items = _conj_drills(db, db.shaky_concepts(user_id), limit=12, always=True)
+    else:  # mix — Vokabeln, deine echten Fehlersätze, Konjugation
+        shaky = db.shaky_concepts(user_id)
+        items = (_vocab_cards(db, user_id, 8, phrases=None)
+                 + _fix_cards(db, user_id, shaky)
+                 + _conj_drills(db, shaky))
+
+    return {"tipo": tipo, "items": items}
 
 
 class GradeIn(BaseModel):
@@ -244,7 +295,9 @@ def practicar_grade(body: GradeIn) -> dict:
 def vocabulario() -> dict:
     db = get_db()
     user_id = db.get_or_create_user()
-    return {"situations": db.list_situations(user_id), "sueltas": db.loose_vocab(user_id)}
+    due_count, _ = db.due_vocab(user_id)
+    return {"situations": db.list_situations(user_id), "sueltas": db.loose_vocab(user_id),
+            "due": due_count}
 
 
 @app.get("/situations/{situation_id}")

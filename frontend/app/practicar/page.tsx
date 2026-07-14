@@ -1,13 +1,12 @@
 "use client";
 
 /**
- * Practicar — tres tipos de drill, UNA sesión. La selección es determinista y tira
- * exactamente de donde cojea tu scoring: vocabulario SRS vencido, TUS frases mal dichas
- * (no ejercicios genéricos), y conjugación de los patrones flojos.
- * Solo el vocabulario mueve el SRS (bien/mal); fix y conjugación son auto-chequeo.
+ * Practicar — tres tipos de drill, UNA fuente. Primero eliges el sabor de la sesión
+ * (mix / palabras / frases / conjugación); la selección sigue siendo determinista y
+ * tira exactamente de donde cojea tu scoring. Solo el vocabulario mueve el SRS.
  */
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { API } from "@/lib/api";
 
@@ -16,18 +15,41 @@ type Card =
   | { type: "fix"; prompt: string; answer: string; concept_slug: string; concept_label: string }
   | { type: "conj"; verb: string; verb_de: string; tense: string; person: string | null; answer: string; pattern: string };
 
+const MODES = [
+  { tipo: "mix", label: "Mix", desc: "Un poco de todo — donde cojeas ahora" },
+  { tipo: "palabras", label: "Palabras", desc: "Solo vocabulario (SRS)" },
+  { tipo: "frases", label: "Frases", desc: "Frases con intención de tus preps" },
+  { tipo: "conjugacion", label: "Conjugación", desc: "Verbo · tiempo · persona → forma" },
+];
+
 export default function Practicar() {
+  const [tipo, setTipo] = useState<string | null>(null);
   const [cards, setCards] = useState<Card[] | null>(null);
   const [idx, setIdx] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [grading, setGrading] = useState(false);
+  const [tally, setTally] = useState({ bien: 0, mal: 0 });
+  const [loadFailed, setLoadFailed] = useState(false);
 
-  useEffect(() => {
-    fetch(`${API}/practicar/session`)
+  function start(t: string) {
+    setTipo(t);
+    setCards(null);
+    setIdx(0);
+    setTally({ bien: 0, mal: 0 });
+    setLoadFailed(false);
+    fetch(`${API}/practicar/session?tipo=${t}`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((d) => setCards(d.items))
-      .catch(() => setCards([]));
-  }, []);
+      .catch(() => {
+        setLoadFailed(true);
+        setCards([]);
+      });
+  }
+
+  function reset() {
+    setTipo(null);
+    setCards(null);
+  }
 
   function next() {
     setRevealed(false);
@@ -36,6 +58,7 @@ export default function Practicar() {
 
   async function grade(correct: boolean) {
     const card = cards![idx];
+    setTally((t) => (correct ? { ...t, bien: t.bien + 1 } : { ...t, mal: t.mal + 1 }));
     if (card.type !== "vocab") return next();
     setGrading(true);
     try {
@@ -52,32 +75,75 @@ export default function Practicar() {
     }
   }
 
-  if (cards === null) return <p className="text-sm text-stone-400">cargando…</p>;
+  // ---------- pantalla 1: elegir sesión ----------
+  if (tipo === null) {
+    return (
+      <>
+        <h1 className="mb-4 text-2xl font-bold">Practicar</h1>
+        <div className="space-y-2">
+          {MODES.map((m) => (
+            <button
+              key={m.tipo}
+              onClick={() => start(m.tipo)}
+              className="block w-full rounded-xl border border-stone-200 bg-white p-4 text-left active:scale-[0.99]"
+            >
+              <p className="font-semibold">{m.label}</p>
+              <p className="mt-0.5 text-sm text-stone-500">{m.desc}</p>
+            </button>
+          ))}
+        </div>
+      </>
+    );
+  }
 
+  if (cards === null) return <p className="text-sm text-stone-400">preparando sesión…</p>;
+
+  // ---------- sin tarjetas ----------
   if (cards.length === 0)
     return (
       <>
         <h1 className="mb-4 text-2xl font-bold">Practicar</h1>
         <p className="text-sm text-stone-500">
-          Nada que practicar todavía — captura algo de tu día con el botón{" "}
-          <span className="font-semibold text-amber-600">+</span> y vuelve.
+          {loadFailed
+            ? "No se pudo cargar la sesión — ¿backend corriendo?"
+            : "Nada pendiente en esta categoría ahora mismo — captura más o prueba otro modo."}
         </p>
+        <button onClick={reset} className="mt-3 text-sm text-stone-500 underline-offset-2 hover:underline">
+          ← elegir otro modo
+        </button>
       </>
     );
 
-  if (idx >= cards.length)
+  // ---------- fin de sesión: la cuenta ----------
+  if (idx >= cards.length) {
+    const graded = tally.bien + tally.mal;
     return (
       <>
         <h1 className="mb-4 text-2xl font-bold">Practicar</h1>
         <div className="rounded-xl border border-green-200 bg-green-50/60 p-6 text-center">
           <p className="text-lg font-semibold text-green-800">Sesión terminada ✓</p>
           <p className="mt-1 text-sm text-stone-600">{cards.length} tarjetas repasadas.</p>
-          <Link href="/" className="mt-3 inline-block text-sm text-stone-500 underline-offset-2 hover:underline">
-            → volver a Inicio
-          </Link>
+          {graded > 0 && (
+            <p className="mt-2 text-sm">
+              <span className="font-semibold text-green-700">{tally.bien} bien</span>
+              {" · "}
+              <span className="font-semibold text-red-600">{tally.mal} mal</span>
+              {" · "}
+              <span className="text-stone-500">{Math.round((tally.bien / graded) * 100)}%</span>
+            </p>
+          )}
+          <div className="mt-4 flex justify-center gap-4 text-sm">
+            <button onClick={reset} className="text-stone-600 underline-offset-2 hover:underline">
+              otra sesión
+            </button>
+            <Link href="/" className="text-stone-500 underline-offset-2 hover:underline">
+              → Inicio
+            </Link>
+          </div>
         </div>
       </>
     );
+  }
 
   const card = cards[idx];
 
@@ -139,7 +205,7 @@ export default function Practicar() {
             >
               mostrar
             </button>
-          ) : card.type === "vocab" ? (
+          ) : (
             <>
               <button
                 onClick={() => grade(false)}
@@ -156,13 +222,6 @@ export default function Practicar() {
                 bien
               </button>
             </>
-          ) : (
-            <button
-              onClick={next}
-              className="w-full rounded-lg bg-stone-900 py-2.5 text-sm font-semibold text-white active:scale-[0.98]"
-            >
-              siguiente
-            </button>
           )}
         </div>
 
