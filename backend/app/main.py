@@ -13,14 +13,16 @@ from dotenv import load_dotenv
 # .env lives at the repo root, two levels up from backend/app/
 load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 import random
 
+import onboarding
 from analyze import (analyze, apply_analysis, compute_priority, generate_chapter_body,
                      srs_update)
+from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
 
 app = FastAPI(title="lengua")
@@ -32,6 +34,116 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ---------------------------------------------------------------------------
+# Auth — Admin legt Nutzer an, jeder Endpunkt unten läuft als angemeldeter Nutzer.
+# ---------------------------------------------------------------------------
+
+def current_user(user_id: str = Depends(user_id_from_token)) -> dict:
+    user = get_db().get_user_by_id(user_id)
+    if user is None:
+        raise HTTPException(401, "Usuario no existe.")
+    return user
+
+
+def admin_user(user: dict = Depends(current_user)) -> dict:
+    if not user.get("is_admin"):
+        raise HTTPException(403, "Solo para admins.")
+    return user
+
+
+def _public_user(user: dict) -> dict:
+    return {
+        "user_id": user["user_id"],
+        "username": user["username"],
+        "display_name": user["display_name"],
+        "is_admin": user["is_admin"],
+        "onboarded": user.get("onboarded_at") is not None,
+        "level_estimate": user.get("level_estimate"),
+    }
+
+
+class LoginIn(BaseModel):
+    username: str
+    password: str
+
+
+class UserIn(BaseModel):
+    username: str
+    password: str
+    display_name: str = ""
+
+
+class PasswordIn(BaseModel):
+    password: str
+
+
+@app.post("/auth/login")
+def login(body: LoginIn) -> dict:
+    db = get_db()
+    user = db.get_user_by_username(body.username.lower().strip())
+    if user is None or not verify_password(body.password, user.get("password_hash")):
+        raise HTTPException(401, "Usuario o contraseña incorrectos.")
+    return {"token": make_token(user["user_id"]), "user": _public_user(user)}
+
+
+@app.get("/auth/me")
+def me(user: dict = Depends(current_user)) -> dict:
+    return _public_user(user)
+
+
+@app.get("/admin/users")
+def admin_list_users(user: dict = Depends(admin_user)) -> list[dict]:
+    return [{k: v for k, v in u.items()} for u in get_db().list_users()]
+
+
+@app.post("/admin/users")
+def admin_create_user(body: UserIn, user: dict = Depends(admin_user)) -> dict:
+    username = body.username.lower().strip()
+    if not username.isalnum() or len(username) < 2:
+        raise HTTPException(422, "Username: solo letras/números, mínimo 2.")
+    if len(body.password) < 8:
+        raise HTTPException(422, "Contraseña: mínimo 8 caracteres.")
+    db = get_db()
+    if db.get_user_by_username(username):
+        raise HTTPException(409, f"'{username}' ya existe.")
+    created = db.create_user(username, hash_password(body.password),
+                             body.display_name.strip() or username.capitalize())
+    return _public_user(created)
+
+
+@app.post("/admin/users/{target_id}/password")
+def admin_reset_password(target_id: str, body: PasswordIn,
+                         user: dict = Depends(admin_user)) -> dict:
+    if len(body.password) < 8:
+        raise HTTPException(422, "Contraseña: mínimo 8 caracteres.")
+    db = get_db()
+    if db.get_user_by_id(target_id) is None:
+        raise HTTPException(404, "Usuario no existe.")
+    db.update_user(target_id, {"password_hash": hash_password(body.password)})
+    return {"ok": True}
+
+
+# ---------------------------------------------------------------------------
+# Onboarding — 12 Fragen, ~3 Minuten, deterministische Auswertung sät die States.
+# ---------------------------------------------------------------------------
+
+class OnboardingIn(BaseModel):
+    answers: dict[str, int]  # question id -> chosen option index
+
+
+@app.get("/onboarding")
+def onboarding_questions(user: dict = Depends(current_user)) -> dict:
+    return {"questions": onboarding.public_questions(),
+            "done": user.get("onboarded_at") is not None}
+
+
+@app.post("/onboarding")
+def onboarding_submit(body: OnboardingIn, user: dict = Depends(current_user)) -> dict:
+    if user.get("onboarded_at") is not None:
+        raise HTTPException(409, "El test de nivel ya está hecho.")
+    return onboarding.grade(get_db(), user["user_id"], body.answers)
 
 
 class CaptureIn(BaseModel):
@@ -47,12 +159,12 @@ def health() -> dict:
 
 
 @app.post("/capture")
-def capture(body: CaptureIn) -> dict:
+def capture(body: CaptureIn, user: dict = Depends(current_user)) -> dict:
     if not body.text.strip() and not body.image_b64:
         raise HTTPException(422, "Captura vacía — manda texto o una foto.")
 
     db = get_db()
-    user_id = db.get_or_create_user()
+    user_id = user["user_id"]
 
     # 1. The one LLM seam — with the existing backbone in view, so slugs get REUSED
     #    at the source instead of spawning near-duplicates.
@@ -77,11 +189,11 @@ def capture(body: CaptureIn) -> dict:
 
 
 @app.get("/inicio")
-def inicio() -> dict:
+def inicio(user: dict = Depends(current_user)) -> dict:
     """The pulse. Three bands: en caliente / para repasar / prep para hoy — 3 seconds to
     know what today is about. Prep fills in with Slice 7 (briefs)."""
     db = get_db()
-    user_id = db.get_or_create_user()
+    user_id = user["user_id"]
     due_count, due_preview = db.due_vocab(user_id)
     return {
         "en_caliente": db.hot_concepts(user_id),
@@ -127,11 +239,11 @@ def _concept_category(row: dict) -> str:
 
 
 @app.get("/concepts")
-def concepts_list() -> list[dict]:
+def concepts_list(user: dict = Depends(current_user)) -> list[dict]:
     """Chapter list, priority-sorted: hot ones on top, mastered ones sink into quiet
     reference. Priority is deterministic (need + unexpired boost) — computed here, never LLM."""
     db = get_db()
-    user_id = db.get_or_create_user()
+    user_id = user["user_id"]
     rows = db.list_concepts_with_state(user_id)
     for r in rows:
         r["priority"] = compute_priority(r)
@@ -145,12 +257,7 @@ def concepts_list() -> list[dict]:
     return rows
 
 
-@app.get("/concepts/{slug}")
-def concept_detail(slug: str) -> dict:
-    """One chapter: shared body (frozen reference) + personal mantle (your errors, your state).
-    The body is the same for everyone; the mantle is what makes it yours."""
-    db = get_db()
-    user_id = db.get_or_create_user()
+def _concept_detail_payload(db, user_id: str, slug: str) -> dict:
     detail = db.get_concept_detail(user_id, slug)
     if detail is None:
         raise HTTPException(404, f"Concepto '{slug}' no existe.")
@@ -163,6 +270,13 @@ def concept_detail(slug: str) -> dict:
         "priority": compute_priority(state) if state else 0,
     }
     return detail
+
+
+@app.get("/concepts/{slug}")
+def concept_detail(slug: str, user: dict = Depends(current_user)) -> dict:
+    """One chapter: shared body (frozen reference) + personal mantle (your errors, your state).
+    The body is the same for everyone; the mantle is what makes it yours."""
+    return _concept_detail_payload(get_db(), user["user_id"], slug)
 
 
 # ---------------------------------------------------------------------------
@@ -252,11 +366,11 @@ def _fix_cards(db, user_id: str, shaky: list[dict], limit: int = 5) -> list[dict
 
 
 @app.get("/practicar/session")
-def practicar_session(tipo: str = "mix") -> dict:
+def practicar_session(tipo: str = "mix", user: dict = Depends(current_user)) -> dict:
     """Four session flavors, one store. mix = a bit of everything where your scoring
     wobbles; palabras/frases = pure SRS recall; conjugacion = verb forms only."""
     db = get_db()
-    user_id = db.get_or_create_user()
+    user_id = user["user_id"]
 
     if tipo == "palabras":
         items = _vocab_cards(db, user_id, 15, phrases=False)
@@ -279,10 +393,10 @@ class GradeIn(BaseModel):
 
 
 @app.post("/practicar/grade")
-def practicar_grade(body: GradeIn) -> dict:
+def practicar_grade(body: GradeIn, user: dict = Depends(current_user)) -> dict:
     """SRS moves only here, deterministically (SM-2-lite in analyze.py)."""
     db = get_db()
-    user_id = db.get_or_create_user()
+    user_id = user["user_id"]
     item = db.get_vocab_item(user_id, body.vocab_id)
     if item is None:
         raise HTTPException(404, "Vocab item no existe.")
@@ -296,18 +410,18 @@ def practicar_grade(body: GradeIn) -> dict:
 # ---------------------------------------------------------------------------
 
 @app.get("/vocabulario")
-def vocabulario() -> dict:
+def vocabulario(user: dict = Depends(current_user)) -> dict:
     db = get_db()
-    user_id = db.get_or_create_user()
+    user_id = user["user_id"]
     due_count, _ = db.due_vocab(user_id)
     return {"situations": db.list_situations(user_id), "sueltas": db.loose_vocab(user_id),
             "due": due_count}
 
 
 @app.get("/situations/{situation_id}")
-def situation_detail(situation_id: str) -> dict:
+def situation_detail(situation_id: str, user: dict = Depends(current_user)) -> dict:
     db = get_db()
-    user_id = db.get_or_create_user()
+    user_id = user["user_id"]
     detail = db.get_situation_detail(user_id, situation_id)
     if detail is None:
         raise HTTPException(404, "Situación no existe.")
@@ -320,9 +434,9 @@ def situation_detail(situation_id: str) -> dict:
 
 
 @app.post("/concepts/{slug}/merge")
-def concept_merge(slug: str, into: str) -> dict:
+def concept_merge(slug: str, into: str, user: dict = Depends(admin_user)) -> dict:
     """Consolidate a duplicate draft into its canonical chapter — deterministic, no LLM.
-    Evidence, corrections, situation links and learning state all move; the duplicate dies."""
+    Touches shared structure, so admin-only."""
     db = get_db()
     try:
         return db.merge_concept(slug, into)
@@ -331,11 +445,11 @@ def concept_merge(slug: str, into: str) -> dict:
 
 
 @app.post("/concepts/{slug}/generate")
-def concept_generate(slug: str) -> dict:
+def concept_generate(slug: str, user: dict = Depends(current_user)) -> dict:
     """Fill an empty draft chapter (born from a capture) with reference content on demand.
     Stays reviewed=false — freezing remains a human act."""
     db = get_db()
-    user_id = db.get_or_create_user()
+    user_id = user["user_id"]
     detail = db.get_concept_detail(user_id, slug)
     if detail is None:
         raise HTTPException(404, f"Concepto '{slug}' no existe.")
@@ -343,14 +457,14 @@ def concept_generate(slug: str) -> dict:
         raise HTTPException(409, "Este capítulo ya tiene contenido.")
     body = generate_chapter_body(slug, detail["label"], detail.get("cefr"))
     db.update_concept_body(slug, body)
-    return concept_detail(slug)
+    return _concept_detail_payload(db, user_id, slug)
 
 
 @app.get("/captures")
-def captures(limit: int = 20) -> list[dict]:
+def captures(limit: int = 20, user: dict = Depends(current_user)) -> list[dict]:
     """History for the Capturar screen: what you threw in, newest first."""
     db = get_db()
-    user_id = db.get_or_create_user()
+    user_id = user["user_id"]
     rows = db.list_captures(user_id, limit=min(limit, 50))
     return [{
         "id": r["id"],

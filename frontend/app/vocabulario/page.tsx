@@ -9,7 +9,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { API } from "@/lib/api";
+import { apiFetch } from "@/lib/api";
 
 type Shelf = { id: string; name: string; is_seed: boolean; item_count: number };
 type Loose = { id: string; term: string; translation: string; register: string; region: string | null };
@@ -24,7 +24,7 @@ export default function Vocabulario() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(`${API}/vocabulario`)
+    apiFetch(`/vocabulario`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((d) => {
         setShelves(d.situations);
@@ -39,7 +39,7 @@ export default function Vocabulario() {
     setCreating(true);
     setError(false);
     try {
-      const res = await fetch(`${API}/capture`, {
+      const res = await apiFetch(`/capture`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: `prepárame para ${newName.trim()}`, source: "web" }),

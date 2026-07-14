@@ -7,7 +7,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { API, STATE_LABEL, STATE_STYLE } from "@/lib/api";
+import { apiFetch, STATE_LABEL, STATE_STYLE } from "@/lib/api";
 
 type ConceptRow = {
   slug: string;
@@ -56,7 +56,7 @@ export default function Gramatica() {
   const [rows, setRows] = useState<ConceptRow[] | null>(null);
 
   useEffect(() => {
-    fetch(`${API}/concepts`)
+    apiFetch(`/concepts`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then(setRows)
       .catch(() => setRows([]));

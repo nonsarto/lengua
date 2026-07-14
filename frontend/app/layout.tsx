@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
+import HeaderUser from "@/components/HeaderUser";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,10 +41,11 @@ export default function RootLayout({
       <body className={`${geistSans.variable} antialiased bg-[#faf7f2] text-stone-900`}>
         {/* Wordmark arriba a la izquierda — también es el camino de vuelta a Inicio */}
         <header className="border-b border-amber-600/70">
-          <div className="mx-auto max-w-lg px-5 pt-[calc(env(safe-area-inset-top)+0.75rem)] pb-2.5">
+          <div className="mx-auto flex max-w-lg items-center justify-between px-5 pt-[calc(env(safe-area-inset-top)+0.75rem)] pb-2.5">
             <Link href="/" className="text-xl font-bold tracking-tight">
               lengua<span className="text-amber-600">.</span>
             </Link>
+            <HeaderUser />
           </div>
         </header>
         {/* pb-28: espacio para la navegación inferior fija */}

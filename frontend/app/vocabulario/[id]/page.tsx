@@ -9,7 +9,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { API } from "@/lib/api";
+import { apiFetch } from "@/lib/api";
 
 type Detail = {
   id: string;
@@ -26,7 +26,7 @@ export default function Estante() {
   const [missing, setMissing] = useState(false);
 
   useEffect(() => {
-    fetch(`${API}/situations/${id}`)
+    apiFetch(`/situations/${id}`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then(setD)
       .catch(() => setMissing(true));

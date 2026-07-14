@@ -8,7 +8,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { API } from "@/lib/api";
+import { apiFetch } from "@/lib/api";
 
 type Card =
   | { type: "vocab"; vocab_id: string; prompt: string; answer: string; register: string; is_phrase: boolean }
@@ -37,7 +37,7 @@ export default function Practicar() {
     setIdx(0);
     setTally({ bien: 0, mal: 0 });
     setLoadFailed(false);
-    fetch(`${API}/practicar/session?tipo=${t}`)
+    apiFetch(`/practicar/session?tipo=${t}`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((d) => setCards(d.items))
       .catch(() => {
@@ -62,7 +62,7 @@ export default function Practicar() {
     if (card.type !== "vocab") return next();
     setGrading(true);
     try {
-      await fetch(`${API}/practicar/grade`, {
+      await apiFetch(`/practicar/grade`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ vocab_id: card.vocab_id, correct }),

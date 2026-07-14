@@ -7,7 +7,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { API } from "@/lib/api";
+import { apiFetch } from "@/lib/api";
 
 type Inicio = {
   en_caliente: { slug: string; label: string; cefr: string | null; need_count: number; success_count: number }[];
@@ -37,7 +37,7 @@ export default function InicioPage() {
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    fetch(`${API}/inicio`)
+    apiFetch(`/inicio`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then(setData)
       .catch(() => setFailed(true));

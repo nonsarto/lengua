@@ -10,7 +10,7 @@
 
 import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { API } from "@/lib/api";
+import { apiFetch } from "@/lib/api";
 
 type Correction = { wrong: string; correct: string; why: string; concept_slug: string };
 
@@ -80,7 +80,7 @@ function CapturarInner() {
 
   // Historial al entrar (silencioso — si el backend no está, simplemente no hay lista)
   useEffect(() => {
-    fetch(`${API}/captures?limit=15`)
+    apiFetch(`/captures?limit=15`)
       .then((r) => (r.ok ? r.json() : []))
       .then(setHistory)
       .catch(() => {});
@@ -109,7 +109,7 @@ function CapturarInner() {
         body.image_b64 = await fileToJpegB64(photo);
         body.image_media_type = "image/jpeg";
       }
-      const res = await fetch(`${API}/capture`, {
+      const res = await apiFetch(`/capture`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

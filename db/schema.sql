@@ -20,6 +20,12 @@ create type variety_t      as enum ('peninsular', 'latam');
 -- generation & scoring lean on this one lane. Barcelona -> peninsular default.
 create table user_settings (
   user_id           uuid primary key default gen_random_uuid(),
+  username          text unique,                 -- login name; admin creates users (no self-signup)
+  password_hash     text,                        -- bcrypt
+  display_name      text,
+  is_admin          boolean not null default false,
+  level_estimate    text,                        -- rough CEFR from the onboarding test
+  onboarded_at      timestamptz,                 -- null = onboarding test still pending
   production_variety variety_t not null default 'peninsular',
   home_region       text default 'cataluña',
   created_at        timestamptz not null default now()

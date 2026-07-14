@@ -3,7 +3,8 @@ db.py — Supabase adapter. Implements the interface apply_analysis() (analyze.p
 
 Uses the SERVICE ROLE key: the backend is the only writer, RLS stays enabled on the tables
 (service role bypasses it), and the browser never talks to Supabase directly — it talks to
-FastAPI. Single-user for now: get_or_create_user() returns the one user_settings row.
+FastAPI. Users live in user_settings (username/password_hash/is_admin) — the admin creates
+accounts, every request runs as the authenticated user (see auth.py + main.current_user).
 
 Slug reconciliation lives here (golden rule #3): analyze() proposes slugs, get_or_create_concept()
 reuses existing ones and creates new ones with reviewed=false. Slugs are never renamed.
@@ -28,13 +29,47 @@ class Database:
     def __init__(self, client: Client):
         self.c = client
 
-    # ---------- user (single-user for now) ----------
-    def get_or_create_user(self) -> str:
-        rows = self.c.table("user_settings").select("user_id").limit(1).execute().data
-        if rows:
-            return rows[0]["user_id"]
-        row = self.c.table("user_settings").insert({}).execute().data[0]
-        return row["user_id"]
+    # ---------- users ----------
+    def get_user_by_id(self, user_id: str) -> dict | None:
+        rows = (self.c.table("user_settings").select("*")
+                .eq("user_id", user_id).execute().data)
+        return rows[0] if rows else None
+
+    def get_user_by_username(self, username: str) -> dict | None:
+        rows = (self.c.table("user_settings").select("*")
+                .eq("username", username).execute().data)
+        return rows[0] if rows else None
+
+    def create_user(self, username: str, password_hash: str, display_name: str,
+                    is_admin: bool = False) -> dict:
+        return self.c.table("user_settings").insert({
+            "username": username, "password_hash": password_hash,
+            "display_name": display_name, "is_admin": is_admin,
+        }).execute().data[0]
+
+    def update_user(self, user_id: str, fields: dict) -> None:
+        self.c.table("user_settings").update(fields).eq("user_id", user_id).execute()
+
+    def list_users(self) -> list[dict]:
+        return (self.c.table("user_settings")
+                .select("user_id, username, display_name, is_admin, level_estimate,"
+                        " onboarded_at, created_at")
+                .order("created_at").execute().data)
+
+    def claim_legacy_user(self, username: str, password_hash: str,
+                          display_name: str) -> dict | None:
+        """Turn the pre-auth single-user row (with all its learning data) into the admin.
+        Returns None if there is no unclaimed row."""
+        rows = (self.c.table("user_settings").select("user_id")
+                .is_("username", "null").limit(1).execute().data)
+        if not rows:
+            return None
+        self.update_user(rows[0]["user_id"], {
+            "username": username, "password_hash": password_hash,
+            "display_name": display_name, "is_admin": True,
+            "onboarded_at": "now()",  # der Admin hat schon echte Daten — kein Test nötig
+        })
+        return self.get_user_by_id(rows[0]["user_id"])
 
     # ---------- captures ----------
     def create_capture(self, user_id: str, raw_text: str, kind: str, source: str = "web") -> str:

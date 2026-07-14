@@ -10,7 +10,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { API, STATE_LABEL, STATE_STYLE } from "@/lib/api";
+import { apiFetch, STATE_LABEL, STATE_STYLE } from "@/lib/api";
 
 type Detail = {
   slug: string;
@@ -41,7 +41,7 @@ export default function Capitulo() {
   const [genError, setGenError] = useState(false);
 
   useEffect(() => {
-    fetch(`${API}/concepts/${slug}`)
+    apiFetch(`/concepts/${slug}`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then(setD)
       .catch(() => setMissing(true));
@@ -51,7 +51,7 @@ export default function Capitulo() {
     setGenerating(true);
     setGenError(false);
     try {
-      const res = await fetch(`${API}/concepts/${slug}/generate`, { method: "POST" });
+      const res = await apiFetch(`/concepts/${slug}/generate`, { method: "POST" });
       if (!res.ok) throw new Error();
       setD(await res.json());
     } catch {
