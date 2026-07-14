@@ -54,9 +54,11 @@ def capture(body: CaptureIn) -> dict:
     db = get_db()
     user_id = db.get_or_create_user()
 
-    # 1. The one LLM seam.
+    # 1. The one LLM seam — with the existing backbone in view, so slugs get REUSED
+    #    at the source instead of spawning near-duplicates.
     result = analyze(body.text, image_b64=body.image_b64,
-                     image_media_type=body.image_media_type)
+                     image_media_type=body.image_media_type,
+                     known_slugs=db.list_concept_slugs())
 
     # 2. Deterministic persistence — counters turn, states move, all in code.
     capture_id = db.create_capture(user_id, body.text or "(foto)", result["mode"], body.source)
@@ -111,7 +113,8 @@ GRAMMAR_CLUSTER: dict[str, str] = {
     **{s: "Preposiciones" for s in (
         "por-vs-para", "preposiciones-a-en-de", "desde-hace-durante", "ya-vs-todavia")},
     # tense-contrast concepts are ctype 'grammar' but thematically belong to the tenses
-    **{s: "Tiempos" for s in ("indefinido-vs-perfecto", "indefinido-vs-imperfecto")},
+    **{s: "Tiempos" for s in ("indefinido-vs-perfecto", "indefinido-vs-imperfecto",
+                              "perfecto-subjuntivo")},
 }
 
 
@@ -314,6 +317,17 @@ def situation_detail(situation_id: str) -> dict:
                for i in detail["items"] if "frase" in (i.get("tags") or [])]
     return {"id": detail["id"], "name": detail["name"], "is_seed": detail["is_seed"],
             "words": words, "phrases": phrases, "concepts": detail["concepts"]}
+
+
+@app.post("/concepts/{slug}/merge")
+def concept_merge(slug: str, into: str) -> dict:
+    """Consolidate a duplicate draft into its canonical chapter — deterministic, no LLM.
+    Evidence, corrections, situation links and learning state all move; the duplicate dies."""
+    db = get_db()
+    try:
+        return db.merge_concept(slug, into)
+    except KeyError as e:
+        raise HTTPException(404, str(e))
 
 
 @app.post("/concepts/{slug}/generate")

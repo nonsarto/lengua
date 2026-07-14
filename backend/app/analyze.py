@@ -290,9 +290,11 @@ def _clean_region(value):
 
 
 def analyze(raw_text: str, variety: str = "peninsular",
-            image_b64: str | None = None, image_media_type: str = "image/jpeg") -> dict:
+            image_b64: str | None = None, image_media_type: str = "image/jpeg",
+            known_slugs: list[str] | None = None) -> dict:
     """One brain for all four capture modes. Optionally takes a photo (base64) — Claude
-    reads it directly, no separate OCR step."""
+    reads it directly, no separate OCR step. known_slugs is the existing concept backbone:
+    injecting it makes slug reuse happen at the source instead of spawning near-duplicates."""
     content: list | str = raw_text
     if image_b64:
         content = [
@@ -301,11 +303,19 @@ def analyze(raw_text: str, variety: str = "peninsular",
             {"type": "text", "text": raw_text or "(foto capturada)"},
         ]
 
+    system = SYSTEM_PROMPT.replace("{variety}", variety)
+    if known_slugs:
+        system += (
+            "\n\nEXISTING concept slugs — ALWAYS reuse one of these when it covers the "
+            "phenomenon (even partially); invent a new slug only for something genuinely "
+            "uncovered:\n" + ", ".join(known_slugs)
+        )
+
     resp = _get_client().messages.create(
         model=MODEL,
         max_tokens=3000,  # brief packages are the biggest legitimate output
         thinking={"type": "disabled"},  # pure extraction — no thinking tokens competing with output
-        system=SYSTEM_PROMPT.replace("{variety}", variety),
+        system=system,
         messages=[{"role": "user", "content": content}],
         output_config={"format": {"type": "json_schema", "schema": ANALYSIS_SCHEMA}},
     )
@@ -429,6 +439,18 @@ def _apply_brief(db, user_id: str, capture_id: str, brief: dict) -> dict:
     return {"id": sit["id"], "name": sit["name"],
             "vocab": len(brief["key_vocab"]), "phrases": len(brief["phrases"]),
             "concepts": [c["slug"] for c in brief["concepts"]]}
+
+
+def derive_state(need: int, success: int, fallback: str = "visto") -> str:
+    """State purely from counters (used when merging duplicate concepts) — same thresholds
+    as _recompute_state, just without an evidence event driving it."""
+    if need >= NEED_THRESHOLD and success < need:
+        return "aprendiendo"
+    if need > 0 and success > need:
+        return "dominado"
+    if need > 0:
+        return "flojo"
+    return fallback
 
 
 def _recompute_state(state: dict, evidence: str) -> None:

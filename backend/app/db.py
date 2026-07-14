@@ -123,6 +123,69 @@ class Database:
     def update_concept_body(self, slug: str, fields: dict) -> None:
         self.c.table("concepts").update(fields).eq("slug", slug).execute()
 
+    def list_concept_slugs(self) -> list[str]:
+        return [r["slug"] for r in
+                self.c.table("concepts").select("slug").order("slug").execute().data]
+
+    def merge_concept(self, dup_slug: str, canonical_slug: str) -> dict:
+        """Deterministic consolidation: repoint every trace of the duplicate (evidence,
+        corrections, situation links) to the canonical concept, sum the learning state,
+        then delete the duplicate. Slugs stay stable — duplicates die, canonicals never move."""
+        from analyze import derive_state
+
+        dup_rows = self.c.table("concepts").select("id, slug").eq("slug", dup_slug).execute().data
+        canon_rows = self.c.table("concepts").select("id, slug").eq("slug", canonical_slug).execute().data
+        if not dup_rows or not canon_rows:
+            raise KeyError(f"merge: '{dup_slug}' oder '{canonical_slug}' existiert nicht")
+        dup_id, canon_id = dup_rows[0]["id"], canon_rows[0]["id"]
+
+        self.c.table("concept_evidence").update({"concept_id": canon_id}) \
+            .eq("concept_id", dup_id).execute()
+        self.c.table("corrections").update({"concept_id": canon_id}) \
+            .eq("concept_id", dup_id).execute()
+
+        links = (self.c.table("situation_concepts").select("*")
+                 .eq("concept_id", dup_id).execute().data)
+        for link in links:
+            self.c.table("situation_concepts").upsert(
+                {**link, "concept_id": canon_id},
+                on_conflict="situation_id,concept_id", ignore_duplicates=True).execute()
+        self.c.table("situation_concepts").delete().eq("concept_id", dup_id).execute()
+
+        merged_states = 0
+        for ds in self.c.table("concept_state").select("*").eq("concept_id", dup_id).execute().data:
+            cs = self.get_or_create_state(ds["user_id"], canon_id)
+            need = cs["need_count"] + ds["need_count"]
+            success = cs["success_count"] + ds["success_count"]
+            rank = ["sin_ver", "visto", "flojo", "aprendiendo", "dominado"]
+            fallback = max(cs["state"], ds["state"], key=rank.index)
+            self.c.table("concept_state").update({
+                "need_count": need,
+                "success_count": success,
+                "state": derive_state(need, success, fallback),
+                "relevance_boost": max(cs["relevance_boost"], ds["relevance_boost"]),
+                "boost_expires_at": max(filter(None, [cs.get("boost_expires_at"),
+                                                      ds.get("boost_expires_at")]), default=None),
+                "updated_at": "now()",
+            }).eq("id", cs["id"]).execute()
+            self.c.table("concept_state").delete().eq("id", ds["id"]).execute()
+            merged_states += 1
+
+        self.c.table("concepts").delete().eq("id", dup_id).execute()
+        return {"merged": dup_slug, "into": canonical_slug, "states_merged": merged_states}
+
+    def delete_concept(self, slug: str) -> None:
+        """Hard delete incl. all traces — for concepts that should never have existed
+        (e.g. vocabulary-topic pseudo-concepts). Not for real duplicates: use merge_concept."""
+        rows = self.c.table("concepts").select("id").eq("slug", slug).execute().data
+        if not rows:
+            return
+        cid = rows[0]["id"]
+        for table in ("concept_evidence", "concept_state", "situation_concepts"):
+            self.c.table(table).delete().eq("concept_id", cid).execute()
+        self.c.table("corrections").update({"concept_id": None}).eq("concept_id", cid).execute()
+        self.c.table("concepts").delete().eq("id", cid).execute()
+
     def get_concept_detail(self, user_id: str, slug: str) -> dict | None:
         """One chapter: shared body + personal mantle (state, your actual error sentences)."""
         rows = self.c.table("concepts").select("*").eq("slug", slug).execute().data
