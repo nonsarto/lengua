@@ -340,6 +340,10 @@ def practicar_session(tipo: str = "mix", user: dict = Depends(current_user)) -> 
     db = get_db()
     user_id = user["user_id"]
 
+    # Grundwortschatz: bis zu 10 neue Wörter/Tag rücken automatisch nach (no-op ohne seed_vocab)
+    if tipo in ("mix", "palabras"):
+        db.promote_daily_seed(user_id)
+
     if tipo == "palabras":
         items = _vocab_cards(db, user_id, 15, phrases=False)
     elif tipo == "frases":
@@ -383,7 +387,26 @@ def vocabulario(user: dict = Depends(current_user)) -> dict:
     user_id = user["user_id"]
     due_count, _ = db.due_vocab(user_id)
     return {"situations": db.list_situations(user_id), "sueltas": db.loose_vocab(user_id),
-            "due": due_count}
+            "due": due_count, "diccionari": db.seed_topics(user_id)}
+
+
+@app.get("/diccionari/{topic}")
+def diccionari_topic(topic: str, user: dict = Depends(current_user)) -> dict:
+    db = get_db()
+    words = db.seed_words_for_topic(user["user_id"], topic)
+    if not words:
+        raise HTTPException(404, "Tema no existeix.")
+    return {"topic": topic, "words": words}
+
+
+@app.post("/diccionari/{seed_id}/add")
+def diccionari_add(seed_id: str, user: dict = Depends(current_user)) -> dict:
+    db = get_db()
+    try:
+        created = db.add_seed_word(user["user_id"], seed_id)
+    except KeyError:
+        raise HTTPException(404, "Paraula no existeix.")
+    return {"added": created}
 
 
 @app.get("/situations/{situation_id}")

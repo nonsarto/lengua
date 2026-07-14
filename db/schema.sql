@@ -13,7 +13,9 @@ create type concept_state_t as enum ('sin_ver', 'visto', 'flojo', 'aprendiendo',
 create type concept_type   as enum ('grammar', 'tense', 'pattern_family');
 create type evidence_kind  as enum ('encounter', 'error', 'success');
 create type register_t     as enum ('formal', 'neutral', 'coloquial');
-create type variety_t      as enum ('peninsular', 'latam');
+-- Varietät ist TEXT, nicht enum: die Werte sind sprachspezifisch (es: peninsular/latam,
+-- ca: central/valencià/balear/...) und dieselbe Schema-Datei bedient beide Instanzen.
+-- Der Default pro Instanz wird beim Anlegen des Nutzers im Code gesetzt.
 
 -- ---------- user settings ----------
 -- The production variety is a CHOICE, not an assumption. Comprehension stays omnivorous;
@@ -26,7 +28,7 @@ create table user_settings (
   is_admin          boolean not null default false,
   level_estimate    text,                        -- rough CEFR from the onboarding test
   onboarded_at      timestamptz,                 -- null = onboarding test still pending
-  production_variety variety_t not null default 'peninsular',
+  production_variety text not null default 'peninsular',
   home_region       text default 'cataluña',
   created_at        timestamptz not null default now()
 );
@@ -149,6 +151,24 @@ create table verbs (
   created_at        timestamptz not null default now()
 );
 
+-- ---------- seed_vocab (der Grundwortschatz der Sprache — geteilt, kein Lernstand) ----------
+-- Frequenzbasiertes Wörterbuch (z.B. die 1500 wichtigsten Wörter), nach Themen browsbar.
+-- Pro Tag rücken bis zu N Wörter automatisch ins persönliche SRS nach (promote_daily_seed);
+-- manuell hinzufügen geht immer. Lernstand lebt NIE hier — nur in vocab_items.
+create table seed_vocab (
+  id          uuid primary key default gen_random_uuid(),
+  term        text unique not null,
+  translation text not null,               -- Deutsch
+  register    register_t not null default 'neutral',
+  topic       text not null,               -- Themen-Regal (menjar, feina, casa, ...)
+  freq_rank   int not null,                -- 1 = häufigstes Wort
+  cefr        text,
+  reviewed    boolean not null default false,
+  created_at  timestamptz not null default now()
+);
+create index on seed_vocab (topic);
+create index on seed_vocab (freq_rank);
+
 -- ---------- join tables ----------
 create table situation_vocab (
   situation_id uuid not null references situations(id),
@@ -184,3 +204,4 @@ alter table vocab_items        enable row level security;
 alter table verbs              enable row level security;
 alter table situation_vocab    enable row level security;
 alter table situation_concepts enable row level security;
+alter table seed_vocab         enable row level security;

@@ -366,6 +366,80 @@ class Database:
                 .gte("created_at", cutoff)
                 .order("created_at", desc=True).limit(5).execute().data)
 
+    # ---------- seed vocab (Grundwortschatz — geteiltes Wörterbuch, kein Lernstand) ----------
+    def _user_terms(self, user_id: str) -> set[str]:
+        return {v["term"] for v in (self.c.table("vocab_items").select("term")
+                                    .eq("user_id", user_id).execute().data)}
+
+    def seed_topics(self, user_id: str) -> list[dict]:
+        """Themen-Regale des Grundwortschatzes + wie viel davon schon im eigenen SRS ist."""
+        words = self.c.table("seed_vocab").select("term, topic").execute().data
+        if not words:
+            return []
+        mine = self._user_terms(user_id)
+        topics: dict[str, dict] = {}
+        for w in words:
+            t = topics.setdefault(w["topic"], {"topic": w["topic"], "count": 0, "added": 0})
+            t["count"] += 1
+            if w["term"] in mine:
+                t["added"] += 1
+        return sorted(topics.values(), key=lambda t: t["topic"])
+
+    def seed_words_for_topic(self, user_id: str, topic: str) -> list[dict]:
+        words = (self.c.table("seed_vocab")
+                 .select("id, term, translation, register, freq_rank, cefr")
+                 .eq("topic", topic).order("freq_rank").execute().data)
+        mine = self._user_terms(user_id)
+        return [{**w, "added": w["term"] in mine} for w in words]
+
+    def add_seed_word(self, user_id: str, seed_id: str) -> bool:
+        """Ein Grundwortschatz-Wort manuell ins persönliche SRS holen."""
+        rows = self.c.table("seed_vocab").select("*").eq("id", seed_id).execute().data
+        if not rows:
+            raise KeyError("seed word no existe")
+        w = rows[0]
+        _, created = self.get_or_create_vocab_item(
+            user_id,
+            {"term": w["term"], "translation": w["translation"],
+             "register": w["register"], "region": None},
+            source_capture_id=None, tags=["seed", w["topic"]],
+        )
+        return created
+
+    def promote_daily_seed(self, user_id: str, quota: int = 10) -> int:
+        """Bis zu N neue Grundwortschatz-Wörter pro Tag rücken automatisch ins SRS nach
+        (nach Frequenz-Rang). Deterministisch; no-op wenn seed_vocab leer ist (lengua/es)."""
+        from datetime import datetime, timezone
+        today = datetime.now(timezone.utc).date().isoformat()
+        promoted_today = (self.c.table("vocab_items").select("id", count="exact")
+                          .eq("user_id", user_id).contains("tags", ["seed"])
+                          .gte("created_at", today).execute()).count or 0
+        slots = quota - promoted_today
+        if slots <= 0:
+            return 0
+        mine = self._user_terms(user_id)
+        added, offset = 0, 0
+        while added < slots:
+            page = (self.c.table("seed_vocab").select("*")
+                    .order("freq_rank").range(offset, offset + 199).execute().data)
+            if not page:
+                break
+            for w in page:
+                if added >= slots:
+                    break
+                if w["term"] in mine:
+                    continue
+                self.get_or_create_vocab_item(
+                    user_id,
+                    {"term": w["term"], "translation": w["translation"],
+                     "register": w["register"], "region": None},
+                    source_capture_id=None, tags=["seed", w["topic"]],
+                )
+                mine.add(w["term"])
+                added += 1
+            offset += 200
+        return added
+
     # ---------- practicar (drill selection — pulls exactly where scoring wobbles) ----------
     def due_vocab_items(self, user_id: str, limit: int = 8,
                         phrases: bool | None = None) -> list[dict]:
