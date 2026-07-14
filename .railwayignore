@@ -1,0 +1,7 @@
+# Railway baut nur das Python-Backend — alles andere bleibt draußen.
+venv/
+frontend/
+__pycache__/
+.git/
+.env
+SEED_REVIEW.md

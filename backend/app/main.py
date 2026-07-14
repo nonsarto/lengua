@@ -6,6 +6,7 @@ apply_analysis() (deterministic writes: captures, evidence, corrections, states,
 The response is the micro-dose the UI shows; everything else is filed silently.
 """
 
+import os
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -29,8 +30,13 @@ app = FastAPI(title="lengua")
 
 app.add_middleware(
     CORSMiddleware,
-    # localhost + LAN-IPs (iPhone-Test im selben WLAN); Vercel-Domain kommt beim Deploy dazu
-    allow_origin_regex=r"http://(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+)(:\d+)?",
+    # Prod: exakte Frontend-Domain via env; Dev: localhost + LAN-IPs (iPhone im WLAN);
+    # dazu Vercel-Preview-Deploys. Auth läuft über Bearer-Token, nicht Cookies.
+    allow_origins=[o for o in [os.environ.get("FRONTEND_ORIGIN")] if o],
+    allow_origin_regex=(
+        r"http://(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+)(:\d+)?"
+        r"|https://.*\.vercel\.app"
+    ),
     allow_methods=["*"],
     allow_headers=["*"],
 )

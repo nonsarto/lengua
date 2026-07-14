@@ -4,7 +4,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { API, setAuth, type User } from "@/lib/api";
+import { apiFetch, setAuth, type User } from "@/lib/api";
 
 export default function Login() {
   const router = useRouter();

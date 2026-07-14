@@ -7,5 +7,9 @@ fastapi>=0.115
 uvicorn>=0.32
 supabase>=2.9
 
+# Auth
+bcrypt>=4
+pyjwt>=2
+
 # --- später (Sprache): ---
 # openai>=1.50        # nur für Whisper-Transkription; Fotos brauchen KEIN extra OCR (Claude nimmt Bilder direkt)
