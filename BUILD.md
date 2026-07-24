@@ -16,7 +16,7 @@ UX-/Produktverhalten: siehe `PRODUCT.md`. Leitplanken: siehe `CLAUDE.md`.
 
 ---
 
-## Slice 0 — die nackte Brain  ⟵ JETZT
+## Slice 0 — die nackte Brain
 Kein UI, keine DB. `analyze()` an 5 echten Barcelona-Schnipseln (CLI: `python run.py "..."`).
 **Fertig, wenn:** die JSON-Ausgabe an *deinem* Input sauber & richtig getaggt ist.
 
@@ -58,11 +58,47 @@ Situationen als Regale (Seed-Expat + Tuyas), "nueva situación", Brief-Prep-Pake
 (Vokabel + Grammatik-*Links*, nie kopierte Grammatik; befristeter Boost auf die Konzepte).
 **Fertig, wenn:** "prepárame para X" ein Paket erzeugt und passende Kapitel pusht.
 
+## Slice 8 — Capturar antwortet sofort
+Die Mikro-Dosis geht direkt nach `analyze()` raus; `create_capture` + `apply_analysis` laufen
+als Background-Task nach (capture_id vorab als uuid4). Briefs bleiben synchron — der
+Paket-Link braucht die Situation-ID.
+**Fertig, wenn:** die gefühlte Wartezeit nur noch der LLM-Call ist, nicht die DB-Writes.
+
+## Slice 9 — Grundwortschatz + Standardformulierungen (es)
+`seed_vocab` gefüllt: 12 Themen, ~740 Einträge, davon ~190 Formulierungen (💬, mit wörtlicher
+Glosse — *me pones*, *tengo 34 años*, *hace calor*). `is_phrase`/`note` (Migration 004);
+Phrasen fließen beim Promoten als Tag `frase` ins SRS → Practicar-Modus "frases".
+Inhalte in-Session geschrieben, Review-Gate: `SEED_REVIEW_WORDS.md` → `approve-words`.
+**Fertig, wenn:** das Diccionario browsbar ist und täglich Wörter ins Repaso nachrücken.
+
+## Slice 10 — Word-Lookup in Capturar
+Einzelwort (es ODER de) → `analyze()` erkennt Modus `word` (Migration 005): Wörterbucheintrag
+als Mikro-Dosis + Übernahme ins Vokabular, mit Dedup-Check ("ya en tu vocabulario").
+**Fertig, wenn:** "Rechnung" eintippen *la cuenta* liefert und im Vokabular landet — einmal.
+
+## Slice 11 — Gramática interaktiv: Ejercicios + Dudas
+Pro Kapitel ein Übungs-Runner (mcq + cloze, Migration 006): Generierung ist LLM-Seam
+(`generate_exercises`, Distraktoren = deutsche Interferenz-Fehler), Auswahl/Grading/State
+sind CODE — Ergebnisse zählen wie Capture-Evidenz (Akzente signifikant). Dazu die Dudas-Box:
+Klärungsfragen-Chat (`answer_concept_question`, dritter LLM-Seam), gegroundet in Kapitel +
+eigenen Fehlern, antwortet deutsch, bewegt NIE Lernstand.
+**Fertig, wenn:** ein Kapitel sich durch Üben promoten/abstufen lässt und Nachfragen sitzt.
+
+## Slice 12 — Voz: Sprach-Transkription
+🎤 in Capturar (MediaRecorder, webm/mp4) + `?mode=voz`-Deep-Link. `transcribe()` in analyze.py
+(gpt-4o-transcribe, language=es) — danach ist das Transkript eine normale Capture, ein
+Trichter. UI zeigt "escuché: …" zur Kontrolle. Braucht `OPENAI_API_KEY`.
+**Fertig, wenn:** Overheard-Spanisch als Aufnahme reingeht und als listen-Capture rauskommt.
+
+## Nachzug llengua (ca) — eigener Durchgang, NICHT nebenbei
+Slices 8–12 sind nur auf **lengua (es)** live. Für llengua: Migrationen 004–006 auf der
+ca-DB ausführen, ca-Strings/Prompts gegenlesen (Grundgerüst liegt schon in `lang/ca.py` +
+`strings.ts`), ca-Grundwortschatz-Phrasen ergänzen, dann `deploy-llengua.sh`.
+
 ## Geparkt (verdienen sich später)
-- Sprach-Transkription für den "jemand spricht"-Modus (Whisper o.ä.) — erst wenn der Textkern steht
 - Aussprache-Prüfung (fremder Speech-Stack, v2+)
 - Native iOS-Hülle + WidgetKit-Widget + Capture-App-Intent
-  — bis dahin: Apple Shortcut → URL `…/capturar?mode=camera`, null Swift
+  — bis dahin: Apple Shortcut → URL `…/capturar?mode=camera|voz`, null Swift
 
 ## Die eine Regel
 Jede weitere Struktur-Schicht muss sich durch echte Daten verdienen. Erst der Loop, dann die Ontologie.
