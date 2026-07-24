@@ -260,16 +260,20 @@ def capture(body: CaptureIn, background: BackgroundTasks,
 
 @app.get("/inicio")
 def inicio(user: dict = Depends(current_user)) -> dict:
-    """The pulse. Three bands: en caliente / para repasar / prep para hoy — 3 seconds to
-    know what today is about. Prep fills in with Slice 7 (briefs)."""
+    """Der Puls: die 3 dringendsten Grammatik-Themen + der Vokabel-Stand. Priorität ist
+    deterministisch (need + Boost); die Begrüßung baut das Frontend (Name + Tageszeit)."""
     db = get_db()
     user_id = user["user_id"]
+    rows = db.list_concepts_with_state(user_id)
+    for r in rows:
+        r["priority"] = compute_priority(r)
+    active_rank = {"aprendiendo": 0, "flojo": 1, "visto": 2, "dominado": 3, "sin_ver": 4}
+    rows.sort(key=lambda r: (-r["priority"], active_rank.get(r["state"], 9),
+                             -r.get("need_count", 0)))
+    top = [{"slug": r["slug"], "label": r["label"], "cefr": r["cefr"],
+            "state": r["state"], "need_count": r["need_count"]} for r in rows[:3]]
     due_count, due_preview = db.due_vocab(user_id)
-    return {
-        "en_caliente": db.hot_concepts(user_id),
-        "para_repasar": {"due": due_count, "preview": due_preview},
-        "prep_hoy": db.recent_situations(user_id),
-    }
+    return {"top_grammar": top, "vocab": {"due": due_count, "preview": due_preview}}
 
 
 GRAMMAR_CLUSTER = PACK.GRAMMAR_CLUSTER
