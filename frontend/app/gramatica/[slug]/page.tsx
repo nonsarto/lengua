@@ -253,21 +253,32 @@ export default function Capitulo() {
             e.preventDefault();
             ask();
           }}
-          className="flex gap-2"
+          className="rounded-xl border border-stone-300 focus-within:border-accent-500"
         >
-          <input
+          <textarea
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
+            onKeyDown={(e) => {
+              // Enter sendet, Shift+Enter macht einen Zeilenumbruch
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                ask();
+              }
+            }}
             placeholder={S.chatPlaceholder}
-            className="w-full rounded-lg border border-stone-300 p-2.5 text-sm outline-none focus:border-accent-500"
+            rows={3}
+            className="w-full resize-none rounded-t-xl bg-transparent p-3 text-sm outline-none"
           />
-          <button
-            type="submit"
-            disabled={chatBusy || !question.trim()}
-            className="shrink-0 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
-          >
-            {S.chatSend}
-          </button>
+          <div className="flex justify-end p-2 pt-0">
+            <button
+              type="submit"
+              aria-label={S.chatSend}
+              disabled={chatBusy || !question.trim()}
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-600 text-lg text-white disabled:opacity-40 active:scale-95"
+            >
+              ↑
+            </button>
+          </div>
         </form>
         {chatError && <p className="mt-2 text-sm text-red-700">{S.chatFailed}</p>}
       </div>
