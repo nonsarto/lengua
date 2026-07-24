@@ -28,7 +28,7 @@ from lang import get_lang
 PACK = get_lang()
 from analyze import (analyze, answer_concept_question, apply_analysis, apply_exercise_result,
                      compute_priority, generate_chapter_body, generate_exercises,
-                     grade_exercise, srs_update)
+                     grade_exercise, srs_update, transcribe)
 from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
 
@@ -165,6 +165,8 @@ class CaptureIn(BaseModel):
     source: str = "web"
     image_b64: str | None = None            # Foto → Claude Vision direkt, kein OCR
     image_media_type: str = "image/jpeg"
+    audio_b64: str | None = None            # Aufnahme → Whisper → Transkript → analyze()
+    audio_media_type: str = "audio/webm"
 
 
 @app.get("/health")
@@ -188,15 +190,30 @@ def _persist_capture(user_id: str, capture_id: str, raw_text: str,
 @app.post("/capture")
 def capture(body: CaptureIn, background: BackgroundTasks,
             user: dict = Depends(current_user)) -> dict:
-    if not body.text.strip() and not body.image_b64:
-        raise HTTPException(422, "Captura vacía — manda texto o una foto.")
+    if not body.text.strip() and not body.image_b64 and not body.audio_b64:
+        raise HTTPException(422, "Captura vacía — manda texto, una foto o audio.")
 
     db = get_db()
     user_id = user["user_id"]
 
+    # 0. Audio zuerst zu Text — danach ist es eine ganz normale Capture (ein Trichter).
+    transcript = None
+    text = body.text
+    if body.audio_b64:
+        try:
+            transcript = transcribe(body.audio_b64, body.audio_media_type)
+        except RuntimeError as e:
+            raise HTTPException(503, str(e))
+        except Exception:
+            logger.exception("Transcription failed (user %s)", user_id)
+            raise HTTPException(502, "No se pudo transcribir el audio — inténtalo otra vez.")
+        if not transcript and not text.strip() and not body.image_b64:
+            raise HTTPException(422, "No se oyó nada en el audio.")
+        text = f"{text.strip()}\n\n{transcript}".strip() if text.strip() else transcript
+
     # 1. The one LLM seam — with the existing backbone in view, so slugs get REUSED
     #    at the source instead of spawning near-duplicates.
-    result = analyze(body.text, variety=user.get("production_variety"),
+    result = analyze(text, variety=user.get("production_variety"),
                      image_b64=body.image_b64,
                      image_media_type=body.image_media_type,
                      known_slugs=db.list_concept_slugs())
@@ -206,13 +223,13 @@ def capture(body: CaptureIn, background: BackgroundTasks,
     #    lookups too (one cheap insert — the answer must say added vs. already known);
     #    everything else defers to a background task so the answer ships NOW.
     if result.get("brief") or result["mode"] == "word":
-        capture_id = db.create_capture(user_id, body.text or "(foto)", result["mode"],
+        capture_id = db.create_capture(user_id, text or "(foto)", result["mode"],
                                        body.source)
         written = apply_analysis(db, user_id, capture_id, result)
     else:
         capture_id = str(uuid.uuid4())
         background.add_task(_persist_capture, user_id, capture_id,
-                            body.text or "(foto)", body.source, result)
+                            text or "(foto)", body.source, result)
         written = None
 
     # Word lookup: the micro-dose is the dictionary entry + whether it's new to you.
@@ -229,6 +246,7 @@ def capture(body: CaptureIn, background: BackgroundTasks,
         "gist": result.get("gist"),
         "correction": result.get("correction"),
         "word": word,
+        "transcript": transcript,   # was Whisper gehört hat — die UI zeigt es zur Kontrolle
         "notes": result.get("notes", ""),
         "concepts": [{"slug": c["slug"], "label": c["label"]} for c in result.get("concepts", [])],
         "written": written,   # what was filed silently (for debugging/curiosity)

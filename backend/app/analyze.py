@@ -294,6 +294,45 @@ def generate_exercises(slug: str, label: str, cefr: str | None, chapter: dict,
     return clean
 
 
+# ---------------------------------------------------------------------------
+# Transkription (Whisper) — der Audio-Eingang des einen Capture-Trichters.
+# Fremder Speech-Stack, gleiche Naht: KI-Aufrufe leben nur in diesem Modul.
+# ---------------------------------------------------------------------------
+_openai_client = None
+
+TRANSCRIBE_MODEL = "gpt-4o-transcribe"  # Whisper-Nachfolger, gleicher Endpoint — deutlich
+                                        # stärker bei schnellem, umgangssprachlichem Audio
+
+_AUDIO_EXT = {"audio/webm": "webm", "audio/mp4": "mp4", "audio/mpeg": "mp3",
+              "audio/ogg": "ogg", "audio/wav": "wav", "audio/m4a": "m4a",
+              "audio/x-m4a": "m4a", "audio/aac": "aac"}
+
+
+def _get_openai_client():
+    global _openai_client
+    if _openai_client is None:
+        api_key = os.environ.get("OPENAI_API_KEY")
+        if not api_key:
+            raise RuntimeError("OPENAI_API_KEY not set — Voz-Transkription braucht ihn")
+        from openai import OpenAI
+        _openai_client = OpenAI(api_key=api_key)
+    return _openai_client
+
+
+def transcribe(audio_b64: str, media_type: str = "audio/webm") -> str:
+    """Audio (base64) → Text in der Zielsprache. Der Transkript-Text läuft danach durch
+    analyze() wie jede getippte Capture — ein Trichter, keine Sonderpfade."""
+    import base64
+    import io
+    data = base64.b64decode(audio_b64)
+    ext = _AUDIO_EXT.get(media_type.split(";")[0].strip().lower(), "webm")
+    f = io.BytesIO(data)
+    f.name = f"captura.{ext}"   # die API braucht den Dateinamen als Format-Hinweis
+    resp = _get_openai_client().audio.transcriptions.create(
+        model=TRANSCRIBE_MODEL, file=f, language=PACK.LANG)
+    return resp.text.strip()
+
+
 CHAT_SYSTEM = PACK.CHAT_SYSTEM
 CHAT_MODEL = MODEL          # interaktiv — schnell und günstig, nicht Opus
 CHAT_MAX_HISTORY = 12       # Client schickt die History mit; wir kappen serverseitig

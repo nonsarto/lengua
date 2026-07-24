@@ -19,6 +19,7 @@ type CaptureResult = {
   gist: string | null;
   correction: Correction | null;
   word: { term: string; translation: string; added: boolean } | null;
+  transcript: string | null;
   notes: string;
   concepts: { slug: string; label: string }[];
   written?: {
@@ -33,6 +34,17 @@ type HistoryItem = {
   created_at: string;
   correction: { wrong: string; correct: string } | null;
 };
+
+/** Blob → base64 (sin prefijo data:) — para el audio grabado. */
+async function blobToB64(blob: Blob): Promise<string> {
+  const buf = new Uint8Array(await blob.arrayBuffer());
+  let bin = "";
+  const chunk = 0x8000;
+  for (let i = 0; i < buf.length; i += chunk) {
+    bin += String.fromCharCode(...buf.subarray(i, i + chunk));
+  }
+  return btoa(bin);
+}
 
 /** Foto → JPEG base64, reducida (el iPhone manda HEIC de 12MP; el canvas lo normaliza). */
 async function fileToJpegB64(file: File, maxSide = 1568): Promise<string> {
@@ -64,12 +76,50 @@ function CapturarInner() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<CaptureResult | null>(null);
   const [history, setHistory] = useState<HistoryItem[]>([]);
+  const [audio, setAudio] = useState<Blob | null>(null);
+  const [recording, setRecording] = useState(false);
+  const recRef = useRef<MediaRecorder | null>(null);
+  const chunksRef = useRef<BlobPart[]>([]);
   const fileRef = useRef<HTMLInputElement>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
 
+  async function startRec() {
+    setError(null);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mime = MediaRecorder.isTypeSupported("audio/webm")
+        ? "audio/webm"
+        : MediaRecorder.isTypeSupported("audio/mp4")
+          ? "audio/mp4"
+          : "";
+      const rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+      chunksRef.current = [];
+      rec.ondataavailable = (e) => {
+        if (e.data.size > 0) chunksRef.current.push(e.data);
+      };
+      rec.onstop = () => {
+        setAudio(new Blob(chunksRef.current, { type: rec.mimeType || "audio/webm" }));
+        stream.getTracks().forEach((t) => t.stop());
+      };
+      rec.start();
+      recRef.current = rec;
+      setRecording(true);
+    } catch {
+      setError(S.micDenied);
+    }
+  }
+
+  function stopRec() {
+    recRef.current?.stop();
+    recRef.current = null;
+    setRecording(false);
+  }
+
   useEffect(() => {
     if (mode === "camera") fileRef.current?.click();
+    else if (mode === "voz") startRec();  // Deep-link: directo a grabar (permiso mediante)
     else textRef.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
 
   useEffect(() => {
@@ -90,7 +140,7 @@ function CapturarInner() {
   }, [photo]);
 
   async function submit() {
-    if (!text.trim() && !photo) return;
+    if (!text.trim() && !photo && !audio) return;
     setBusy(true);
     setError(null);
     setResult(null);
@@ -100,6 +150,10 @@ function CapturarInner() {
       if (photo) {
         body.image_b64 = await fileToJpegB64(photo);
         body.image_media_type = "image/jpeg";
+      }
+      if (audio) {
+        body.audio_b64 = await blobToB64(audio);
+        body.audio_media_type = audio.type || "audio/webm";
       }
       const res = await apiFetch(`/capture`, {
         method: "POST",
@@ -112,7 +166,7 @@ function CapturarInner() {
       setHistory((h) => [
         {
           id: data.capture_id,
-          text: sentText || S.photoFallback,
+          text: data.transcript || sentText || S.photoFallback,
           mode: data.mode,
           created_at: new Date().toISOString(),
           correction: data.correction,
@@ -121,6 +175,7 @@ function CapturarInner() {
       ]);
       setText("");
       setPhoto(null);
+      setAudio(null);
       if (fileRef.current) fileRef.current.value = "";
     } catch (e) {
       setError(e instanceof Error ? e.message : "?");
@@ -143,6 +198,19 @@ function CapturarInner() {
             <button
               onClick={() => setPhoto(null)}
               aria-label={S.photoRemove}
+              className="ml-auto flex h-8 w-8 items-center justify-center rounded-full text-stone-400 hover:bg-stone-100"
+            >
+              ✕
+            </button>
+          </div>
+        )}
+        {audio && !recording && (
+          <div className="flex items-center gap-3 border-b border-stone-100 p-3">
+            <span className="text-xl">🎙</span>
+            <span className="text-sm text-stone-500">{S.audioReady}</span>
+            <button
+              onClick={() => setAudio(null)}
+              aria-label={S.audioRemove}
               className="ml-auto flex h-8 w-8 items-center justify-center rounded-full text-stone-400 hover:bg-stone-100"
             >
               ✕
@@ -172,6 +240,16 @@ function CapturarInner() {
         >
           📷 {S.cameraBtn}
         </button>
+        <button
+          onClick={recording ? stopRec : startRec}
+          className={`rounded-lg border px-4 py-2 text-sm active:scale-95 ${
+            recording
+              ? "animate-pulse border-red-300 bg-red-50 text-red-700"
+              : "border-stone-300 bg-white"
+          }`}
+        >
+          {recording ? `⏹ ${S.voiceStop}` : `🎤 ${S.voiceBtn}`}
+        </button>
         <input
           ref={fileRef}
           type="file"
@@ -182,7 +260,7 @@ function CapturarInner() {
         />
         <button
           onClick={submit}
-          disabled={busy || (!text.trim() && !photo)}
+          disabled={busy || recording || (!text.trim() && !photo && !audio)}
           className="ml-auto rounded-lg bg-accent-600 px-6 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
         >
           {busy ? S.analyzing : S.captureBtn}
@@ -242,6 +320,13 @@ function CapturarInner() {
                 )}
               </p>
             </a>
+          )}
+
+          {/* Lo que Whisper oyó — para poder juzgar la traducción */}
+          {result.transcript && (
+            <p className="mb-1 text-sm italic text-stone-500">
+              🎙 {S.heard} “{result.transcript}”
+            </p>
           )}
 
           {/* La traducción alemana — del texto descifrado o de la frase corregida */}
