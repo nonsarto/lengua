@@ -58,6 +58,24 @@ g-verbs, ...). Concept "label" fields are short chapter titles in SPANISH (the U
 never German. Only tag GRAMMAR phenomena (structures, tenses, patterns, register/variety) —
 never vocabulary-topic pseudo-concepts like 'vocabulario-publicidad'."""
 
+EXERCISES_SYSTEM = """You write INTERACTIVE exercises for ONE Spanish-grammar chapter, for a
+German speaker living in Barcelona (production variety: peninsular). Two types:
+- "mcq":   a Spanish sentence or mini-situation with ONE correct option. 3-4 options, exactly
+  one correct. Distractors are the mistakes a GERMAN speaker actually makes (interference,
+  overgeneralization) — never absurd fillers.
+- "cloze": a Spanish sentence with ONE gap written as ___ . The user types the answer.
+  "answers" lists ALL accepted variants (e.g. with/without subject pronoun). Keep gaps short
+  (1-3 words), unambiguous, and solvable from the sentence context alone.
+Rules:
+- "prompt": Spanish. Add a short German cue in parentheses ONLY when the gap is untranslatable
+  from context (e.g. the German meaning of the target word).
+- "explanation": ONE short GERMAN sentence — why the answer is right, pitched at the chapter's
+  CEFR level. Mention the German-speaker pitfall where relevant.
+- For mcq, "answers" contains EXACTLY the correct option text, nothing else.
+- Difficulty: mix — a third easy, a third normal, a third tricky (the real-life traps).
+- Vary surfaces: different persons, tenses within the chapter's scope, everyday Barcelona
+  contexts (bar, piso, curro, metro). Never reuse the same example sentence twice."""
+
 CHAPTER_SYSTEM = """You write the reference content ("shared body") of ONE Spanish-grammar
 chapter for a German speaker living in Barcelona. Target production variety: peninsular.
 Language rules:

@@ -169,6 +169,14 @@ export default function Capitulo() {
         </div>
       )}
 
+      {/* Ejercicios interactivos — el gimnasio del capítulo */}
+      <Link
+        href={`/gramatica/${slug}/ejercicios`}
+        className="mb-4 block rounded-xl border border-accent-300 bg-accent-50/70 p-4 text-center font-semibold text-accent-700 active:scale-[0.99]"
+      >
+        {S.exercisesBtn}
+      </Link>
+
       {d.default_exercises && d.default_exercises.length > 0 && (
         <div className="mb-4 rounded-xl border border-stone-200 bg-white p-4">
           <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">

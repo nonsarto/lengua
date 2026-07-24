@@ -230,6 +230,97 @@ def generate_chapter_body(slug: str, label: str, cefr: str | None) -> dict:
     }
 
 
+EXERCISES_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "exercises": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "etype": {"type": "string", "enum": ["mcq", "cloze"]},
+                    "prompt": {"type": "string"},
+                    "options": {"type": "array", "items": {"type": "string"}},  # leer bei cloze
+                    "answers": {"type": "array", "items": {"type": "string"}},
+                    "explanation": {"type": "string"},
+                },
+                "required": ["etype", "prompt", "options", "answers", "explanation"],
+                "additionalProperties": False,
+            },
+        },
+    },
+    "required": ["exercises"],
+    "additionalProperties": False,
+}
+
+EXERCISES_SYSTEM = PACK.EXERCISES_SYSTEM
+
+
+def generate_exercises(slug: str, label: str, cefr: str | None, chapter: dict,
+                       existing_prompts: list[str] | None = None, n: int = 10) -> list[dict]:
+    """LLM writes a batch of interactive exercises for one chapter — grounded in its
+    reference body. Grading stays deterministic (see grade_exercise); this only CREATES."""
+    ground = "\n".join(filter(None, [
+        f"Chapter: '{label}' (slug {slug}), CEFR {cefr or 'unknown'}.",
+        chapter.get("explanation") and f"Explanation: {chapter['explanation']}",
+        chapter.get("rule_of_thumb") and f"Rule of thumb: {chapter['rule_of_thumb']}",
+        chapter.get("german_pitfall") and f"German pitfall: {chapter['german_pitfall']}",
+        chapter.get("paradigm") and f"Paradigm: {json.dumps(chapter['paradigm'], ensure_ascii=False)}",
+    ]))
+    if existing_prompts:
+        ground += ("\n\nALREADY EXISTING exercises (do NOT repeat these sentences or "
+                   "near-variants):\n- " + "\n- ".join(existing_prompts[-40:]))
+    resp = _get_client().messages.create(
+        model=CHAPTER_MODEL,   # Content-Arbeit pro Kapitel — Qualität vor Kosten, wie der Seed
+        max_tokens=4000,
+        system=EXERCISES_SYSTEM,
+        messages=[{"role": "user", "content": f"{ground}\n\nWrite {n} exercises now."}],
+        output_config={"format": {"type": "json_schema", "schema": EXERCISES_SCHEMA}},
+    )
+    raw = json.loads(next(b.text for b in resp.content if b.type == "text"))["exercises"]
+    # Validierung ist Code, nicht Vertrauen: kaputte mcq (Antwort nicht in den Optionen) fliegen.
+    clean = []
+    for ex in raw:
+        if not ex["answers"]:
+            continue
+        if ex["etype"] == "mcq":
+            if len(ex["options"]) < 2 or ex["answers"][0] not in ex["options"]:
+                continue
+        else:
+            if "___" not in ex["prompt"]:
+                continue
+            ex["options"] = None
+        clean.append(ex)
+    return clean
+
+
+def normalize_answer(s: str) -> str:
+    """Antwort-Normalisierung fürs Grading: Groß/klein, Randspaces, Mehrfachspaces,
+    Satzzeichen am Rand. Akzente bleiben SIGNIFIKANT (está != esta — das ist Lernstoff)."""
+    return " ".join(s.split()).strip(" .!?¡¿,;:").lower()
+
+
+def grade_exercise(exercise: dict, answer: str) -> bool:
+    """Deterministisch: Antwort gegen die akzeptierten Varianten. Kein LLM, nie."""
+    got = normalize_answer(answer)
+    return got in {normalize_answer(a) for a in exercise["answers"]}
+
+
+def apply_exercise_result(db, user_id: str, concept_id: str, correct: bool) -> dict:
+    """Übungsergebnis bewegt den Konzept-State wie Capture-Evidenz — dieselben Counter,
+    dieselben Schwellen, derselbe deterministische Pfad."""
+    state = db.get_or_create_state(user_id, concept_id)
+    if correct:
+        state["success_count"] += 1
+        _recompute_state(state, "success")
+    else:
+        state["need_count"] += 1
+        _recompute_state(state, "error")
+    db.save_state(state)
+    return {"state": state["state"], "need": state["need_count"],
+            "success": state["success_count"]}
+
+
 def _clean_region(value):
     """Belt-and-braces: the schema asks for JSON null, but normalize stray string variants."""
     if value is None:

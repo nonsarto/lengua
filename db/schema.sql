@@ -207,3 +207,30 @@ alter table verbs              enable row level security;
 alter table situation_vocab    enable row level security;
 alter table situation_concepts enable row level security;
 alter table seed_vocab         enable row level security;
+
+-- ---------- concept_exercises (interaktive Übungen pro Kapitel — geteilt, kein Lernstand) ----------
+-- Generierung: LLM (analyze.py-Seam). Bewertung: deterministisch, bewegt concept_state.
+create table concept_exercises (
+  id          uuid primary key default gen_random_uuid(),
+  concept_id  uuid not null references concepts(id),
+  etype       text not null check (etype in ('mcq', 'cloze')),
+  prompt      text not null,          -- Aufgabe; cloze mit ___ als Lücke
+  options     jsonb,                  -- mcq: Antwortoptionen; cloze: null
+  answers     jsonb not null,         -- akzeptierte Antworten (mcq: der korrekte Optionstext)
+  explanation text not null,          -- EIN deutscher Satz warum
+  cefr        text,
+  created_at  timestamptz not null default now()
+);
+create index on concept_exercises (concept_id);
+alter table concept_exercises enable row level security;
+
+-- ---------- exercise_attempts (wer hat welche Übung wie beantwortet — fürs Nicht-Wiederholen) ----------
+create table exercise_attempts (
+  id          uuid primary key default gen_random_uuid(),
+  user_id     uuid not null references user_settings(user_id),
+  exercise_id uuid not null references concept_exercises(id),
+  correct     boolean not null,
+  answered_at timestamptz not null default now()
+);
+create index on exercise_attempts (user_id, exercise_id);
+alter table exercise_attempts enable row level security;

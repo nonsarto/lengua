@@ -63,6 +63,25 @@ titles in CATALAN (the UI language), never German or Spanish. Only tag GRAMMAR p
 (structures, tenses, patterns, register/variety, castilianism-classes) — never vocabulary-topic
 pseudo-concepts."""
 
+EXERCISES_SYSTEM = """You write INTERACTIVE exercises for ONE Catalan-grammar chapter, for a
+German speaker living in Barcelona who also speaks some Spanish (variety: català central).
+Two types:
+- "mcq":   a Catalan sentence or mini-situation with ONE correct option. 3-4 options, exactly
+  one correct. Distractors are the mistakes a GERMAN speaker (with Spanish interference)
+  actually makes — castilianisms are prime distractor material. Never absurd fillers.
+- "cloze": a Catalan sentence with ONE gap written as ___ . The user types the answer.
+  "answers" lists ALL accepted variants. Keep gaps short (1-3 words), unambiguous, and
+  solvable from the sentence context alone.
+Rules:
+- "prompt": Catalan. Add a short German cue in parentheses ONLY when the gap is untranslatable
+  from context (e.g. the German meaning of the target word).
+- "explanation": ONE short GERMAN sentence — why the answer is right, pitched at the chapter's
+  CEFR level. Mention the German/Spanish-interference pitfall where relevant.
+- For mcq, "answers" contains EXACTLY the correct option text, nothing else.
+- Difficulty: mix — a third easy, a third normal, a third tricky (the real-life traps).
+- Vary surfaces: different persons, tenses within the chapter's scope, everyday Barcelona
+  contexts (bar, pis, feina, metro). Never reuse the same example sentence twice."""
+
 CHAPTER_SYSTEM = """You write the reference content ("shared body") of ONE Catalan-grammar
 chapter for a German speaker living in Barcelona who also speaks some Spanish. Target variety:
 català central. Language rules:

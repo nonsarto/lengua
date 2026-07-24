@@ -500,3 +500,44 @@ class Database:
         return (self.c.table("verbs")
                 .select("infinitive, translation, pattern_tags, conjugations")
                 .order("freq_rank").limit(limit).execute().data)
+
+    # ---------- concept exercises (interaktive Übungen — Generierung LLM, Rest Code) ----------
+    def insert_exercises(self, concept_id: str, items: list[dict], cefr: str | None) -> int:
+        """Batch rein; grobe Dedup gegen bestehende Prompts desselben Kapitels."""
+        existing = {e["prompt"] for e in self.exercises_for_concept(concept_id)}
+        rows = [{"concept_id": concept_id, "etype": ex["etype"], "prompt": ex["prompt"],
+                 "options": ex["options"], "answers": ex["answers"],
+                 "explanation": ex["explanation"], "cefr": cefr}
+                for ex in items if ex["prompt"] not in existing]
+        if rows:
+            self.c.table("concept_exercises").insert(rows).execute()
+        return len(rows)
+
+    def exercises_for_concept(self, concept_id: str) -> list[dict]:
+        return (self.c.table("concept_exercises").select("*")
+                .eq("concept_id", concept_id).order("created_at").execute().data)
+
+    def get_exercise(self, exercise_id: str) -> dict | None:
+        rows = (self.c.table("concept_exercises").select("*, concepts(id, slug)")
+                .eq("id", exercise_id).execute().data)
+        return rows[0] if rows else None
+
+    def exercise_attempts(self, user_id: str, exercise_ids: list[str]) -> dict[str, dict]:
+        """Pro Übung: Zahl der Versuche + ob der LETZTE korrekt war (für die Auswahl)."""
+        if not exercise_ids:
+            return {}
+        rows = (self.c.table("exercise_attempts")
+                .select("exercise_id, correct, answered_at")
+                .eq("user_id", user_id).in_("exercise_id", exercise_ids)
+                .order("answered_at").execute().data)
+        out: dict[str, dict] = {}
+        for r in rows:
+            s = out.setdefault(r["exercise_id"], {"count": 0, "last_correct": None})
+            s["count"] += 1
+            s["last_correct"] = r["correct"]
+        return out
+
+    def log_exercise_attempt(self, user_id: str, exercise_id: str, correct: bool) -> None:
+        self.c.table("exercise_attempts").insert({
+            "user_id": user_id, "exercise_id": exercise_id, "correct": correct,
+        }).execute()

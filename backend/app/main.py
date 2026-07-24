@@ -26,8 +26,8 @@ import onboarding
 from lang import get_lang
 
 PACK = get_lang()
-from analyze import (analyze, apply_analysis, compute_priority, generate_chapter_body,
-                     srs_update)
+from analyze import (analyze, apply_analysis, apply_exercise_result, compute_priority,
+                     generate_chapter_body, generate_exercises, grade_exercise, srs_update)
 from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
 
@@ -487,6 +487,81 @@ def concept_generate(slug: str, user: dict = Depends(current_user)) -> dict:
     body = generate_chapter_body(slug, detail["label"], detail.get("cefr"))
     db.update_concept_body(slug, body)
     return _concept_detail_payload(db, user_id, slug)
+
+
+# ---------------------------------------------------------------------------
+# Interaktive Übungen — Generierung ist der LLM-Seam, Auswahl + Bewertung sind Code.
+# ---------------------------------------------------------------------------
+
+@app.get("/concepts/{slug}/exercises")
+def concept_exercises(slug: str, limit: int = 8,
+                      user: dict = Depends(current_user)) -> dict:
+    """Übungs-Session fürs Kapitel: ungesehene zuerst, dann zuletzt-falsche, dann Rest.
+    Lösungen bleiben serverseitig — der Client bekommt nur Aufgabe + Optionen."""
+    db = get_db()
+    user_id = user["user_id"]
+    detail = db.get_concept_detail(user_id, slug)
+    if detail is None:
+        raise HTTPException(404, f"Concepto '{slug}' no existe.")
+    pool = db.exercises_for_concept(detail["id"])
+    attempts = db.exercise_attempts(user_id, [e["id"] for e in pool])
+
+    def bucket(e: dict) -> int:
+        a = attempts.get(e["id"])
+        if a is None:
+            return 0                      # nie gesehen
+        if a["last_correct"] is False:
+            return 1                      # zuletzt falsch — nochmal
+        return 2                          # zuletzt richtig — hinten anstellen
+    ordered = sorted(pool, key=lambda e: (bucket(e), attempts.get(e["id"], {}).get("count", 0)))
+    session = ordered[:min(limit, 20)]
+    random.shuffle(session)               # innerhalb der Session keine vorhersagbare Reihenfolge
+    return {
+        "slug": slug,
+        "label": detail["label"],
+        "total": len(pool),
+        "exercises": [{"id": e["id"], "etype": e["etype"], "prompt": e["prompt"],
+                       "options": e["options"]} for e in session],
+    }
+
+
+@app.post("/concepts/{slug}/exercises/generate")
+def concept_exercises_generate(slug: str, user: dict = Depends(current_user)) -> dict:
+    """Neue Übungs-Charge fürs Kapitel (LLM). Bestehende Prompts gehen als Sperrliste mit."""
+    db = get_db()
+    user_id = user["user_id"]
+    detail = db.get_concept_detail(user_id, slug)
+    if detail is None:
+        raise HTTPException(404, f"Concepto '{slug}' no existe.")
+    existing = db.exercises_for_concept(detail["id"])
+    batch = generate_exercises(slug, detail["label"], detail.get("cefr"), detail,
+                               existing_prompts=[e["prompt"] for e in existing])
+    added = db.insert_exercises(detail["id"], batch, detail.get("cefr"))
+    return {"added": added, "total": len(existing) + added}
+
+
+class AnswerIn(BaseModel):
+    answer: str
+
+
+@app.post("/exercises/{exercise_id}/answer")
+def exercise_answer(exercise_id: str, body: AnswerIn,
+                    user: dict = Depends(current_user)) -> dict:
+    """Deterministisch bewerten, Versuch loggen, Konzept-State bewegen — kein LLM."""
+    db = get_db()
+    user_id = user["user_id"]
+    ex = db.get_exercise(exercise_id)
+    if ex is None:
+        raise HTTPException(404, "Ejercicio no existe.")
+    correct = grade_exercise(ex, body.answer)
+    db.log_exercise_attempt(user_id, exercise_id, correct)
+    state = apply_exercise_result(db, user_id, ex["concepts"]["id"], correct)
+    return {
+        "correct": correct,
+        "solution": ex["answers"][0],
+        "explanation": ex["explanation"],
+        "state": state,
+    }
 
 
 @app.get("/captures")
