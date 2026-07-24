@@ -333,6 +333,70 @@ def transcribe(audio_b64: str, media_type: str = "audio/webm") -> str:
     return resp.text.strip()
 
 
+TTS_MODEL = "gpt-4o-mini-tts"   # Sprachausgabe fürs Hörverstehen — gleicher OpenAI-Key wie Whisper
+
+
+def synthesize(text: str, voice: str = "alloy") -> bytes:
+    """Text → gesprochenes Audio (mp3-Bytes). Für den Escucha-Modus (Hörverstehen)."""
+    resp = _get_openai_client().audio.speech.create(
+        model=TTS_MODEL, voice=voice, input=text, response_format="mp3",
+        instructions="Habla en español peninsular, tono natural y conversacional, ritmo normal.")
+    return resp.content
+
+
+LISTENING_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "passage": {"type": "string"},
+        "gist_de": {"type": "string"},
+        "questions": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "q": {"type": "string"},
+                    "options": {"type": "array", "items": {"type": "string"}},
+                    "answer": {"type": "string"},
+                },
+                "required": ["q", "options", "answer"],
+                "additionalProperties": False,
+            },
+        },
+    },
+    "required": ["passage", "gist_de", "questions"],
+    "additionalProperties": False,
+}
+
+
+def generate_listening(target_terms: list[str], level: str = "A2-B1", n_q: int = 3) -> dict:
+    """Kurzer Hörverstehens-Text (2-3 Sätze), der die Zielwörter des Users natürlich einwebt,
+    plus MC-Verständnisfragen. LLM-Seam; Bewertung ist danach deterministisch (Option-Match)."""
+    lang = _LANG_NAMES.get(PACK.LANG, "Spanish")
+    system = (
+        f"You write a SHORT listening-comprehension exercise in {lang} for a German learner "
+        f"(level {level}), production variety {PACK.DEFAULT_VARIETY}. Produce:\n"
+        "- passage: 2-3 natural, spoken-style sentences (everyday Barcelona life) that weave in "
+        "as many of the TARGET words as fit naturally — don't force all of them, don't list them.\n"
+        "- gist_de: ONE short German sentence — what the passage is about.\n"
+        f"- questions: exactly {n_q} multiple-choice comprehension questions IN {lang}, each with "
+        "3-4 options and exactly one correct 'answer' that equals one option VERBATIM. Test whether "
+        "the listener UNDERSTOOD the passage (who/what/where/when/why) — never grammar. Distractors "
+        "plausible and in the same register; questions simple and solvable from the passage alone."
+    )
+    resp = _get_client().messages.create(
+        model=MICRO_MODEL, max_tokens=1500,   # A2-Text + einfache MC-Fragen — Haiku reicht, ~halb so lang
+        thinking={"type": "disabled"},
+        system=system,
+        messages=[{"role": "user", "content": "Target words: " + ", ".join(target_terms)}],
+        output_config={"format": {"type": "json_schema", "schema": LISTENING_SCHEMA}},
+    )
+    data = json.loads(next(b.text for b in resp.content if b.type == "text"))
+    # Validierung ist Code: nur Fragen, deren Antwort wirklich unter den Optionen steht.
+    qs = [q for q in data["questions"]
+          if len(q["options"]) >= 2 and q["answer"] in q["options"]]
+    return {"passage": data["passage"], "gist_de": data["gist_de"], "questions": qs}
+
+
 CHAT_SYSTEM = PACK.CHAT_SYSTEM
 CHAT_MODEL = MODEL          # interaktiv — schnell und günstig, nicht Opus
 CHAT_MAX_HISTORY = 12       # Client schickt die History mit; wir kappen serverseitig

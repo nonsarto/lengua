@@ -541,3 +541,38 @@ class Database:
         self.c.table("exercise_attempts").insert({
             "user_id": user_id, "exercise_id": exercise_id, "correct": correct,
         }).execute()
+
+    # ---------- escucha (Hörverstehen — Text aus eigenen Vokabeln, MC-Fragen) ----------
+    def listening_target_terms(self, user_id: str, n: int = 6) -> list[str]:
+        """Zielwörter für einen Hörtext: erst fällige SRS-Wörter, dann restliches eigenes
+        Vokabular, zur Not Grundwortschatz — damit auch früh genug Material da ist."""
+        terms: list[str] = []
+        for r in self.due_vocab_items(user_id, limit=n, phrases=False):
+            if r["term"] not in terms:
+                terms.append(r["term"])
+        if len(terms) < 3:
+            rows = (self.c.table("vocab_items").select("term")
+                    .eq("user_id", user_id).not_.contains("tags", ["frase"])
+                    .order("created_at", desc=True).limit(n).execute().data)
+            for r in rows:
+                if r["term"] not in terms:
+                    terms.append(r["term"])
+        if len(terms) < 3:
+            rows = (self.c.table("seed_vocab").select("term")
+                    .eq("is_phrase", False).order("freq_rank").limit(n).execute().data)
+            for r in rows:
+                if r["term"] not in terms:
+                    terms.append(r["term"])
+        return terms[:n]
+
+    def create_listening_item(self, user_id: str, passage: str, gist: str,
+                              questions: list) -> str:
+        row = self.c.table("listening_items").insert({
+            "user_id": user_id, "passage": passage, "gist": gist, "questions": questions,
+        }).execute().data[0]
+        return row["id"]
+
+    def get_listening_item(self, item_id: str, user_id: str) -> dict | None:
+        rows = (self.c.table("listening_items").select("*")
+                .eq("id", item_id).eq("user_id", user_id).execute().data)
+        return rows[0] if rows else None

@@ -234,3 +234,17 @@ create table exercise_attempts (
 );
 create index on exercise_attempts (user_id, exercise_id);
 alter table exercise_attempts enable row level security;
+
+-- ---------- listening_items (Escucha/Hörverstehen — Text aus eigenen Vokabeln + MC-Fragen) ----------
+-- Generierung: LLM (analyze.py-Seam). Bewertung: deterministisch (Option-Match).
+-- Die richtigen Antworten bleiben serverseitig in questions.jsonb.
+create table listening_items (
+  id          uuid primary key default gen_random_uuid(),
+  user_id     uuid not null references user_settings(user_id),
+  passage     text not null,          -- der gesprochene Text (Transkript)
+  gist        text not null,          -- deutscher Ein-Satz-Kontext
+  questions   jsonb not null,         -- [{q, options[], answer}]
+  created_at  timestamptz not null default now()
+);
+create index on listening_items (user_id);
+alter table listening_items enable row level security;

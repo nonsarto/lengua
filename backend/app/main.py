@@ -28,7 +28,8 @@ from lang import get_lang
 PACK = get_lang()
 from analyze import (analyze, analyze_micro, answer_concept_question, apply_analysis,
                      apply_exercise_result, compute_priority, generate_chapter_body,
-                     generate_exercises, grade_exercise, srs_update, transcribe)
+                     generate_exercises, generate_listening, grade_exercise, srs_update,
+                     synthesize, transcribe)
 from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
 
@@ -561,6 +562,66 @@ def concept_exercises_generate(slug: str, user: dict = Depends(current_user)) ->
                                existing_prompts=[e["prompt"] for e in existing])
     added = db.insert_exercises(detail["id"], batch, detail.get("cefr"))
     return {"added": added, "total": len(existing) + added}
+
+
+# ---------------------------------------------------------------------------
+# Escucha — Hörverstehen: Text aus deinen Vokabeln, vorgelesen (TTS), MC-Fragen.
+# Generierung + Sprachausgabe sind LLM/Fremd-Seams; Bewertung ist Code.
+# ---------------------------------------------------------------------------
+
+@app.get("/escucha/session")
+def escucha_session(user: dict = Depends(current_user)) -> dict:
+    """Neuer Hörtext: Zielwörter aus dem eigenen Vokabular → Text + MC-Fragen (LLM) →
+    Audio (TTS). Antworten bleiben serverseitig; der Client bekommt nur Audio + Fragen."""
+    db = get_db()
+    user_id = user["user_id"]
+    terms = db.listening_target_terms(user_id, 6)
+    if not terms:
+        raise HTTPException(404, "Aún no tienes vocabulario para generar un audio.")
+    item = generate_listening(terms)
+    if not item["questions"]:
+        raise HTTPException(502, "No se pudo generar el ejercicio — inténtalo otra vez.")
+    try:
+        audio = synthesize(item["passage"])
+    except RuntimeError as e:
+        raise HTTPException(503, str(e))
+    except Exception:
+        logger.exception("TTS failed (user %s)", user_id)
+        raise HTTPException(502, "No se pudo generar el audio — inténtalo otra vez.")
+    item_id = db.create_listening_item(user_id, item["passage"], item["gist_de"],
+                                       item["questions"])
+    import base64
+    return {
+        "item_id": item_id,
+        "audio_b64": base64.b64encode(audio).decode(),
+        "audio_media_type": "audio/mpeg",
+        "targets": terms,
+        "questions": [{"index": i, "q": q["q"], "options": q["options"]}
+                      for i, q in enumerate(item["questions"])],
+    }
+
+
+class EscuchaGradeIn(BaseModel):
+    answers: list[str]   # gewählte Option pro Frage-Index
+
+
+@app.post("/escucha/{item_id}/grade")
+def escucha_grade(item_id: str, body: EscuchaGradeIn,
+                  user: dict = Depends(current_user)) -> dict:
+    """Deterministisch bewerten (Option-Match) und Transkript + Kontext freigeben."""
+    db = get_db()
+    item = db.get_listening_item(item_id, user["user_id"])
+    if item is None:
+        raise HTTPException(404, "Ejercicio no existe.")
+    qs = item["questions"]
+    results, score = [], 0
+    for i, q in enumerate(qs):
+        given = body.answers[i] if i < len(body.answers) else None
+        ok = given is not None and given.strip() == q["answer"].strip()
+        score += ok
+        results.append({"index": i, "correct": ok, "answer": q["answer"]})
+    return {"score": score, "total": len(qs), "results": results,
+            "transcript": item["passage"], "gist": item["gist"]}
 
 
 class ChatIn(BaseModel):

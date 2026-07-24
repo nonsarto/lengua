@@ -85,6 +85,14 @@ export default function Practicar() {
               <p className="mt-0.5 text-sm text-stone-500">{m.desc}</p>
             </button>
           ))}
+          {/* Escucha — audio, propia pantalla (no es un drill de tarjetas) */}
+          <Link
+            href="/practicar/escucha"
+            className="block w-full rounded-xl border border-accent-200 bg-accent-50/60 p-4 text-left active:scale-[0.99]"
+          >
+            <p className="font-semibold">{S.escuchaBtn}</p>
+            <p className="mt-0.5 text-sm text-stone-500">{S.escuchaDesc}</p>
+          </Link>
         </div>
       </>
     );
