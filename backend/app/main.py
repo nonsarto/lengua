@@ -6,7 +6,9 @@ apply_analysis() (deterministic writes: captures, evidence, corrections, states,
 The response is the micro-dose the UI shows; everything else is filed silently.
 """
 
+import logging
 import os
+import uuid
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -14,7 +16,7 @@ from dotenv import load_dotenv
 # .env lives at the repo root, two levels up from backend/app/
 load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -28,6 +30,8 @@ from analyze import (analyze, apply_analysis, compute_priority, generate_chapter
                      srs_update)
 from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
+
+logger = logging.getLogger("lengua")
 
 app = FastAPI(title=PACK.APP_NAME)
 
@@ -167,8 +171,22 @@ def health() -> dict:
     return {"ok": True}
 
 
+def _persist_capture(user_id: str, capture_id: str, raw_text: str,
+                     source: str, result: dict) -> None:
+    """Deterministic persistence, deferred: runs AFTER the response went out. The user
+    sees the micro-dose the moment analyze() returns; counters/states catch up here."""
+    try:
+        db = get_db()
+        db.create_capture(user_id, raw_text, result["mode"], source, capture_id=capture_id)
+        apply_analysis(db, user_id, capture_id, result)
+    except Exception:
+        logger.exception("Deferred persistence failed (capture %s, user %s)",
+                         capture_id, user_id)
+
+
 @app.post("/capture")
-def capture(body: CaptureIn, user: dict = Depends(current_user)) -> dict:
+def capture(body: CaptureIn, background: BackgroundTasks,
+            user: dict = Depends(current_user)) -> dict:
     if not body.text.strip() and not body.image_b64:
         raise HTTPException(422, "Captura vacía — manda texto o una foto.")
 
@@ -183,8 +201,17 @@ def capture(body: CaptureIn, user: dict = Depends(current_user)) -> dict:
                      known_slugs=db.list_concept_slugs())
 
     # 2. Deterministic persistence — counters turn, states move, all in code.
-    capture_id = db.create_capture(user_id, body.text or "(foto)", result["mode"], body.source)
-    written = apply_analysis(db, user_id, capture_id, result)
+    #    Briefs persist synchronously (the package link needs the situation id);
+    #    everything else defers to a background task so the answer ships NOW.
+    if result.get("brief"):
+        capture_id = db.create_capture(user_id, body.text or "(foto)", result["mode"],
+                                       body.source)
+        written = apply_analysis(db, user_id, capture_id, result)
+    else:
+        capture_id = str(uuid.uuid4())
+        background.add_task(_persist_capture, user_id, capture_id,
+                            body.text or "(foto)", body.source, result)
+        written = None
 
     # 3. Micro-dose back to the UI: correction + translation + one sentence why. No full lesson.
     return {

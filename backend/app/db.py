@@ -72,10 +72,14 @@ class Database:
         return self.get_user_by_id(rows[0]["user_id"])
 
     # ---------- captures ----------
-    def create_capture(self, user_id: str, raw_text: str, kind: str, source: str = "web") -> str:
-        row = self.c.table("captures").insert({
-            "user_id": user_id, "raw_text": raw_text, "kind": kind, "source": source,
-        }).execute().data[0]
+    def create_capture(self, user_id: str, raw_text: str, kind: str, source: str = "web",
+                       capture_id: str | None = None) -> str:
+        """capture_id darf vorab (uuid4) vergeben werden — so kann die Antwort die ID
+        schon tragen, während die Persistenz im Hintergrund nachläuft."""
+        payload = {"user_id": user_id, "raw_text": raw_text, "kind": kind, "source": source}
+        if capture_id:
+            payload["id"] = capture_id
+        row = self.c.table("captures").insert(payload).execute().data[0]
         return row["id"]
 
     def list_captures(self, user_id: str, limit: int = 20) -> list[dict]:
