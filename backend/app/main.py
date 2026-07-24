@@ -26,8 +26,9 @@ import onboarding
 from lang import get_lang
 
 PACK = get_lang()
-from analyze import (analyze, apply_analysis, apply_exercise_result, compute_priority,
-                     generate_chapter_body, generate_exercises, grade_exercise, srs_update)
+from analyze import (analyze, answer_concept_question, apply_analysis, apply_exercise_result,
+                     compute_priority, generate_chapter_body, generate_exercises,
+                     grade_exercise, srs_update)
 from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
 
@@ -538,6 +539,26 @@ def concept_exercises_generate(slug: str, user: dict = Depends(current_user)) ->
                                existing_prompts=[e["prompt"] for e in existing])
     added = db.insert_exercises(detail["id"], batch, detail.get("cefr"))
     return {"added": added, "total": len(existing) + added}
+
+
+class ChatIn(BaseModel):
+    question: str
+    history: list[dict] = []
+
+
+@app.post("/concepts/{slug}/chat")
+def concept_chat(slug: str, body: ChatIn, user: dict = Depends(current_user)) -> dict:
+    """Klärungsfrage zum Kapitel. Stateless: die History kommt vom Client und lebt nur
+    dort — Chat erklärt, er bewegt NIE Counter oder States."""
+    db = get_db()
+    detail = db.get_concept_detail(user["user_id"], slug)
+    if detail is None:
+        raise HTTPException(404, f"Concepto '{slug}' no existe.")
+    question = body.question.strip()
+    if not question:
+        raise HTTPException(422, "Pregunta vacía.")
+    answer = answer_concept_question(detail, question[:2000], body.history)
+    return {"answer": answer}
 
 
 class AnswerIn(BaseModel):

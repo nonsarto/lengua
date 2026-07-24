@@ -28,12 +28,43 @@ type Detail = {
   state: { state: string; need_count: number; success_count: number; priority: number };
 };
 
+type ChatMsg = { role: "user" | "assistant"; content: string };
+
 export default function Capitulo() {
   const { slug } = useParams<{ slug: string }>();
   const [d, setD] = useState<Detail | null>(null);
   const [missing, setMissing] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [genError, setGenError] = useState(false);
+  const [chat, setChat] = useState<ChatMsg[]>([]);
+  const [question, setQuestion] = useState("");
+  const [chatBusy, setChatBusy] = useState(false);
+  const [chatError, setChatError] = useState(false);
+
+  async function ask() {
+    const q = question.trim();
+    if (!q || chatBusy) return;
+    setChatBusy(true);
+    setChatError(false);
+    setChat((c) => [...c, { role: "user", content: q }]);
+    setQuestion("");
+    try {
+      const res = await apiFetch(`/concepts/${slug}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: q, history: chat }),
+      });
+      if (!res.ok) throw new Error();
+      const { answer } = await res.json();
+      setChat((c) => [...c, { role: "assistant", content: answer }]);
+    } catch {
+      setChatError(true);
+      setChat((c) => c.slice(0, -1));  // la pregunta vuelve al input
+      setQuestion(q);
+    } finally {
+      setChatBusy(false);
+    }
+  }
 
   useEffect(() => {
     apiFetch(`/concepts/${slug}`)
@@ -194,6 +225,52 @@ export default function Capitulo() {
           </ul>
         </div>
       )}
+
+      {/* Dudas — preguntas de aclaración, ancladas al capítulo. Efímero: vive en el cliente. */}
+      <div className="mb-4 rounded-xl border border-stone-200 bg-white p-4">
+        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
+          ❓ {S.chatTitle}
+        </h3>
+        {chat.length > 0 && (
+          <div className="mb-3 space-y-2">
+            {chat.map((m, i) => (
+              <div
+                key={i}
+                className={`max-w-[85%] whitespace-pre-wrap rounded-xl p-3 text-sm ${
+                  m.role === "user"
+                    ? "ml-auto bg-accent-50 text-stone-800"
+                    : "bg-stone-50 text-stone-700"
+                }`}
+              >
+                {m.content}
+              </div>
+            ))}
+            {chatBusy && <p className="text-xs text-stone-400">{S.chatThinking}</p>}
+          </div>
+        )}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            ask();
+          }}
+          className="flex gap-2"
+        >
+          <input
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            placeholder={S.chatPlaceholder}
+            className="w-full rounded-lg border border-stone-300 p-2.5 text-sm outline-none focus:border-accent-500"
+          />
+          <button
+            type="submit"
+            disabled={chatBusy || !question.trim()}
+            className="shrink-0 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
+          >
+            {S.chatSend}
+          </button>
+        </form>
+        {chatError && <p className="mt-2 text-sm text-red-700">{S.chatFailed}</p>}
+      </div>
 
       <p className="mt-6">
         <Link href="/gramatica" className="text-sm text-stone-400 underline-offset-2 hover:underline">

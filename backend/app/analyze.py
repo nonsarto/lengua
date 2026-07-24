@@ -294,6 +294,37 @@ def generate_exercises(slug: str, label: str, cefr: str | None, chapter: dict,
     return clean
 
 
+CHAT_SYSTEM = PACK.CHAT_SYSTEM
+CHAT_MODEL = MODEL          # interaktiv — schnell und günstig, nicht Opus
+CHAT_MAX_HISTORY = 12       # Client schickt die History mit; wir kappen serverseitig
+
+
+def answer_concept_question(concept: dict, question: str,
+                            history: list[dict] | None = None) -> str:
+    """Klärungsfrage zu EINEM Kapitel — der dritte, bewusste LLM-Seam. Gegroundet im
+    Kapitel-Body + den eigenen Fehlern des Users. Bewegt NIE Lernstand — Chat erklärt nur."""
+    ground = "\n".join(filter(None, [
+        f"Chapter '{concept['label']}' (slug {concept['slug']}, CEFR {concept.get('cefr') or '?'}).",
+        concept.get("explanation") and f"Explanation: {concept['explanation']}",
+        concept.get("rule_of_thumb") and f"Rule of thumb: {concept['rule_of_thumb']}",
+        concept.get("german_pitfall") and f"German pitfall: {concept['german_pitfall']}",
+        concept.get("paradigm") and f"Paradigm: {json.dumps(concept['paradigm'], ensure_ascii=False)}",
+        (corr := concept.get("corrections")) and "User's own mistakes in this chapter:\n" +
+            "\n".join(f"- '{c['wrong']}' → '{c['correct']}'" for c in corr[:8]),
+    ]))
+    msgs = [{"role": m["role"], "content": str(m["content"])[:2000]}
+            for m in (history or [])[-CHAT_MAX_HISTORY:]
+            if m.get("role") in ("user", "assistant") and m.get("content")]
+    msgs.append({"role": "user", "content": question})
+    resp = _get_client().messages.create(
+        model=CHAT_MODEL,
+        max_tokens=800,
+        system=f"{CHAT_SYSTEM}\n\n## Chapter content (your ground truth)\n{ground}",
+        messages=msgs,
+    )
+    return next(b.text for b in resp.content if b.type == "text")
+
+
 def normalize_answer(s: str) -> str:
     """Antwort-Normalisierung fürs Grading: Groß/klein, Randspaces, Mehrfachspaces,
     Satzzeichen am Rand. Akzente bleiben SIGNIFIKANT (está != esta — das ist Lernstoff)."""
