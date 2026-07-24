@@ -442,6 +442,93 @@ def analyze(raw_text: str, variety: str | None = None,
 
 
 # ---------------------------------------------------------------------------
+# Phase 1: der schnelle Feedback-Call. NUR die Microdose, die der Nutzer sofort sieht
+# (mode/gist/correction/word). Kleines Schema + Haiku → ~halbe Wartezeit gegenüber der
+# vollen Analyse. Die volle analyze() (Konzepte/Vokabeln/Lernstand) läuft danach getrennt.
+# ---------------------------------------------------------------------------
+MICRO_MODEL = "claude-haiku-4-5-20251001"
+
+MICRO_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "mode": {"type": "string", "enum": ["check", "decode", "brief", "listen", "word"]},
+        "gist": _NULLABLE_STR,
+        "correction": {
+            "anyOf": [
+                {"type": "object",
+                 "properties": {"wrong": {"type": "string"}, "correct": {"type": "string"},
+                                "why": {"type": "string"}, "concept_slug": {"type": "string"}},
+                 "required": ["wrong", "correct", "why", "concept_slug"],
+                 "additionalProperties": False},
+                {"type": "null"},
+            ]
+        },
+        "word": {
+            "anyOf": [
+                {"type": "object",
+                 "properties": {"term": {"type": "string"}, "translation": {"type": "string"}},
+                 "required": ["term", "translation"], "additionalProperties": False},
+                {"type": "null"},
+            ]
+        },
+    },
+    "required": ["mode", "gist", "correction", "word"],
+    "additionalProperties": False,
+}
+
+_LANG_NAMES = {"es": "Spanish", "ca": "Catalan"}
+
+
+def _micro_system(variety: str | None, known_slugs: list[str] | None) -> str:
+    lang = _LANG_NAMES.get(PACK.LANG, "Spanish")
+    v = variety or PACK.DEFAULT_VARIETY
+    s = (
+        f"You are the fast-feedback engine of a {lang}-learning tool for a German speaker in "
+        f"Barcelona (production variety: {v}). Return ONLY the immediate micro-dose. "
+        "Infer the mode from the input:\n"
+        f"- check: the user produced {lang}. If there is a real error, fill correction (wrong, "
+        "correct, why = ONE short German sentence, concept_slug = kebab-case canonical grammar "
+        f"slug). gist = German meaning of the CORRECTED sentence. If it is fine, correction=null.\n"
+        "- decode / listen: something captured or overheard. gist = plain German translation, "
+        "correction=null.\n"
+        "- brief: the user asks to be prepared for a situation ('prepárame para...'). "
+        "gist=null, correction=null — the package is built elsewhere.\n"
+        f"- word: a SINGLE word or short fixed expression ({lang} OR German), no sentence around "
+        f"it. Fill word (term = dictionary form in {lang}, nouns WITH article; translation = the "
+        "German meaning). gist=null, correction=null.\n"
+        "For comprehension every regional variety is valid — never mark one as wrong. "
+        "correction and word stay null unless their mode applies."
+    )
+    if known_slugs:
+        s += ("\n\nReuse an EXISTING concept slug for concept_slug when one fits:\n"
+              + ", ".join(known_slugs))
+    return s
+
+
+def analyze_micro(raw_text: str, variety: str | None = None, image_b64: str | None = None,
+                  image_media_type: str = "image/jpeg",
+                  known_slugs: list[str] | None = None) -> dict:
+    """Der schnelle Feedback-Call — kleine Ausgabe, günstiges Modell. Was der Nutzer sofort
+    sieht; die volle Analyse holt Konzepte/Vokabeln/Lernstand danach im Hintergrund nach."""
+    content: list | str = raw_text
+    if image_b64:
+        content = [
+            {"type": "image",
+             "source": {"type": "base64", "media_type": image_media_type, "data": image_b64}},
+            {"type": "text", "text": raw_text or "(foto capturada)"},
+        ]
+    resp = _get_client().messages.create(
+        model=MICRO_MODEL,
+        max_tokens=600,
+        thinking={"type": "disabled"},
+        system=_micro_system(variety, known_slugs),
+        messages=[{"role": "user", "content": content}],
+        output_config={"format": {"type": "json_schema", "schema": MICRO_SCHEMA}},
+    )
+    return json.loads(next(b.text for b in resp.content if b.type == "text"))
+
+
+# ---------------------------------------------------------------------------
 # Everything below is DETERMINISTIC — no LLM. This is where learning state moves.
 # The db object is implemented in db.py; this seam stays here so it's obvious
 # that scoring/promotion/state transitions are code, never the model.

@@ -26,9 +26,9 @@ import onboarding
 from lang import get_lang
 
 PACK = get_lang()
-from analyze import (analyze, answer_concept_question, apply_analysis, apply_exercise_result,
-                     compute_priority, generate_chapter_body, generate_exercises,
-                     grade_exercise, srs_update, transcribe)
+from analyze import (analyze, analyze_micro, answer_concept_question, apply_analysis,
+                     apply_exercise_result, compute_priority, generate_chapter_body,
+                     generate_exercises, grade_exercise, srs_update, transcribe)
 from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
 
@@ -174,16 +174,19 @@ def health() -> dict:
     return {"ok": True}
 
 
-def _persist_capture(user_id: str, capture_id: str, raw_text: str,
-                     source: str, result: dict) -> None:
-    """Deterministic persistence, deferred: runs AFTER the response went out. The user
-    sees the micro-dose the moment analyze() returns; counters/states catch up here."""
+def _full_analyze_and_persist(user_id: str, capture_id: str, text: str,
+                              image_b64, image_media_type: str, variety,
+                              source: str, known_slugs: list) -> None:
+    """Phase 2, deferred: die VOLLE Analyse (Konzepte/Vokabeln/Lernstand) + Persistenz.
+    Läuft NACH der Antwort — der Nutzer hat die Microdose aus Phase 1 längst gesehen."""
     try:
         db = get_db()
-        db.create_capture(user_id, raw_text, result["mode"], source, capture_id=capture_id)
+        result = analyze(text, variety=variety, image_b64=image_b64,
+                         image_media_type=image_media_type, known_slugs=known_slugs)
+        db.create_capture(user_id, text, result["mode"], source, capture_id=capture_id)
         apply_analysis(db, user_id, capture_id, result)
     except Exception:
-        logger.exception("Deferred persistence failed (capture %s, user %s)",
+        logger.exception("Deferred full analysis failed (capture %s, user %s)",
                          capture_id, user_id)
 
 
@@ -195,6 +198,7 @@ def capture(body: CaptureIn, background: BackgroundTasks,
 
     db = get_db()
     user_id = user["user_id"]
+    variety = user.get("production_variety")
 
     # 0. Audio zuerst zu Text — danach ist es eine ganz normale Capture (ein Trichter).
     transcript = None
@@ -211,46 +215,46 @@ def capture(body: CaptureIn, background: BackgroundTasks,
             raise HTTPException(422, "No se oyó nada en el audio.")
         text = f"{text.strip()}\n\n{transcript}".strip() if text.strip() else transcript
 
-    # 1. The one LLM seam — with the existing backbone in view, so slugs get REUSED
-    #    at the source instead of spawning near-duplicates.
-    result = analyze(text, variety=user.get("production_variety"),
-                     image_b64=body.image_b64,
-                     image_media_type=body.image_media_type,
-                     known_slugs=db.list_concept_slugs())
+    known_slugs = db.list_concept_slugs()
 
-    # 2. Deterministic persistence — counters turn, states move, all in code.
-    #    Briefs persist synchronously (the package link needs the situation id); word
-    #    lookups too (one cheap insert — the answer must say added vs. already known);
-    #    everything else defers to a background task so the answer ships NOW.
-    if result.get("brief") or result["mode"] == "word":
-        capture_id = db.create_capture(user_id, text or "(foto)", result["mode"],
-                                       body.source)
+    # 1. Phase 1 — der schnelle Feedback-Call. NUR die Microdose (Haiku, ~halbe Wartezeit).
+    micro = analyze_micro(text, variety=variety, image_b64=body.image_b64,
+                          image_media_type=body.image_media_type, known_slugs=known_slugs)
+    mode = micro["mode"]
+    base = {"gist": micro.get("gist"), "correction": micro.get("correction"),
+            "word": None, "transcript": transcript, "notes": "", "concepts": []}
+
+    # brief: das Paket braucht die volle, strukturierte Analyse + die Situation-ID → synchron.
+    if mode == "brief":
+        result = analyze(text, variety=variety, image_b64=body.image_b64,
+                         image_media_type=body.image_media_type, known_slugs=known_slugs)
+        capture_id = db.create_capture(user_id, text or "(foto)", result["mode"], body.source)
         written = apply_analysis(db, user_id, capture_id, result)
-    else:
-        capture_id = str(uuid.uuid4())
-        background.add_task(_persist_capture, user_id, capture_id,
-                            text or "(foto)", body.source, result)
-        written = None
+        return {**base, "capture_id": capture_id, "mode": result["mode"],
+                "gist": result.get("gist"), "correction": result.get("correction"),
+                "notes": result.get("notes", ""),
+                "concepts": [{"slug": c["slug"], "label": c["label"]}
+                             for c in result.get("concepts", [])],
+                "written": written}
 
-    # Word lookup: the micro-dose is the dictionary entry + whether it's new to you.
-    word = None
-    if result["mode"] == "word" and result.get("lemmas"):
-        lemma = result["lemmas"][0]
-        word = {"term": lemma["term"], "translation": lemma["translation"],
-                "added": lemma["term"] in (written or {}).get("vocab", [])}
+    # word: die Microdose IST der Wörterbucheintrag — direkt ablegen (Dedup-Check für "añadido").
+    if mode == "word" and micro.get("word"):
+        capture_id = db.create_capture(user_id, text or "(foto)", "word", body.source)
+        w = micro["word"]
+        _, created = db.get_or_create_vocab_item(
+            user_id, {"term": w["term"], "translation": w["translation"],
+                      "register": "neutral", "region": None},
+            source_capture_id=capture_id)
+        return {**base, "capture_id": capture_id, "mode": "word", "gist": None,
+                "correction": None,
+                "word": {"term": w["term"], "translation": w["translation"], "added": created},
+                "written": None}
 
-    # 3. Micro-dose back to the UI: correction + translation + one sentence why. No full lesson.
-    return {
-        "capture_id": capture_id,
-        "mode": result["mode"],
-        "gist": result.get("gist"),
-        "correction": result.get("correction"),
-        "word": word,
-        "transcript": transcript,   # was Whisper gehört hat — die UI zeigt es zur Kontrolle
-        "notes": result.get("notes", ""),
-        "concepts": [{"slug": c["slug"], "label": c["label"]} for c in result.get("concepts", [])],
-        "written": written,   # what was filed silently (for debugging/curiosity)
-    }
+    # check / decode / listen: Microdose SOFORT zurück, volle Analyse + Persistenz im Hintergrund.
+    capture_id = str(uuid.uuid4())
+    background.add_task(_full_analyze_and_persist, user_id, capture_id, text or "(foto)",
+                        body.image_b64, body.image_media_type, variety, body.source, known_slugs)
+    return {**base, "capture_id": capture_id, "mode": mode, "written": None}
 
 
 @app.get("/inicio")
