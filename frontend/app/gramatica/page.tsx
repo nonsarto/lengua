@@ -82,15 +82,19 @@ export default function Gramatica() {
         {S.summary(rows.length, touched, hot.length, dominated)}
       </p>
 
+      {/* Tus temas — mismo desplegable que la referencia, pero abierto por defecto */}
       {hot.length > 0 && (
-        <section className="mb-6">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
-            {S.yoursNow}
-          </h2>
-          <div className="divide-y divide-stone-100 rounded-xl border border-accent-200 bg-white">
+        <details open className="group mb-6 rounded-xl border border-accent-200 bg-white">
+          <summary className="flex cursor-pointer select-none items-center justify-between p-3.5 text-sm font-semibold uppercase tracking-wide text-stone-500 [&::-webkit-details-marker]:hidden">
+            <span>
+              {S.yoursNow} <span className="font-normal text-stone-300">· {hot.length}</span>
+            </span>
+            <span className="text-stone-300 transition-transform group-open:rotate-90">›</span>
+          </summary>
+          <div className="divide-y divide-stone-100 border-t border-stone-100">
             {hot.map((c) => <Row key={c.slug} c={c} />)}
           </div>
-        </section>
+        </details>
       )}
 
       {clusters.map(({ cat, items }) => (

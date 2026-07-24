@@ -6,7 +6,7 @@
 create extension if not exists "pgcrypto";
 
 -- ---------- enums ----------
-create type capture_kind   as enum ('decode', 'check', 'brief', 'listen');
+create type capture_kind   as enum ('decode', 'check', 'brief', 'listen', 'word');
 -- '_t' suffix: a table named concept_state exists below, and Postgres gives every table an
 -- implicit composite type of the same name — an enum called plain 'concept_state' collides.
 create type concept_state_t as enum ('sin_ver', 'visto', 'flojo', 'aprendiendo', 'dominado');

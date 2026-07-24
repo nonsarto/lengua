@@ -52,7 +52,7 @@ _NULLABLE_CEFR = {
 ANALYSIS_SCHEMA = {
     "type": "object",
     "properties": {
-        "mode": {"type": "string", "enum": ["check", "decode", "brief", "listen"]},
+        "mode": {"type": "string", "enum": ["check", "decode", "brief", "listen", "word"]},
         "gist": _NULLABLE_STR,
         "correction": {
             "anyOf": [

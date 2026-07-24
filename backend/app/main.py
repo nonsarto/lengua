@@ -201,9 +201,10 @@ def capture(body: CaptureIn, background: BackgroundTasks,
                      known_slugs=db.list_concept_slugs())
 
     # 2. Deterministic persistence — counters turn, states move, all in code.
-    #    Briefs persist synchronously (the package link needs the situation id);
+    #    Briefs persist synchronously (the package link needs the situation id); word
+    #    lookups too (one cheap insert — the answer must say added vs. already known);
     #    everything else defers to a background task so the answer ships NOW.
-    if result.get("brief"):
+    if result.get("brief") or result["mode"] == "word":
         capture_id = db.create_capture(user_id, body.text or "(foto)", result["mode"],
                                        body.source)
         written = apply_analysis(db, user_id, capture_id, result)
@@ -213,12 +214,20 @@ def capture(body: CaptureIn, background: BackgroundTasks,
                             body.text or "(foto)", body.source, result)
         written = None
 
+    # Word lookup: the micro-dose is the dictionary entry + whether it's new to you.
+    word = None
+    if result["mode"] == "word" and result.get("lemmas"):
+        lemma = result["lemmas"][0]
+        word = {"term": lemma["term"], "translation": lemma["translation"],
+                "added": lemma["term"] in (written or {}).get("vocab", [])}
+
     # 3. Micro-dose back to the UI: correction + translation + one sentence why. No full lesson.
     return {
         "capture_id": capture_id,
         "mode": result["mode"],
         "gist": result.get("gist"),
         "correction": result.get("correction"),
+        "word": word,
         "notes": result.get("notes", ""),
         "concepts": [{"slug": c["slug"], "label": c["label"]} for c in result.get("concepts", [])],
         "written": written,   # what was filed silently (for debugging/curiosity)

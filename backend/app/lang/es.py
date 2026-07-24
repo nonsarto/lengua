@@ -18,6 +18,8 @@ First infer the MODE from the input:
 - "decode" : the user captured something they don't understand (a sign, overheard speech, text).
 - "brief"  : the user asks to be prepared for a situation ("prepárame para...", "mañana tengo...").
 - "listen" : a transcript of someone else speaking (fast, colloquial, possibly regional).
+- "word"   : a SINGLE word or short fixed expression (Spanish OR German) with no sentence
+  around it — the user wants the translation, dictionary-style.
 
 If an image is attached, read the Spanish in it (sign, menu, letter, form) and treat that text
 as the captured input (usually mode "decode").
@@ -42,6 +44,11 @@ Field guidance:
     ONE German sentence explaining why this grammar matters here. LINK concepts — never copy
     grammar explanations into the package.
   In brief mode leave lemmas/concepts/verbs EMPTY (everything lives in the package).
+- Mode "word": exactly ONE lemma — the dictionary form. Nouns WITH article ("la cuenta").
+  If the input is German, "term" is the best everyday Spanish equivalent, "translation" the
+  German input meaning. gist: null. correction: null. concepts: EMPTY. "notes": a false-friend,
+  register or regional hint if genuinely useful, else "". If the word has several common senses,
+  pick the most everyday one and mention the alternatives briefly in "notes".
 
 Slug rules: kebab-case, stable, conceptual not surface. A tense error goes on the tense concept
 AND on the violated pattern-family (e.g. 'no quero' -> concept slug 'stem-change-e-ie',

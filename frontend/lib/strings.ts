@@ -31,7 +31,8 @@ const es = {
   photoReady: "Foto lista para analizar", photoRemove: "Quitar foto",
   cameraBtn: "Cámara", captureBtn: "Capturar", analyzing: "analizando…",
   captureFailed: (e: string) => `No se pudo capturar (${e}). ¿Está corriendo el backend?`,
-  modeLabels: { check: "revisado", decode: "descifrado", brief: "preparación", listen: "escuchado" } as Record<string, string>,
+  modeLabels: { check: "revisado", decode: "descifrado", brief: "preparación", listen: "escuchado", word: "palabra" } as Record<string, string>,
+  wordAdded: "→ a tu vocabulario ✓", wordKnown: "ya en tu vocabulario",
   correctMark: "✓ Correcto.",
   savedSilently: "guardado en silencio ✓", seeLesson: "→ ver lección",
   historyTitle: "Últimas capturas",
@@ -69,7 +70,7 @@ const es = {
   shelfCrumb: "situación", keyVocab: "Vocabulario clave",
   intentPhrases: "Frases con intención", activatedGrammar: "La gramática que esto activa",
   situationMissing: "Esta situación no existe.",
-  dictTitle: "Diccionari bàsic",  // nur ca-relevant, es hat kein Seed-Vokabular
+  dictTitle: "Diccionario básico",
   dictAdd: "añadir", dictAdded: "en tu repaso ✓",
   // practicar
   practicarTitle: "Practicar",
@@ -143,7 +144,8 @@ const ca: typeof es = {
   photoReady: "Foto a punt per analitzar", photoRemove: "Treure la foto",
   cameraBtn: "Càmera", captureBtn: "Capturar", analyzing: "analitzant…",
   captureFailed: (e) => `No s'ha pogut capturar (${e}). El backend funciona?`,
-  modeLabels: { check: "revisat", decode: "desxifrat", brief: "preparació", listen: "escoltat" },
+  modeLabels: { check: "revisat", decode: "desxifrat", brief: "preparació", listen: "escoltat", word: "paraula" },
+  wordAdded: "→ al teu vocabulari ✓", wordKnown: "ja al teu vocabulari",
   correctMark: "✓ Correcte.",
   savedSilently: "desat en silenci ✓", seeLesson: "→ veure la lliçó",
   historyTitle: "Últimes captures",

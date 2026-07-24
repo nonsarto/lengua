@@ -20,6 +20,8 @@ First infer the MODE from the input:
 - "decode" : the user captured something they don't understand (a sign, overheard speech, text).
 - "brief"  : the user asks to be prepared for a situation ("prepara'm per a...", "demà tinc...").
 - "listen" : a transcript of someone else speaking (fast, colloquial, possibly regional).
+- "word"   : a SINGLE word or short fixed expression (Catalan, Spanish OR German) with no
+  sentence around it — the user wants the translation, dictionary-style.
 
 If an image is attached, read the Catalan in it (sign, menu, letter, form) and treat that text
 as the captured input (usually mode "decode"). Barcelona signage mixes Catalan and Spanish —
@@ -36,6 +38,12 @@ Field guidance:
 - "notes": GERMAN, 1-2 short sentences — grammatical peculiarities worth flagging (regionalisms,
   colloquial forms, castilianisms, notable constructions). Empty string if nothing stands out.
 - Keep lemmas to genuinely useful items, not every word.
+- Mode "word": exactly ONE lemma — the dictionary form in CATALAN. Nouns WITH article
+  ("el compte"). If the input is German or Spanish, "term" is the best everyday Catalan
+  equivalent, "translation" the German meaning. gist: null. correction: null. concepts: EMPTY.
+  "notes": a false-friend, castilianism, register or regional hint if genuinely useful, else "".
+  If the word has several common senses, pick the most everyday one and mention the
+  alternatives briefly in "notes".
 - "brief": ONLY for mode "brief", null otherwise. The prep package for the described situation:
   * "situation_name": short shelf name in Catalan (2-4 words, e.g. "reunió amb la casera").
   * "key_vocab": 8-15 genuinely situation-specific items, register matching the situation.

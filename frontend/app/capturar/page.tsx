@@ -18,6 +18,7 @@ type CaptureResult = {
   mode: string;
   gist: string | null;
   correction: Correction | null;
+  word: { term: string; translation: string; added: boolean } | null;
   notes: string;
   concepts: { slug: string; label: string }[];
   written?: {
@@ -213,6 +214,17 @@ function CapturarInner() {
 
           {!result.correction && result.mode === "check" && (
             <p className="text-base text-green-700">{S.correctMark}</p>
+          )}
+
+          {/* word: la entrada de diccionario — término, traducción, ¿nueva o ya tuya? */}
+          {result.word && (
+            <div className="mb-2">
+              <p className="text-lg font-semibold">{result.word.term}</p>
+              <p className="text-base text-stone-700">🇩🇪 {result.word.translation}</p>
+              <p className={`mt-1 text-xs ${result.word.added ? "text-green-700" : "text-stone-400"}`}>
+                {result.word.added ? S.wordAdded : S.wordKnown}
+              </p>
+            </div>
           )}
 
           {/* brief: paquete listo — un enlace, no la lección entera */}
