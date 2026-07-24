@@ -389,12 +389,25 @@ class Database:
                 t["added"] += 1
         return sorted(topics.values(), key=lambda t: t["topic"])
 
+    @staticmethod
+    def _seed_tags(w: dict) -> list[str]:
+        """Tags fürs persönliche SRS: Herkunft + Thema, Phrasen zusätzlich als "frase" —
+        darauf zieht der Practicar-Modus "frases"."""
+        tags = ["seed", w["topic"]]
+        if w.get("is_phrase"):
+            tags.append("frase")
+        return tags
+
     def seed_words_for_topic(self, user_id: str, topic: str) -> list[dict]:
-        words = (self.c.table("seed_vocab")
-                 .select("id, term, translation, register, freq_rank, cefr")
+        # select("*"): tolerant gegenüber Instanzen, auf denen Migration 004
+        # (is_phrase/note) noch nicht gelaufen ist.
+        words = (self.c.table("seed_vocab").select("*")
                  .eq("topic", topic).order("freq_rank").execute().data)
         mine = self._user_terms(user_id)
-        return [{**w, "added": w["term"] in mine} for w in words]
+        return [{"id": w["id"], "term": w["term"], "translation": w["translation"],
+                 "register": w["register"], "freq_rank": w["freq_rank"], "cefr": w["cefr"],
+                 "is_phrase": bool(w.get("is_phrase")), "note": w.get("note"),
+                 "added": w["term"] in mine} for w in words]
 
     def add_seed_word(self, user_id: str, seed_id: str) -> bool:
         """Ein Grundwortschatz-Wort manuell ins persönliche SRS holen."""
@@ -406,7 +419,7 @@ class Database:
             user_id,
             {"term": w["term"], "translation": w["translation"],
              "register": w["register"], "region": None},
-            source_capture_id=None, tags=["seed", w["topic"]],
+            source_capture_id=None, tags=self._seed_tags(w),
         )
         return created
 
@@ -437,7 +450,7 @@ class Database:
                     user_id,
                     {"term": w["term"], "translation": w["translation"],
                      "register": w["register"], "region": None},
-                    source_capture_id=None, tags=["seed", w["topic"]],
+                    source_capture_id=None, tags=self._seed_tags(w),
                 )
                 mine.add(w["term"])
                 added += 1

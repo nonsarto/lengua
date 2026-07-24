@@ -1,0 +1,765 @@
+# Seed-Review: Grundwortschatz + Standardformulierungen (es)
+
+737 Einträge. Phrasen sind mit 💬 markiert; *kursiv* = Notiz.
+
+## básicos y conectores
+
+- **hola** — hallo
+- **adiós** — tschüss / auf Wiedersehen
+- **buenos días** — guten Morgen / guten Tag (vormittags)
+- **buenas tardes** — guten Tag (nachmittags/abends)
+- **buenas noches** — guten Abend / gute Nacht
+- **por favor** — bitte (bei Bitten)
+- **gracias** — danke
+- **de nada** — gern geschehen
+- **perdona** — entschuldige (du) `coloquial`
+- **perdone** — entschuldigen Sie `formal`
+- **sí** — ja
+- **no** — nein
+- **vale** — okay / in Ordnung `coloquial`
+- **claro** — klar / natürlich
+- **quizás** — vielleicht
+- **a lo mejor** — vielleicht / womöglich `coloquial`
+- **también** — auch
+- **tampoco** — auch nicht
+- **pero** — aber
+- **porque** — weil
+- **por eso** — deshalb
+- **entonces** — dann / also
+- **además** — außerdem
+- **sin embargo** — jedoch / trotzdem
+- **aunque** — obwohl
+- **o sea** — das heißt / also `coloquial`
+- **es decir** — das heißt
+- **por ejemplo** — zum Beispiel
+- **sobre todo** — vor allem
+- **casi** — fast
+- **bastante** — ziemlich / genug
+- **demasiado** — zu viel / zu sehr
+- **un poco** — ein bisschen
+- **mucho** — viel / sehr
+- **nada** — nichts
+- **algo** — etwas
+- **alguien** — jemand
+- **nadie** — niemand
+- **todo** — alles
+- **cada** — jede/r/s
+- **mismo** — selbst / gleich
+- **otro** — andere/r / noch ein
+- **ya** — schon / bereits
+- **todavía** — noch / immer noch
+- **aún no** — noch nicht
+- **siempre** — immer
+- **nunca** — nie
+- **a veces** — manchmal
+- **de repente** — plötzlich
+- **en seguida** — sofort / gleich
+- 💬 **¿qué tal?** — wie geht's? (Universalgruß) — *geht immer — auch statt hola*
+- 💬 **¿cómo estás?** — wie geht es dir?
+- 💬 **no pasa nada** — kein Problem / macht nichts — *wörtl.: es passiert nichts*
+- 💬 **me da igual** — ist mir egal — *wörtl.: es gibt mir gleich*
+- 💬 **¡qué va!** — ach was! / von wegen! `coloquial`
+- 💬 **¿en serio?** — im Ernst?
+- 💬 **depende** — kommt drauf an
+- 💬 **ni idea** — keine Ahnung `coloquial`
+- 💬 **¡ojalá!** — hoffentlich! / schön wär's! — *aus dem Arabischen: so Gott will*
+- 💬 **¿cómo se dice … en español?** — wie sagt man … auf Spanisch?
+- 💬 **no te entiendo** — ich verstehe dich nicht
+- 💬 **¿puedes repetir, por favor?** — kannst du das bitte wiederholen?
+- 💬 **más despacio, por favor** — langsamer, bitte
+- 💬 **estoy aprendiendo español** — ich lerne gerade Spanisch
+## tiempo y calendario
+
+- **hoy** — heute
+- **ayer** — gestern
+- **mañana** — morgen / der Morgen
+- **anoche** — gestern Abend/Nacht
+- **anteayer** — vorgestern
+- **pasado mañana** — übermorgen
+- **ahora** — jetzt
+- **luego** — später / nachher
+- **antes** — vorher / früher
+- **después** — danach
+- **pronto** — bald
+- **tarde** — spät / der Nachmittag
+- **temprano** — früh
+- **el lunes** — Montag
+- **el martes** — Dienstag
+- **el miércoles** — Mittwoch
+- **el jueves** — Donnerstag
+- **el viernes** — Freitag
+- **el sábado** — Samstag
+- **el domingo** — Sonntag
+- **el fin de semana** — das Wochenende
+- **la semana** — die Woche
+- **el mes** — der Monat
+- **el año** — das Jahr
+- **el día** — der Tag
+- **la hora** — die Stunde / Uhrzeit
+- **el minuto** — die Minute
+- **el momento** — der Moment
+- **el rato** — die Weile / kurze Zeit
+- **la mañana** — der Vormittag
+- **la tarde** — der Nachmittag/Abend
+- **la noche** — die Nacht / der Abend
+- **el mediodía** — der Mittag
+- **la medianoche** — Mitternacht
+- **la primavera** — der Frühling
+- **el verano** — der Sommer
+- **el otoño** — der Herbst
+- **el invierno** — der Winter
+- **la fecha** — das Datum
+- **la cita** — der Termin / die Verabredung
+- **el cumpleaños** — der Geburtstag
+- **las vacaciones** — der Urlaub / die Ferien
+- **el festivo** — der Feiertag
+- **el puente** — der Brückentag / verlängertes Wochenende
+- 💬 **¿qué hora es?** — wie spät ist es?
+- 💬 **son las dos y media** — es ist halb drei — *Achtung: y media = halb NACH der vollen Stunde*
+- 💬 **es la una** — es ist ein Uhr — *einzige Uhrzeit im Singular*
+- 💬 **a las ocho** — um acht Uhr
+- 💬 **¿a qué hora …?** — um wie viel Uhr …?
+- 💬 **dentro de una hora** — in einer Stunde — *dentro de, NICHT en — häufiger Deutschen-Fehler*
+- 💬 **hace dos días** — vor zwei Tagen — *wörtl.: es macht zwei Tage*
+- 💬 **desde hace un año** — seit einem Jahr — *wörtl.: seit es macht ein Jahr*
+- 💬 **llevo tres meses aquí** — ich bin seit drei Monaten hier — *wörtl.: ich trage drei Monate hier — llevar + Zeit*
+- 💬 **¿qué día es hoy?** — welcher Tag ist heute?
+- 💬 **estamos a viernes** — wir haben Freitag — *wörtl.: wir sind auf Freitag*
+- 💬 **llego tarde** — ich komme zu spät — *kein „zu" — llegar tarde reicht*
+- 💬 **tengo prisa** — ich habe es eilig — *wörtl.: ich habe Eile*
+- 💬 **no tengo tiempo** — ich habe keine Zeit
+- 💬 **¡hasta luego!** — bis später! (Standard-Abschied)
+- 💬 **¡hasta mañana!** — bis morgen!
+## comida y bebida
+
+- **el agua** — das Wasser
+- **el pan** — das Brot
+- **la leche** — die Milch
+- **el café** — der Kaffee
+- **el café con leche** — der Milchkaffee
+- **el cortado** — der Espresso mit etwas Milch
+- **la cerveza** — das Bier
+- **la caña** — das kleine Bier vom Fass
+- **el vino** — der Wein
+- **el zumo** — der Saft
+- **la fruta** — das Obst
+- **la verdura** — das Gemüse
+- **la carne** — das Fleisch
+- **el pescado** — der Fisch
+- **el pollo** — das Hähnchen
+- **el jamón** — der Schinken
+- **el queso** — der Käse
+- **el huevo** — das Ei
+- **el arroz** — der Reis
+- **la pasta** — die Nudeln
+- **la sopa** — die Suppe
+- **la ensalada** — der Salat
+- **el aceite** — das Öl
+- **la sal** — das Salz
+- **el azúcar** — der Zucker
+- **el desayuno** — das Frühstück
+- **la comida** — das Essen / Mittagessen
+- **la cena** — das Abendessen
+- **la merienda** — die Nachmittags-Zwischenmahlzeit
+- **el postre** — der Nachtisch
+- **la tapa** — die Tapa (kleine Portion)
+- **la ración** — die große Portion zum Teilen
+- **el bocadillo** — das belegte Baguette
+- **la tostada** — das geröstete Brot (Frühstück)
+- **la cuenta** — die Rechnung
+- **la carta** — die Speisekarte
+- **el menú del día** — das Mittagsmenü
+- **la mesa** — der Tisch
+- **el camarero** — der Kellner
+- **la terraza** — die Außenterrasse (Bar/Café)
+- **desayunar** — frühstücken
+- **comer** — essen / zu Mittag essen
+- **cenar** — zu Abend essen
+- **beber** — trinken
+- **probar** — probieren / kosten
+- **pedir** — bestellen
+- **rico** — lecker
+- **la resaca** — der Kater `coloquial`
+- 💬 **¿me pones un café?** — einen Kaffee, bitte — *wörtl.: stellst du mir hin — Standard an der Bar, NICHT quiero*
+- 💬 **ponme una caña** — ein Bier bitte `coloquial` — *Bar-Standard mit Imperativ*
+- 💬 **¿qué te pongo?** — was darf's sein? — *das fragt der Kellner*
+- 💬 **la cuenta, por favor** — die Rechnung, bitte
+- 💬 **¿me cobras?** — kann ich zahlen? `coloquial` — *wörtl.: kassierst du mir ab? — üblich an der Bar*
+- 💬 **¿qué me recomiendas?** — was empfiehlst du mir?
+- 💬 **para mí, el pollo** — für mich das Hähnchen — *so bestellt man am Tisch*
+- 💬 **¿algo más?** — sonst noch etwas?
+- 💬 **nada más, gracias** — das ist alles, danke
+- 💬 **está buenísimo** — das schmeckt richtig gut `coloquial`
+- 💬 **tengo hambre** — ich habe Hunger / bin hungrig — *wörtl.: ich habe Hunger — nie estoy hambriento*
+- 💬 **tengo sed** — ich habe Durst / bin durstig
+- 💬 **¿quedamos para comer?** — wollen wir zum Essen verabreden? — *quedar = sich verabreden*
+- 💬 **invito yo** — ich lade ein — *wörtl.: es lade ein ich*
+- 💬 **¡que aproveche!** — guten Appetit!
+- 💬 **soy alérgico a …** — ich bin allergisch gegen …
+- 💬 **para llevar** — zum Mitnehmen
+## compras y dinero
+
+- **el dinero** — das Geld
+- **el euro** — der Euro
+- **el céntimo** — der Cent
+- **el precio** — der Preis
+- **la tienda** — der Laden
+- **el supermercado** — der Supermarkt
+- **el mercado** — der Markt / die Markthalle
+- **la panadería** — die Bäckerei
+- **la farmacia** — die Apotheke
+- **el estanco** — der Tabakladen (auch Briefmarken, Tickets)
+- **la caja** — die Kasse
+- **el carrito** — der Einkaufswagen
+- **la bolsa** — die Tüte
+- **el ticket** — der Kassenbon
+- **la tarjeta** — die Karte (EC/Kredit)
+- **el efectivo** — das Bargeld
+- **el cambio** — das Wechselgeld / der Wechsel
+- **la vuelta** — das Rückgeld
+- **el descuento** — der Rabatt
+- **las rebajas** — der Schlussverkauf
+- **la oferta** — das Angebot
+- **caro** — teuer
+- **barato** — billig / günstig
+- **gratis** — gratis / kostenlos
+- **comprar** — kaufen
+- **vender** — verkaufen
+- **pagar** — zahlen
+- **costar** — kosten
+- **gastar** — ausgeben
+- **ahorrar** — sparen
+- **devolver** — zurückgeben / umtauschen
+- **el banco** — die Bank
+- **el cajero** — der Geldautomat
+- **la cuenta bancaria** — das Bankkonto
+- **la factura** — die Rechnung (Strom, Handy …)
+- **el alquiler** — die Miete
+- **la propina** — das Trinkgeld
+- **el tamaño** — die Größe
+- **la talla** — die Kleidergröße
+- **el probador** — die Umkleidekabine
+- 💬 **¿cuánto es?** — wie viel macht das? — *an der Kasse / Bar*
+- 💬 **¿cuánto cuesta?** — wie viel kostet das?
+- 💬 **¿qué te debo?** — was schulde ich dir? — *wörtl.: was schulde ich dir — lockere Zahl-Frage*
+- 💬 **¿con tarjeta o en efectivo?** — mit Karte oder bar?
+- 💬 **¿me das una bolsa?** — gibst du mir eine Tüte?
+- 💬 **estoy mirando, gracias** — ich schaue nur, danke — *die Standard-Abwehr im Laden*
+- 💬 **¿tienes cambio?** — hast du Wechselgeld / kannst du wechseln?
+- 💬 **quédate con el cambio** — stimmt so / behalte das Rückgeld
+- 💬 **¿me lo puedo probar?** — kann ich das anprobieren?
+- 💬 **¿lo tienes en otra talla?** — hast du das in einer anderen Größe?
+- 💬 **me lo llevo** — ich nehme es — *wörtl.: ich trage es mir mit*
+- 💬 **es una ganga** — das ist ein Schnäppchen `coloquial`
+- 💬 **¿quién es el último?** — wer ist der Letzte (in der Schlange)? — *so stellt man sich in Spanien an — fragen statt anstellen*
+- 💬 **hacer cola** — Schlange stehen — *wörtl.: Schlange machen*
+- 💬 **sacar dinero** — Geld abheben — *wörtl.: Geld herausziehen*
+## casa y piso
+
+- **la casa** — das Haus / Zuhause
+- **el piso** — die Wohnung / das Stockwerk
+- **el apartamento** — das Apartment
+- **la habitación** — das Zimmer
+- **el dormitorio** — das Schlafzimmer
+- **el salón** — das Wohnzimmer
+- **la cocina** — die Küche
+- **el baño** — das Bad
+- **el aseo** — das Gäste-WC
+- **el pasillo** — der Flur
+- **el balcón** — der Balkon
+- **la ventana** — das Fenster
+- **la puerta** — die Tür
+- **la llave** — der Schlüssel
+- **la cerradura** — das Schloss
+- **el ascensor** — der Aufzug
+- **la escalera** — die Treppe
+- **el portal** — der Hauseingang
+- **el vecino** — der Nachbar
+- **el casero** — der Vermieter
+- **el contrato** — der Vertrag
+- **la fianza** — die Kaution
+- **los gastos** — die Nebenkosten
+- **la luz** — das Licht / der Strom
+- **el gas** — das Gas
+- **la calefacción** — die Heizung
+- **el aire acondicionado** — die Klimaanlage
+- **la lavadora** — die Waschmaschine
+- **el lavavajillas** — die Spülmaschine
+- **la nevera** — der Kühlschrank
+- **el horno** — der Backofen
+- **la cama** — das Bett
+- **el armario** — der Schrank
+- **la silla** — der Stuhl
+- **el sofá** — das Sofa
+- **la basura** — der Müll
+- **limpiar** — putzen
+- **ordenar** — aufräumen
+- **fregar** — spülen / wischen
+- **alquilar** — mieten / vermieten
+- **mudarse** — umziehen
+- **la mudanza** — der Umzug
+- **la avería** — der Defekt / die Panne
+- **el fontanero** — der Klempner
+- 💬 **estoy en casa** — ich bin zu Hause — *ohne Artikel: en casa*
+- 💬 **me voy a casa** — ich gehe nach Hause
+- 💬 **se ha ido la luz** — der Strom ist ausgefallen — *wörtl.: das Licht ist gegangen*
+- 💬 **no funciona la calefacción** — die Heizung funktioniert nicht
+- 💬 **está averiado** — es ist kaputt/defekt
+- 💬 **sacar la basura** — den Müll rausbringen — *wörtl.: den Müll herausziehen*
+- 💬 **poner la lavadora** — die Waschmaschine anmachen — *wörtl.: die Waschmaschine stellen*
+- 💬 **busco piso** — ich suche eine Wohnung — *ohne Artikel — buscar piso ist die feste Wendung*
+- 💬 **compartir piso** — in einer WG wohnen — *wörtl.: die Wohnung teilen*
+- 💬 **el piso da a la calle** — die Wohnung geht zur Straße raus — *dar a = hinausgehen auf*
+- 💬 **¿está incluida el agua?** — ist das Wasser inklusive?
+- 💬 **hacer la cama** — das Bett machen
+- 💬 **me toca limpiar** — ich bin mit Putzen dran — *tocar = an der Reihe sein — me toca a mí: ich bin dran*
+- 💬 **estás en tu casa** — fühl dich wie zu Hause — *wörtl.: du bist in deinem Haus — Gastfreundschafts-Formel*
+## ciudad y transporte
+
+- **la ciudad** — die Stadt
+- **el barrio** — das Viertel
+- **la calle** — die Straße
+- **la plaza** — der Platz
+- **la esquina** — die Ecke
+- **la acera** — der Gehweg
+- **el semáforo** — die Ampel
+- **el paso de cebra** — der Zebrastreifen
+- **el metro** — die U-Bahn
+- **el autobús** — der Bus
+- **el tren** — der Zug
+- **el tranvía** — die Straßenbahn
+- **el taxi** — das Taxi
+- **la parada** — die Haltestelle
+- **la estación** — der Bahnhof / die Station
+- **el andén** — der Bahnsteig
+- **la línea** — die Linie
+- **el billete** — der Fahrschein / das Ticket
+- **el abono** — die Monatskarte / das Abo
+- **el aeropuerto** — der Flughafen
+- **el vuelo** — der Flug
+- **la maleta** — der Koffer
+- **la mochila** — der Rucksack
+- **el coche** — das Auto
+- **la moto** — das Motorrad / der Roller
+- **la bici** — das Fahrrad `coloquial`
+- **el carril bici** — der Radweg
+- **el aparcamiento** — der Parkplatz
+- **la multa** — der Strafzettel / die Geldbuße
+- **el atasco** — der Stau
+- **la hora punta** — die Stoßzeit
+- **el mapa** — die Karte / der Stadtplan
+- **la dirección** — die Adresse / Richtung
+- **cerca** — nah / in der Nähe
+- **lejos** — weit / weit weg
+- **a la derecha** — rechts / nach rechts
+- **a la izquierda** — links / nach links
+- **todo recto** — geradeaus
+- **ir** — gehen / fahren
+- **venir** — kommen
+- **llegar** — ankommen
+- **salir** — abfahren / rausgehen
+- **subir** — einsteigen / hochgehen
+- **bajar** — aussteigen / runtergehen
+- **cruzar** — überqueren
+- **girar** — abbiegen
+- **andar** — laufen / zu Fuß gehen
+- **conducir** — Auto fahren
+- 💬 **¿cómo llego a …?** — wie komme ich zu/nach …?
+- 💬 **¿dónde está la parada?** — wo ist die Haltestelle?
+- 💬 **¿me deja aquí?** — können Sie mich hier rauslassen? (Taxi) `formal`
+- 💬 **voy andando** — ich gehe zu Fuß — *wörtl.: ich gehe gehend — NICHT voy a pie im Alltag*
+- 💬 **voy en metro** — ich fahre mit der U-Bahn — *en + Verkehrsmittel, ohne Artikel*
+- 💬 **coger el bus** — den Bus nehmen `coloquial` — *coger ist in Spanien völlig normal — in Lateinamerika vulgär*
+- 💬 **¿este metro va a …?** — fährt diese U-Bahn nach …?
+- 💬 **me he perdido** — ich habe mich verlaufen/verfahren
+- 💬 **está a diez minutos** — es ist zehn Minuten entfernt — *wörtl.: es ist auf zehn Minuten*
+- 💬 **¿queda lejos?** — ist das weit weg? — *quedar für Lage: wo etwas liegt*
+- 💬 **se me ha escapado el bus** — mir ist der Bus weggefahren — *wörtl.: er ist mir entkommen — typisches se me*
+- 💬 **dar una vuelta** — eine Runde drehen / spazieren gehen — *wörtl.: eine Drehung geben*
+- 💬 **está al lado de …** — es ist direkt neben …
+- 💬 **nos vemos en la plaza** — wir sehen uns auf dem Platz
+## trabajo y estudios
+
+- **el trabajo** — die Arbeit / der Job
+- **el curro** — der Job `coloquial`
+- **la empresa** — die Firma
+- **la oficina** — das Büro
+- **el despacho** — das Einzelbüro / Arbeitszimmer
+- **la reunión** — das Meeting / die Besprechung
+- **el jefe** — der Chef
+- **el compañero** — der Kollege
+- **el cliente** — der Kunde
+- **el sueldo** — das Gehalt
+- **la nómina** — die Gehaltsabrechnung
+- **el autónomo** — der Selbstständige / Freiberufler
+- **el paro** — die Arbeitslosigkeit / das Arbeitslosengeld
+- **la entrevista** — das Vorstellungsgespräch / Interview
+- **el currículum** — der Lebenslauf
+- **la experiencia** — die Erfahrung
+- **el proyecto** — das Projekt
+- **la tarea** — die Aufgabe
+- **el plazo** — die Frist / Deadline
+- **el correo** — die E-Mail / Post
+- **la llamada** — der Anruf
+- **el ordenador** — der Computer
+- **el portátil** — der Laptop
+- **la pantalla** — der Bildschirm
+- **el archivo** — die Datei
+- **la universidad** — die Universität
+- **la carrera** — das Studium / der Studiengang
+- **el máster** — der Master
+- **la clase** — der Unterricht / die Klasse
+- **el curso** — der Kurs / das Schuljahr
+- **el examen** — die Prüfung
+- **la nota** — die Note
+- **la beca** — das Stipendium
+- **las prácticas** — das Praktikum
+- **trabajar** — arbeiten
+- **estudiar** — studieren / lernen
+- **aprender** — lernen
+- **enseñar** — unterrichten / zeigen
+- **aprobar** — bestehen
+- **suspender** — durchfallen
+- **ganar** — verdienen / gewinnen
+- **despedir** — kündigen (jemandem)
+- **dimitir** — kündigen (selbst)
+- **jubilarse** — in Rente gehen
+- **la pausa** — die Pause
+- **ocupado** — beschäftigt
+- **libre** — frei
+- 💬 **¿a qué te dedicas?** — was machst du beruflich? — *wörtl.: wem widmest du dich? — DIE Berufsfrage*
+- 💬 **trabajo de camarero** — ich arbeite als Kellner — *trabajar de + Beruf, ohne Artikel*
+- 💬 **estoy en el paro** — ich bin arbeitslos — *wörtl.: ich bin im Stillstand*
+- 💬 **tengo una reunión** — ich habe ein Meeting
+- 💬 **estoy liado** — ich bin voll eingespannt `coloquial` — *wörtl.: ich bin verwickelt*
+- 💬 **echar una mano** — helfen / mit anpacken — *wörtl.: eine Hand werfen*
+- 💬 **¿me echas una mano?** — hilfst du mir kurz? `coloquial`
+- 💬 **estoy de vacaciones** — ich bin im Urlaub — *estar de + Zustand*
+- 💬 **tomarse un descanso** — eine Pause machen — *wörtl.: sich eine Rast nehmen*
+- 💬 **me sale bien** — es gelingt mir / läuft gut — *wörtl.: es geht mir gut heraus — salir bien/mal*
+- 💬 **sacar buenas notas** — gute Noten schreiben — *wörtl.: gute Noten herausziehen*
+- 💬 **hacer prácticas** — ein Praktikum machen
+- 💬 **dar clase** — unterrichten — *wörtl.: Klasse geben*
+- 💬 **tener una entrevista** — ein Vorstellungsgespräch haben
+- 💬 **ponerse a trabajar** — sich an die Arbeit machen — *ponerse a + Infinitiv: anfangen mit*
+## cuerpo y salud
+
+- **la cabeza** — der Kopf
+- **la cara** — das Gesicht
+- **el ojo** — das Auge
+- **la oreja** — das Ohr
+- **la nariz** — die Nase
+- **la boca** — der Mund
+- **el diente** — der Zahn
+- **la muela** — der Backenzahn
+- **la garganta** — der Hals / Rachen
+- **el cuello** — der Hals / Nacken
+- **la espalda** — der Rücken
+- **el hombro** — die Schulter
+- **el brazo** — der Arm
+- **la mano** — die Hand
+- **el dedo** — der Finger / Zeh
+- **la pierna** — das Bein
+- **la rodilla** — das Knie
+- **el pie** — der Fuß
+- **el tobillo** — der Knöchel
+- **la tripa** — der Bauch `coloquial`
+- **el estómago** — der Magen
+- **el corazón** — das Herz
+- **la piel** — die Haut
+- **la sangre** — das Blut
+- **la salud** — die Gesundheit
+- **la enfermedad** — die Krankheit
+- **el dolor** — der Schmerz
+- **la fiebre** — das Fieber
+- **el resfriado** — die Erkältung
+- **la gripe** — die Grippe
+- **la tos** — der Husten
+- **la herida** — die Wunde
+- **el médico** — der Arzt
+- **el enfermero** — der Krankenpfleger
+- **la consulta** — die Praxis / Sprechstunde
+- **las urgencias** — die Notaufnahme
+- **la receta** — das Rezept
+- **la pastilla** — die Tablette
+- **el medicamento** — das Medikament
+- **el seguro** — die Versicherung
+- **la tarjeta sanitaria** — die Gesundheitskarte
+- **doler** — wehtun
+- **encontrarse mal** — sich schlecht fühlen
+- **marearse** — schwindelig werden
+- **descansar** — sich ausruhen
+- **mejorarse** — gesund werden
+- **embarazada** — schwanger
+- **sano** — gesund
+- 💬 **me duele la cabeza** — mir tut der Kopf weh — *wörtl.: mir schmerzt DER Kopf — Körperteile mit Artikel, nie mit Possessiv*
+- 💬 **me duele la garganta** — ich habe Halsschmerzen
+- 💬 **tengo fiebre** — ich habe Fieber
+- 💬 **estoy resfriado** — ich bin erkältet
+- 💬 **estoy malo** — ich bin krank `coloquial` — *estar malo = krank; ser malo = böse/schlecht!*
+- 💬 **me encuentro mal** — ich fühle mich schlecht — *wörtl.: ich finde mich schlecht*
+- 💬 **tengo sueño** — ich bin müde/schläfrig — *wörtl.: ich habe Schlaf — nie estoy… für schläfrig*
+- 💬 **estoy agotado** — ich bin völlig erschöpft
+- 💬 **pedir cita** — einen Termin ausmachen — *wörtl.: Termin erbitten — beim Arzt: pedir cita*
+- 💬 **tengo cita con el médico** — ich habe einen Arzttermin
+- 💬 **¿qué te pasa?** — was ist los mit dir? — *wörtl.: was passiert dir?*
+- 💬 **no me encuentro bien** — mir geht es nicht gut
+- 💬 **que te mejores** — gute Besserung — *wörtl.: mögest du dich bessern*
+- 💬 **me he hecho daño** — ich habe mich verletzt — *wörtl.: ich habe mir Schaden gemacht*
+- 💬 **ponerse malo** — krank werden `coloquial` — *wörtl.: sich schlecht stellen*
+- 💬 **estar en forma** — fit sein
+## familia y gente
+
+- **la familia** — die Familie
+- **el padre** — der Vater
+- **la madre** — die Mutter
+- **los padres** — die Eltern
+- **el hijo** — der Sohn
+- **la hija** — die Tochter
+- **el hermano** — der Bruder
+- **la hermana** — die Schwester
+- **el abuelo** — der Großvater
+- **la abuela** — die Großmutter
+- **el tío** — der Onkel / Typ (coloq.)
+- **la tía** — die Tante / Frau (coloq.)
+- **el primo** — der Cousin
+- **el sobrino** — der Neffe
+- **el marido** — der Ehemann
+- **la mujer** — die Frau / Ehefrau
+- **la pareja** — der Partner / das Paar
+- **el novio** — der Freund (Beziehung)
+- **la novia** — die Freundin (Beziehung)
+- **el amigo** — der Freund
+- **el colega** — der Kumpel / Kollege `coloquial`
+- **el chico** — der Junge
+- **la chica** — das Mädchen
+- **el niño** — das Kind
+- **el bebé** — das Baby
+- **el joven** — der Jugendliche
+- **el mayor** — der Ältere / Erwachsene
+- **la gente** — die Leute — *Singular im Spanischen: la gente ES*
+- **la persona** — die Person
+- **el hombre** — der Mann
+- **el señor** — der Herr
+- **la señora** — die Dame / Frau
+- **el nombre** — der Name
+- **el apellido** — der Nachname
+- **casado** — verheiratet
+- **soltero** — ledig / Single
+- **divorciado** — geschieden
+- **conocer** — kennenlernen / kennen
+- **presentar** — vorstellen
+- **saludar** — grüßen
+- **abrazar** — umarmen
+- **el beso** — der Kuss
+- **el abrazo** — die Umarmung
+- **la boda** — die Hochzeit
+- **nacer** — geboren werden
+- **crecer** — aufwachsen
+- 💬 **¿cómo te llamas?** — wie heißt du? — *wörtl.: wie rufst du dich?*
+- 💬 **me llamo Kevin** — ich heiße Kevin
+- 💬 **tengo 34 años** — ich bin 34 Jahre alt — *wörtl.: ich HABE 34 Jahre — nie soy 34*
+- 💬 **¿cuántos años tienes?** — wie alt bist du?
+- 💬 **¿de dónde eres?** — woher kommst du?
+- 💬 **soy de Alemania** — ich komme aus Deutschland — *wörtl.: ich bin aus*
+- 💬 **soy alemán** — ich bin Deutscher
+- 💬 **vivo en Barcelona** — ich wohne in Barcelona
+- 💬 **encantado** — freut mich (Kennenlernen) — *Frauen sagen: encantada*
+- 💬 **mucho gusto** — sehr erfreut
+- 💬 **te presento a mi amigo** — das ist mein Freund (Vorstellung) — *wörtl.: ich stelle dir vor — mit persönlichem a*
+- 💬 **me cae bien** — ich mag ihn/sie (Person) — *wörtl.: er/sie fällt mir gut — NICHT me gusta bei Personen (das klingt nach Anziehung)*
+- 💬 **me cae mal** — ich kann ihn/sie nicht leiden
+- 💬 **nos llevamos bien** — wir verstehen uns gut — *wörtl.: wir tragen uns gut*
+- 💬 **dar dos besos** — zur Begrüßung Küsschen geben — *Standard in Spanien: zwei Wangenküsse*
+- 💬 **dar recuerdos** — Grüße ausrichten — *wörtl.: Erinnerungen geben — dale recuerdos a…*
+- 💬 **echar de menos** — vermissen — *wörtl.: von weniger werfen — te echo de menos: ich vermisse dich*
+## sentimientos y carácter
+
+- **contento** — zufrieden / froh
+- **feliz** — glücklich
+- **triste** — traurig
+- **enfadado** — wütend / sauer
+- **nervioso** — nervös
+- **tranquilo** — ruhig / entspannt
+- **preocupado** — besorgt
+- **cansado** — müde
+- **aburrido** — gelangweilt / langweilig
+- **emocionado** — aufgeregt / gerührt
+- **sorprendido** — überrascht
+- **asustado** — erschrocken
+- **orgulloso** — stolz
+- **celoso** — eifersüchtig
+- **agobiado** — gestresst / überfordert `coloquial`
+- **la alegría** — die Freude
+- **la tristeza** — die Traurigkeit
+- **el miedo** — die Angst
+- **la vergüenza** — die Scham / Peinlichkeit
+- **la envidia** — der Neid
+- **la esperanza** — die Hoffnung
+- **el estrés** — der Stress
+- **simpático** — sympathisch / nett
+- **amable** — freundlich
+- **majo** — nett / lieb `coloquial`
+- **gracioso** — witzig
+- **serio** — ernst
+- **tímido** — schüchtern
+- **abierto** — offen
+- **cabezota** — stur / Dickkopf `coloquial`
+- **vago** — faul
+- **trabajador** — fleißig
+- **listo** — schlau / clever
+- **tonto** — dumm / doof
+- **raro** — seltsam / komisch
+- **pesado** — nervig / anstrengend `coloquial`
+- **educado** — höflich
+- **reírse** — lachen
+- **llorar** — weinen
+- **sonreír** — lächeln
+- **enfadarse** — sich ärgern / sauer werden
+- **preocuparse** — sich Sorgen machen
+- **relajarse** — sich entspannen
+- **disfrutar** — genießen
+- 💬 **tengo miedo** — ich habe Angst — *wörtl.: ich habe Angst — mit tener, nicht estar*
+- 💬 **me da miedo** — das macht mir Angst — *wörtl.: es gibt mir Angst — dar miedo/pena/asco*
+- 💬 **me da pena** — das macht mich traurig / tut mir leid — *wörtl.: es gibt mir Kummer*
+- 💬 **me da vergüenza** — das ist mir peinlich — *wörtl.: es gibt mir Scham*
+- 💬 **¡qué vergüenza!** — wie peinlich!
+- 💬 **me apetece un café** — ich habe Lust auf einen Kaffee — *wörtl.: es gelüstet mir — apetecer wie gustar*
+- 💬 **no me apetece** — ich habe keine Lust
+- 💬 **tengo ganas de verte** — ich freue mich darauf, dich zu sehen — *wörtl.: ich habe Lust dich zu sehen — tener ganas de*
+- 💬 **me alegro** — das freut mich — *wörtl.: ich erfreue mich — me alegro por ti: freut mich für dich*
+- 💬 **¡qué bien!** — wie schön! / super!
+- 💬 **¡qué pena!** — wie schade!
+- 💬 **¡qué rabia!** — wie ärgerlich! `coloquial`
+- 💬 **estoy de buen humor** — ich bin gut gelaunt — *estar de buen/mal humor*
+- 💬 **me pone nervioso** — das macht mich nervös — *wörtl.: es stellt mich nervös — poner + Adjektiv*
+- 💬 **no te preocupes** — mach dir keine Sorgen
+- 💬 **pasarlo bien** — Spaß haben — *wörtl.: es sich gut verbringen — ¡que lo pases bien!: viel Spaß!*
+- 💬 **me lo he pasado genial** — ich hatte richtig viel Spaß `coloquial`
+- 💬 **merece la pena** — es lohnt sich — *wörtl.: es verdient den Kummer*
+## acciones cotidianas
+
+- **hacer** — machen / tun
+- **decir** — sagen
+- **hablar** — sprechen / reden
+- **escuchar** — zuhören / hören
+- **oír** — hören
+- **ver** — sehen
+- **mirar** — anschauen
+- **buscar** — suchen
+- **encontrar** — finden
+- **dar** — geben
+- **tomar** — nehmen / trinken
+- **coger** — nehmen / greifen — *in Spanien neutral, in Lateinamerika vulgär*
+- **dejar** — lassen / verleihen
+- **poner** — stellen / legen / setzen
+- **quitar** — wegnehmen / entfernen
+- **abrir** — öffnen
+- **cerrar** — schließen
+- **empezar** — anfangen
+- **terminar** — beenden / fertig sein
+- **seguir** — weitermachen / folgen
+- **parar** — anhalten / aufhören
+- **esperar** — warten / hoffen
+- **ayudar** — helfen
+- **preguntar** — fragen
+- **contestar** — antworten
+- **llamar** — anrufen / rufen
+- **enviar** — schicken
+- **escribir** — schreiben
+- **leer** — lesen
+- **levantarse** — aufstehen
+- **despertarse** — aufwachen
+- **acostarse** — ins Bett gehen
+- **dormir** — schlafen
+- **ducharse** — duschen
+- **vestirse** — sich anziehen
+- **lavarse** — sich waschen
+- **cocinar** — kochen
+- **olvidar** — vergessen
+- **recordar** — sich erinnern
+- **pensar** — denken
+- **saber** — wissen / können
+- **entender** — verstehen
+- **creer** — glauben
+- **querer** — wollen / lieben
+- **necesitar** — brauchen
+- **poder** — können / dürfen
+- **deber** — müssen / sollen
+- **intentar** — versuchen
+- **conseguir** — schaffen / bekommen
+- 💬 **acabo de llegar** — ich bin gerade angekommen — *wörtl.: ich beende anzukommen — acabar de + Inf. = gerade getan haben*
+- 💬 **voy a salir** — ich werde rausgehen / gehe gleich raus — *ir a + Inf. = das Alltags-Futur*
+- 💬 **vuelvo a intentarlo** — ich versuche es nochmal — *wörtl.: ich kehre zurück es zu versuchen — volver a + Inf. = wieder tun*
+- 💬 **hay que comprar pan** — man muss Brot kaufen — *wörtl.: es gibt zu kaufen — hay que = unpersönliches Müssen*
+- 💬 **tengo que irme** — ich muss los — *tener que = persönliches Müssen*
+- 💬 **me tengo que ir** — ich muss jetzt gehen `coloquial`
+- 💬 **estoy a punto de salir** — ich bin kurz davor loszugehen — *estar a punto de + Inf.*
+- 💬 **se me ha olvidado** — ich habe es vergessen — *wörtl.: es hat sich mir vergessen — typisches se me statt Schuld*
+- 💬 **se me han caído las llaves** — mir sind die Schlüssel runtergefallen — *se me + Verb: Missgeschick ohne Täter*
+- 💬 **no me sale** — ich kriege es nicht hin `coloquial` — *wörtl.: es geht mir nicht heraus*
+- 💬 **¿me dejas tu boli?** — leihst du mir deinen Kugelschreiber? `coloquial` — *dejar = leihen im Alltag, nicht prestar*
+- 💬 **dar un paseo** — einen Spaziergang machen — *wörtl.: einen Spaziergang geben*
+- 💬 **hacer deporte** — Sport machen
+- 💬 **sacar una foto** — ein Foto machen — *wörtl.: ein Foto herausziehen — nicht hacer una foto (geht auch, sacar üblicher)*
+- 💬 **poner la mesa** — den Tisch decken — *wörtl.: den Tisch stellen*
+- 💬 **quedar con amigos** — sich mit Freunden treffen — *quedar = DAS Verb fürs Verabreden — he quedado a las 8*
+- 💬 **llegar a tiempo** — rechtzeitig ankommen
+- 💬 **darse prisa** — sich beeilen — *wörtl.: sich Eile geben — ¡date prisa!: beeil dich!*
+## adjetivos frecuentes
+
+- **bueno** — gut
+- **malo** — schlecht / böse
+- **grande** — groß
+- **pequeño** — klein
+- **nuevo** — neu
+- **viejo** — alt
+- **joven** — jung
+- **alto** — hoch / groß (Person)
+- **bajo** — niedrig / klein (Person)
+- **largo** — lang — *NICHT „groß" — falscher Freund zu „large"*
+- **corto** — kurz
+- **rápido** — schnell
+- **lento** — langsam
+- **fácil** — einfach
+- **difícil** — schwierig
+- **importante** — wichtig
+- **interesante** — interessant
+- **bonito** — schön / hübsch
+- **feo** — hässlich
+- **guapo** — gutaussehend / schön
+- **limpio** — sauber
+- **sucio** — schmutzig
+- **lleno** — voll
+- **vacío** — leer
+- **cerrado** — geschlossen
+- **caliente** — heiß / warm
+- **frío** — kalt
+- **fuerte** — stark / laut
+- **débil** — schwach
+- **igual** — gleich
+- **diferente** — verschieden / anders
+- **verdad** — wahr / die Wahrheit
+- **mentira** — die Lüge / gelogen
+- **seguro** — sicher
+- **peligroso** — gefährlich
+- **ruidoso** — laut
+- **mejor** — besser
+- **peor** — schlechter
+- 💬 **hace calor** — es ist warm/heiß — *wörtl.: es macht Hitze — Wetter mit hacer, nie es ist*
+- 💬 **hace frío** — es ist kalt — *wörtl.: es macht Kälte*
+- 💬 **hace buen tiempo** — das Wetter ist schön — *wörtl.: es macht gutes Wetter*
+- 💬 **hace sol** — die Sonne scheint — *wörtl.: es macht Sonne*
+- 💬 **está lloviendo** — es regnet gerade
+- 💬 **hace viento** — es ist windig
+- 💬 **tengo calor** — mir ist warm/heiß — *wörtl.: ich habe Hitze — nie estoy caliente (= erregt!)*
+- 💬 **tengo frío** — mir ist kalt — *wörtl.: ich habe Kälte*
+- 💬 **está bien** — das ist okay / in Ordnung
+- 💬 **me parece bien** — finde ich gut — *wörtl.: es erscheint mir gut — parecer für Meinungen*
+- 💬 **¿qué te parece?** — was hältst du davon? — *wörtl.: wie erscheint es dir?*
+- 💬 **cada vez más** — immer mehr — *wörtl.: jedes Mal mehr*
+- 💬 **cada vez mejor** — immer besser
+- 💬 **de verdad** — wirklich / im Ernst
+- 💬 **menos mal** — zum Glück / Gott sei Dank — *wörtl.: weniger schlecht*
+- 💬 **por si acaso** — für alle Fälle / sicherheitshalber
+- 💬 **vale la pena** — es lohnt sich — *Variante von merece la pena*

@@ -390,6 +390,90 @@ def write_review(concepts: dict, verbs: dict) -> None:
     REVIEW_MD.write_text("\n".join(lines))
 
 
+REGISTERS = {"formal", "neutral", "coloquial"}
+WORDS_REVIEW_MD = ROOT / "SEED_REVIEW_WORDS.md"
+
+
+def _load_words() -> list[dict]:
+    """Grundwortschatz + Standardformulierungen aus db/seed/words_*.json.
+    Block-Format wie beim ca-Seed, plus optionalen "phrases"-Block:
+      words:   [term, de, register?]
+      phrases: [term, de, register?, note?]  — 3. Element ist register nur, wenn es
+               einer ist; sonst ist es die Notiz (wörtliche Glosse / Gebrauch).
+    Duplikate zwischen Themen: erste Nennung gewinnt (frühere Datei = häufigeres Thema)."""
+    entries, seen, rank = [], set(), 0
+
+    def _parse(entry: list, is_phrase: bool, topic: str) -> dict | None:
+        nonlocal rank
+        term, translation = entry[0], entry[1]
+        register, note = "neutral", None
+        rest = entry[2:]
+        if rest and rest[0] in REGISTERS:
+            register, rest = rest[0], rest[1:]
+        if rest:
+            note = rest[0]
+        if term in seen:
+            return None
+        seen.add(term)
+        rank += 1
+        return {"term": term, "translation": translation, "register": register,
+                "topic": topic, "freq_rank": rank, "is_phrase": is_phrase, "note": note}
+
+    for f in sorted(SEED_DIR.glob("words_*.json")):
+        for block in json.load(open(f))["blocks"]:
+            for e in block.get("words", []):
+                if (row := _parse(e, False, block["topic"])):
+                    entries.append(row)
+            for e in block.get("phrases", []):
+                if (row := _parse(e, True, block["topic"])):
+                    entries.append(row)
+    return entries
+
+
+def review_words() -> None:
+    """SEED_REVIEW_WORDS.md — der Grundwortschatz nach Themen, zum Gegenlesen. Lokal, ohne DB."""
+    words = _load_words()
+    if not words:
+        sys.exit("Keine words_*.json in db/seed/ gefunden.")
+    lines = ["# Seed-Review: Grundwortschatz + Standardformulierungen (es)", "",
+             f"{len(words)} Einträge. Phrasen sind mit 💬 markiert; *kursiv* = Notiz.", ""]
+    topic = None
+    for w in words:
+        if w["topic"] != topic:
+            topic = w["topic"]
+            lines += [f"## {topic}", ""]
+        mark = "💬 " if w["is_phrase"] else ""
+        reg = f" `{w['register']}`" if w["register"] != "neutral" else ""
+        note = f" — *{w['note']}*" if w["note"] else ""
+        lines.append(f"- {mark}**{w['term']}** — {w['translation']}{reg}{note}")
+    WORDS_REVIEW_MD.write_text("\n".join(lines) + "\n")
+    n_ph = sum(1 for w in words if w["is_phrase"])
+    print(f"{WORDS_REVIEW_MD.name}: {len(words)} Einträge ({n_ph} Formulierungen) "
+          f"in {len({w['topic'] for w in words})} Themen.")
+
+
+def push_words() -> None:
+    from db import get_db
+    db = get_db()
+    words = _load_words()
+    if not words:
+        sys.exit("Keine words_*.json in db/seed/ gefunden.")
+    for i in range(0, len(words), 200):  # Batch-Upserts, PostgREST-freundlich
+        db.c.table("seed_vocab").upsert(words[i:i + 200], on_conflict="term").execute()
+    print(f"Grundwortschatz: {len(words)} Einträge gepusht (reviewed=false).")
+    print("Gegenlesen: python seed_reference.py review-words → dann approve-words")
+
+
+def approve_words() -> None:
+    from db import get_db
+    db = get_db()
+    terms = [w["term"] for w in _load_words()]
+    for i in range(0, len(terms), 200):
+        (db.c.table("seed_vocab").update({"reviewed": True})
+         .in_("term", terms[i:i + 200]).execute())
+    print(f"Eingefroren: {len(terms)} Grundwortschatz-Einträge → reviewed=true.")
+
+
 def push() -> None:
     from db import get_db
     db = get_db()
@@ -433,5 +517,11 @@ if __name__ == "__main__":
         push()
     elif cmd == "approve":
         approve()
+    elif cmd == "push-words":
+        push_words()
+    elif cmd == "review-words":
+        review_words()
+    elif cmd == "approve-words":
+        approve_words()
     else:
         sys.exit(__doc__)

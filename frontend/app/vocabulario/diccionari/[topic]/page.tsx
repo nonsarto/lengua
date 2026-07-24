@@ -18,6 +18,8 @@ type Word = {
   register: string;
   freq_rank: number;
   cefr: string | null;
+  is_phrase: boolean;
+  note: string | null;
   added: boolean;
 };
 
@@ -61,11 +63,15 @@ export default function DiccionariTema() {
         {words.map((w) => (
           <li key={w.id} className="flex items-center justify-between gap-3 p-3">
             <div className="min-w-0">
-              <p className="font-medium">{w.term}</p>
+              <p className="font-medium">
+                {w.is_phrase && <span className="mr-1 text-xs">💬</span>}
+                {w.term}
+              </p>
               <p className="truncate text-sm text-stone-500">
                 {w.translation}
                 {w.register !== "neutral" ? ` · ${w.register}` : ""}
               </p>
+              {w.note && <p className="truncate text-xs italic text-stone-400">{w.note}</p>}
             </div>
             {w.added ? (
               <span className="shrink-0 text-xs text-green-700">{S.dictAdded}</span>

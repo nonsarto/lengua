@@ -163,6 +163,8 @@ create table seed_vocab (
   topic       text not null,               -- Themen-Regal (menjar, feina, casa, ...)
   freq_rank   int not null,                -- 1 = häufigstes Wort
   cefr        text,
+  is_phrase   boolean not null default false,  -- Standardformulierung (→ Tag "frase" im SRS)
+  note        text,                            -- wörtliche Glosse / Gebrauchsnotiz (Idiome)
   reviewed    boolean not null default false,
   created_at  timestamptz not null default now()
 );
