@@ -177,14 +177,17 @@ def health() -> dict:
 
 def _full_analyze_and_persist(user_id: str, capture_id: str, text: str,
                               image_b64, image_media_type: str, variety,
-                              source: str, known_slugs: list) -> None:
+                              source: str) -> None:
     """Phase 2, deferred: die VOLLE Analyse (Konzepte/Vokabeln/Lernstand) + Persistenz.
-    Läuft NACH der Antwort — der Nutzer hat die Microdose aus Phase 1 längst gesehen."""
+    Läuft NACH der Antwort — der Nutzer hat die Microdose aus Phase 1 längst gesehen.
+    Holt sich die Slugs hier selbst: dieser Roundtrip liegt außerhalb der kritischen Kette."""
     try:
         db = get_db()
         result = analyze(text, variety=variety, image_b64=image_b64,
-                         image_media_type=image_media_type, known_slugs=known_slugs)
-        db.create_capture(user_id, text, result["mode"], source, capture_id=capture_id)
+                         image_media_type=image_media_type,
+                         known_slugs=db.list_concept_slugs())
+        db.create_capture(user_id, text, result["mode"], source,
+                          capture_id=capture_id, analysis=result)
         apply_analysis(db, user_id, capture_id, result)
     except Exception:
         logger.exception("Deferred full analysis failed (capture %s, user %s)",
@@ -216,11 +219,10 @@ def capture(body: CaptureIn, background: BackgroundTasks,
             raise HTTPException(422, "No se oyó nada en el audio.")
         text = f"{text.strip()}\n\n{transcript}".strip() if text.strip() else transcript
 
-    known_slugs = db.list_concept_slugs()
-
     # 1. Phase 1 — der schnelle Feedback-Call. NUR die Microdose (Haiku, ~halbe Wartezeit).
+    #    KEIN Slug-Fetch davor: die Microdose braucht die Slugs nicht (s. analyze_micro).
     micro = analyze_micro(text, variety=variety, image_b64=body.image_b64,
-                          image_media_type=body.image_media_type, known_slugs=known_slugs)
+                          image_media_type=body.image_media_type)
     mode = micro["mode"]
     base = {"gist": micro.get("gist"), "correction": micro.get("correction"),
             "word": None, "transcript": transcript, "notes": "", "concepts": []}
@@ -228,8 +230,10 @@ def capture(body: CaptureIn, background: BackgroundTasks,
     # brief: das Paket braucht die volle, strukturierte Analyse + die Situation-ID → synchron.
     if mode == "brief":
         result = analyze(text, variety=variety, image_b64=body.image_b64,
-                         image_media_type=body.image_media_type, known_slugs=known_slugs)
-        capture_id = db.create_capture(user_id, text or "(foto)", result["mode"], body.source)
+                         image_media_type=body.image_media_type,
+                         known_slugs=db.list_concept_slugs())
+        capture_id = db.create_capture(user_id, text or "(foto)", result["mode"],
+                                       body.source, analysis=result)
         written = apply_analysis(db, user_id, capture_id, result)
         return {**base, "capture_id": capture_id, "mode": result["mode"],
                 "gist": result.get("gist"), "correction": result.get("correction"),
@@ -240,7 +244,8 @@ def capture(body: CaptureIn, background: BackgroundTasks,
 
     # word: die Microdose IST der Wörterbucheintrag — direkt ablegen (Dedup-Check für "añadido").
     if mode == "word" and micro.get("word"):
-        capture_id = db.create_capture(user_id, text or "(foto)", "word", body.source)
+        capture_id = db.create_capture(user_id, text or "(foto)", "word", body.source,
+                                       analysis=micro)
         w = micro["word"]
         _, created = db.get_or_create_vocab_item(
             user_id, {"term": w["term"], "translation": w["translation"],
@@ -254,7 +259,7 @@ def capture(body: CaptureIn, background: BackgroundTasks,
     # check / decode / listen: Microdose SOFORT zurück, volle Analyse + Persistenz im Hintergrund.
     capture_id = str(uuid.uuid4())
     background.add_task(_full_analyze_and_persist, user_id, capture_id, text or "(foto)",
-                        body.image_b64, body.image_media_type, variety, body.source, known_slugs)
+                        body.image_b64, body.image_media_type, variety, body.source)
     return {**base, "capture_id": capture_id, "mode": mode, "written": None}
 
 
@@ -685,3 +690,14 @@ def captures(limit: int = 20, user: dict = Depends(current_user)) -> list[dict]:
         "created_at": r["created_at"],
         "correction": (r["corrections"][0] if r.get("corrections") else None),
     } for r in rows]
+
+
+@app.get("/captures/{capture_id}")
+def capture_detail(capture_id: str, user: dict = Depends(current_user)) -> dict:
+    """Detailansicht eines Historien-Eintrags: die volle Analyse (Korrektur, Erklärung,
+    getaggte Konzepte, erkannte Vokabeln). Neu-Einträge aus dem gespeicherten analysis-Blob,
+    Alt-Einträge rekonstruiert aus den verknüpften Tabellen."""
+    detail = get_db().get_capture_detail(user["user_id"], capture_id)
+    if detail is None:
+        raise HTTPException(404, "Captura no encontrada.")
+    return detail

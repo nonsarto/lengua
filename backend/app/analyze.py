@@ -543,7 +543,7 @@ MICRO_SCHEMA = {
 _LANG_NAMES = {"es": "Spanish", "ca": "Catalan"}
 
 
-def _micro_system(variety: str | None, known_slugs: list[str] | None) -> str:
+def _micro_system(variety: str | None) -> str:
     lang = _LANG_NAMES.get(PACK.LANG, "Spanish")
     v = variety or PACK.DEFAULT_VARIETY
     s = (
@@ -561,19 +561,20 @@ def _micro_system(variety: str | None, known_slugs: list[str] | None) -> str:
         f"it. Fill word (term = dictionary form in {lang}, nouns WITH article; translation = the "
         "German meaning). gist=null, correction=null.\n"
         "For comprehension every regional variety is valid — never mark one as wrong. "
-        "correction and word stay null unless their mode applies."
+        "correction and word stay null unless their mode applies. "
+        "concept_slug is a free kebab-case guess — the backbone gets matched later in the "
+        "background pass, so no slug list is needed here."
     )
-    if known_slugs:
-        s += ("\n\nReuse an EXISTING concept slug for concept_slug when one fits:\n"
-              + ", ".join(known_slugs))
     return s
 
 
 def analyze_micro(raw_text: str, variety: str | None = None, image_b64: str | None = None,
-                  image_media_type: str = "image/jpeg",
-                  known_slugs: list[str] | None = None) -> dict:
+                  image_media_type: str = "image/jpeg") -> dict:
     """Der schnelle Feedback-Call — kleine Ausgabe, günstiges Modell. Was der Nutzer sofort
-    sieht; die volle Analyse holt Konzepte/Vokabeln/Lernstand danach im Hintergrund nach."""
+    sieht; die volle Analyse holt Konzepte/Vokabeln/Lernstand danach im Hintergrund nach.
+    Braucht KEINE known_slugs: der Micro-concept_slug wird nie verwendet (das Frontend zeigt nur
+    wrong/correct/why), die echte Slug-Zuordnung macht der Hintergrund-analyze(). Damit fällt ein
+    Supabase-Roundtrip aus der kritischen Kette und der Haiku-Prompt schrumpft."""
     content: list | str = raw_text
     if image_b64:
         content = [
@@ -585,7 +586,7 @@ def analyze_micro(raw_text: str, variety: str | None = None, image_b64: str | No
         model=MICRO_MODEL,
         max_tokens=600,
         thinking={"type": "disabled"},
-        system=_micro_system(variety, known_slugs),
+        system=_micro_system(variety),
         messages=[{"role": "user", "content": content}],
         output_config={"format": {"type": "json_schema", "schema": MICRO_SCHEMA}},
     )

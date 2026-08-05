@@ -49,6 +49,14 @@ const es = {
   packageReady: (v: number, f: number, c: number) =>
     `${v} palabras · ${f} frases · ${c} conceptos activados → ver paquete`,
   photoFallback: "(foto)",
+  // detalle de una captura (historial clicable)
+  detailLoading: "cargando…",
+  detailCorrection: "Corrección", detailMeaning: "Significado",
+  detailConcepts: "Conceptos", detailVocab: "Vocabulario",
+  detailNotes: "Nota", detailWord: "Palabra",
+  detailEmpty: "De esta captura solo quedó la microdosis — no hay más que mostrar.",
+  detailPartial: "Captura antigua: se muestra lo que se guardó en su día.",
+  detailClose: "Cerrar",
   // gramática
   gramaticaTitle: "Gramática",
   summary: (total: number, touched: number, hot: number, dom: number) =>
@@ -188,6 +196,14 @@ const ca: typeof es = {
   timeH: (n) => `fa ${n} h`, timeD: (n) => `fa ${n} d`,
   packageReady: (v, f, c) => `${v} paraules · ${f} frases · ${c} conceptes activats → veure el paquet`,
   photoFallback: "(foto)",
+  // TODO(ca-Durchgang): nur damit der Typ passt — im eigenen llengua-Durchgang gegenlesen.
+  detailLoading: "carregant…",
+  detailCorrection: "Correcció", detailMeaning: "Significat",
+  detailConcepts: "Conceptes", detailVocab: "Vocabulari",
+  detailNotes: "Nota", detailWord: "Paraula",
+  detailEmpty: "D'aquesta captura només va quedar la microdosi — no hi ha res més a mostrar.",
+  detailPartial: "Captura antiga: es mostra el que es va desar aleshores.",
+  detailClose: "Tancar",
   gramaticaTitle: "Gramàtica",
   summary: (total, touched, hot, dom) =>
     `${total} capítols · ${touched} tocats · ${hot} en calent · ${dom} dominats`,

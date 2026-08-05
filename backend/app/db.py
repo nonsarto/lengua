@@ -73,12 +73,15 @@ class Database:
 
     # ---------- captures ----------
     def create_capture(self, user_id: str, raw_text: str, kind: str, source: str = "web",
-                       capture_id: str | None = None) -> str:
+                       capture_id: str | None = None, analysis: dict | None = None) -> str:
         """capture_id darf vorab (uuid4) vergeben werden — so kann die Antwort die ID
-        schon tragen, während die Persistenz im Hintergrund nachläuft."""
+        schon tragen, während die Persistenz im Hintergrund nachläuft.
+        analysis = die volle analyze()-Ausgabe; aufgehoben für die Detailansicht der Historie."""
         payload = {"user_id": user_id, "raw_text": raw_text, "kind": kind, "source": source}
         if capture_id:
             payload["id"] = capture_id
+        if analysis is not None:
+            payload["analysis"] = analysis
         row = self.c.table("captures").insert(payload).execute().data[0]
         return row["id"]
 
@@ -90,6 +93,65 @@ class Database:
                 .order("created_at", desc=True)
                 .limit(limit)
                 .execute().data)
+
+    def get_capture_detail(self, user_id: str, capture_id: str) -> dict | None:
+        """Die volle Analyse EINES Captures für die Detailansicht. Neu-Einträge tragen die
+        analyze()-Ausgabe als `analysis`-Blob; für Alt-Einträge (analysis=null) wird
+        rekonstruiert, was in den verknüpften Tabellen liegt — mehr gibt es dort nicht."""
+        rows = (self.c.table("captures")
+                .select("id, raw_text, kind, created_at, analysis")
+                .eq("user_id", user_id).eq("id", capture_id).limit(1)
+                .execute().data)
+        if not rows:
+            return None
+        cap = rows[0]
+        base = {"id": cap["id"], "raw_text": cap["raw_text"], "kind": cap["kind"],
+                "created_at": cap["created_at"]}
+
+        analysis = cap.get("analysis")
+        if analysis:
+            corr = analysis.get("correction")
+            return {**base, "persisted": True,
+                    "gist": analysis.get("gist"),
+                    "notes": analysis.get("notes") or "",
+                    "correction": ({"wrong": corr["wrong"], "correct": corr["correct"],
+                                    "why": corr.get("why")} if corr else None),
+                    "concepts": [{"slug": c["slug"], "label": c.get("label", c["slug"]),
+                                  "evidence": c.get("evidence")}
+                                 for c in analysis.get("concepts", [])],
+                    "lemmas": [{"term": l["term"], "translation": l["translation"],
+                                "register": l.get("register"), "region": l.get("region")}
+                               for l in analysis.get("lemmas", [])],
+                    "word": analysis.get("word"),
+                    "brief": analysis.get("brief")}
+
+        # Alt-Eintrag: aus den Fakten zusammensetzen, die persistiert wurden.
+        corr_rows = (self.c.table("corrections")
+                     .select("wrong, correct, concepts(slug, label)")
+                     .eq("user_id", user_id).eq("capture_id", capture_id).limit(1)
+                     .execute().data)
+        concept_rows = (self.c.table("concept_evidence")
+                        .select("kind, concepts(slug, label)")
+                        .eq("user_id", user_id).eq("capture_id", capture_id)
+                        .execute().data)
+        vocab_rows = (self.c.table("vocab_items")
+                      .select("term, translation, register, region")
+                      .eq("user_id", user_id).eq("source_capture_id", capture_id)
+                      .execute().data)
+        corr = corr_rows[0] if corr_rows else None
+        return {**base, "persisted": False,
+                "gist": None, "notes": "",
+                "correction": ({"wrong": corr["wrong"], "correct": corr["correct"], "why": None}
+                               if corr else None),
+                "concepts": [{"slug": r["concepts"]["slug"],
+                              "label": r["concepts"].get("label") or r["concepts"]["slug"],
+                              "evidence": r.get("kind")}
+                             for r in concept_rows if r.get("concepts")],
+                "lemmas": [{"term": v["term"], "translation": v["translation"],
+                            "register": v.get("register"), "region": v.get("region")}
+                           for v in vocab_rows],
+                "word": None,
+                "brief": None}
 
     # ---------- concepts (slug reconciliation) ----------
     def get_or_create_concept(self, slug: str, label: str | None, cefr: str | None) -> dict:
