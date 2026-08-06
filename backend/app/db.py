@@ -531,6 +531,69 @@ class Database:
             q = q.not_.contains("tags", ["frase"])
         return q.order("srs_due").limit(limit).execute().data
 
+    def warmup_vocab(self, user_id: str, limit: int = 15) -> list[dict]:
+        """Fällige Vokabeln, die FAST sitzen — für den leichten Einstieg. Meiste Wiederholungen
+        (höchste Vertrautheit) zuerst; das sind die sicheren, motivierenden Treffer."""
+        return (self.c.table("vocab_items").select("*")
+                .eq("user_id", user_id).lte("srs_due", "now()")
+                .order("srs_reps", desc=True).order("srs_due")
+                .limit(limit).execute().data)
+
+    def situation_vocab(self, user_id: str, limit: int = 15) -> list[dict]:
+        """Situationsvokabular (Regale) — für den Ausklang. Fällige zuerst; wenn nichts fällig
+        ist, trotzdem welche zeigen (der Ausklang soll nie leer sein). Jede Query frisch bauen —
+        die supabase-py-Builder mutieren, ein wiederverwendeter träte Filter mit."""
+        def shelf():
+            return (self.c.table("vocab_items").select("*")
+                    .eq("user_id", user_id).not_.is_("situation_id", "null"))
+        due = shelf().lte("srs_due", "now()").order("srs_due").limit(limit).execute().data
+        if len(due) >= limit:
+            return due
+        rest = shelf().order("srs_due").limit(limit).execute().data
+        seen = {r["id"] for r in due}
+        return due + [r for r in rest if r["id"] not in seen][: limit - len(due)]
+
+    # ---------- daily_sessions (der eingefrorene 15-Minuten-Bogen) ----------
+    def get_current_session(self, user_id: str, today: str) -> dict | None:
+        """Die anzuzeigende Session: eine offene (auch von gestern — Fortsetzen, Mitternacht
+        ersetzt nichts), sonst die heute abgeschlossene ('heute erledigt'), sonst None (→ neu)."""
+        active = (self.c.table("daily_sessions").select("*")
+                  .eq("user_id", user_id).eq("status", "active")
+                  .order("session_date", desc=True).limit(1).execute().data)
+        if active:
+            return active[0]
+        done = (self.c.table("daily_sessions").select("*")
+                .eq("user_id", user_id).eq("session_date", today)
+                .eq("status", "completed").limit(1).execute().data)
+        return done[0] if done else None
+
+    def create_daily_session(self, user_id: str, today: str, plan: list[dict],
+                             headline: str, budget_seconds: int) -> dict:
+        return (self.c.table("daily_sessions").insert({
+            "user_id": user_id, "session_date": today, "plan": plan,
+            "headline": headline, "budget_seconds": budget_seconds,
+        }).execute().data[0])
+
+    def get_session(self, user_id: str, session_id: str) -> dict | None:
+        rows = (self.c.table("daily_sessions").select("*")
+                .eq("user_id", user_id).eq("id", session_id).limit(1).execute().data)
+        return rows[0] if rows else None
+
+    def save_session_progress(self, session_id: str, cursor: int, progress: list[dict]) -> None:
+        (self.c.table("daily_sessions")
+         .update({"cursor": cursor, "progress": progress}).eq("id", session_id).execute())
+
+    def complete_session(self, session_id: str) -> None:
+        (self.c.table("daily_sessions")
+         .update({"status": "completed", "completed_at": "now()"})
+         .eq("id", session_id).execute())
+
+    def clear_current_session(self, user_id: str, today: str) -> None:
+        """'Session ändern' / reroll: die aktuelle Session wegräumen, damit neu gewürfelt wird.
+        Trifft jede offene Session (auch ältere) und die heutige Zeile."""
+        self.c.table("daily_sessions").delete().eq("user_id", user_id).eq("status", "active").execute()
+        self.c.table("daily_sessions").delete().eq("user_id", user_id).eq("session_date", today).execute()
+
     def shaky_concepts(self, user_id: str) -> list[dict]:
         """Concepts whose state wobbles — the drill source."""
         states = (self.c.table("concept_state")

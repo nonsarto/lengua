@@ -281,6 +281,210 @@ def inicio(user: dict = Depends(current_user)) -> dict:
     return {"top_grammar": top, "vocab": {"due": due_count, "preview": due_preview}}
 
 
+# ---------------------------------------------------------------------------
+# Sesión diaria — der eingefrorene 15-Minuten-Bogen. Der Generator ist DETERMINISTISCH
+# (Auswahl/Rangfolge/Zeitbudget); er ruft nur EINEN bestehenden Content-Seam
+# (generate_exercises) nach, falls das Kern-Konzept noch keine Übungen hat. Bewertung
+# läuft über die bestehenden Pfade (/practicar/grade, /exercises/{id}/answer) — Lernstand
+# bewegt sich exakt wie bisher, hier wird nichts Neues erfunden.
+# ---------------------------------------------------------------------------
+
+SESSION_BUDGET = 900                                  # 15 Min als Versprechen, nicht Schätzung
+SESSION_ARC = {"warmup": 225, "core": 450, "cooldown": 225}   # 25 / 50 / 25
+ITEM_COST = {"vocab": 15, "fix": 30, "exercise": 60, "explain": 90}   # grobe Sekunden je Item
+# So viele Übungen soll der Kern-Block mindestens haben; darunter wird per LLM aufgefüllt.
+# (Kern-Budget minus Erklärungskarte / Kosten je Übung ≈ 6 → 5 lässt Luft für Fehlersätze.)
+CORE_MIN_EXERCISES = 5
+
+
+def _session_vocab_item(v: dict) -> dict:
+    return {"kind": "vocab", "cost": ITEM_COST["vocab"], "vocab_id": v["id"],
+            "prompt": v["translation"], "answer": v["term"], "register": v.get("register"),
+            "is_phrase": "frase" in (v.get("tags") or [])}
+
+
+def _pick_core_concept(db, user_id: str, level: str | None):
+    """Genau EIN Grammatik-Konzept. Zuerst der höchste persönliche Bedarf (compute_priority);
+    ist der Bedarf leer, ein zufälliges ungelerntes Konzept aus dem CEFR-Band des Nutzers."""
+    rows = db.list_concepts_with_state(user_id)
+    needful = sorted(((compute_priority(r), r) for r in rows if compute_priority(r) > 0),
+                     key=lambda t: -t[0])
+    if needful:
+        chosen = needful[0][1]
+    else:
+        unlearned = [r for r in rows if r["state"] in ("sin_ver", "visto")]
+        band = [r for r in unlearned if (r.get("cefr") or "") == (level or "")]
+        pool = band or unlearned or rows
+        if not pool:
+            return None
+        chosen = random.choice(pool)
+    return db.get_concept_detail(user_id, chosen["slug"])
+
+
+def _build_core(db, user_id: str, level: str | None) -> tuple[list[dict], str]:
+    """Der schwere Kern: 1 Erklärungs-Karte + Übungen aus echten Fehlern. Übungen: vorhandene
+    zuerst; hat das Kapitel keine, wird generate_exercises() EINMAL nachgeladen (Fallback auf
+    Fehlersätze/nichts, wenn der Call scheitert)."""
+    detail = _pick_core_concept(db, user_id, level)
+    if detail is None:
+        return [], ""
+    slug, label, cefr = detail["slug"], detail["label"], detail.get("cefr")
+    items: list[dict] = []
+    if detail.get("explanation"):
+        items.append({"kind": "explain", "cost": ITEM_COST["explain"], "concept_slug": slug,
+                      "label": label, "explanation": detail["explanation"],
+                      "rule_of_thumb": detail.get("rule_of_thumb"),
+                      "german_pitfall": detail.get("german_pitfall")})
+
+    exs = db.exercises_for_concept(detail["id"])
+    if len(exs) < CORE_MIN_EXERCISES:
+        # Zu wenige (oder keine) für den Kern-Block → per KI auffüllen. Bestehende Prompts
+        # gehen als Sperrliste mit, damit nichts doppelt entsteht (wie der Kapitel-Knopf).
+        try:
+            batch = generate_exercises(slug, label, cefr, detail,
+                                       existing_prompts=[e["prompt"] for e in exs])
+            db.insert_exercises(detail["id"], batch, cefr)
+            exs = db.exercises_for_concept(detail["id"])
+        except Exception:
+            logger.exception("session: Übungs-Generierung fehlgeschlagen (%s)", slug)
+
+    budget = SESSION_ARC["core"] - sum(i["cost"] for i in items)
+    random.shuffle(exs)
+    for e in exs:
+        if budget < ITEM_COST["exercise"]:
+            break
+        items.append({"kind": "exercise", "cost": ITEM_COST["exercise"], "exercise_id": e["id"],
+                      "etype": e["etype"], "prompt": e["prompt"], "options": e["options"],
+                      "concept_slug": slug, "concept_label": label})
+        budget -= ITEM_COST["exercise"]
+
+    # Auffüllen / Fallback mit deinen ECHTEN Fehlersätzen zu diesem Konzept.
+    if budget >= ITEM_COST["fix"]:
+        seen = set()
+        for corr in db.corrections_for_concepts(user_id, [detail["id"]]):
+            key = (corr["wrong"], corr["correct"])
+            if key in seen or budget < ITEM_COST["fix"]:
+                continue
+            seen.add(key)
+            items.append({"kind": "fix", "cost": ITEM_COST["fix"], "prompt": corr["wrong"],
+                          "answer": corr["correct"], "concept_slug": slug, "concept_label": label})
+            budget -= ITEM_COST["fix"]
+    return items, label
+
+
+def _build_session_plan(db, user_id: str, level: str | None) -> tuple[list[dict], str]:
+    """Der Bogen: leichter Einstieg → schwerer Kern (EIN Konzept) → leichter Ausklang.
+    Füllt bis zum Zeitbudget und hört auf. Baut auch bei komplett leerem Bedarf eine
+    sinnvolle Session (dann 100 % Standard-Rückgrat)."""
+    db.promote_daily_seed(user_id)   # Standard-Wörter nachrücken (no-op ohne seed_vocab)
+
+    items: list[dict] = []
+
+    # 1. Einstieg — Vokabeln, die fast sitzen.
+    budget = SESSION_ARC["warmup"]
+    for v in db.warmup_vocab(user_id, limit=SESSION_ARC["warmup"] // ITEM_COST["vocab"]):
+        if budget < ITEM_COST["vocab"]:
+            break
+        items.append(_session_vocab_item(v))
+        budget -= ITEM_COST["vocab"]
+
+    # 2. Kern — genau EIN Grammatik-Konzept.
+    core_items, core_label = _build_core(db, user_id, level)
+    items += core_items
+
+    # 3. Ausklang — Situationsvokabular (Fallback: fällige/Standard-Wörter).
+    used_vocab = {i["vocab_id"] for i in items if i["kind"] == "vocab"}
+    cool = db.situation_vocab(user_id, limit=SESSION_ARC["cooldown"] // ITEM_COST["vocab"])
+    if not cool:
+        cool = db.due_vocab_items(user_id, limit=SESSION_ARC["cooldown"] // ITEM_COST["vocab"])
+    budget = SESSION_ARC["cooldown"]
+    for v in cool:
+        if budget < ITEM_COST["vocab"]:
+            break
+        if v["id"] in used_vocab:
+            continue
+        items.append(_session_vocab_item(v))
+        used_vocab.add(v["id"])
+        budget -= ITEM_COST["vocab"]
+
+    return items, core_label
+
+
+def _today_utc() -> str:
+    from datetime import datetime, timezone
+    return datetime.now(timezone.utc).date().isoformat()
+
+
+def _session_payload(row: dict) -> dict:
+    return {"id": row["id"], "session_date": row["session_date"], "status": row["status"],
+            "headline": row["headline"], "budget_seconds": row["budget_seconds"],
+            "cursor": row["cursor"], "progress": row["progress"], "items": row["plan"]}
+
+
+def _generate_and_store_session(db, user_id: str, level: str | None, today: str) -> dict:
+    items, core_label = _build_session_plan(db, user_id, level)
+    return db.create_daily_session(user_id, today, items, core_label, SESSION_BUDGET)
+
+
+@app.get("/session/today")
+def session_today(user: dict = Depends(current_user)) -> dict:
+    """Freeze-Logik: gibt es eine offene Session (auch von gestern — Mitternacht ersetzt sie
+    nicht) oder eine heute abgeschlossene, wird die zurückgegeben; sonst wird EINMAL generiert,
+    eingefroren und zurückgegeben. Das Frontend lädt das getrennt, blockiert nie den Rest."""
+    db = get_db()
+    user_id = user["user_id"]
+    today = _today_utc()
+    row = db.get_current_session(user_id, today)
+    if row is None:
+        try:
+            row = _generate_and_store_session(db, user_id, user.get("level_estimate"), today)
+        except Exception:
+            # Race: paralleles erstes Öffnen hat die Session schon eingefroren (unique-Constraint).
+            row = db.get_current_session(user_id, today)
+            if row is None:
+                raise
+    return _session_payload(row)
+
+
+class SessionProgressIn(BaseModel):
+    cursor: int
+    progress: list[dict] = []
+
+
+@app.post("/session/{session_id}/progress")
+def session_progress(session_id: str, body: SessionProgressIn,
+                     user: dict = Depends(current_user)) -> dict:
+    """Fortschritt sichern (Abbruch → Fortsetzen). Bewegt KEINEN Lernstand — das machen die
+    bestehenden Grade-Pfade; hier wird nur der Cursor gemerkt."""
+    db = get_db()
+    row = db.get_session(user["user_id"], session_id)
+    if row is None:
+        raise HTTPException(404, "Sesión no encontrada.")
+    db.save_session_progress(session_id, body.cursor, body.progress)
+    return {"ok": True}
+
+
+@app.post("/session/{session_id}/complete")
+def session_complete(session_id: str, user: dict = Depends(current_user)) -> dict:
+    db = get_db()
+    row = db.get_session(user["user_id"], session_id)
+    if row is None:
+        raise HTTPException(404, "Sesión no encontrada.")
+    db.complete_session(session_id)
+    return {"ok": True}
+
+
+@app.post("/session/reroll")
+def session_reroll(user: dict = Depends(current_user)) -> dict:
+    """'Cambiar sesión': die aktuelle wegräumen und neu würfeln (bewusste Nutzeraktion)."""
+    db = get_db()
+    user_id = user["user_id"]
+    today = _today_utc()
+    db.clear_current_session(user_id, today)
+    row = _generate_and_store_session(db, user_id, user.get("level_estimate"), today)
+    return _session_payload(row)
+
+
 GRAMMAR_CLUSTER = PACK.GRAMMAR_CLUSTER
 
 
