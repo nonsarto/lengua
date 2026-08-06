@@ -18,12 +18,14 @@ Design rules baked in:
 """
 
 import json
+import logging
 import os
 from anthropic import Anthropic
 
 from lang import get_lang
 
 PACK = get_lang()
+logger = logging.getLogger("lengua")
 
 # Lazy: the deterministic half of this module (apply_analysis, compute_priority, ...)
 # must be importable without an API key — only analyze() itself needs the client.
@@ -641,35 +643,57 @@ def compute_priority(state: dict, now: datetime | None = None) -> int:
 
 def apply_analysis(db, user_id: str, capture_id: str, result: dict) -> dict:
     """Write the outcome. Reconcile slugs, bump counters, move states — all in code.
-    Returns a small summary of what was written (for the API response)."""
+    Returns a small summary of what was written (for the API response).
+
+    Atomicität: PostgREST kennt keine Transaktion über mehrere Calls. Statt die
+    Scoring-Logik in eine plpgsql-RPC zu duplizieren (gegen die Architektur), sind hier
+    die UNABHÄNGIGEN Einheiten isoliert: scheitert eine (ein kaputtes Konzept, ein DB-
+    Aussetzer), machen die übrigen trotzdem Fortschritt statt alles zu verlieren. Der
+    Capture-TEXT ist ohnehin schon synchron gesichert — hier geht nur Lernstand-Anreicherung
+    verloren, nie die Rohdaten. Die Einheiten sind idempotent genug für einen Re-Run."""
     written = {"concepts": [], "vocab": [], "correction": None}
 
+    # Wichtigstes zuerst: die Konzept-States (Lernstand) und die Korrektur (dein Fehler).
     for c in result.get("concepts", []):
-        concept = db.get_or_create_concept(c["slug"], c.get("label"), c.get("cefr"))
-        db.add_evidence(user_id, concept["id"], capture_id, c["evidence"])
-        state = db.get_or_create_state(user_id, concept["id"])
-        if c["evidence"] == "error":
-            state["need_count"] += 1
-        elif c["evidence"] == "success":
-            state["success_count"] += 1
-        _recompute_state(state, c["evidence"])
-        db.save_state(state)
-        written["concepts"].append({"slug": c["slug"], "state": state["state"]})
+        try:
+            concept = db.get_or_create_concept(c["slug"], c.get("label"), c.get("cefr"))
+            db.add_evidence(user_id, concept["id"], capture_id, c["evidence"])
+            state = db.get_or_create_state(user_id, concept["id"])
+            if c["evidence"] == "error":
+                state["need_count"] += 1
+            elif c["evidence"] == "success":
+                state["success_count"] += 1
+            _recompute_state(state, c["evidence"])
+            db.save_state(state)
+            written["concepts"].append({"slug": c["slug"], "state": state["state"]})
+        except Exception:
+            logger.exception("apply_analysis: Konzept '%s' fehlgeschlagen (capture %s)",
+                             c.get("slug"), capture_id)
 
     corr = result.get("correction")
     if corr:
-        concept = db.get_or_create_concept(corr["concept_slug"], corr["concept_slug"], None)
-        db.add_correction(user_id, capture_id, corr["wrong"], corr["correct"], concept["id"])
-        written["correction"] = {"wrong": corr["wrong"], "correct": corr["correct"]}
+        try:
+            concept = db.get_or_create_concept(corr["concept_slug"], corr["concept_slug"], None)
+            db.add_correction(user_id, capture_id, corr["wrong"], corr["correct"], concept["id"])
+            written["correction"] = {"wrong": corr["wrong"], "correct": corr["correct"]}
+        except Exception:
+            logger.exception("apply_analysis: Korrektur fehlgeschlagen (capture %s)", capture_id)
 
     for lemma in result.get("lemmas", []):
-        _, created = db.get_or_create_vocab_item(user_id, lemma, source_capture_id=capture_id)
-        if created:
-            written["vocab"].append(lemma["term"])
+        try:
+            _, created = db.get_or_create_vocab_item(user_id, lemma, source_capture_id=capture_id)
+            if created:
+                written["vocab"].append(lemma["term"])
+        except Exception:
+            logger.exception("apply_analysis: Vokabel '%s' fehlgeschlagen (capture %s)",
+                             lemma.get("term"), capture_id)
 
     brief = result.get("brief")
     if brief:
-        written["situation"] = _apply_brief(db, user_id, capture_id, brief)
+        try:
+            written["situation"] = _apply_brief(db, user_id, capture_id, brief)
+        except Exception:
+            logger.exception("apply_analysis: Brief-Paket fehlgeschlagen (capture %s)", capture_id)
 
     return written
 

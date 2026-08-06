@@ -50,6 +50,14 @@ class Database:
     def update_user(self, user_id: str, fields: dict) -> None:
         self.c.table("user_settings").update(fields).eq("user_id", user_id).execute()
 
+    def claim_onboarding(self, user_id: str) -> bool:
+        """Atomarer Doppel-Submit-Schutz: setzt onboarded_at NUR wenn noch null. Gibt True
+        zurück, wenn DIESER Aufruf den Slot geholt hat — nur dann darf gesät werden. Schließt
+        die TOCTOU-Lücke zwischen 'schon onboarded?'-Prüfung und dem Schreiben."""
+        res = (self.c.table("user_settings").update({"onboarded_at": "now()"})
+               .eq("user_id", user_id).is_("onboarded_at", "null").execute())
+        return bool(res.data)
+
     def list_users(self) -> list[dict]:
         return (self.c.table("user_settings")
                 .select("user_id, username, display_name, is_admin, level_estimate,"

@@ -156,9 +156,12 @@ def onboarding_questions(user: dict = Depends(current_user)) -> dict:
 
 @app.post("/onboarding")
 def onboarding_submit(body: OnboardingIn, user: dict = Depends(current_user)) -> dict:
-    if user.get("onboarded_at") is not None:
+    db = get_db()
+    # Slot atomar holen (onboarded_at nur wenn null) — NUR der Gewinner sät die States.
+    # Ersetzt die frühere check-then-act-Prüfung, die bei Doppel-Submit doppelt säen konnte.
+    if not db.claim_onboarding(user["user_id"]):
         raise HTTPException(409, "El test de nivel ya está hecho.")
-    return onboarding.grade(get_db(), user["user_id"], body.answers)
+    return onboarding.grade(db, user["user_id"], body.answers)
 
 
 class CaptureIn(BaseModel):

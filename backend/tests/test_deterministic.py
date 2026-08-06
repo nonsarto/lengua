@@ -8,8 +8,8 @@ from datetime import datetime, timedelta, timezone
 
 import pytest
 
-from analyze import (compute_priority, derive_state, grade_exercise, normalize_answer,
-                     srs_update, _recompute_state, NEED_THRESHOLD)
+from analyze import (apply_analysis, compute_priority, derive_state, grade_exercise,
+                     normalize_answer, srs_update, _recompute_state, NEED_THRESHOLD)
 
 NOW = datetime(2026, 1, 1, tzinfo=timezone.utc)
 
@@ -162,3 +162,50 @@ def test_grade_accepts_any_listed_variant():
     ex = {"answers": ["voy a comer", "como"]}
     assert grade_exercise(ex, "  Voy   a  comer ") is True
     assert grade_exercise(ex, "cenar") is False
+
+
+# --------------------------- apply_analysis: Einheiten sind isoliert (M2-Resilienz)
+class _FakeDB:
+    """Minimaler Stub: eine benannte Slug-Aussaat scheitert, der Rest muss durchlaufen."""
+    def __init__(self, fail_slug=None):
+        self.fail_slug = fail_slug
+        self.vocab, self.corrections = [], []
+
+    def get_or_create_concept(self, slug, label, cefr):
+        if slug == self.fail_slug:
+            raise RuntimeError("boom")
+        return {"id": f"cid-{slug}", "slug": slug}
+
+    def add_evidence(self, *a):
+        pass
+
+    def get_or_create_state(self, user_id, concept_id):
+        return {"id": f"sid-{concept_id}", "need_count": 0, "success_count": 0, "state": "sin_ver"}
+
+    def save_state(self, state):
+        pass
+
+    def add_correction(self, *a):
+        self.corrections.append(a)
+
+    def get_or_create_vocab_item(self, user_id, lemma, source_capture_id):
+        self.vocab.append(lemma["term"])
+        return ("vid", True)
+
+
+def test_apply_analysis_isolates_failing_concept():
+    db = _FakeDB(fail_slug="bad-slug")
+    result = {
+        "concepts": [
+            {"slug": "bad-slug", "label": "", "cefr": None, "evidence": "error"},
+            {"slug": "good-slug", "label": "", "cefr": None, "evidence": "success"},
+        ],
+        "correction": None,
+        "lemmas": [{"term": "hola", "translation": "hallo", "register": "neutral", "region": None}],
+        "brief": None,
+    }
+    written = apply_analysis(db, "u1", "cap1", result)
+    slugs = [c["slug"] for c in written["concepts"]]
+    assert "good-slug" in slugs        # gesundes Konzept trotz Fehler davor gesät
+    assert "bad-slug" not in slugs     # kaputtes übersprungen, nicht geworfen
+    assert "hola" in written["vocab"]  # Vokabel danach ebenfalls noch geschrieben
