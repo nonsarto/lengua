@@ -63,15 +63,15 @@ function SessionCard() {
   return (
     <Link
       href="/sesion"
-      className="mb-6 flex items-center justify-between gap-3 rounded-2xl border border-accent-300 bg-accent-100/70 p-5 active:scale-[0.99]"
+      className="mb-6 flex items-start justify-between gap-3 rounded-2xl border border-accent-300 bg-accent-100/70 p-5 active:scale-[0.99]"
     >
       <div className="min-w-0">
-        <p className="truncate text-lg font-semibold text-accent-800">{label}</p>
+        <p className="text-lg font-semibold leading-snug text-accent-800">{label}</p>
         {session.cursor > 0 && (
-          <p className="mt-0.5 truncate text-sm text-stone-600">{S.sessionButton(min, what)}</p>
+          <p className="mt-0.5 text-sm text-stone-600">{S.sessionButton(min, what)}</p>
         )}
       </div>
-      <span className="shrink-0 text-xl text-accent-700">▶</span>
+      <span className="shrink-0 pt-0.5 text-xl text-accent-700">▶</span>
     </Link>
   );
 }

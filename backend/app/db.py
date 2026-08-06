@@ -583,6 +583,10 @@ class Database:
         (self.c.table("daily_sessions")
          .update({"cursor": cursor, "progress": progress}).eq("id", session_id).execute())
 
+    def save_session_plan(self, session_id: str, plan: list[dict]) -> None:
+        """Plan im Nachhinein erweitern/ersetzen (mehr Übungen anfragen / 'otra')."""
+        self.c.table("daily_sessions").update({"plan": plan}).eq("id", session_id).execute()
+
     def complete_session(self, session_id: str) -> None:
         (self.c.table("daily_sessions")
          .update({"status": "completed", "completed_at": "now()"})

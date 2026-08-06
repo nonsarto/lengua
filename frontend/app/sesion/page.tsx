@@ -39,10 +39,13 @@ export default function Sesion() {
   const [done, setDone] = useState(false);
   const [busy, setBusy] = useState(false);
 
+  const [regenBusy, setRegenBusy] = useState(false);
+
   // Estado por ítem
   const [revealed, setRevealed] = useState(false);
   const [answer, setAnswer] = useState("");
   const [verdict, setVerdict] = useState<Verdict | null>(null);
+  const [writeResult, setWriteResult] = useState<boolean | null>(null);   // vocab en modo escritura
 
   const load = useCallback((data: Session) => {
     setSession(data);
@@ -65,6 +68,48 @@ export default function Sesion() {
     setRevealed(false);
     setAnswer("");
     setVerdict(null);
+    setWriteResult(null);
+  }
+
+  // Acentos/mayúsculas no cuentan en el recall escrito de vocabulario (drill, no examen).
+  const norm = (s: string) =>
+    s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+
+  function coreConceptSlug(): string | undefined {
+    const it = session?.items.find((i) => i.kind === "exercise" || i.kind === "explain");
+    return it && "concept_slug" in it ? it.concept_slug : undefined;
+  }
+
+  // Pedir más ejercicios ('más') o cambiar uno que no gusta ('otra' → replace_index).
+  async function regenerate(replaceIndex: number | null, n: number) {
+    if (!session || regenBusy) return;
+    const slug = coreConceptSlug();
+    if (!slug) return;
+    setRegenBusy(true);
+    try {
+      const res = await apiFetch(`/session/${session.id}/exercises`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug, n, replace_index: replaceIndex }),
+      });
+      if (!res.ok) throw new Error();
+      const data: { items: Item[]; replaced: boolean } = await res.json();
+      if (!data.items?.length) return;
+      const wasDone = idx >= session.items.length;
+      setSession((s) => {
+        if (!s) return s;
+        const items = [...s.items];
+        if (data.replaced && replaceIndex != null) items[replaceIndex] = data.items[0];
+        else items.push(...data.items);
+        return { ...s, items };
+      });
+      if (data.replaced) resetItem();      // mostrar el reemplazo en el mismo sitio
+      else if (wasDone) setDone(false);    // 'más' desde el resumen → seguir con los nuevos
+    } catch {
+      /* si falla, no pasa nada — el usuario sigue */
+    } finally {
+      setRegenBusy(false);
+    }
   }
 
   async function complete(id: string) {
@@ -148,13 +193,36 @@ export default function Sesion() {
 
   const total = session.items.length;
 
-  // ---------- cierre: confirmación tranquila, sin ofrecer ya lo siguiente ----------
+  // ---------- cierre: resumen tranquilo (resultados ya transferidos durante la sesión) ----------
   if (done || idx >= total) {
+    const stats = progress.reduce(
+      (a, p) => {
+        const kind = session.items[p.index]?.kind;
+        if (kind === "exercise" && "correct" in p) { a.exTotal++; if (p.correct) a.exOk++; }
+        if (kind === "vocab") a.vocab++;
+        return a;
+      },
+      { exTotal: 0, exOk: 0, vocab: 0 },
+    );
     return (
       <div className="rounded-2xl border border-green-200 bg-green-50/60 p-8 text-center">
         <p className="text-2xl font-bold text-green-800">{S.sessionDoneToday} ✓</p>
         <p className="mt-2 text-sm text-stone-600">{S.sessionDoneSub}</p>
-        <p className="mt-6">
+        <div className="mt-4 space-y-0.5 text-sm text-stone-700">
+          {stats.exTotal > 0 && <p>{S.sessionSummaryExercises(stats.exOk, stats.exTotal)}</p>}
+          {stats.vocab > 0 && <p>{S.sessionSummaryVocab(stats.vocab)}</p>}
+        </div>
+        <p className="mt-3 text-xs text-stone-400">{S.sessionSaved}</p>
+        {coreConceptSlug() && (
+          <button
+            onClick={() => regenerate(null, 3)}
+            disabled={regenBusy}
+            className="mt-5 rounded-lg border border-accent-300 px-5 py-2 text-sm font-semibold text-accent-700 active:scale-95 disabled:opacity-40"
+          >
+            {regenBusy ? S.sessionRegenerating : S.sessionMore}
+          </button>
+        )}
+        <p className="mt-5">
           <Link href="/" className="text-sm text-stone-500 underline-offset-2 hover:underline">
             {S.sessionToInicio}
           </Link>
@@ -164,6 +232,9 @@ export default function Sesion() {
   }
 
   const item = session.items[idx];
+  // Vocabulario: alternar recall (mostrar) y escritura (teclear). Cada segunda palabra se escribe.
+  const vocabOrdinal = session.items.slice(0, idx).filter((i) => i.kind === "vocab").length;
+  const writeMode = item.kind === "vocab" && vocabOrdinal % 2 === 1;
 
   return (
     <>
@@ -178,43 +249,99 @@ export default function Sesion() {
       </div>
 
       <div className="rounded-xl border border-stone-200 bg-white p-5">
-        {/* ---------- vocab: recall (mueve SRS) ---------- */}
+        {/* ---------- vocab: recall (mostrar) o escritura (teclear) — ambos mueven SRS ---------- */}
         {item.kind === "vocab" && (
           <>
-            <p className="text-xs uppercase tracking-wide text-stone-400">{S.sessionSaidWord}</p>
+            <p className="text-xs uppercase tracking-wide text-stone-400">
+              {writeMode ? S.sessionWriteWord : S.sessionSaidWord}
+            </p>
             <p className="mt-2 text-xl font-medium">🇩🇪 {item.prompt}</p>
-            {revealed && (
-              <p className="mt-4 border-t border-stone-100 pt-4 text-xl font-semibold text-green-700">
-                {item.answer}
-              </p>
-            )}
-            <div className="mt-5 flex gap-3">
-              {!revealed ? (
-                <button
-                  onClick={() => setRevealed(true)}
-                  className="w-full rounded-lg bg-stone-900 py-2.5 text-sm font-semibold text-white active:scale-[0.98]"
+
+            {/* modo escritura: teclear la palabra, comprobar, seguir */}
+            {writeMode ? (
+              writeResult === null ? (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (answer.trim()) setWriteResult(norm(answer) === norm(item.answer));
+                  }}
+                  className="mt-5 flex gap-2"
                 >
-                  {S.sessionReveal}
-                </button>
+                  <input
+                    value={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
+                    placeholder={S.sessionWrite}
+                    autoFocus
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    className="w-full rounded-lg border border-stone-300 p-3 text-base outline-none focus:border-accent-500"
+                  />
+                  <button
+                    type="submit"
+                    disabled={!answer.trim()}
+                    className="shrink-0 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
+                  >
+                    {S.sessionCheck}
+                  </button>
+                </form>
               ) : (
                 <>
+                  <div className={`mt-4 rounded-lg p-3 ${writeResult ? "bg-green-50" : "bg-red-50"}`}>
+                    {writeResult ? (
+                      <p className="font-medium text-green-800">{S.sessionCorrect}</p>
+                    ) : (
+                      <p className="font-medium text-red-700">
+                        {S.sessionSolution} <span className="text-green-800">{item.answer}</span>
+                      </p>
+                    )}
+                  </div>
                   <button
-                    onClick={() => gradeVocab(false)}
+                    onClick={() => gradeVocab(writeResult)}
                     disabled={busy}
-                    className="flex-1 rounded-lg border border-red-200 bg-red-50 py-2.5 text-sm font-semibold text-red-700 active:scale-[0.98] disabled:opacity-40"
+                    autoFocus
+                    className="mt-3 w-full rounded-lg bg-accent-600 py-2.5 text-sm font-semibold text-white active:scale-[0.98] disabled:opacity-40"
                   >
-                    {S.sessionBad}
-                  </button>
-                  <button
-                    onClick={() => gradeVocab(true)}
-                    disabled={busy}
-                    className="flex-1 rounded-lg border border-green-200 bg-green-50 py-2.5 text-sm font-semibold text-green-700 active:scale-[0.98] disabled:opacity-40"
-                  >
-                    {S.sessionGood}
+                    {S.sessionNext}
                   </button>
                 </>
-              )}
-            </div>
+              )
+            ) : (
+              /* modo recall: mostrar y autoevaluar */
+              <>
+                {revealed && (
+                  <p className="mt-4 border-t border-stone-100 pt-4 text-xl font-semibold text-green-700">
+                    {item.answer}
+                  </p>
+                )}
+                <div className="mt-5 flex gap-3">
+                  {!revealed ? (
+                    <button
+                      onClick={() => setRevealed(true)}
+                      className="w-full rounded-lg bg-stone-900 py-2.5 text-sm font-semibold text-white active:scale-[0.98]"
+                    >
+                      {S.sessionReveal}
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => gradeVocab(false)}
+                        disabled={busy}
+                        className="flex-1 rounded-lg border border-red-200 bg-red-50 py-2.5 text-sm font-semibold text-red-700 active:scale-[0.98] disabled:opacity-40"
+                      >
+                        {S.sessionBad}
+                      </button>
+                      <button
+                        onClick={() => gradeVocab(true)}
+                        disabled={busy}
+                        className="flex-1 rounded-lg border border-green-200 bg-green-50 py-2.5 text-sm font-semibold text-green-700 active:scale-[0.98] disabled:opacity-40"
+                      >
+                        {S.sessionGood}
+                      </button>
+                    </>
+                  )}
+                </div>
+              </>
+            )}
           </>
         )}
 
@@ -266,6 +393,18 @@ export default function Sesion() {
         {/* ---------- exercise: mcq / cloze, corrige el backend (mueve el estado) ---------- */}
         {item.kind === "exercise" && (
           <>
+            {/* 'otra': esta no me gusta → saltarla y traer una nueva en su lugar */}
+            {!verdict && (
+              <p className="mb-1 text-right">
+                <button
+                  onClick={() => regenerate(idx, 1)}
+                  disabled={regenBusy || busy}
+                  className="text-xs text-stone-400 underline-offset-2 hover:underline disabled:opacity-50"
+                >
+                  {regenBusy ? S.sessionRegenerating : `↻ ${S.sessionOtra}`}
+                </button>
+              </p>
+            )}
             <p className="mb-4 text-lg">{item.prompt}</p>
 
             {item.etype === "mcq" && item.options && (

@@ -289,12 +289,18 @@ def inicio(user: dict = Depends(current_user)) -> dict:
 # bewegt sich exakt wie bisher, hier wird nichts Neues erfunden.
 # ---------------------------------------------------------------------------
 
-SESSION_BUDGET = 900                                  # 15 Min als Versprechen, nicht Schätzung
-SESSION_ARC = {"warmup": 225, "core": 450, "cooldown": 225}   # 25 / 50 / 25
+SESSION_BUDGET = 1200                                 # 20 Min als Versprechen, nicht Schätzung
+SESSION_ARC = {"warmup": 240, "core": 720, "cooldown": 240}   # 20 / 60 / 20 — Grammatik im Fokus
 ITEM_COST = {"vocab": 15, "fix": 30, "exercise": 60, "explain": 90}   # grobe Sekunden je Item
 # So viele Übungen soll der Kern-Block mindestens haben; darunter wird per LLM aufgefüllt.
-# (Kern-Budget minus Erklärungskarte / Kosten je Übung ≈ 6 → 5 lässt Luft für Fehlersätze.)
-CORE_MIN_EXERCISES = 5
+# (Kern-Budget minus Erklärungskarte / Kosten je Übung ≈ 10 → 8 lässt Luft für Fehlersätze.)
+CORE_MIN_EXERCISES = 8
+
+
+def _session_exercise_item(e: dict, slug: str, label: str) -> dict:
+    return {"kind": "exercise", "cost": ITEM_COST["exercise"], "exercise_id": e["id"],
+            "etype": e["etype"], "prompt": e["prompt"], "options": e["options"],
+            "concept_slug": slug, "concept_label": label}
 
 
 def _session_vocab_item(v: dict) -> dict:
@@ -353,9 +359,7 @@ def _build_core(db, user_id: str, level: str | None) -> tuple[list[dict], str]:
     for e in exs:
         if budget < ITEM_COST["exercise"]:
             break
-        items.append({"kind": "exercise", "cost": ITEM_COST["exercise"], "exercise_id": e["id"],
-                      "etype": e["etype"], "prompt": e["prompt"], "options": e["options"],
-                      "concept_slug": slug, "concept_label": label})
+        items.append(_session_exercise_item(e, slug, label))
         budget -= ITEM_COST["exercise"]
 
     # Auffüllen / Fallback mit deinen ECHTEN Fehlersätzen zu diesem Konzept.
@@ -483,6 +487,57 @@ def session_reroll(user: dict = Depends(current_user)) -> dict:
     db.clear_current_session(user_id, today)
     row = _generate_and_store_session(db, user_id, user.get("level_estimate"), today)
     return _session_payload(row)
+
+
+class MoreExercisesIn(BaseModel):
+    slug: str
+    n: int = 3
+    replace_index: int | None = None   # gesetzt = EINE Übung an dieser Stelle ersetzen ('otra')
+
+
+@app.post("/session/{session_id}/exercises")
+def session_more_exercises(session_id: str, body: MoreExercisesIn,
+                           user: dict = Depends(current_user)) -> dict:
+    """Mehr/neue Grammatik-Übungen in eine laufende Session ziehen. Serviert zuerst vorhandene,
+    noch nicht benutzte Übungen des Kern-Konzepts; ist der Pool erschöpft, wird per KI eine
+    frische Charge generiert (gleicher Seam wie das Kapitel). replace_index ersetzt EINE Übung
+    ('otra' — gefällt nicht), sonst werden welche angehängt ('más ejercicios'). Der Plan wird
+    aktualisiert, damit Fortsetzen konsistent bleibt."""
+    db = get_db()
+    row = db.get_session(user["user_id"], session_id)
+    if row is None:
+        raise HTTPException(404, "Sesión no encontrada.")
+    detail = db.get_concept_detail(user["user_id"], body.slug)
+    if detail is None:
+        raise HTTPException(404, f"Concepto '{body.slug}' no existe.")
+
+    plan = row["plan"]
+    used = {i["exercise_id"] for i in plan if i.get("kind") == "exercise"}
+    pool = db.exercises_for_concept(detail["id"])
+    fresh = [e for e in pool if e["id"] not in used]
+    n = max(1, min(body.n, 5))
+    if len(fresh) < n:
+        try:
+            batch = generate_exercises(body.slug, detail["label"], detail.get("cefr"), detail,
+                                       existing_prompts=[e["prompt"] for e in pool])
+            db.insert_exercises(detail["id"], batch, detail.get("cefr"))
+            pool = db.exercises_for_concept(detail["id"])
+            fresh = [e for e in pool if e["id"] not in used]
+        except Exception:
+            logger.exception("session: Nachgenerieren fehlgeschlagen (%s)", body.slug)
+
+    new_items = [_session_exercise_item(e, body.slug, detail["label"]) for e in fresh[:n]]
+    if not new_items:
+        return {"items": [], "replaced": False}
+
+    if body.replace_index is not None and 0 <= body.replace_index < len(plan):
+        plan[body.replace_index] = new_items[0]
+        added, replaced = [new_items[0]], True
+    else:
+        plan = plan + new_items
+        added, replaced = new_items, False
+    db.save_session_plan(session_id, plan)
+    return {"items": added, "replaced": replaced}
 
 
 GRAMMAR_CLUSTER = PACK.GRAMMAR_CLUSTER
