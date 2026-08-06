@@ -354,19 +354,31 @@ def _build_core(db, user_id: str, level: str | None,
                       "german_pitfall": detail.get("german_pitfall")})
 
     exs = db.exercises_for_concept(detail["id"])
-    if len(exs) < CORE_MIN_EXERCISES:
-        # Zu wenige (oder keine) für den Kern-Block → per KI auffüllen. Bestehende Prompts
-        # gehen als Sperrliste mit, damit nichts doppelt entsteht (wie der Kapitel-Knopf).
+    attempts = db.exercise_attempts(user_id, [e["id"] for e in exs]) if exs else {}
+    unseen = [e for e in exs if e["id"] not in attempts]
+    # Neu generieren, sobald zu wenige UNGESEHENE für den Kern übrig sind — nicht erst, wenn
+    # der Pool insgesamt klein ist. So wiederholt sich nichts, bis wirklich alles geübt wurde;
+    # dann kommt eine frische Charge (Sperrliste gegen Dubletten, wie der Kapitel-Knopf).
+    if len(unseen) < CORE_MIN_EXERCISES:
         try:
             batch = generate_exercises(slug, label, cefr, detail,
                                        existing_prompts=[e["prompt"] for e in exs])
             db.insert_exercises(detail["id"], batch, cefr)
             exs = db.exercises_for_concept(detail["id"])
+            attempts = db.exercise_attempts(user_id, [e["id"] for e in exs])
         except Exception:
             logger.exception("session: Übungs-Generierung fehlgeschlagen (%s)", slug)
 
-    budget = SESSION_ARC["core"] - sum(i["cost"] for i in items)
+    # Ungesehene zuerst (in zufälliger Reihenfolge), dann zuletzt-falsche, dann zuletzt-richtige.
+    def _order_key(e):
+        a = attempts.get(e["id"])
+        if a is None:
+            return (0, 0)
+        return (1, a["count"]) if a.get("last_correct") is False else (2, a["count"])
     random.shuffle(exs)
+    exs.sort(key=_order_key)
+
+    budget = SESSION_ARC["core"] - sum(i["cost"] for i in items)
     for e in exs:
         if budget < ITEM_COST["exercise"]:
             break
@@ -529,9 +541,14 @@ def session_more_exercises(session_id: str, body: MoreExercisesIn,
         raise HTTPException(404, f"Concepto '{body.slug}' no existe.")
 
     plan = row["plan"]
+    user_id = user["user_id"]
     used = {i["exercise_id"] for i in plan if i.get("kind") == "exercise"}
     pool = db.exercises_for_concept(detail["id"])
-    fresh = [e for e in pool if e["id"] not in used]
+    attempts = db.exercise_attempts(user_id, [e["id"] for e in pool]) if pool else {}
+    # frisch = weder in dieser Session noch je zuvor geübt → 'otra'/'más' wiederholt nichts.
+    def _fresh(items):
+        return [e for e in items if e["id"] not in used and e["id"] not in attempts]
+    fresh = _fresh(pool)
     n = max(1, min(body.n, 5))
     if len(fresh) < n:
         try:
@@ -539,7 +556,7 @@ def session_more_exercises(session_id: str, body: MoreExercisesIn,
                                        existing_prompts=[e["prompt"] for e in pool])
             db.insert_exercises(detail["id"], batch, detail.get("cefr"))
             pool = db.exercises_for_concept(detail["id"])
-            fresh = [e for e in pool if e["id"] not in used]
+            fresh = _fresh(pool)   # neue Übungen haben keine Attempts → gelten als frisch
         except Exception:
             logger.exception("session: Nachgenerieren fehlgeschlagen (%s)", body.slug)
 
