@@ -8,6 +8,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { apiFetch, getUser, STATE_LABEL, STATE_STYLE } from "@/lib/api";
 import { S } from "@/lib/strings";
 
@@ -24,8 +25,10 @@ type SessionToday = {
 
 /** El acceso a la sesión diaria — arriba del todo. Carga aparte: nunca bloquea el resto. */
 function SessionCard() {
+  const router = useRouter();
   const [session, setSession] = useState<SessionToday | null>(null);
   const [failed, setFailed] = useState(false);
+  const [rerolling, setRerolling] = useState(false);
 
   useEffect(() => {
     apiFetch(`/session/today`)
@@ -33,6 +36,18 @@ function SessionCard() {
       .then(setSession)
       .catch(() => setFailed(true));
   }, []);
+
+  // Neues, komplettes Training würfeln (Reroll) und direkt hineinspringen.
+  async function newTraining() {
+    setRerolling(true);
+    try {
+      const res = await apiFetch(`/session/reroll`, { method: "POST" });
+      if (!res.ok) throw new Error();
+      router.push("/sesion");
+    } catch {
+      setRerolling(false);   // bleiben, erneut versuchbar
+    }
+  }
 
   if (failed) {
     return <p className="mb-6 text-sm text-stone-400">{S.sessionError}</p>;
@@ -49,6 +64,13 @@ function SessionCard() {
       <div className="mb-6 rounded-2xl border border-green-200 bg-green-50/60 p-4">
         <p className="font-semibold text-green-800">{S.sessionDoneToday} ✓</p>
         <p className="mt-0.5 text-sm text-stone-600">{S.sessionDoneSub}</p>
+        <button
+          onClick={newTraining}
+          disabled={rerolling}
+          className="mt-3 rounded-lg border border-accent-300 bg-white px-4 py-2 text-sm font-semibold text-accent-700 active:scale-95 disabled:opacity-40"
+        >
+          {rerolling ? S.sessionPreparing : S.sessionNewTraining}
+        </button>
       </div>
     );
   }
