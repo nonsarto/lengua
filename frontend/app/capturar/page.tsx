@@ -443,7 +443,7 @@ function CapturarInner() {
           onClick={closeDetail}
         >
           <div
-            className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-t-2xl bg-white p-5 sm:rounded-2xl"
+            className="max-h-[85dvh] w-full max-w-lg overflow-y-auto overscroll-contain rounded-t-2xl bg-white p-5 pb-28 sm:max-h-[85vh] sm:rounded-2xl sm:pb-5"
             onClick={(e) => e.stopPropagation()}
           >
             {detailLoading && !detail && (
