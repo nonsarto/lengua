@@ -85,6 +85,13 @@ class Database:
         row = self.c.table("captures").insert(payload).execute().data[0]
         return row["id"]
 
+    def update_capture_analysis(self, user_id: str, capture_id: str, kind: str,
+                                analysis: dict) -> None:
+        """Die Capture-Zeile besteht schon (synchron angelegt) — hier wird sie nach der
+        vollen Hintergrund-Analyse angereichert (kind ggf. korrigiert, analysis überschrieben)."""
+        (self.c.table("captures").update({"kind": kind, "analysis": analysis})
+         .eq("user_id", user_id).eq("id", capture_id).execute())
+
     def list_captures(self, user_id: str, limit: int = 20) -> list[dict]:
         """Recent captures, newest first, with their correction (if any) nested in."""
         return (self.c.table("captures")

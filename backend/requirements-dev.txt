@@ -1,0 +1,3 @@
+# Nur für lokale Tests / CI — NICHT für den Railway-Build nötig.
+# Installieren: venv/bin/pip install -r backend/requirements-dev.txt
+pytest>=8

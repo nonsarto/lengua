@@ -176,19 +176,18 @@ def health() -> dict:
 
 
 def _full_analyze_and_persist(user_id: str, capture_id: str, text: str,
-                              image_b64, image_media_type: str, variety,
-                              source: str) -> None:
-    """Phase 2, deferred: die VOLLE Analyse (Konzepte/Vokabeln/Lernstand) + Persistenz.
-    Läuft NACH der Antwort — der Nutzer hat die Microdose aus Phase 1 längst gesehen.
+                              image_b64, image_media_type: str, variety) -> None:
+    """Phase 2, deferred: die VOLLE Analyse (Konzepte/Vokabeln/Lernstand) + Anreicherung.
+    Läuft NACH der Antwort. Die Capture-Zeile besteht bereits (synchron mit der Microdose
+    angelegt) — scheitert das hier, bleibt der Text also erhalten, nur die Voll-Analyse fehlt.
     Holt sich die Slugs hier selbst: dieser Roundtrip liegt außerhalb der kritischen Kette."""
     try:
         db = get_db()
         result = analyze(text, variety=variety, image_b64=image_b64,
                          image_media_type=image_media_type,
                          known_slugs=db.list_concept_slugs())
-        db.create_capture(user_id, text, result["mode"], source,
-                          capture_id=capture_id, analysis=result)
         apply_analysis(db, user_id, capture_id, result)
+        db.update_capture_analysis(user_id, capture_id, result["mode"], result)
     except Exception:
         logger.exception("Deferred full analysis failed (capture %s, user %s)",
                          capture_id, user_id)
@@ -256,10 +255,14 @@ def capture(body: CaptureIn, background: BackgroundTasks,
                 "word": {"term": w["term"], "translation": w["translation"], "added": created},
                 "written": None}
 
-    # check / decode / listen: Microdose SOFORT zurück, volle Analyse + Persistenz im Hintergrund.
+    # check / decode / listen: Capture SOFORT synchron sichern (Microdose als Analyse-Fallback),
+    # dann Microdose zurück; die volle Analyse reichert im Hintergrund an. So ist "guardado ✓"
+    # ehrlich — der Text geht nie verloren, selbst wenn die Voll-Analyse scheitert.
     capture_id = str(uuid.uuid4())
+    db.create_capture(user_id, text or "(foto)", mode, body.source,
+                      capture_id=capture_id, analysis=micro)
     background.add_task(_full_analyze_and_persist, user_id, capture_id, text or "(foto)",
-                        body.image_b64, body.image_media_type, variety, body.source)
+                        body.image_b64, body.image_media_type, variety)
     return {**base, "capture_id": capture_id, "mode": mode, "written": None}
 
 
