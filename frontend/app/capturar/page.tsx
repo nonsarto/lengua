@@ -92,6 +92,7 @@ function CapturarInner() {
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [detail, setDetail] = useState<CaptureDetail | null>(null);
   const [detailLoading, setDetailLoading] = useState(false);
+  const [detailError, setDetailError] = useState(false);
   const [audio, setAudio] = useState<Blob | null>(null);
   const [recording, setRecording] = useState(false);
   const recRef = useRef<MediaRecorder | null>(null);
@@ -135,11 +136,13 @@ function CapturarInner() {
   async function openDetail(id: string) {
     setDetailLoading(true);
     setDetail(null);
+    setDetailError(false);
     try {
       const r = await apiFetch(`/captures/${id}`);
       if (r.ok) setDetail(await r.json());
+      else setDetailError(true);           // 404/500 → visible, nunca un clic "muerto"
     } catch {
-      /* si falla, el overlay se cierra solo al no haber datos */
+      setDetailError(true);
     } finally {
       setDetailLoading(false);
     }
@@ -148,6 +151,7 @@ function CapturarInner() {
   function closeDetail() {
     setDetail(null);
     setDetailLoading(false);
+    setDetailError(false);
   }
 
   useEffect(() => {
@@ -433,7 +437,7 @@ function CapturarInner() {
       )}
 
       {/* Detalle de una captura: el análisis completo, tocando en el historial */}
-      {(detailLoading || detail) && (
+      {(detailLoading || detail || detailError) && (
         <div
           className="fixed inset-0 z-50 flex items-end justify-center bg-black/30 p-0 sm:items-center sm:p-4"
           onClick={closeDetail}
@@ -444,6 +448,19 @@ function CapturarInner() {
           >
             {detailLoading && !detail && (
               <p className="py-8 text-center text-sm text-stone-400">{S.detailLoading}</p>
+            )}
+
+            {detailError && (
+              <div className="py-6 text-center">
+                <p className="text-sm text-stone-500">{S.detailFailed}</p>
+                <button
+                  type="button"
+                  onClick={closeDetail}
+                  className="mt-4 text-sm text-stone-400 underline-offset-2 hover:underline"
+                >
+                  {S.detailClose}
+                </button>
+              </div>
             )}
 
             {detail && (

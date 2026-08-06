@@ -56,6 +56,7 @@ const es = {
   detailNotes: "Nota", detailWord: "Palabra",
   detailEmpty: "De esta captura solo quedó la microdosis — no hay más que mostrar.",
   detailPartial: "Captura antigua: se muestra lo que se guardó en su día.",
+  detailFailed: "No se pudo cargar el detalle. Inténtalo de nuevo.",
   detailClose: "Cerrar",
   // sesión diaria — el arco de 15 min (tarjeta en Inicio + runner en /sesion)
   sessionPreparing: "preparando tu sesión…",
@@ -225,6 +226,7 @@ const ca: typeof es = {
   detailNotes: "Nota", detailWord: "Paraula",
   detailEmpty: "D'aquesta captura només va quedar la microdosi — no hi ha res més a mostrar.",
   detailPartial: "Captura antiga: es mostra el que es va desar aleshores.",
+  detailFailed: "No s'ha pogut carregar el detall. Torna-ho a provar.",
   detailClose: "Tancar",
   // TODO(ca-Durchgang): nur damit der Typ passt — im eigenen llengua-Durchgang gegenlesen.
   sessionPreparing: "preparant la teva sessió…",
