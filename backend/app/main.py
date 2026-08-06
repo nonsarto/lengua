@@ -315,29 +315,34 @@ def _session_vocab_item(v: dict) -> dict:
             "is_phrase": "frase" in (v.get("tags") or [])}
 
 
-def _pick_core_concept(db, user_id: str, level: str | None):
+def _pick_core_concept(db, user_id: str, level: str | None, exclude_slug: str | None = None):
     """Genau EIN Grammatik-Konzept. Zuerst der höchste persönliche Bedarf (compute_priority);
-    ist der Bedarf leer, ein zufälliges ungelerntes Konzept aus dem CEFR-Band des Nutzers."""
+    ist der Bedarf leer, ein zufälliges ungelerntes Konzept aus dem CEFR-Band des Nutzers.
+    exclude_slug (bei Reroll gesetzt) = das zuletzt geübte Konzept: das gleiche nicht direkt
+    wiederholen, solange es eine andere Option gibt — sonst darf es fallbacken."""
     rows = db.list_concepts_with_state(user_id)
-    needful = sorted(((compute_priority(r), r) for r in rows if compute_priority(r) > 0),
-                     key=lambda t: -t[0])
+    scored = [(compute_priority(r), r) for r in rows]     # priority einmal berechnen
+    needful = sorted((t for t in scored if t[0] > 0), key=lambda t: -t[0])
     if needful:
-        chosen = needful[0][1]
+        # höchster Bedarf, aber nicht das zuletzt geübte — außer es ist der einzige mit Bedarf
+        chosen = next((r for _, r in needful if r["slug"] != exclude_slug), needful[0][1])
     else:
         unlearned = [r for r in rows if r["state"] in ("sin_ver", "visto")]
         band = [r for r in unlearned if (r.get("cefr") or "") == (level or "")]
         pool = band or unlearned or rows
+        pool = [r for r in pool if r["slug"] != exclude_slug] or pool
         if not pool:
             return None
         chosen = random.choice(pool)
     return db.get_concept_detail(user_id, chosen["slug"])
 
 
-def _build_core(db, user_id: str, level: str | None) -> tuple[list[dict], str]:
+def _build_core(db, user_id: str, level: str | None,
+                exclude_slug: str | None = None) -> tuple[list[dict], str]:
     """Der schwere Kern: 1 Erklärungs-Karte + Übungen aus echten Fehlern. Übungen: vorhandene
     zuerst; hat das Kapitel keine, wird generate_exercises() EINMAL nachgeladen (Fallback auf
     Fehlersätze/nichts, wenn der Call scheitert)."""
-    detail = _pick_core_concept(db, user_id, level)
+    detail = _pick_core_concept(db, user_id, level, exclude_slug)
     if detail is None:
         return [], ""
     slug, label, cefr = detail["slug"], detail["label"], detail.get("cefr")
@@ -382,10 +387,12 @@ def _build_core(db, user_id: str, level: str | None) -> tuple[list[dict], str]:
     return items, label
 
 
-def _build_session_plan(db, user_id: str, level: str | None) -> tuple[list[dict], str]:
+def _build_session_plan(db, user_id: str, level: str | None,
+                        exclude_slug: str | None = None) -> tuple[list[dict], str]:
     """Der Bogen: leichter Einstieg → schwerer Kern (EIN Konzept) → leichter Ausklang.
     Füllt bis zum Zeitbudget und hört auf. Baut auch bei komplett leerem Bedarf eine
-    sinnvolle Session (dann 100 % Standard-Rückgrat)."""
+    sinnvolle Session (dann 100 % Standard-Rückgrat). exclude_slug = zuletzt geübtes
+    Kern-Konzept (Reroll) — nicht direkt wiederholen."""
     db.promote_daily_seed(user_id)   # Standard-Wörter nachrücken (no-op ohne seed_vocab)
 
     items: list[dict] = []
@@ -399,7 +406,7 @@ def _build_session_plan(db, user_id: str, level: str | None) -> tuple[list[dict]
         budget -= ITEM_COST["vocab"]
 
     # 2. Kern — genau EIN Grammatik-Konzept.
-    core_items, core_label = _build_core(db, user_id, level)
+    core_items, core_label = _build_core(db, user_id, level, exclude_slug)
     items += core_items
 
     # 3. Ausklang — Situationsvokabular (Fallback: fällige/Standard-Wörter).
@@ -431,8 +438,9 @@ def _session_payload(row: dict) -> dict:
             "cursor": row["cursor"], "progress": row["progress"], "items": row["plan"]}
 
 
-def _generate_and_store_session(db, user_id: str, level: str | None, today: str) -> dict:
-    items, core_label = _build_session_plan(db, user_id, level)
+def _generate_and_store_session(db, user_id: str, level: str | None, today: str,
+                                exclude_slug: str | None = None) -> dict:
+    items, core_label = _build_session_plan(db, user_id, level, exclude_slug)
     return db.create_daily_session(user_id, today, items, core_label, SESSION_BUDGET)
 
 
@@ -486,12 +494,15 @@ def session_complete(session_id: str, user: dict = Depends(current_user)) -> dic
 
 @app.post("/session/reroll")
 def session_reroll(user: dict = Depends(current_user)) -> dict:
-    """'Cambiar sesión': die aktuelle wegräumen und neu würfeln (bewusste Nutzeraktion)."""
+    """'Cambiar sesión' / neues Training: die aktuelle wegräumen und neu würfeln. Das gerade
+    ersetzte Kern-Konzept wird ausgeschlossen, damit nicht direkt dasselbe kommt."""
     db = get_db()
     user_id = user["user_id"]
     today = _today_utc()
+    last_core = db.last_session_core_slug(user_id)   # vor dem Wegräumen merken
     db.clear_current_session(user_id, today)
-    row = _generate_and_store_session(db, user_id, user.get("level_estimate"), today)
+    row = _generate_and_store_session(db, user_id, user.get("level_estimate"), today,
+                                      exclude_slug=last_core)
     return _session_payload(row)
 
 

@@ -79,6 +79,10 @@ German speaker living in Barcelona (production variety: peninsular). Two types:
   "answers" lists ALL accepted variants (e.g. with/without subject pronoun). Keep gaps short
   (1-3 words), unambiguous, and solvable from the sentence context alone.
 Rules:
+- NEVER a translation task. Do NOT ask the user to translate a whole sentence in either
+  direction (no German sentence to render into Spanish, no "traduce: …"). The sentence is
+  ALWAYS given in Spanish; the user only supplies the missing target form (cloze) or picks the
+  correct option (mcq) — never a whole clause. The answer is the grammar point, not a sentence.
 - "prompt": Spanish. Add a short German cue in parentheses ONLY when the gap is untranslatable
   from context (e.g. the German meaning of the target word).
 - "explanation": ONE short GERMAN sentence — why the answer is right, pitched at the chapter's

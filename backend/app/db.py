@@ -594,6 +594,18 @@ class Database:
                 .eq("user_id", user_id).eq("id", session_id).limit(1).execute().data)
         return rows[0] if rows else None
 
+    def last_session_core_slug(self, user_id: str) -> str | None:
+        """Kern-Konzept der zuletzt erzeugten Session (aus dem Plan) — damit ein Reroll nicht
+        direkt dasselbe Konzept nochmal zieht."""
+        rows = (self.c.table("daily_sessions").select("plan")
+                .eq("user_id", user_id).order("created_at", desc=True).limit(1).execute().data)
+        if not rows:
+            return None
+        for item in rows[0].get("plan") or []:
+            if item.get("kind") in ("explain", "exercise"):
+                return item.get("concept_slug")
+        return None
+
     def save_session_progress(self, session_id: str, cursor: int, progress: list[dict]) -> None:
         (self.c.table("daily_sessions")
          .update({"cursor": cursor, "progress": progress}).eq("id", session_id).execute())
