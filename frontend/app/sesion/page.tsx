@@ -213,15 +213,25 @@ export default function Sesion() {
           {stats.vocab > 0 && <p>{S.sessionSummaryVocab(stats.vocab)}</p>}
         </div>
         <p className="mt-3 text-xs text-stone-400">{S.sessionSaved}</p>
-        {coreConceptSlug() && (
+        <div className="mt-6 flex flex-col items-center gap-3">
+          {/* Neues, komplettes Training (frischer Bogen — Reroll) */}
           <button
-            onClick={() => regenerate(null, 3)}
-            disabled={regenBusy}
-            className="mt-5 rounded-lg border border-accent-300 px-5 py-2 text-sm font-semibold text-accent-700 active:scale-95 disabled:opacity-40"
+            onClick={reroll}
+            className="rounded-lg bg-accent-600 px-6 py-2.5 text-sm font-semibold text-white active:scale-95"
           >
-            {regenBusy ? S.sessionRegenerating : S.sessionMore}
+            {S.sessionNewTraining}
           </button>
-        )}
+          {/* Sekundär: nur mehr Übungen zum selben Konzept nachlegen */}
+          {coreConceptSlug() && (
+            <button
+              onClick={() => regenerate(null, 3)}
+              disabled={regenBusy}
+              className="text-sm text-accent-700 underline-offset-2 hover:underline disabled:opacity-40"
+            >
+              {regenBusy ? S.sessionRegenerating : S.sessionMore}
+            </button>
+          )}
+        </div>
         <p className="mt-5">
           <Link href="/" className="text-sm text-stone-500 underline-offset-2 hover:underline">
             {S.sessionToInicio}
