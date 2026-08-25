@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
+import SubirMaterial from "@/components/SubirMaterial";
 
 type Shelf = { id: string; name: string; is_seed: boolean; item_count: number };
 type Loose = { id: string; term: string; translation: string; register: string; region: string | null };
@@ -89,12 +90,7 @@ export default function Vocabulario() {
       </div>
       {error && <p className="-mt-4 mb-4 text-xs text-red-600">{S.createFailed}</p>}
 
-      <Link
-        href="/vocabulario/importar"
-        className="mb-6 block text-xs text-accent-700 underline-offset-2 hover:underline"
-      >
-        {S.importEntry} →
-      </Link>
+      <SubirMaterial />
 
       {shelves === null ? (
         <p className="text-sm text-stone-400">{S.loading}</p>

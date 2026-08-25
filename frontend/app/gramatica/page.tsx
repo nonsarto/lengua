@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { apiFetch, STATE_LABEL, STATE_STYLE } from "@/lib/api";
 import { S } from "@/lib/strings";
+import SubirMaterial from "@/components/SubirMaterial";
 
 type ConceptRow = {
   slug: string;
@@ -81,6 +82,8 @@ export default function Gramatica() {
       <p className="mb-4 text-xs text-stone-400">
         {S.summary(rows.length, touched, hot.length, dominated)}
       </p>
+
+      <SubirMaterial />
 
       {/* Tus temas — mismo desplegable que la referencia, pero abierto por defecto */}
       {hot.length > 0 && (
