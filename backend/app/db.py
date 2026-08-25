@@ -15,6 +15,10 @@ from supabase import create_client, Client
 
 _client: Client | None = None
 
+# Start-Ease importierter Vokabeln: unter dem 2.5-Default eigener Captures. Ein Wort aus einem
+# Check hast du aktiv produziert; ein importiertes ist fremdes, unbewiesenes Material.
+IMPORT_COLD_EASE = 2.3
+
 
 def get_db() -> "Database":
     global _client
@@ -338,9 +342,11 @@ class Database:
     # ---------- vocab ----------
     def get_or_create_vocab_item(self, user_id: str, lemma: dict, source_capture_id: str,
                                  situation_id: str | None = None,
-                                 tags: list[str] | None = None) -> tuple[str, bool]:
+                                 tags: list[str] | None = None,
+                                 source: str = "capture") -> tuple[str, bool]:
         """Returns (item_id, created). Existing terms are left alone — their SRS position
-        is learning state, don't reset it."""
+        is learning state, don't reset it. `source` marks the origin (capture|seed|import)
+        so the session generator can weight self-captured vocab ahead of imported."""
         existing = (self.c.table("vocab_items").select("id")
                     .eq("user_id", user_id).eq("term", lemma["term"]).execute().data)
         if existing:
@@ -354,6 +360,7 @@ class Database:
             "situation_id": situation_id,
             "tags": tags or [],
             "source_capture_id": source_capture_id,
+            "source": source,
         }).execute().data[0]
         return row["id"], True
 
@@ -364,6 +371,57 @@ class Database:
 
     def update_vocab_srs(self, item_id: str, patch: dict) -> None:
         self.c.table("vocab_items").update(patch).eq("id", item_id).execute()
+
+    def bulk_import_vocab(self, user_id: str, items: list[dict],
+                          situation_id: str | None = None, source: str = "import",
+                          source_document_id: str | None = None) -> tuple[int, int]:
+        """Massenimport aus Datei ODER Dokument. Dedupe gegen bestehende Terme (case-insensitiv),
+        die neuen KALT ins SRS: sofort fällig (Spalten-Default now()), interval/reps 0, und
+        eine niedrigere Start-Ease als eine eigene Capture — die Herkunft seedet die
+        Startposition (importiert = fremdes Material, kein aktiv produziertes Wort).
+        source_document_id hält die Herkunft fest, wenn die Vokabeln aus einem Dokument stammen.
+        Gibt (imported, skipped) zurück."""
+        existing = {t.lower() for t in self._user_terms(user_id)}
+        rows = []
+        for it in items:
+            key = it["term"].lower()
+            if not it["term"].strip() or not it["translation"].strip() or key in existing:
+                continue
+            existing.add(key)
+            rows.append({
+                "user_id": user_id,
+                "term": it["term"],
+                "translation": it["translation"],
+                "register": it.get("register", "neutral"),
+                "region": it.get("region"),
+                "situation_id": situation_id,
+                "tags": it.get("tags", []),
+                "source": source,
+                "source_document_id": source_document_id,
+                "srs_ease": IMPORT_COLD_EASE,   # kälter als der 2.5-Default eigener Captures
+            })
+        if not rows:
+            return 0, len(items)
+        inserted = self.c.table("vocab_items").insert(rows).execute().data
+        if situation_id:
+            for r in inserted:
+                self.add_vocab_to_situation(situation_id, r["id"])
+        return len(inserted), len(items) - len(inserted)
+
+    # ---------- documents (hochgeladenes Lernmaterial — Herkunft eines Boosts/Imports) ----------
+    def create_document(self, user_id: str, filename: str | None, kind: str,
+                        mode: str) -> dict:
+        return self.c.table("documents").insert({
+            "user_id": user_id, "filename": filename, "kind": kind, "mode": mode,
+        }).execute().data[0]
+
+    def update_document(self, document_id: str, fields: dict) -> None:
+        self.c.table("documents").update(fields).eq("id", document_id).execute()
+
+    def list_documents(self, user_id: str, limit: int = 20) -> list[dict]:
+        return (self.c.table("documents").select("*")
+                .eq("user_id", user_id).order("created_at", desc=True)
+                .limit(limit).execute().data)
 
     # ---------- situations (shelves) ----------
     def get_or_create_situation(self, user_id: str, name: str, is_seed: bool = False) -> dict:
@@ -496,7 +554,7 @@ class Database:
             user_id,
             {"term": w["term"], "translation": w["translation"],
              "register": w["register"], "region": None},
-            source_capture_id=None, tags=self._seed_tags(w),
+            source_capture_id=None, tags=self._seed_tags(w), source="seed",
         )
         return created
 
@@ -527,7 +585,7 @@ class Database:
                     user_id,
                     {"term": w["term"], "translation": w["translation"],
                      "register": w["register"], "region": None},
-                    source_capture_id=None, tags=self._seed_tags(w),
+                    source_capture_id=None, tags=self._seed_tags(w), source="seed",
                 )
                 mine.add(w["term"])
                 added += 1
@@ -535,36 +593,58 @@ class Database:
         return added
 
     # ---------- practicar (drill selection — pulls exactly where scoring wobbles) ----------
+    @staticmethod
+    def _source_weighted(base, limit: int) -> list[dict]:
+        """Quellengewichtung (Punkt 4): selbst eingefangene Vokabeln (source != 'import')
+        haben Vorrang vor importierten — ein Massenimport von hunderten Karten flutet die
+        Auswahl nicht und verwässert den persönlichen Vorsprung nicht. Explizit über ZWEI
+        Queries statt Zufall: erst die eigenen bis zum Limit, importierte füllen nur den Rest,
+        jeweils in der von base() vorgegebenen SRS-Reihenfolge. base() liefert je Aufruf einen
+        FRISCHEN Builder (ohne source-Filter) — supabase-py-Builder mutieren beim Filtern."""
+        own = base().neq("source", "import").limit(limit).execute().data
+        if len(own) >= limit:
+            return own
+        imported = base().eq("source", "import").limit(limit - len(own)).execute().data
+        return own + imported
+
     def due_vocab_items(self, user_id: str, limit: int = 8,
                         phrases: bool | None = None) -> list[dict]:
-        """SRS-due items. phrases=True → only intent-phrases, False → only words, None → both."""
-        q = (self.c.table("vocab_items").select("*")
-             .eq("user_id", user_id).lte("srs_due", "now()"))
-        if phrases is True:
-            q = q.contains("tags", ["frase"])
-        elif phrases is False:
-            q = q.not_.contains("tags", ["frase"])
-        return q.order("srs_due").limit(limit).execute().data
+        """SRS-due items. phrases=True → only intent-phrases, False → only words, None → both.
+        Eigene vor importierten (Quellengewichtung)."""
+        def base():
+            q = (self.c.table("vocab_items").select("*")
+                 .eq("user_id", user_id).lte("srs_due", "now()"))
+            if phrases is True:
+                q = q.contains("tags", ["frase"])
+            elif phrases is False:
+                q = q.not_.contains("tags", ["frase"])
+            return q.order("srs_due")
+        return self._source_weighted(base, limit)
 
     def warmup_vocab(self, user_id: str, limit: int = 15) -> list[dict]:
         """Fällige Vokabeln, die FAST sitzen — für den leichten Einstieg. Meiste Wiederholungen
-        (höchste Vertrautheit) zuerst; das sind die sicheren, motivierenden Treffer."""
-        return (self.c.table("vocab_items").select("*")
-                .eq("user_id", user_id).lte("srs_due", "now()")
-                .order("srs_reps", desc=True).order("srs_due")
-                .limit(limit).execute().data)
+        (höchste Vertrautheit) zuerst; das sind die sicheren, motivierenden Treffer. Eigene vor
+        importierten — importierte starten kalt (reps 0) und würden den Einstieg sonst fluten."""
+        def base():
+            return (self.c.table("vocab_items").select("*")
+                    .eq("user_id", user_id).lte("srs_due", "now()")
+                    .order("srs_reps", desc=True).order("srs_due"))
+        return self._source_weighted(base, limit)
 
     def situation_vocab(self, user_id: str, limit: int = 15) -> list[dict]:
-        """Situationsvokabular (Regale) — für den Ausklang. Fällige zuerst; wenn nichts fällig
-        ist, trotzdem welche zeigen (der Ausklang soll nie leer sein). Jede Query frisch bauen —
-        die supabase-py-Builder mutieren, ein wiederverwendeter träte Filter mit."""
-        def shelf():
+        """Situationsvokabular (Regale) — für den Ausklang. Fällige zuerst (eigene vor
+        importierten); wenn nichts fällig ist, trotzdem welche zeigen (der Ausklang soll nie
+        leer sein). Jede Query frisch bauen — die supabase-py-Builder mutieren."""
+        def due_base():
             return (self.c.table("vocab_items").select("*")
-                    .eq("user_id", user_id).not_.is_("situation_id", "null"))
-        due = shelf().lte("srs_due", "now()").order("srs_due").limit(limit).execute().data
+                    .eq("user_id", user_id).not_.is_("situation_id", "null")
+                    .lte("srs_due", "now()").order("srs_due"))
+        due = self._source_weighted(due_base, limit)
         if len(due) >= limit:
             return due
-        rest = shelf().order("srs_due").limit(limit).execute().data
+        rest = (self.c.table("vocab_items").select("*")
+                .eq("user_id", user_id).not_.is_("situation_id", "null")
+                .order("srs_due").limit(limit).execute().data)
         seen = {r["id"] for r in due}
         return due + [r for r in rest if r["id"] not in seen][: limit - len(due)]
 

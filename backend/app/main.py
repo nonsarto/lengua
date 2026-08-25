@@ -26,12 +26,13 @@ import onboarding
 from lang import get_lang
 
 PACK = get_lang()
-from analyze import (analyze, analyze_micro, answer_concept_question, apply_analysis,
-                     apply_exercise_result, compute_priority, generate_chapter_body,
-                     generate_exercises, generate_listening, grade_exercise, srs_update,
-                     synthesize, transcribe)
+from analyze import (analyze, analyze_document, analyze_micro, answer_concept_question,
+                     apply_analysis, apply_document, apply_exercise_result, compute_priority,
+                     generate_chapter_body, generate_exercises, generate_listening,
+                     grade_exercise, srs_update, synthesize, transcribe)
 from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
+import importer
 
 logger = logging.getLogger("lengua")
 
@@ -752,6 +753,156 @@ def vocabulario(user: dict = Depends(current_user)) -> dict:
     due_count, _ = db.due_vocab(user_id)
     return {"situations": db.list_situations(user_id), "sueltas": db.loose_vocab(user_id),
             "due": due_count, "diccionari": db.seed_topics(user_id)}
+
+
+# ---------------------------------------------------------------------------
+# Import — der fünfte Eingang, aber der SIMPELSTE: CSV/TSV-Vokabeln, rein deterministisch
+# (kein LLM). Zwei Schritte: /preview zeigt, was erkannt wurde (Trennzeichen, Spalten, neu/
+# schon-vorhanden) und schreibt NICHTS; /commit übernimmt nach Bestätigung. Importierte
+# Items starten KALT (db.bulk_import_vocab) und tragen source='import' für die Gewichtung.
+# ---------------------------------------------------------------------------
+class ImportPreviewIn(BaseModel):
+    text: str
+    delimiter: str | None = None
+    term_col: int = 0
+    translation_col: int = 1
+    has_header: bool | None = None
+
+
+class ImportCommitIn(BaseModel):
+    text: str
+    delimiter: str | None = None
+    term_col: int = 0
+    translation_col: int = 1
+    has_header: bool = False
+    situation_name: str | None = None      # optional: Regal, dem die Vokabeln zugeordnet werden
+
+
+@app.post("/import/vocab/preview")
+def import_vocab_preview(body: ImportPreviewIn, user: dict = Depends(current_user)) -> dict:
+    if not body.text.strip():
+        raise HTTPException(422, "Archivo vacío — no hay nada que importar.")
+    db = get_db()
+    existing = db._user_terms(user["user_id"])
+    return importer.build_preview(
+        body.text, delimiter=body.delimiter, term_col=body.term_col,
+        translation_col=body.translation_col, has_header=body.has_header,
+        existing_terms=existing)
+
+
+@app.post("/import/vocab/commit")
+def import_vocab_commit(body: ImportCommitIn, user: dict = Depends(current_user)) -> dict:
+    if not body.text.strip():
+        raise HTTPException(422, "Archivo vacío — no hay nada que importar.")
+    db = get_db()
+    user_id = user["user_id"]
+    delimiter = body.delimiter or importer.sniff_delimiter(body.text)
+    rows = importer.parse_rows(body.text, delimiter)
+    data_rows = rows[1:] if body.has_header else rows
+    items = importer.extract_items(data_rows, body.term_col, body.translation_col)
+    if not items:
+        raise HTTPException(422, "No se reconoció ninguna fila — revisa las columnas.")
+
+    situation_id = None
+    if body.situation_name and body.situation_name.strip():
+        situation_id = db.get_or_create_situation(user_id, body.situation_name.strip())["id"]
+
+    imported, skipped = db.bulk_import_vocab(user_id, items, situation_id=situation_id)
+    return {"imported": imported, "skipped": skipped, "total": len(items),
+            "situation_id": situation_id}
+
+
+# ---------------------------------------------------------------------------
+# Upload von Lernmaterial (PDF/Bild/Text) — der LLM-Weg des fünften Eingangs. RECONCILIATION,
+# kein Import: /analyze schlägt einen Modus vor und zeigt, welche BESTEHENDEN Konzepte berührt
+# werden (gemappt auf die vorhandenen Slugs) + welche Vokabeln neu sind — schreibt NICHTS.
+# Erst /commit legt ab: Konzepte verlinken/boosten (nie kopieren), Vokabeln kalt importieren.
+# ---------------------------------------------------------------------------
+class UploadFileIn(BaseModel):
+    media_type: str
+    data: str                    # base64 (Bild oder PDF)
+    filename: str | None = None
+
+
+class UploadAnalyzeIn(BaseModel):
+    text: str = ""
+    files: list[UploadFileIn] = []
+
+
+class UploadCommitIn(BaseModel):
+    mode: str                    # grammar | vocab | both (vom Nutzer bestätigt)
+    analysis: dict               # das Preview-Ergebnis (concepts + lemmas + summary)
+    filename: str | None = None
+    kind: str = "text"           # pdf | image | text
+
+
+def _doc_kind(files: list[UploadFileIn], text: str) -> str:
+    mts = [(f.media_type or "").lower() for f in files]
+    if any(m == "application/pdf" for m in mts):
+        return "pdf"
+    if any(m.startswith("image/") for m in mts):
+        return "image"
+    return "text"
+
+
+@app.post("/upload/analyze")
+def upload_analyze(body: UploadAnalyzeIn, user: dict = Depends(current_user)) -> dict:
+    """Vorschau: analysiert das Material und markiert, was neu ist. Schreibt nichts."""
+    if not body.text.strip() and not body.files:
+        raise HTTPException(422, "Nada que analizar — sube un archivo o pega texto.")
+    db = get_db()
+    user_id = user["user_id"]
+    known = db.list_concept_slugs()
+    try:
+        analysis = analyze_document(
+            text=body.text, files=[f.model_dump() for f in body.files],
+            variety=user.get("production_variety"), known_slugs=known)
+    except Exception:
+        logger.exception("upload_analyze fehlgeschlagen (user %s)", user_id)
+        raise HTTPException(502, "No se pudo analizar el material — inténtalo otra vez.")
+
+    # Anreicherung für die Vorschau (deterministisch): was ist schon im Rückgrat / im Vokabular?
+    backbone = set(known)
+    for c in analysis.get("concepts", []):
+        c["in_backbone"] = c["slug"] in backbone
+    mine = {t.lower() for t in db._user_terms(user_id)}
+    new_vocab = 0
+    for lemma in analysis.get("lemmas", []):
+        is_new = lemma["term"].lower() not in mine
+        lemma["new"] = is_new
+        new_vocab += 1 if is_new else 0
+
+    return {
+        "suggested_mode": analysis.get("suggested_mode", "both"),
+        "summary": analysis.get("summary"),
+        "kind": _doc_kind(body.files, body.text),
+        "concepts": analysis.get("concepts", []),
+        "lemmas": analysis.get("lemmas", []),
+        "linked_count": sum(1 for c in analysis.get("concepts", []) if c["in_backbone"]),
+        "new_concept_count": sum(1 for c in analysis.get("concepts", []) if not c["in_backbone"]),
+        "new_vocab_count": new_vocab,
+        "analysis": analysis,           # unverändert an /commit zurückreichen
+    }
+
+
+@app.post("/upload/commit")
+def upload_commit(body: UploadCommitIn, user: dict = Depends(current_user)) -> dict:
+    """Übernehmen nach Bestätigung: Konzepte verlinken + Kurs-Boost, Vokabeln kalt importieren."""
+    if body.mode not in ("grammar", "vocab", "both"):
+        raise HTTPException(422, "Modo inválido.")
+    if not isinstance(body.analysis, dict):
+        raise HTTPException(422, "Análisis inválido.")
+    db = get_db()
+    result = apply_document(db, user["user_id"], body.analysis, body.mode,
+                            filename=body.filename, kind=body.kind)
+    return result
+
+
+@app.get("/documents")
+def documents_list(user: dict = Depends(current_user)) -> list[dict]:
+    """Hochgeladene Dokumente (Herkunft von Boosts/Importen) — nachvollziehbar."""
+    db = get_db()
+    return db.list_documents(user["user_id"])
 
 
 @app.get("/diccionari/{topic}")

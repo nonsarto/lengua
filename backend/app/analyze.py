@@ -596,6 +596,124 @@ def analyze_micro(raw_text: str, variety: str | None = None, image_b64: str | No
 
 
 # ---------------------------------------------------------------------------
+# Upload von Lernmaterial (der fünfte Eingang). RECONCILIATION, kein Import: das Dokument
+# ist fremdes, redigiertes Material — es liefert kein Korrektur-Feedback und keinen need,
+# sondern zeigt an, WELCHE bestehenden Konzepte gerade Thema sind (→ relevance_boost) und
+# welche Vokabeln mitkommen. Die Erklärung des Dokuments wird NIE übernommen (goldene Regel #5:
+# Grammatik wird verlinkt, nie kopiert); das Rückgrat bleibt die einzige Wahrheit.
+# Dieselbe LLM-Naht wie analyze(): NUR Struktur ziehen, Lernstand bewegt der Code darunter.
+# ---------------------------------------------------------------------------
+DOCUMENT_MODEL = MODEL  # Extraktion/Tagging — derselbe Workhorse wie analyze()
+
+DOCUMENT_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "suggested_mode": {"type": "string", "enum": ["grammar", "vocab", "both"]},
+        "summary": {"type": "string"},   # EIN deutscher Satz: worum geht das Dokument
+        "concepts": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "slug": {"type": "string"},
+                    "label": {"type": "string"},
+                    "cefr": _NULLABLE_CEFR,
+                    "why": {"type": "string"},   # ein Satz: warum dieses Konzept HIER — Link, keine Kopie
+                },
+                "required": ["slug", "label", "cefr", "why"],
+                "additionalProperties": False,
+            },
+        },
+        "lemmas": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "term": {"type": "string"},
+                    "translation": {"type": "string"},
+                    "register": {"type": "string", "enum": ["formal", "neutral", "coloquial"]},
+                    "region": _NULLABLE_STR,
+                    "cefr": _NULLABLE_CEFR,
+                },
+                "required": ["term", "translation", "register", "region", "cefr"],
+                "additionalProperties": False,
+            },
+        },
+    },
+    "required": ["suggested_mode", "summary", "concepts", "lemmas"],
+    "additionalProperties": False,
+}
+
+
+def _document_system(variety: str | None, known_slugs: list[str] | None) -> str:
+    lang = _LANG_NAMES.get(PACK.LANG, "Spanish")
+    v = variety or PACK.DEFAULT_VARIETY
+    s = (
+        f"You analyze a piece of uploaded STUDY MATERIAL for a German learner of {lang} in "
+        f"Barcelona (production variety: {v}) — a textbook page, a worksheet, a vocab list, a "
+        "grammar handout. This is EDITED reference material, NOT the learner's own production: "
+        "do not correct it, do not treat it as evidence of what they can't do. It signals what "
+        "they are CURRENTLY STUDYING.\n\n"
+        "Return:\n"
+        "- suggested_mode: 'grammar' if it is essentially a grammar explanation/exercise sheet, "
+        "'vocab' if it is essentially a word list, 'both' if it carries meaningful amounts of "
+        "each. This is a SUGGESTION the user confirms.\n"
+        "- summary: ONE short German sentence naming the topic.\n"
+        f"- concepts: which grammar concepts the document is ABOUT. CRITICAL: map onto the "
+        "EXISTING backbone granularity. A document must NOT introduce finer granularity than the "
+        "backbone — if it covers several sub-constructions that our backbone treats as ONE "
+        "concept, output that ONE existing slug, not several. Reuse an existing slug whenever it "
+        "covers the phenomenon even partially. Propose a NEW kebab-case slug ONLY for a "
+        "phenomenon genuinely absent from the backbone. NEVER output the document's explanation "
+        "text — we link to our own chapters, we never copy. 'why' is one short German sentence on "
+        "why this concept is relevant here.\n"
+        f"- lemmas: vocabulary worth learning from the document. term = dictionary form in {lang} "
+        "(nouns WITH article), translation = German. register formal/neutral/coloquial. region = "
+        "JSON null unless clearly regional (cataluña/latam/…). Skip trivial function words.\n\n"
+        "For comprehension every regional variety is valid — never flag one as wrong."
+    )
+    if known_slugs:
+        s += ("\n\nEXISTING concept slugs — ALWAYS reuse one of these when it covers the "
+              "phenomenon (even partially); invent a new slug only for something genuinely "
+              "uncovered:\n" + ", ".join(known_slugs))
+    return s
+
+
+def analyze_document(text: str = "", files: list[dict] | None = None,
+                     variety: str | None = None,
+                     known_slugs: list[str] | None = None) -> dict:
+    """Der LLM-Seam für den Upload. Nimmt Text und/oder Dateien (Bilder als image-Block, PDFs
+    als document-Block — Claude liest beides direkt, kein separates OCR). Gibt die STRUKTUR
+    zurück (Modus-Vorschlag, berührte Konzepte gemappt auf die bestehenden Slugs, Vokabeln).
+    Schreibt nichts und bewegt keinen Lernstand — das macht apply_document() im Code."""
+    content: list = []
+    for f in (files or []):
+        mt = (f.get("media_type") or "").split(";")[0].strip().lower()
+        if mt.startswith("image/"):
+            content.append({"type": "image", "source": {
+                "type": "base64", "media_type": mt, "data": f["data"]}})
+        elif mt == "application/pdf":
+            content.append({"type": "document", "source": {
+                "type": "base64", "media_type": "application/pdf", "data": f["data"]}})
+    content.append({"type": "text", "text": text or "(material adjunto)"})
+
+    resp = _get_client().messages.create(
+        model=DOCUMENT_MODEL,
+        max_tokens=4000,
+        thinking={"type": "disabled"},
+        system=_document_system(variety, known_slugs),
+        messages=[{"role": "user", "content": content}],
+        output_config={"format": {"type": "json_schema", "schema": DOCUMENT_SCHEMA}},
+    )
+    if resp.stop_reason == "max_tokens":
+        raise RuntimeError("analyze_document(): output truncated (max_tokens) — raise the limit")
+    result = json.loads(next(b.text for b in resp.content if b.type == "text"))
+    for lemma in result.get("lemmas", []):
+        lemma["region"] = _clean_region(lemma.get("region"))
+    return result
+
+
+# ---------------------------------------------------------------------------
 # Everything below is DETERMINISTIC — no LLM. This is where learning state moves.
 # The db object is implemented in db.py; this seam stays here so it's obvious
 # that scoring/promotion/state transitions are code, never the model.
@@ -605,6 +723,14 @@ from datetime import datetime, timezone
 NEED_THRESHOLD = 4  # tune with real data, later. Maybe ratio-based instead of fixed.
 BOOST_AMOUNT = 5    # relevance boost a brief puts on its linked concepts ...
 BOOST_DAYS = 7      # ... and how long it lives. Decays via compute_priority, never mixed into need.
+
+# Kurs-Boost (aus einem hochgeladenen Dokument). Gleiche Mechanik wie der Termin-Boost —
+# es ist wiederverwendeter relevance_boost, kein neuer Kanal. Er hält länger, WEIL ein Kurs
+# ein laufendes Thema ist: ein Termin-Boost feuert einmal und verklingt, ein Dokument-Boost
+# wird bei jedem neuen Dokument zu denselben Konzepten aufgefrischt (boost_concept überschreibt
+# Ablauf + Höhe). Ein hochgeladenes Dokument sagt "das ist gerade mein Thema", nicht "Fehler".
+COURSE_BOOST_AMOUNT = 5
+COURSE_BOOST_DAYS = 7
 
 
 def srs_update(item: dict, correct: bool, now: datetime | None = None) -> dict:
@@ -725,6 +851,47 @@ def _apply_brief(db, user_id: str, capture_id: str, brief: dict) -> dict:
     return {"id": sit["id"], "name": sit["name"],
             "vocab": len(brief["key_vocab"]), "phrases": len(brief["phrases"]),
             "concepts": [c["slug"] for c in brief["concepts"]]}
+
+
+def apply_document(db, user_id: str, analysis: dict, mode: str,
+                   filename: str | None = None, kind: str = "text") -> dict:
+    """Ein analysiertes Dokument ablegen — RECONCILIATION, kein Import. Deterministisch:
+    - Grammatik (mode grammar|both): bestehende Konzepte werden VERLINKT (get_or_create_concept
+      benutzt vorhandene Slugs wieder, legt fehlende mit reviewed=false OHNE Erklärungstext an)
+      und bekommen einen befristeten Kurs-Boost (relevance_boost, nie need). Die Erklärung des
+      Dokuments wird nie übernommen — das Rückgrat bleibt die einzige Wahrheit.
+    - Vokabeln (mode vocab|both): kalt importiert (source='import', dieselben Regeln wie CSV).
+    - Das Dokument wird als Quelle festgehalten (Herkunft/Datum/geboostete Slugs/Zahl).
+    Die Einheiten sind isoliert (wie apply_analysis): scheitert eine, laufen die übrigen weiter."""
+    doc = db.create_document(user_id, filename, kind, mode)   # zuerst — Vokabeln brauchen die id
+
+    boosted_slugs: list[str] = []
+    if mode in ("grammar", "both"):
+        for c in analysis.get("concepts", []):
+            try:
+                concept = db.get_or_create_concept(c["slug"], c.get("label"), c.get("cefr"))
+                db.boost_concept(user_id, concept["id"], COURSE_BOOST_AMOUNT, COURSE_BOOST_DAYS)
+                boosted_slugs.append(concept["slug"])
+            except Exception:
+                logger.exception("apply_document: Konzept '%s' fehlgeschlagen (doc %s)",
+                                 c.get("slug"), doc["id"])
+
+    imported = skipped = 0
+    if mode in ("vocab", "both"):
+        try:
+            imported, skipped = db.bulk_import_vocab(
+                user_id, analysis.get("lemmas", []), source_document_id=doc["id"])
+        except Exception:
+            logger.exception("apply_document: Vokabel-Import fehlgeschlagen (doc %s)", doc["id"])
+
+    try:
+        db.update_document(doc["id"], {"concept_slugs": boosted_slugs, "vocab_count": imported})
+    except Exception:
+        logger.exception("apply_document: Dokument-Update fehlgeschlagen (doc %s)", doc["id"])
+
+    return {"document_id": doc["id"], "mode": mode, "summary": analysis.get("summary"),
+            "concepts_boosted": boosted_slugs, "vocab_imported": imported,
+            "vocab_skipped": skipped}
 
 
 def derive_state(need: int, success: int, fallback: str = "visto") -> str:

@@ -89,6 +89,13 @@ export default function Vocabulario() {
       </div>
       {error && <p className="-mt-4 mb-4 text-xs text-red-600">{S.createFailed}</p>}
 
+      <Link
+        href="/vocabulario/importar"
+        className="mb-6 block text-xs text-accent-700 underline-offset-2 hover:underline"
+      >
+        {S.importEntry} →
+      </Link>
+
       {shelves === null ? (
         <p className="text-sm text-stone-400">{S.loading}</p>
       ) : (
