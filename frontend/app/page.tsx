@@ -1,16 +1,19 @@
 "use client";
 
 /**
- * Inicio/Inici — saludo con tu nombre, luego lo de hoy: los 3 temas de gramática más
- * urgentes, un test de vocabulario y una escucha. Datos de GET /inicio (determinista);
- * el saludo se arma en el cliente (nombre + hora local). Textos de lib/strings (es/ca).
+ * Inicio/Inici — saludo con tu nombre, luego lo de hoy: la sesión (die eine Lift-Karte),
+ * los 3 temas de gramática más urgentes, el repaso, y el feedback de Hablar (es-only).
+ * Datos de GET /inicio (determinista); el saludo se arma en el cliente.
+ * Azulejo: Serif fürs Spanische, Lernstand als Tinte (Dots), eine Akzentfläche.
  */
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { apiFetch, getUser, STATE_LABEL, STATE_STYLE } from "@/lib/api";
+import { apiFetch, getUser } from "@/lib/api";
 import { LANG, S } from "@/lib/strings";
+import { IconChevronRight, IconPlay } from "@/components/icons";
+import { NeedLine, StateDots, btnPrimary, cardLift, cardQuiet } from "@/components/ui";
 
 type Grammar = { slug: string; label: string; cefr: string | null; state: string; need_count: number };
 type Inicio = { top_grammar: Grammar[]; vocab: { due: number; preview: string[] } };
@@ -41,7 +44,6 @@ function SessionCard() {
       .catch(() => setFailed(true));
   }, []);
 
-  // Neues, komplettes Training würfeln (Reroll) und direkt hineinspringen.
   async function newTraining() {
     setRerolling(true);
     try {
@@ -49,7 +51,7 @@ function SessionCard() {
       if (!res.ok) throw new Error();
       router.push("/sesion");
     } catch {
-      setRerolling(false);   // bleiben, erneut versuchbar
+      setRerolling(false);
     }
   }
 
@@ -58,21 +60,17 @@ function SessionCard() {
   }
   if (!session) {
     return (
-      <div className="mb-6 rounded-2xl border border-accent-200 bg-accent-50/40 p-4 text-sm text-stone-400">
+      <div className={`${cardQuiet} mb-6 p-4 text-sm text-stone-400`}>
         {S.sessionPreparing}
       </div>
     );
   }
   if (session.status === "completed") {
     return (
-      <div className="mb-6 rounded-2xl border border-green-200 bg-green-50/60 p-4">
-        <p className="font-semibold text-green-800">{S.sessionDoneToday} ✓</p>
-        <p className="mt-0.5 text-sm text-stone-600">{S.sessionDoneSub}</p>
-        <button
-          onClick={newTraining}
-          disabled={rerolling}
-          className="mt-3 rounded-lg border border-accent-300 bg-white px-4 py-2 text-sm font-semibold text-accent-700 active:scale-95 disabled:opacity-40"
-        >
+      <div className={`${cardQuiet} mb-6 p-4`}>
+        <p className="font-semibold text-green-700">{S.sessionDoneToday} ✓</p>
+        <p className="mt-0.5 text-sm text-stone-500">{S.sessionDoneSub}</p>
+        <button onClick={newTraining} disabled={rerolling} className={`mt-3 ${btnPrimary}`}>
           {rerolling ? S.sessionPreparing : S.sessionNewTraining}
         </button>
       </div>
@@ -89,21 +87,20 @@ function SessionCard() {
   return (
     <Link
       href="/sesion"
-      className="mb-6 flex items-start justify-between gap-3 rounded-2xl border border-accent-300 bg-accent-100/70 p-5 active:scale-[0.99]"
+      className={`${cardLift} mb-6 flex items-center justify-between gap-3 p-5 active:scale-[0.99] transition-transform`}
     >
       <div className="min-w-0">
-        <p className="text-lg font-semibold leading-snug text-accent-800">{label}</p>
+        <p className="font-semibold leading-snug">{label}</p>
         {session.cursor > 0 && (
-          <p className="mt-0.5 text-sm text-stone-600">{S.sessionButton(min, what)}</p>
+          <p className="mt-0.5 text-sm text-accent-200">{S.sessionButton(min, what)}</p>
         )}
       </div>
-      <span className="shrink-0 pt-0.5 text-xl text-accent-700">▶</span>
+      <IconPlay className="h-5 w-5 shrink-0 text-accent-200" />
     </Link>
   );
 }
 
-/** Hablar-Feedback (ES-only): letzte Bot-Session + Fehler-Top-3. Lädt getrennt,
- *  blockiert nie den Rest — gleiche Philosophie wie die SessionCard. */
+/** Hablar-Feedback (ES-only): letzte Bot-Session + Fehler-Top-3. Lädt getrennt. */
 function HablarCard() {
   const [data, setData] = useState<HablarOverview | null>(null);
   const [failed, setFailed] = useState(false);
@@ -115,16 +112,16 @@ function HablarCard() {
       .catch(() => setFailed(true));
   }, []);
 
-  if (failed) return null;                    // Inicio bleibt ruhig, Hablar hat die Details
+  if (failed) return null;
   const last = data?.sessions?.[0];
   if (data && !last) {
     return (
-      <div className="rounded-xl border border-dashed border-stone-300 p-4 text-sm text-stone-400">
+      <div className={`${cardQuiet} p-4 text-sm text-stone-400`}>
         {S.inicioHablarEmpty}
       </div>
     );
   }
-  if (!last) return null;                     // lädt noch
+  if (!last) return null;
 
   const date = new Date(last.created_at).toLocaleDateString("es-ES", {
     weekday: "short", day: "numeric", month: "short",
@@ -134,7 +131,7 @@ function HablarCard() {
   return (
     <Link
       href={`/hablar/${last.id}`}
-      className="flex items-center justify-between rounded-xl border border-stone-200 bg-white p-4 active:scale-[0.99]"
+      className={`${cardQuiet} flex items-center justify-between gap-3 p-4 active:scale-[0.99] transition-transform`}
     >
       <div className="min-w-0">
         <p className="font-medium">
@@ -144,7 +141,7 @@ function HablarCard() {
           {top.length > 0 ? top.join(" · ") : last.snippet}
         </p>
       </div>
-      <span className="shrink-0 text-stone-400">→</span>
+      <IconChevronRight className="h-4 w-4 shrink-0 text-stone-300" />
     </Link>
   );
 }
@@ -157,7 +154,7 @@ function greeting(): string {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-6">
-      <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">{title}</h2>
+      <h2 className="mb-2 text-xs font-semibold uppercase tracking-[.12em] text-stone-400">{title}</h2>
       {children}
     </section>
   );
@@ -167,10 +164,14 @@ export default function InicioPage() {
   const [data, setData] = useState<Inicio | null>(null);
   const [failed, setFailed] = useState(false);
   const [name, setName] = useState("");
+  const [today, setToday] = useState("");
 
   useEffect(() => {
     const u = getUser();
     setName(u?.display_name || u?.username || "");
+    setToday(new Date().toLocaleDateString(LANG === "ca" ? "ca-ES" : "es-ES", {
+      weekday: "long", day: "numeric", month: "long",
+    }));
     apiFetch(`/inicio`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then(setData)
@@ -179,53 +180,49 @@ export default function InicioPage() {
 
   return (
     <>
-      {/* Saludo */}
-      <h1 className="mb-6 text-2xl font-bold">
-        {greeting()}{name ? `, ${name}` : ""} <span className="font-normal">👋</span>
+      {/* Saludo — Serif, das Spanische ist der Schmuck */}
+      <h1 className="font-display text-[26px] font-semibold leading-tight">
+        {greeting()}{name ? `, ${name}` : ""}
       </h1>
+      <p className="mb-6 mt-0.5 text-sm text-stone-400">{today}</p>
 
-      {/* Arriba del todo: la sesión de hoy. Debajo, el resumen de siempre. */}
       <SessionCard />
 
       {/* 1. Los 3 temas de gramática más urgentes */}
       <Section title={S.inicioGrammar}>
         {!data?.top_grammar?.length ? (
-          <div className="rounded-xl border border-dashed border-stone-300 p-4 text-sm text-stone-400">
+          <div className={`${cardQuiet} p-4 text-sm text-stone-400`}>
             {S.emptyGrammar}
           </div>
         ) : (
-          <ul className="space-y-2">
+          <div className={`${cardQuiet} divide-y divide-stone-100`}>
             {data.top_grammar.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  href={`/gramatica/${c.slug}`}
-                  className="flex items-center justify-between rounded-xl border border-accent-200 bg-accent-50/60 p-4 active:scale-[0.99]"
-                >
-                  <div className="min-w-0">
-                    <p className="truncate font-medium">{c.label}</p>
-                    <p className="mt-0.5 flex items-center gap-1.5 text-xs text-stone-500">
-                      {c.cefr && <span>{c.cefr}</span>}
-                      {c.state !== "sin_ver" && (
-                        <span className={`rounded-full px-1.5 py-px ${STATE_STYLE[c.state]}`}>
-                          {STATE_LABEL[c.state]}
-                        </span>
-                      )}
-                      {c.need_count > 0 && <span>· {S.errorsCaptured(c.need_count)}</span>}
-                    </p>
-                  </div>
-                  <span className="shrink-0 text-stone-400">→</span>
-                </Link>
-              </li>
+              <Link
+                key={c.slug}
+                href={`/gramatica/${c.slug}`}
+                className="flex items-center justify-between gap-3 p-3.5 active:bg-stone-50"
+              >
+                <div className="min-w-0">
+                  <p className="truncate font-medium">{c.label}</p>
+                  <p className="mt-0.5 flex items-center gap-1.5 text-xs text-stone-400">
+                    <NeedLine state={c.state} needCount={c.need_count} />
+                    {c.state !== "flojo" && c.state !== "aprendiendo" && c.cefr && (
+                      <span>{c.cefr} · {S.stateLabels[c.state]}</span>
+                    )}
+                  </p>
+                </div>
+                <StateDots state={c.state} />
+              </Link>
             ))}
-          </ul>
+          </div>
         )}
       </Section>
 
-      {/* 2. Test de vocabulario */}
+      {/* 2. Repaso */}
       <Section title={S.inicioVocab}>
         <Link
           href="/practicar"
-          className="flex items-center justify-between rounded-xl border border-stone-200 bg-white p-4 active:scale-[0.99]"
+          className={`${cardQuiet} flex items-center justify-between gap-3 p-4 active:scale-[0.99] transition-transform`}
         >
           <div className="min-w-0">
             <p className="font-medium">
@@ -237,11 +234,11 @@ export default function InicioPage() {
               </p>
             )}
           </div>
-          <span className="shrink-0 text-stone-400">→</span>
+          <IconChevronRight className="h-4 w-4 shrink-0 text-stone-300" />
         </Link>
       </Section>
 
-      {/* 3. Hablar-Feedback (Speaking Bot — ES-only; Escucha lebt jetzt in Practicar) */}
+      {/* 3. Hablar-Feedback (Speaking Bot — ES-only) */}
       {LANG === "es" && (
         <Section title={S.inicioHablar}>
           <HablarCard />

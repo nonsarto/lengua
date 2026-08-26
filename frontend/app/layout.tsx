@@ -34,7 +34,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1, // se siente nativo: sin pinch-zoom en la chrome
-  themeColor: "#faf7f2",
+  themeColor: "#f2f4f3",
   viewportFit: "cover", // sin esto, env(safe-area-inset-*) es 0 y la nav pega al borde
 };
 
@@ -45,11 +45,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={LANG} data-lang={LANG}>
-      <body className={`${geistSans.variable} antialiased bg-[#faf7f2] text-stone-900`}>
+      <body className={`${geistSans.variable} antialiased bg-background text-stone-900`}>
         {/* Wordmark oben links — auch der Weg zurück zu Inicio/Inici */}
-        <header className="border-b border-accent-600/70">
+        <header className="border-b border-stone-200">
           <div className="mx-auto flex max-w-lg items-center justify-between px-5 pt-[calc(env(safe-area-inset-top)+0.75rem)] pb-2.5">
-            <Link href="/" className="text-xl font-bold tracking-tight">
+            <Link href="/" className="font-display text-xl font-semibold tracking-tight">
               {S.appName}<span className="text-accent-600">.</span>
             </Link>
             <HeaderUser />

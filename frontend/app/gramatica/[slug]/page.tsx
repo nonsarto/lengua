@@ -9,8 +9,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { apiFetch, STATE_LABEL, STATE_STYLE } from "@/lib/api";
+import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
+import { IconArrowLeft, IconSend } from "@/components/icons";
+import { DeChip, NeedLine, StateDots, btnPrimary, cardQuiet } from "@/components/ui";
 
 type Detail = {
   slug: string;
@@ -106,12 +108,11 @@ export default function Capitulo() {
     <>
       <p className="mb-1 flex items-center gap-2 text-xs text-stone-400">
         {d.cefr && <span>{d.cefr}</span>}
-        <span className={`rounded-full px-1.5 py-px ${STATE_STYLE[d.state.state]}`}>
-          {STATE_LABEL[d.state.state]}
-        </span>
+        <StateDots state={d.state.state} />
+        <NeedLine state={d.state.state} needCount={d.state.need_count} />
         {!d.reviewed && <span className="text-stone-300">{S.draftLong}</span>}
       </p>
-      <h1 className="mb-4 text-2xl font-bold">{d.label}</h1>
+      <h1 className="mb-4 font-display text-2xl font-bold">{d.label}</h1>
 
       {/* EL MANTO — tus errores primero, si el capítulo está caliente */}
       {promoted && d.corrections.length > 0 && (
@@ -138,7 +139,7 @@ export default function Capitulo() {
           <button
             onClick={generate}
             disabled={generating}
-            className="mt-3 rounded-lg bg-accent-600 px-5 py-2 text-sm font-semibold text-white disabled:opacity-50 active:scale-95"
+            className={`mt-3 ${btnPrimary}`}
           >
             {generating ? S.generating : S.generateBtn}
           </button>
@@ -150,7 +151,7 @@ export default function Capitulo() {
       {d.explanation && <p className="mb-4 text-base leading-relaxed">{d.explanation}</p>}
 
       {d.rule_of_thumb && (
-        <div className="mb-4 rounded-xl border border-stone-200 bg-white p-4">
+        <div className="mb-4 rounded-2xl border border-stone-200 bg-white p-4">
           <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
             {S.ruleOfThumb}
           </h3>
@@ -159,16 +160,16 @@ export default function Capitulo() {
       )}
 
       {d.german_pitfall && (
-        <div className="mb-4 rounded-xl border border-orange-200 bg-orange-50/60 p-4">
-          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-orange-700">
-            {S.germanPitfall}
+        <div className="mb-4 rounded-2xl border border-orange-200 bg-amber-50 p-4">
+          <h3 className="mb-1 text-xs font-semibold uppercase tracking-[.12em] text-amber-700">
+            <DeChip />{S.germanPitfall}
           </h3>
           <p className="text-base">{d.german_pitfall}</p>
         </div>
       )}
 
       {d.paradigm && (
-        <div className="mb-4 overflow-x-auto rounded-xl border border-stone-200 bg-white p-4">
+        <div className="mb-4 overflow-x-auto rounded-2xl border border-stone-200 bg-white p-4">
           <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
             {S.paradigm}
           </h3>
@@ -212,7 +213,7 @@ export default function Capitulo() {
 
       {/* Geübt wird in Practicar (Gramática-Drill) — das Kapitel ist Referenz + Chat. */}
       {d.default_exercises && d.default_exercises.length > 0 && (
-        <div className="mb-4 rounded-xl border border-stone-200 bg-white p-4">
+        <div className="mb-4 rounded-2xl border border-stone-200 bg-white p-4">
           <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
             {S.tryIt}
           </h3>
@@ -230,9 +231,9 @@ export default function Capitulo() {
       )}
 
       {/* Dudas — preguntas de aclaración, ancladas al capítulo. Efímero: vive en el cliente. */}
-      <div className="mb-4 rounded-xl border border-stone-200 bg-white p-4">
+      <div className="mb-4 rounded-2xl border border-stone-200 bg-white p-4">
         <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
-          ❓ {S.chatTitle}
+          {S.chatTitle}
         </h3>
         {chat.length > 0 && (
           <div className="mb-3 space-y-2">
@@ -279,7 +280,7 @@ export default function Capitulo() {
               disabled={chatBusy || !question.trim()}
               className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-600 text-lg text-white disabled:opacity-40 active:scale-95"
             >
-              ↑
+              <IconSend className="h-4 w-4" />
             </button>
           </div>
         </form>
@@ -287,8 +288,8 @@ export default function Capitulo() {
       </div>
 
       <p className="mt-6">
-        <Link href="/gramatica" className="text-sm text-stone-400 underline-offset-2 hover:underline">
-          ← {S.gramaticaTitle}
+        <Link href="/gramatica" className="inline-flex items-center gap-1.5 text-sm text-stone-400 underline-offset-4 hover:underline">
+          <IconArrowLeft className="h-3.5 w-3.5" />{S.gramaticaTitle}
         </Link>
       </p>
     </>

@@ -59,7 +59,7 @@ export async function apiFetch(path: string, init?: RequestInit): Promise<Respon
   return res;
 }
 
-// ---------- estados de concepto ----------
+// ---------- estados de concepto (Azulejo: UI nutzt StateDots; Labels für aria) ----------
 // Labels aus dem Sprachpaket; die Werte selbst sind sprachneutrale Identifier.
 export const STATE_LABEL: Record<string, string> = S.stateLabels;
 

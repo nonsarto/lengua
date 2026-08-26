@@ -10,6 +10,8 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
+import { IconChevronRight } from "@/components/icons";
+import { PageHead } from "@/components/ui";
 
 type Detail = {
   id: string;
@@ -47,20 +49,15 @@ export default function Estante() {
 
   return (
     <>
-      <p className="mb-1 text-xs text-stone-400">
-        <Link href="/vocabulario" className="underline-offset-2 hover:underline">
-          {S.vocabularioTitle}
-        </Link>
-        {" / "}{S.shelfCrumb}
-      </p>
-      <h1 className="mb-5 text-2xl font-bold">{d.name}</h1>
+      <PageHead backHref="/vocabulario" backLabel={S.vocabularioTitle} />
+      <h1 className="mb-5 font-display text-2xl font-bold">{d.name}</h1>
 
       {d.words.length > 0 && (
         <section className="mb-6">
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
             {S.keyVocab}
           </h2>
-          <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+          <ul className="divide-y divide-stone-100 rounded-2xl border border-stone-200 bg-white">
             {d.words.map((w) => (
               <li key={w.id} className="flex items-baseline justify-between gap-3 p-3">
                 <span className="font-medium">{w.term}</span>
@@ -81,7 +78,7 @@ export default function Estante() {
           </h2>
           <ul className="space-y-2">
             {d.phrases.map((p, i) => (
-              <li key={i} className="rounded-xl border border-stone-200 bg-white p-3.5">
+              <li key={i} className="rounded-2xl border border-stone-200 bg-white p-3.5">
                 <p className="text-[11px] uppercase tracking-wide text-accent-700">{p.intent}</p>
                 <p className="mt-1 text-base font-medium">{p.es}</p>
                 <p className="mt-0.5 text-sm text-stone-500">{p.de}</p>
@@ -101,10 +98,10 @@ export default function Estante() {
               <li key={c.slug}>
                 <Link
                   href={`/gramatica/${c.slug}`}
-                  className="block rounded-xl border border-accent-200 bg-accent-50/50 p-3.5 active:scale-[0.99]"
+                  className="block rounded-2xl border border-accent-200 bg-accent-50 p-3.5 active:scale-[0.99]"
                 >
                   <p className="flex items-center justify-between font-medium">
-                    {c.label} <span className="text-stone-400">→</span>
+                    {c.label} <IconChevronRight className="h-4 w-4 text-stone-300" />
                   </p>
                   {c.why && <p className="mt-0.5 text-sm text-stone-600">{c.why}</p>}
                 </Link>

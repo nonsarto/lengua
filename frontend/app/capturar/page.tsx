@@ -11,6 +11,8 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
+import { IconCamera } from "@/components/icons";
+import { DeChip, btnGhost, cardQuiet } from "@/components/ui";
 
 type Correction = { wrong: string; correct: string; why: string; concept_slug: string };
 
@@ -190,7 +192,7 @@ function CapturarInner() {
       <h1 className="mb-4 text-2xl font-bold">{S.capturarTitle}</h1>
 
       {/* LA superficie — sin menú previo. Texto, foto, lo que sea. */}
-      <div className="rounded-xl border border-stone-300 bg-white focus-within:border-accent-500">
+      <div className="rounded-2xl border border-stone-300 bg-white focus-within:border-accent-500">
         {photoUrl && (
           <div className="flex items-center gap-3 border-b border-stone-100 p-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -218,9 +220,9 @@ function CapturarInner() {
       <div className="mt-3 flex items-center gap-3">
         <button
           onClick={() => fileRef.current?.click()}
-          className="rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm active:scale-95"
+          className="flex items-center gap-2 rounded-xl border border-stone-300 bg-white px-4 py-2 text-sm active:scale-95"
         >
-          📷 {S.cameraBtn}
+          <IconCamera className="h-4 w-4 text-stone-500" />{S.cameraBtn}
         </button>
         <input
           ref={fileRef}
@@ -233,7 +235,7 @@ function CapturarInner() {
         <button
           onClick={submit}
           disabled={busy || (!text.trim() && !photo)}
-          className="ml-auto rounded-lg bg-accent-600 px-6 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
+          className="ml-auto rounded-xl bg-accent-600 px-6 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-[.97] transition-transform"
         >
           {busy ? S.analyzing : S.captureBtn}
         </button>
@@ -251,7 +253,7 @@ function CapturarInner() {
 
       {/* La microdosis — corrección + traducción + una frase. Nada de lección completa. */}
       {result && (
-        <div className="mt-6 rounded-xl border border-stone-200 bg-white p-4">
+        <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4">
           <span className="mb-2 inline-block rounded-full bg-stone-100 px-2 py-0.5 text-[11px] uppercase tracking-wide text-stone-500">
             {S.modeLabels[result.mode] ?? result.mode}
           </span>
@@ -274,7 +276,7 @@ function CapturarInner() {
           {result.word && (
             <div className="mb-2">
               <p className="text-lg font-semibold">{result.word.term}</p>
-              <p className="text-base text-stone-700">🇩🇪 {result.word.translation}</p>
+              <p className="text-base text-stone-700"><DeChip />{result.word.translation}</p>
               <p className={`mt-1 text-xs ${result.word.added ? "text-green-700" : "text-stone-400"}`}>
                 {result.word.added ? S.wordAdded : S.wordKnown}
               </p>
@@ -285,9 +287,9 @@ function CapturarInner() {
           {result.written?.situation && (
             <a
               href={`/vocabulario/${result.written.situation.id}`}
-              className="mb-2 block rounded-lg border border-accent-300 bg-accent-50/70 p-3 active:scale-[0.99]"
+              className="mb-2 block rounded-xl border border-accent-200 bg-accent-50 p-3 active:scale-[0.99] transition-transform"
             >
-              <p className="font-medium">📦 {result.written.situation.name}</p>
+              <p className="font-medium">{result.written.situation.name}</p>
               <p className="mt-0.5 text-sm text-stone-600">
                 {S.packageReady(
                   result.written.situation.vocab,
@@ -301,7 +303,7 @@ function CapturarInner() {
           {/* La traducción alemana — del texto descifrado o de la frase corregida */}
           {result.gist && (
             <p className="mt-2 rounded-lg bg-stone-50 p-3 text-base text-stone-800">
-              🇩🇪 {result.gist}
+              <DeChip />{result.gist}
             </p>
           )}
 
@@ -340,7 +342,7 @@ function CapturarInner() {
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
             {S.historyTitle}
           </h2>
-          <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+          <ul className="divide-y divide-stone-100 rounded-2xl border border-stone-200 bg-white">
             {history.map((h) => (
               <li key={h.id}>
                 <button
@@ -438,7 +440,7 @@ function CapturarInner() {
                       {S.detailWord}
                     </h3>
                     <p className="text-lg font-semibold">{detail.word.term}</p>
-                    <p className="text-base text-stone-700">🇩🇪 {detail.word.translation}</p>
+                    <p className="text-base text-stone-700"><DeChip />{detail.word.translation}</p>
                   </div>
                 )}
 
@@ -448,7 +450,7 @@ function CapturarInner() {
                       {S.detailMeaning}
                     </h3>
                     <p className="rounded-lg bg-stone-50 p-3 text-base text-stone-800">
-                      🇩🇪 {detail.gist}
+                      <DeChip />{detail.gist}
                     </p>
                   </div>
                 )}

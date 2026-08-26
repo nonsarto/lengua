@@ -13,11 +13,11 @@ const OFFLINE_HTML = `<!doctype html>
 <title>Sin conexión</title>
 <style>
   body { margin: 0; min-height: 100dvh; display: flex; align-items: center; justify-content: center;
-         background: #faf7f2; color: #1c1917; font-family: -apple-system, "Segoe UI", sans-serif; }
+         background: #f2f4f3; color: #131f1c; font-family: -apple-system, "Segoe UI", sans-serif; }
   main { text-align: center; padding: 2rem; }
   h1 { font-size: 1.25rem; margin: 0 0 .5rem; }
-  p  { color: #78716c; font-size: .9rem; margin: 0 0 1.5rem; }
-  button { background: #ea7317; color: #fff; border: 0; border-radius: .75rem;
+  p  { color: #4d5a56; font-size: .9rem; margin: 0 0 1.5rem; }
+  button { background: #23558f; color: #fff; border: 0; border-radius: .75rem;
            padding: .75rem 1.5rem; font-size: .9rem; font-weight: 600; }
 </style>
 </head>

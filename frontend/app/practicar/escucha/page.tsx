@@ -10,6 +10,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
+import { IconCheckDraw, IconPlay, IconReplay } from "@/components/icons";
+import { DeChip, PageHead, btnGhost, btnPrimaryFull, cardQuiet } from "@/components/ui";
 
 type Question = { index: number; q: string; options: string[] };
 type Session = {
@@ -88,22 +90,17 @@ export default function Escucha() {
 
   return (
     <>
-      <p className="mb-1 text-xs text-stone-400">
-        <Link href="/practicar" className="underline-offset-2 hover:underline">
-          {S.practicarTitle}
-        </Link>
-        {" / "}{S.escuchaTitle}
-      </p>
-      <h1 className="mb-4 text-2xl font-bold">🎧 {S.escuchaListen}</h1>
+      <PageHead backHref="/practicar" backLabel={S.practicarTitle} />
+      <h1 className="mb-4 font-display text-2xl font-bold">{S.escuchaListen}</h1>
 
       {/* Reproductor — sin mostrar el texto */}
-      <div className="mb-5 flex items-center gap-3 rounded-xl border border-stone-200 bg-white p-4">
+      <div className="mb-5 flex items-center gap-3 rounded-2xl border border-stone-200 bg-white p-4">
         <button
           onClick={() => audioRef.current?.play()}
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-600 text-xl text-white active:scale-95"
           aria-label="Play"
         >
-          ▶
+          <IconPlay className="h-5 w-5" />
         </button>
         <button
           onClick={() => {
@@ -112,9 +109,9 @@ export default function Escucha() {
               audioRef.current.play();
             }
           }}
-          className="text-sm text-stone-500 underline-offset-2 hover:underline"
+          className="flex items-center gap-1.5 text-sm text-stone-500 underline-offset-4 hover:underline"
         >
-          {S.escuchaReplay}
+          <IconReplay className="h-3.5 w-3.5" />{S.escuchaReplay}
         </button>
         <audio
           ref={audioRef}
@@ -128,7 +125,7 @@ export default function Escucha() {
         {session.questions.map((q) => {
           const res = graded?.results.find((r) => r.index === q.index);
           return (
-            <div key={q.index} className="rounded-xl border border-stone-200 bg-white p-4">
+            <div key={q.index} className="rounded-2xl border border-stone-200 bg-white p-4">
               <p className="mb-3 font-medium">{q.q}</p>
               <div className="space-y-2">
                 {q.options.map((o) => {
@@ -146,7 +143,7 @@ export default function Escucha() {
                       key={o}
                       onClick={() => pick(q.index, o)}
                       disabled={!!graded}
-                      className={`block w-full rounded-lg border p-3 text-left text-base active:scale-[0.99] ${cls}`}
+                      className={`block w-full rounded-xl border p-3 text-left text-base active:scale-[0.99] ${cls}`}
                     >
                       {o}
                     </button>
@@ -163,26 +160,26 @@ export default function Escucha() {
         <button
           onClick={submit}
           disabled={busy || !allAnswered}
-          className="mt-5 w-full rounded-lg bg-accent-600 py-3 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
+          className={`mt-5 ${btnPrimaryFull}`}
         >
           {S.escuchaSubmit}
         </button>
       ) : (
         <div className="mt-5">
-          <div className="rounded-xl border border-stone-200 bg-white p-5 text-center">
+          <div className="rounded-2xl border border-stone-200 bg-white p-5 text-center">
             <p className="text-2xl font-bold">{S.escuchaScore(graded.score, graded.total)}</p>
           </div>
           {/* Reveal: transcripción + contexto alemán */}
-          <div className="mt-3 rounded-xl border border-stone-200 bg-stone-50 p-4">
+          <div className="mt-3 rounded-2xl border border-stone-200 bg-stone-50 p-4">
             <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
               {S.escuchaTranscript}
             </p>
             <p className="text-base text-stone-800">{graded.transcript}</p>
-            <p className="mt-2 text-sm text-stone-500">🇩🇪 {graded.gist}</p>
+            <p className="mt-2 text-sm text-stone-500"><DeChip />{graded.gist}</p>
           </div>
           <button
             onClick={load}
-            className="mt-4 w-full rounded-lg border border-accent-300 py-3 text-sm font-semibold text-accent-700 active:scale-95"
+            className="mt-4 w-full rounded-xl border border-stone-300 bg-white py-3 text-sm font-semibold text-stone-600 active:scale-[.97] transition-transform"
           >
             {S.escuchaAgain}
           </button>

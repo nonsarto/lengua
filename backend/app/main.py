@@ -141,6 +141,37 @@ def admin_reset_password(target_id: str, body: PasswordIn,
     return {"ok": True}
 
 
+@app.delete("/admin/users/{target_id}")
+def admin_delete_user(target_id: str, user: dict = Depends(admin_user)) -> dict:
+    """Nutzer samt aller Daten löschen. Sich selbst löschen geht nicht —
+    sonst sperrt sich der letzte Admin aus."""
+    if target_id == user["user_id"]:
+        raise HTTPException(422, "No puedes eliminarte a ti mismo.")
+    db = get_db()
+    if db.get_user_by_id(target_id) is None:
+        raise HTTPException(404, "Usuario no existe.")
+    db.delete_user_full(target_id)
+    return {"ok": True}
+
+
+# Username des Speaking-Bots für den Pairing-Deep-Link. Per Env überschreibbar;
+# Default = der echte Bot der es-Instanz (@hablalengbot).
+TELEGRAM_BOT_USERNAME = os.environ.get("TELEGRAM_BOT_USERNAME", "hablalengbot")
+
+
+@app.post("/admin/users/{target_id}/telegram-link")
+def admin_telegram_link(target_id: str, user: dict = Depends(admin_user)) -> dict:
+    """Pairing-Link für den Telegram-Speaking-Bot erzeugen (Migration 013 sah genau
+    diesen Erzeugungsweg vor). Der Link öffnet den Chat und schickt /start <code>;
+    der Bot löst den Code ein und verbindet chat_id ↔ user_id. 24 h gültig, einmalig."""
+    db = get_db()
+    if db.get_user_by_id(target_id) is None:
+        raise HTTPException(404, "Usuario no existe.")
+    code = db.create_pairing_code(target_id)
+    return {"code": code, "expires_hours": 24,
+            "link": f"https://t.me/{TELEGRAM_BOT_USERNAME}?start={code}"}
+
+
 # ---------------------------------------------------------------------------
 # Onboarding — 12 Fragen, ~3 Minuten, deterministische Auswertung sät die States.
 # ---------------------------------------------------------------------------

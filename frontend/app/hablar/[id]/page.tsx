@@ -12,6 +12,7 @@ import { useParams } from "next/navigation";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
 import TranscriptHighlights, { germanSpans, Span } from "@/components/TranscriptHighlights";
+import { IconArrowLeft } from "@/components/icons";
 
 type Detail = {
   session: {
@@ -49,7 +50,7 @@ const CHUNK_STYLE: Record<string, string> = {
 
 function Tile({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mb-4 rounded-xl border border-stone-200 bg-white p-4">
+    <section className="mb-4 rounded-2xl border border-stone-200 bg-white p-4">
       <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">{title}</h2>
       {children}
     </section>
@@ -101,7 +102,7 @@ export default function HablarDetail() {
 
   return (
     <>
-      <h1 className="mb-1 text-2xl font-bold">{date}</h1>
+      <h1 className="mb-1 font-display text-2xl font-bold">{date}</h1>
       {mins && <p className="mb-4 text-xs text-stone-400">{mins} min</p>}
 
       {d.audio_url ? (
@@ -168,8 +169,8 @@ export default function HablarDetail() {
         </Tile>
       )}
 
-      <Link href="/hablar" className="text-sm text-accent-700">
-        ← {S.hablarTitle}
+      <Link href="/hablar" className="inline-flex items-center gap-1.5 text-sm text-stone-400 underline-offset-4 hover:underline">
+        <IconArrowLeft className="h-3.5 w-3.5" />{S.hablarTitle}
       </Link>
     </>
   );

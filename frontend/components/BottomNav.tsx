@@ -1,69 +1,29 @@
 "use client";
 
 /**
- * Quatre LLOCS on viu l'aprenentatge acumulat + UNA acció persistent al centre.
- * Labels + Sprache kommen aus lib/strings (NEXT_PUBLIC_LANG).
+ * Vier ORTE + Capturar INTEGRIERT in der Mitte (Azulejo, Konzept-Nachtrag):
+ * kein schwebender FAB — die Aktion sitzt auf der Grundlinie der Tabs, trägt als
+ * einziges Element die Akzentfläche und hat ein Label wie alle anderen.
+ * Hablar hat keinen Tab mehr — der Zugang ist die Feedback-Karte auf Inicio.
+ * Symmetrie: 2 Orte links, 2 rechts.
  */
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LANG, S } from "@/lib/strings";
+import { S } from "@/lib/strings";
+import { IconBook, IconCards, IconHome, IconPlus, IconTarget } from "./icons";
 
-const stroke = {
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.8,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-};
-
-const ICONS: Record<string, React.ReactNode> = {
-  inicio: (
-    <svg viewBox="0 0 24 24" className="h-7 w-7" {...stroke}>
-      <path d="M3 10.5 12 3l9 7.5" />
-      <path d="M5.5 9.5V20a1 1 0 0 0 1 1H10v-6h4v6h3.5a1 1 0 0 0 1-1V9.5" />
-    </svg>
-  ),
-  gramatica: (
-    <svg viewBox="0 0 24 24" className="h-7 w-7" {...stroke}>
-      <path d="M12 6.5C10.5 5 8.5 4.5 6 4.5c-1 0-2 .15-3 .5v14c1-.35 2-.5 3-.5 2.5 0 4.5.5 6 2 1.5-1.5 3.5-2 6-2 1 0 2 .15 3 .5v-14c-1-.35-2-.5-3-.5-2.5 0-4.5.5-6 2Z" />
-      <path d="M12 6.5v14" />
-    </svg>
-  ),
-  vocabulario: (
-    <svg viewBox="0 0 24 24" className="h-7 w-7" {...stroke}>
-      <rect x="3" y="4" width="18" height="5" rx="1" />
-      <rect x="3" y="13" width="18" height="7" rx="1" />
-      <path d="M9 16.5h6" />
-    </svg>
-  ),
-  practicar: (
-    <svg viewBox="0 0 24 24" className="h-7 w-7" {...stroke}>
-      <circle cx="12" cy="12" r="8.5" />
-      <circle cx="12" cy="12" r="4.5" />
-      <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  ),
-  hablar: (
-    <svg viewBox="0 0 24 24" className="h-7 w-7" {...stroke}>
-      <rect x="9" y="3" width="6" height="11" rx="3" />
-      <path d="M5.5 11a6.5 6.5 0 0 0 13 0" />
-      <path d="M12 17.5V21" />
-    </svg>
-  ),
-};
-
-function PlaceLink({ href, label, icon }: { href: string; label: string; icon: string }) {
+function PlaceLink({ href, label, icon }: { href: string; label: string; icon: React.ReactNode }) {
   const pathname = usePathname();
   const active = pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
   return (
     <Link
       href={href}
-      className={`flex min-w-12 flex-col items-center gap-1 rounded-lg px-1.5 py-1.5 text-[11px] ${
-        active ? "text-stone-900 font-semibold" : "text-stone-400"
+      className={`flex min-w-12 flex-col items-center gap-0.5 rounded-lg px-1.5 py-1.5 text-[11px] ${
+        active ? "font-semibold text-stone-900" : "text-stone-400"
       }`}
     >
-      {ICONS[icon]}
+      {icon}
       {label}
     </Link>
   );
@@ -74,22 +34,24 @@ export default function BottomNav() {
   // sense nav al login ni durant el test de nivell
   if (pathname === "/login" || pathname === "/nivel") return null;
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-stone-200 bg-[#faf7f2]/95 backdrop-blur pb-[max(env(safe-area-inset-bottom),0.75rem)]">
-      <div className="mx-auto flex max-w-lg items-end justify-between px-3 py-1.5">
-        <PlaceLink href="/" label={S.navInicio} icon="inicio" />
-        <PlaceLink href="/gramatica" label={S.navGramatica} icon="gramatica" />
-        {/* L'acció — gran, al centre, sempre a mà */}
+    <nav className="fixed bottom-0 inset-x-0 z-50 border-t border-stone-200 bg-background/95 backdrop-blur pb-[max(env(safe-area-inset-bottom),0.75rem)]">
+      <div className="mx-auto flex max-w-lg items-center justify-between px-3 py-1.5">
+        <PlaceLink href="/" label={S.navInicio} icon={<IconHome className="h-6 w-6" />} />
+        <PlaceLink href="/gramatica" label={S.navGramatica} icon={<IconBook className="h-6 w-6" />} />
+        {/* Die eine Geste — integriert, nicht schwebend */}
         <Link
           href="/capturar"
-          aria-label={S.navCapturar}
-          className="-mt-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-accent-600 text-3xl font-light text-white shadow-lg shadow-accent-600/30 active:scale-95 transition-transform"
+          className={`flex flex-col items-center gap-0.5 px-1.5 py-1.5 text-[11px] font-semibold ${
+            pathname === "/capturar" ? "text-accent-700" : "text-accent-600"
+          }`}
         >
-          +
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-accent-600 text-white transition-transform active:scale-95">
+            <IconPlus className="h-4.5 w-4.5" />
+          </span>
+          {S.navCapturar}
         </Link>
-        <PlaceLink href="/vocabulario" label={S.navVocabulario} icon="vocabulario" />
-        {/* Hablar ist ES-only (Speaking Bot) — auf llengua/ca existiert das Feature nicht */}
-        {LANG === "es" && <PlaceLink href="/hablar" label={S.navHablar} icon="hablar" />}
-        <PlaceLink href="/practicar" label={S.navPracticar} icon="practicar" />
+        <PlaceLink href="/vocabulario" label={S.navVocabulario} icon={<IconCards className="h-6 w-6" />} />
+        <PlaceLink href="/practicar" label={S.navPracticar} icon={<IconTarget className="h-6 w-6" />} />
       </div>
     </nav>
   );

@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
+import { PageHead } from "@/components/ui";
 
 type Word = {
   id: string;
@@ -61,21 +62,16 @@ export default function DiccionariTema() {
 
   return (
     <>
-      <p className="mb-1 text-xs text-stone-400">
-        <Link href="/vocabulario" className="underline-offset-2 hover:underline">
-          {S.vocabularioTitle}
-        </Link>
-        {" / "}{S.dictTitle}
-      </p>
-      <h1 className="mb-5 text-2xl font-bold capitalize">{decoded}</h1>
+      <PageHead backHref="/vocabulario" backLabel={S.dictTitle} />
+      <h1 className="mb-5 font-display text-2xl font-bold capitalize">{decoded}</h1>
 
-      <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+      <ul className="divide-y divide-stone-100 rounded-2xl border border-stone-200 bg-white">
         {words.map((w) => (
           <li key={w.id} className="flex items-center justify-between gap-3 p-3">
             <div className="min-w-0">
               <p className="font-medium">
-                {w.is_phrase && <span className="mr-1 text-xs">💬</span>}
                 {w.term}
+                {w.is_phrase && <span className="ml-1.5 rounded-[5px] bg-stone-100 px-1.5 py-px text-[9px] font-semibold uppercase tracking-wide text-stone-500">frase</span>}
               </p>
               <p className="truncate text-sm text-stone-500">
                 {w.translation}
@@ -88,7 +84,7 @@ export default function DiccionariTema() {
             ) : (
               <button
                 onClick={() => add(w)}
-                className="shrink-0 rounded-lg border border-accent-300 px-3 py-1 text-xs font-semibold text-accent-700 active:scale-95"
+                className="shrink-0 rounded-lg border border-accent-300 px-3 py-1 text-xs font-semibold text-accent-700 active:scale-95 transition-transform"
               >
                 + {S.dictAdd}
               </button>

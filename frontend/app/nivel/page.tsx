@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { apiFetch, updateStoredUser } from "@/lib/api";
 import { S } from "@/lib/strings";
+import { Progress, btnGhost, cardQuiet } from "@/components/ui";
 
 type Question = { id: string; band: string; q: string; options: string[] };
 type Result = { level: string; correct: number; total: number;
@@ -64,13 +65,13 @@ export default function Nivel() {
   if (result) {
     return (
       <div className="flex min-h-[70dvh] flex-col justify-center">
-        <div className="rounded-xl border border-green-200 bg-green-50/60 p-6 text-center">
+        <div className="rounded-2xl border border-stone-200 bg-white p-6 text-center">
           <p className="text-sm uppercase tracking-wide text-stone-500">{S.yourLevel}</p>
           <p className="mt-1 text-4xl font-bold text-green-800">{result.level}</p>
           <p className="mt-2 text-sm text-stone-600">{S.correctOf(result.correct, result.total)}</p>
         </div>
         {result.weak.length > 0 && (
-          <div className="mt-4 rounded-xl border border-accent-200 bg-accent-50/60 p-4">
+          <div className="mt-4 rounded-2xl border border-accent-200 bg-accent-50 p-4">
             <p className="text-sm font-semibold text-accent-800">{S.weakIntro}</p>
             <ul className="mt-1 text-sm text-stone-700">
               {result.weak.map((w) => (
@@ -81,7 +82,7 @@ export default function Nivel() {
         )}
         <Link
           href="/"
-          className="mt-6 rounded-xl bg-accent-600 py-3 text-center text-base font-semibold text-white active:scale-[0.99]"
+          className="mt-6 rounded-xl bg-accent-600 py-3 text-center text-base font-semibold text-white active:scale-[0.99] transition-transform"
         >
           {S.startBtn}
         </Link>
@@ -109,18 +110,13 @@ export default function Nivel() {
     <>
       <div className="mb-2 flex items-baseline justify-between">
         <h1 className="text-2xl font-bold">{S.nivelTitle}</h1>
-        <span className="text-sm text-stone-400">{idx + 1} / {questions.length}</span>
+        <span className="text-sm tabular-nums text-stone-400">{idx + 1} / {questions.length}</span>
       </div>
       <p className="mb-4 text-xs text-stone-400">{S.nivelHint}</p>
 
-      <div className="mb-5 h-1 rounded-full bg-stone-200">
-        <div
-          className="h-1 rounded-full bg-accent-600 transition-all"
-          style={{ width: `${(idx / questions.length) * 100}%` }}
-        />
-      </div>
+      <Progress value={idx} total={questions.length} />
 
-      <div className="rounded-xl border border-stone-200 bg-white p-5">
+      <div className="rounded-2xl border border-stone-200 bg-white p-5">
         <p className="text-xs uppercase tracking-wide text-stone-400">{q.band}</p>
         <p className="mt-2 text-xl font-medium">{q.q}</p>
         <div className="mt-5 space-y-2">
@@ -129,7 +125,7 @@ export default function Nivel() {
               key={i}
               onClick={() => answer(i)}
               disabled={busy}
-              className="block w-full rounded-lg border border-stone-200 bg-white px-4 py-3 text-left text-base active:scale-[0.99] active:border-accent-500 disabled:opacity-40"
+              className="block w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-left text-base active:scale-[0.99] active:border-accent-500 disabled:opacity-40"
             >
               {opt}
             </button>

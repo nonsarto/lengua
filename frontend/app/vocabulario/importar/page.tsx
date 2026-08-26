@@ -13,6 +13,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
+import { PageHead } from "@/components/ui";
 
 // ---------------------------------------------------------------- tipos
 type Sample = { term: string; translation: string; status: "new" | "dup" };
@@ -51,17 +52,15 @@ export default function Subir() {
   const [tab, setTab] = useState<"doc" | "list">("doc");
   return (
     <>
-      <Link href="/vocabulario" className="mb-3 inline-block text-xs text-stone-400 hover:underline">
-        {S.importBackToVocab}
-      </Link>
-      <h1 className="mb-3 text-2xl font-bold">{S.importTitle}</h1>
+      <PageHead backHref="/vocabulario" backLabel={S.vocabularioTitle} />
+      <h1 className="mb-3 font-display text-2xl font-bold">{S.importTitle}</h1>
 
-      <div className="mb-5 flex gap-1 rounded-xl bg-stone-100 p-1 text-sm">
+      <div className="mb-5 flex gap-1 rounded-2xl bg-stone-100 p-1 text-sm">
         {(["doc", "list"] as const).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`flex-1 rounded-lg px-3 py-1.5 font-medium transition ${
+            className={`flex-1 rounded-xl px-3 py-1.5 font-medium transition ${
               tab === t ? "bg-white text-stone-900 shadow-sm" : "text-stone-500"
             }`}
           >
@@ -173,7 +172,7 @@ function DocLane() {
         <button
           onClick={analyze}
           disabled={analyzing || (!text.trim() && files.length === 0)}
-          className="ml-auto rounded-lg bg-accent-600 px-4 py-1.5 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
+          className="ml-auto rounded-xl bg-accent-600 px-4 py-1.5 text-sm font-semibold text-white disabled:opacity-40 active:scale-[.97] transition-transform"
         >
           {analyzing ? S.uploadAnalyzing : S.uploadAnalyzeBtn}
         </button>
@@ -212,7 +211,7 @@ function DocLane() {
               <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
                 {S.uploadConceptsTitle}
               </h2>
-              <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+              <ul className="divide-y divide-stone-100 rounded-2xl border border-stone-200 bg-white">
                 {preview.concepts.map((c) => (
                   <li key={c.slug} className="p-3">
                     <div className="flex items-baseline justify-between gap-3">
@@ -238,7 +237,7 @@ function DocLane() {
               <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
                 {S.uploadVocabTitle} · {S.uploadVocabCounts(preview.new_vocab_count, preview.lemmas.length)}
               </h2>
-              <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+              <ul className="divide-y divide-stone-100 rounded-2xl border border-stone-200 bg-white">
                 {preview.lemmas.slice(0, 12).map((l, i) => (
                   <li key={i} className="flex items-baseline justify-between gap-3 p-3">
                     <span className="min-w-0 flex-1 truncate">
@@ -261,7 +260,7 @@ function DocLane() {
           <button
             onClick={commit}
             disabled={committing}
-            className="w-full rounded-xl bg-accent-600 px-4 py-3 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
+            className="w-full rounded-xl bg-accent-600 px-4 py-3 text-sm font-semibold text-white disabled:opacity-40 active:scale-[.97] transition-transform"
           >
             {committing ? S.uploadCommitting : S.uploadCommitBtn}
           </button>
@@ -432,7 +431,7 @@ function CsvLane() {
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
             {S.importPreviewTitle} · {S.importCounts(preview.new_count, preview.dup_count)}
           </h2>
-          <ul className="mb-4 divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+          <ul className="mb-4 divide-y divide-stone-100 rounded-2xl border border-stone-200 bg-white">
             {preview.sample.map((row, i) => (
               <li key={i} className="flex items-baseline justify-between gap-3 p-3">
                 <span className="min-w-0 flex-1 truncate">
@@ -452,7 +451,7 @@ function CsvLane() {
 
           {preview.new_count > 0 ? (
             <button onClick={commit} disabled={committing}
-                    className="w-full rounded-xl bg-accent-600 px-4 py-3 text-sm font-semibold text-white disabled:opacity-40 active:scale-95">
+                    className="w-full rounded-xl bg-accent-600 px-4 py-3 text-sm font-semibold text-white disabled:opacity-40 active:scale-[.97] transition-transform">
               {committing ? S.importing : S.importCommitBtn(preview.new_count)}
             </button>
           ) : (

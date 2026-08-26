@@ -1,16 +1,17 @@
 "use client";
 
 /**
- * Gramática/Gramàtica — la lista de capítulos, ordenada por score: los calientes arriba,
- * la referencia en desplegables tranquilos. Textos de lib/strings (es/ca).
- * El orden de los clusters viene del backend (por idioma) — aquí solo se agrupa.
+ * Gramática — la lista de capítulos, ordenada por score: los calientes arriba,
+ * la referencia en desplegables tranquilos. Azulejo: Lernstand als Tinte (Dots),
+ * nur "braucht dich" trägt Akzent. Geübt wird in Practicar — hier wird gelesen.
  */
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { apiFetch, STATE_LABEL, STATE_STYLE } from "@/lib/api";
+import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
 import SubirMaterial from "@/components/SubirMaterial";
+import { ErrorState, NeedLine, PageHead, StateDots, cardQuiet } from "@/components/ui";
 
 type ConceptRow = {
   slug: string;
@@ -25,27 +26,20 @@ type ConceptRow = {
 };
 
 function Row({ c }: { c: ConceptRow }) {
-  const active = c.priority > 0;
   return (
     <Link
       href={`/gramatica/${c.slug}`}
-      className={`flex items-center justify-between gap-3 p-3.5 active:bg-stone-50 ${
-        active ? "" : "opacity-80"
-      }`}
+      className="flex items-center justify-between gap-3 p-3.5 active:bg-stone-50"
     >
       <div className="min-w-0">
         <p className="truncate font-medium">{c.label}</p>
         <p className="mt-0.5 flex items-center gap-1.5 text-xs text-stone-400">
-          {c.cefr && <span>{c.cefr}</span>}
-          {c.state !== "sin_ver" && (
-            <span className={`rounded-full px-1.5 py-px ${STATE_STYLE[c.state]}`}>
-              {STATE_LABEL[c.state]}
-            </span>
-          )}
+          <NeedLine state={c.state} needCount={c.need_count} />
+          {c.state !== "flojo" && c.state !== "aprendiendo" && c.cefr && <span>{c.cefr}</span>}
           {!c.reviewed && <span className="text-stone-300">{S.draft}</span>}
         </p>
       </div>
-      <span className="shrink-0 text-stone-300">→</span>
+      <StateDots state={c.state} />
     </Link>
   );
 }
@@ -68,11 +62,8 @@ export default function Gramatica() {
   if (failed)
     return (
       <>
-        <h1 className="mb-4 text-2xl font-bold">{S.gramaticaTitle}</h1>
-        <p className="text-sm text-stone-500">{S.loadFailed}</p>
-        <button onClick={load} className="mt-3 text-sm text-stone-500 underline-offset-2 hover:underline">
-          {S.retryBtn}
-        </button>
+        <PageHead title={S.gramaticaTitle} serif />
+        <ErrorState onRetry={load} />
       </>
     );
   if (rows === null) return <p className="text-sm text-stone-400">{S.loading}</p>;
@@ -83,7 +74,6 @@ export default function Gramatica() {
   const touched = rows.filter((r) => r.state !== "sin_ver").length;
   const dominated = rows.filter((r) => r.state === "dominado").length;
 
-  // Cluster-Reihenfolge: wie sie (score-sortiert) vom Backend kommen, Kategorien dedupliziert
   const categories: string[] = [];
   for (const r of quiet) if (!categories.includes(r.category)) categories.push(r.category);
   const clusters = categories.map((cat) => ({
@@ -93,17 +83,17 @@ export default function Gramatica() {
 
   return (
     <>
-      <h1 className="mb-1 text-2xl font-bold">{S.gramaticaTitle}</h1>
-      <p className="mb-4 text-xs text-stone-400">
+      <h1 className="mb-1 font-display text-2xl font-bold">{S.gramaticaTitle}</h1>
+      <p className="mb-4 text-xs tabular-nums text-stone-400">
         {S.summary(rows.length, touched, hot.length, dominated)}
       </p>
 
       <SubirMaterial />
 
-      {/* Tus temas — mismo desplegable que la referencia, pero abierto por defecto */}
+      {/* Tus temas — offen, weil sie dich brauchen */}
       {hot.length > 0 && (
-        <details open className="group mb-6 rounded-xl border border-accent-200 bg-white">
-          <summary className="flex cursor-pointer select-none items-center justify-between p-3.5 text-sm font-semibold uppercase tracking-wide text-stone-500 [&::-webkit-details-marker]:hidden">
+        <details open className={`group mb-6 ${cardQuiet}`}>
+          <summary className="flex cursor-pointer select-none items-center justify-between p-3.5 text-xs font-semibold uppercase tracking-[.12em] text-stone-500 [&::-webkit-details-marker]:hidden">
             <span>
               {S.yoursNow} <span className="font-normal text-stone-300">· {hot.length}</span>
             </span>
@@ -116,8 +106,8 @@ export default function Gramatica() {
       )}
 
       {clusters.map(({ cat, items }) => (
-        <details key={cat} className="group mb-2 rounded-xl border border-stone-200 bg-white">
-          <summary className="flex cursor-pointer select-none items-center justify-between p-3.5 text-sm font-semibold uppercase tracking-wide text-stone-500 [&::-webkit-details-marker]:hidden">
+        <details key={cat} className={`group mb-2 ${cardQuiet}`}>
+          <summary className="flex cursor-pointer select-none items-center justify-between p-3.5 text-xs font-semibold uppercase tracking-[.12em] text-stone-500 [&::-webkit-details-marker]:hidden">
             <span>
               {cat} <span className="font-normal text-stone-300">· {items.length}</span>
             </span>

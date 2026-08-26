@@ -12,6 +12,8 @@ import { useRouter } from "next/navigation";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
 import SubirMaterial from "@/components/SubirMaterial";
+import { IconChevronRight } from "@/components/icons";
+import { ErrorState } from "@/components/ui";
 
 type Shelf = { id: string; name: string; is_seed: boolean; item_count: number };
 type Loose = { id: string; term: string; translation: string; register: string; region: string | null };
@@ -69,7 +71,7 @@ export default function Vocabulario() {
 
   return (
     <>
-      <h1 className="mb-1 text-2xl font-bold">{S.vocabularioTitle}</h1>
+      <h1 className="mb-1 font-display text-2xl font-bold">{S.vocabularioTitle}</h1>
       {due > 0 ? (
         <Link href="/practicar" className="mb-4 inline-block text-xs text-accent-700 underline-offset-2 hover:underline">
           {S.dueToday(due)}
@@ -85,12 +87,12 @@ export default function Vocabulario() {
           onChange={(e) => setNewName(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && createShelf()}
           placeholder={S.newSituationPlaceholder}
-          className="min-w-0 flex-1 rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-accent-500"
+          className="min-w-0 flex-1 rounded-xl border border-stone-300 bg-white px-3 py-2 text-sm outline-none focus:border-accent-500"
         />
         <button
           onClick={createShelf}
           disabled={creating || !newName.trim()}
-          className="shrink-0 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
+          className="shrink-0 rounded-xl bg-accent-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-[.97] transition-transform"
         >
           {creating ? S.creating : S.createBtn}
         </button>
@@ -100,12 +102,7 @@ export default function Vocabulario() {
       <SubirMaterial />
 
       {loadFailed ? (
-        <>
-          <p className="text-sm text-stone-500">{S.loadFailed}</p>
-          <button onClick={load} className="mt-3 text-sm text-stone-500 underline-offset-2 hover:underline">
-            {S.retryBtn}
-          </button>
-        </>
+        <ErrorState onRetry={load} />
       ) : shelves === null ? (
         <p className="text-sm text-stone-400">{S.loading}</p>
       ) : (
@@ -115,7 +112,7 @@ export default function Vocabulario() {
               <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
                 {S.situationsTitle}
               </h2>
-              <div className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+              <div className="divide-y divide-stone-100 rounded-2xl border border-stone-200 bg-white">
                 {shelves.map((s) => (
                   <Link
                     key={s.id}
@@ -129,7 +126,7 @@ export default function Vocabulario() {
                         {s.is_seed ? S.seedTag : ""}
                       </p>
                     </div>
-                    <span className="text-stone-300">→</span>
+                    <IconChevronRight className="h-4 w-4 shrink-0 text-stone-300" />
                   </Link>
                 ))}
               </div>
@@ -142,7 +139,7 @@ export default function Vocabulario() {
               <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
                 {S.dictTitle}
               </h2>
-              <div className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+              <div className="divide-y divide-stone-100 rounded-2xl border border-stone-200 bg-white">
                 {dict.map((t) => (
                   <Link
                     key={t.topic}
@@ -156,7 +153,7 @@ export default function Vocabulario() {
                         {S.dictTopicCount(t.added, t.count)}
                       </p>
                     </div>
-                    <span className="text-stone-300">→</span>
+                    <IconChevronRight className="h-4 w-4 shrink-0 text-stone-300" />
                   </Link>
                 ))}
               </div>
@@ -184,7 +181,7 @@ export default function Vocabulario() {
                     className="mb-2 w-full rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm outline-none focus:border-accent-500"
                   />
                 )}
-                <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+                <ul className="divide-y divide-stone-100 rounded-2xl border border-stone-200 bg-white">
                   {shown.map((v) => (
                     <li key={v.id} className="flex items-baseline justify-between gap-3 p-3">
                       <span className="font-medium">{v.term}</span>

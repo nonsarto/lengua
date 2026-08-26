@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
+import { IconChevronRight } from "@/components/icons";
 
 type Overview = {
   top_errors: { error_type: string; count: number }[];
@@ -51,7 +52,7 @@ export default function Hablar() {
 
   return (
     <>
-      <h1 className="mb-1 text-2xl font-bold">{S.hablarTitle}</h1>
+      <h1 className="mb-1 font-display text-2xl font-bold">{S.hablarTitle}</h1>
       <p className="mb-4 text-xs text-stone-400">
         {data.open_chunks} {S.hablarOpenChunks}
       </p>
@@ -59,7 +60,7 @@ export default function Hablar() {
       {data.top_errors.length > 0 && (
         <div className="mb-6 grid grid-cols-3 gap-2">
           {data.top_errors.map((t) => (
-            <div key={t.error_type} className="rounded-xl border border-stone-200 bg-white p-3">
+            <div key={t.error_type} className="rounded-2xl border border-stone-200 bg-white p-3">
               <p className="text-2xl font-bold text-accent-700">{t.count}</p>
               <p className="mt-0.5 truncate text-xs text-stone-500">
                 {S.errorTypeLabels[t.error_type] ?? t.error_type}
@@ -75,7 +76,7 @@ export default function Hablar() {
       {data.sessions.length === 0 ? (
         <p className="text-sm text-stone-400">{S.hablarEmpty}</p>
       ) : (
-        <div className="rounded-xl border border-stone-200 bg-white">
+        <div className="rounded-2xl border border-stone-200 bg-white">
           <div className="divide-y divide-stone-100">
             {data.sessions.map((s) => (
               <Link
@@ -93,7 +94,7 @@ export default function Hablar() {
                     {S.hablarSessionErrors(s.error_count)} · {S.hablarSessionChunks(s.chunk_count)}
                   </p>
                 </div>
-                <span className="shrink-0 text-stone-300">→</span>
+                <IconChevronRight className="h-4 w-4 shrink-0 text-stone-300" />
               </Link>
             ))}
           </div>

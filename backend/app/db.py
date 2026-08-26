@@ -54,6 +54,38 @@ class Database:
     def update_user(self, user_id: str, fields: dict) -> None:
         self.c.table("user_settings").update(fields).eq("user_id", user_id).execute()
 
+    def create_pairing_code(self, user_id: str) -> str:
+        """Einmal-Code für den Telegram-Speaking-Bot (bot_pairing_codes, Migration 013).
+        Der Bot löst ihn per /start <code> ein; 24 h gültig, einmal verwendbar.
+        Zeichenvorrat von token_urlsafe (A-Za-z0-9_-) = exakt der erlaubte
+        Telegram-start-Payload."""
+        import secrets
+        code = secrets.token_urlsafe(8)
+        self.c.table("bot_pairing_codes").insert(
+            {"code": code, "user_id": user_id}).execute()
+        return code
+
+    def delete_user_full(self, user_id: str) -> None:
+        """Nutzer + ALLE seine Daten löschen (Admin). FK-sichere Reihenfolge:
+        Join-Tabellen über die Situations-IDs, vocab vor captures (source_capture_id),
+        captures vor documents; Bot-Verknüpfungen zuletzt vor dem Nutzer selbst.
+        Geteilte Inhalte (concepts, exercises, seed) bleiben unberührt."""
+        sit_ids = [r["id"] for r in (self.c.table("situations").select("id")
+                                     .eq("user_id", user_id).execute().data)]
+        if sit_ids:
+            self.c.table("situation_vocab").delete().in_("situation_id", sit_ids).execute()
+            self.c.table("situation_concepts").delete().in_("situation_id", sit_ids).execute()
+        for table in ("corrections", "concept_evidence", "exercise_attempts",
+                      "listening_items", "daily_sessions", "error_log",
+                      "speaking_chunks", "speaking_sessions", "vocab_items",
+                      "captures", "documents", "situations", "concept_state",
+                      "bot_pairing_codes", "bot_links"):
+            try:
+                self.c.table(table).delete().eq("user_id", user_id).execute()
+            except Exception:
+                pass  # Tabelle existiert auf dieser Instanz evtl. nicht (ca ohne Bot)
+        self.c.table("user_settings").delete().eq("user_id", user_id).execute()
+
     def claim_onboarding(self, user_id: str) -> bool:
         """Atomarer Doppel-Submit-Schutz: setzt onboarded_at NUR wenn noch null. Gibt True
         zurück, wenn DIESER Aufruf den Slot geholt hat — nur dann darf gesät werden. Schließt

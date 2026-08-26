@@ -12,8 +12,8 @@ export default function manifest(): MetadataRoute.Manifest {
         : "La vida trae el contenido, la app le da estructura.",
     start_url: "/",
     display: "standalone",
-    background_color: "#faf7f2",
-    theme_color: "#faf7f2",
+    background_color: "#f2f4f3",
+    theme_color: "#f2f4f3",
     icons: [
       { src: `/icon${suffix}-192.png`, sizes: "192x192", type: "image/png" },
       { src: `/icon${suffix}-512.png`, sizes: "512x512", type: "image/png" },
