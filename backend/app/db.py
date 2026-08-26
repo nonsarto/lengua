@@ -105,10 +105,13 @@ class Database:
          .eq("user_id", user_id).eq("id", capture_id).execute())
 
     def list_captures(self, user_id: str, limit: int = 20) -> list[dict]:
-        """Recent captures, newest first, with their correction (if any) nested in."""
+        """Recent captures, newest first, with their correction (if any) nested in.
+        Die Onboarding-Capture (source='onboarding') trägt Evidence, ist aber keine
+        Nutzer-Handlung — sie gehört nicht in die sichtbare Historie."""
         return (self.c.table("captures")
                 .select("id, raw_text, kind, created_at, corrections(wrong, correct)")
                 .eq("user_id", user_id)
+                .neq("source", "onboarding")
                 .order("created_at", desc=True)
                 .limit(limit)
                 .execute().data)
@@ -425,6 +428,9 @@ class Database:
 
     # ---------- situations (shelves) ----------
     def get_or_create_situation(self, user_id: str, name: str, is_seed: bool = False) -> dict:
+        # Erster Buchstabe groß — beide Anlege-Wege (Input + brief) liefern sonst
+        # gemischte Schreibweisen im Regal ("transporte" neben "En la farmacia").
+        name = (name[:1].upper() + name[1:]) if name else name
         rows = (self.c.table("situations").select("*")
                 .eq("user_id", user_id).eq("name", name).execute().data)
         if rows:
@@ -560,8 +566,15 @@ class Database:
 
     def promote_daily_seed(self, user_id: str, quota: int = 10) -> int:
         """Bis zu N neue Grundwortschatz-Wörter pro Tag rücken automatisch ins SRS nach
-        (nach Frequenz-Rang). Deterministisch; no-op wenn seed_vocab leer ist (lengua/es)."""
+        (nach Frequenz-Rang). Deterministisch; no-op wenn seed_vocab leer ist (lengua/es).
+        Startet erst, wenn der Nutzer selbst angefangen hat (mindestens eine eigene
+        Capture) — sonst ist der allererste Drill eine Seed-Kulisse statt seiner Wörter."""
         from datetime import datetime, timezone
+        own = (self.c.table("captures").select("id", count="exact")
+               .eq("user_id", user_id).neq("source", "onboarding")
+               .limit(1).execute()).count or 0
+        if own == 0:
+            return 0
         today = datetime.now(timezone.utc).date().isoformat()
         promoted_today = (self.c.table("vocab_items").select("id", count="exact")
                           .eq("user_id", user_id).contains("tags", ["seed"])
@@ -802,16 +815,47 @@ class Database:
         return terms[:n]
 
     def create_listening_item(self, user_id: str, passage: str, gist: str,
-                              questions: list) -> str:
-        row = self.c.table("listening_items").insert({
-            "user_id": user_id, "passage": passage, "gist": gist, "questions": questions,
-        }).execute().data[0]
+                              questions: list, audio_b64: str | None = None,
+                              audio_media_type: str | None = None) -> str:
+        """Audio wird mit abgelegt (Migration 015), damit ein unbeantworteter Hörtext beim
+        nächsten Aufruf wiederverwendet wird statt neu zu generieren (Text- + TTS-Call).
+        Fallback ohne Audio-Spalten, solange die Migration noch nicht gelaufen ist."""
+        base = {"user_id": user_id, "passage": passage, "gist": gist, "questions": questions}
+        if audio_b64:
+            try:
+                row = self.c.table("listening_items").insert(
+                    {**base, "audio_b64": audio_b64,
+                     "audio_media_type": audio_media_type or "audio/mpeg"}).execute().data[0]
+                return row["id"]
+            except Exception:
+                pass  # Spalten fehlen noch → altes Verhalten
+        row = self.c.table("listening_items").insert(base).execute().data[0]
         return row["id"]
 
     def get_listening_item(self, item_id: str, user_id: str) -> dict | None:
         rows = (self.c.table("listening_items").select("*")
                 .eq("id", item_id).eq("user_id", user_id).execute().data)
         return rows[0] if rows else None
+
+    def get_reusable_listening_item(self, user_id: str) -> dict | None:
+        """Jüngster unbeantworteter Hörtext MIT gespeichertem Audio — wird erneut serviert,
+        statt pro Seitenbesuch Text + TTS neu zu generieren. None, solange die
+        Audio-Spalten (Migration 015) fehlen oder nichts Wiederverwendbares da ist."""
+        try:
+            rows = (self.c.table("listening_items").select("*")
+                    .eq("user_id", user_id).is_("answered_at", "null")
+                    .not_.is_("audio_b64", "null")
+                    .order("created_at", desc=True).limit(1).execute().data)
+        except Exception:
+            return None
+        return rows[0] if rows else None
+
+    def mark_listening_answered(self, item_id: str) -> None:
+        try:
+            self.c.table("listening_items").update(
+                {"answered_at": "now()"}).eq("id", item_id).execute()
+        except Exception:
+            pass  # Spalte fehlt noch (vor Migration 015) — dann eben kein Reuse-Tracking
 
     # ---------- hablar (Speaking Bot; Tabellen aus Migration 012) ----------
     # Der Bot (lengua-bot, Railway) schreibt diese Tabellen per Service-Key;

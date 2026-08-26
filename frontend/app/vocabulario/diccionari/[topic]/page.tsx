@@ -46,7 +46,17 @@ export default function DiccionariTema() {
     }
   }
 
-  if (missing) return <p className="text-sm text-stone-400">{S.situationMissing}</p>;
+  if (missing)
+    return (
+      <>
+        <p className="text-sm text-stone-400">{S.situationMissing}</p>
+        <p className="mt-4">
+          <Link href="/vocabulario" className="text-sm text-stone-500 underline-offset-2 hover:underline">
+            ← {S.vocabularioTitle}
+          </Link>
+        </p>
+      </>
+    );
   if (!words) return <p className="text-sm text-stone-400">{S.loading}</p>;
 
   return (

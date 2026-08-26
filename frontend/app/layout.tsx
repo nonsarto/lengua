@@ -4,6 +4,7 @@ import Link from "next/link";
 import "./globals.css";
 import BottomNav from "@/components/BottomNav";
 import HeaderUser from "@/components/HeaderUser";
+import SwRegister from "@/components/SwRegister";
 import { LANG, S } from "@/lib/strings";
 
 const geistSans = Geist({
@@ -57,6 +58,7 @@ export default function RootLayout({
         {/* pb-28: Platz für die fixe untere Navigation */}
         <main className="mx-auto max-w-lg min-h-dvh px-5 pt-4 pb-28">{children}</main>
         <BottomNav />
+        <SwRegister />
       </body>
     </html>
   );

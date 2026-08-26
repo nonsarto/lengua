@@ -48,7 +48,7 @@ const es = {
   emptyHot: "Los conceptos recién promovidos aparecerán aquí.",
   emptyReview: "Tu repaso del día, cuando haya vocabulario que repasar.",
   emptyPrep: "Preparación para tus citas de hoy.",
-  errorsCaptured: (n: number) => `${n} ${n === 1 ? "fallo" : "fallos"} capturados`,
+  errorsCaptured: (n: number) => `${n} ${n === 1 ? "fallo capturado" : "fallos capturados"}`,
   wordsToReview: (n: number) => `${n} ${n === 1 ? "palabra" : "palabras"} para repasar`,
   captureHint: "Captura algo de tu día con el botón",
   loadFailed: "(no se pudo cargar — ¿backend corriendo?)",
@@ -209,14 +209,14 @@ const es = {
   situationMissing: "Esta situación no existe.",
   dictTitle: "Diccionario básico",
   dictAdd: "añadir", dictAdded: "en tu repaso ✓",
-  // practicar
+  // practicar — drei Kacheln: Mix (= Tages-Session), Vocabulario (SRS), Gramática (Übungen)
   practicarTitle: "Practicar",
-  modes: [
-    { tipo: "mix", label: "Mix", desc: "Un poco de todo — donde cojeas ahora" },
-    { tipo: "palabras", label: "Palabras", desc: "Solo vocabulario (SRS)" },
-    { tipo: "frases", label: "Frases", desc: "Frases con intención de tus preps" },
-    { tipo: "conjugacion", label: "Conjugación", desc: "Verbo · tiempo · persona → forma" },
-  ],
+  practicarMixTitle: "Mix — tu entrenamiento",
+  practicarMixDesc: "La sesión de 20 min: vocabulario + un tema de gramática",
+  practicarVocabTitle: "Vocabulario",
+  practicarVocabDesc: "Repaso SRS — tus palabras y frases",
+  practicarGramTitle: "Gramática",
+  practicarGramDesc: "Tus fallos reales y ejercicios de tus temas flojos",
   preparingSession: "preparando sesión…",
   sessionLoadFailed: "No se pudo cargar la sesión — ¿backend corriendo?",
   nothingPending: "Nada pendiente en esta categoría ahora mismo — captura más o prueba otro modo.",
@@ -258,6 +258,22 @@ const es = {
     yo: "yo", tu: "tú", el: "él/ella", nosotros: "nosotros",
     vosotros: "vosotros", ellos: "ellos/ellas",
   } as Record<string, string>,
+  // inicio: Hablar-Feedback (ES-only, per LANG gegated)
+  inicioHablar: "Tu feedback de Hablar",
+  inicioHablarEmpty: "Contesta a las preguntas del bot de Telegram y verás tu feedback aquí.",
+  // capturar: Fallback, wenn der Kamera-Dialog nicht automatisch aufgeht (Deep-Link)
+  cameraFallbackHint: "¿No se abrió la cámara? Toca 📷 Cámara.",
+  // importar: ehrliche Fehlerzustände
+  importUnreadable: "No se pudo leer el archivo — ¿seguro que es CSV/TSV?",
+  importNoRows: "No se reconoció ninguna fila — revisa el archivo o el separador.",
+  // Fehler + Retry
+  retryBtn: "reintentar",
+  nivelFailed: "No se pudo cargar el test — ¿backend corriendo?",
+  // diccionari: Topic-Zähler ohne irreführenden Haken
+  dictTopicCount: (a: number, t: number) => `${a}/${t} añadidas`,
+  // sueltas: Suche + Kappung
+  looseSearch: "buscar…",
+  looseShowAll: (n: number) => `mostrar todas (${n})`,
 };
 
 const ca: typeof es = {
@@ -456,12 +472,12 @@ const ca: typeof es = {
   dictTitle: "Diccionari bàsic",
   dictAdd: "afegir", dictAdded: "al teu repàs ✓",
   practicarTitle: "Practicar",
-  modes: [
-    { tipo: "mix", label: "Mix", desc: "Una mica de tot — on falles ara" },
-    { tipo: "palabras", label: "Paraules", desc: "Només vocabulari (SRS)" },
-    { tipo: "frases", label: "Frases", desc: "Frases amb intenció de les teves preps" },
-    { tipo: "conjugacion", label: "Conjugació", desc: "Verb · temps · persona → forma" },
-  ],
+  practicarMixTitle: "Mix — el teu entrenament",
+  practicarMixDesc: "La sessió de 20 min: vocabulari + un tema de gramàtica",
+  practicarVocabTitle: "Vocabulari",
+  practicarVocabDesc: "Repàs SRS — les teves paraules i frases",
+  practicarGramTitle: "Gramàtica",
+  practicarGramDesc: "Els teus errors reals i exercicis dels temes fluixos",
   preparingSession: "preparant la sessió…",
   sessionLoadFailed: "No s'ha pogut carregar la sessió — el backend funciona?",
   nothingPending: "Res pendent en aquesta categoria ara mateix — captura més o prova un altre mode.",
@@ -499,6 +515,17 @@ const ca: typeof es = {
     jo: "jo", tu: "tu", ell: "ell/ella", nosaltres: "nosaltres",
     vosaltres: "vosaltres", ells: "ells/elles",
   },
+  // TODO(ca-Durchgang): nur damit der Typ passt — im eigenen llengua-Durchgang gegenlesen.
+  inicioHablar: "El teu feedback de Parlar",
+  inicioHablarEmpty: "Contesta les preguntes del bot de Telegram i veuràs el teu feedback aquí.",
+  cameraFallbackHint: "No s'ha obert la càmera? Toca 📷 Càmera.",
+  importUnreadable: "No s'ha pogut llegir el fitxer — segur que és CSV/TSV?",
+  importNoRows: "No s'ha reconegut cap fila — revisa el fitxer o el separador.",
+  retryBtn: "torna-ho a provar",
+  nivelFailed: "No s'ha pogut carregar el test — el backend funciona?",
+  dictTopicCount: (a, t) => `${a}/${t} afegides`,
+  looseSearch: "cerca…",
+  looseShowAll: (n) => `mostra-les totes (${n})`,
 };
 
 export const S = LANG === "ca" ? ca : es;

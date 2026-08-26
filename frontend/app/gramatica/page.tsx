@@ -52,14 +52,29 @@ function Row({ c }: { c: ConceptRow }) {
 
 export default function Gramatica() {
   const [rows, setRows] = useState<ConceptRow[] | null>(null);
+  const [failed, setFailed] = useState(false);
 
-  useEffect(() => {
+  function load() {
+    setFailed(false);
+    setRows(null);
     apiFetch(`/concepts`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then(setRows)
-      .catch(() => setRows([]));
-  }, []);
+      .catch(() => setFailed(true));   // Fehler sichtbar machen, nie als leere Liste tarnen
+  }
 
+  useEffect(load, []);
+
+  if (failed)
+    return (
+      <>
+        <h1 className="mb-4 text-2xl font-bold">{S.gramaticaTitle}</h1>
+        <p className="text-sm text-stone-500">{S.loadFailed}</p>
+        <button onClick={load} className="mt-3 text-sm text-stone-500 underline-offset-2 hover:underline">
+          {S.retryBtn}
+        </button>
+      </>
+    );
   if (rows === null) return <p className="text-sm text-stone-400">{S.loading}</p>;
 
   const hot = rows.filter((r) => r.priority > 0 || r.state === "aprendiendo");

@@ -26,8 +26,13 @@ export default function Vocabulario() {
   const [newName, setNewName] = useState("");
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState(false);
+  const [loadFailed, setLoadFailed] = useState(false);
+  const [query, setQuery] = useState("");
+  const [showAllLoose, setShowAllLoose] = useState(false);
 
-  useEffect(() => {
+  function load() {
+    setLoadFailed(false);
+    setShelves(null);
     apiFetch(`/vocabulario`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((d) => {
@@ -36,8 +41,10 @@ export default function Vocabulario() {
         setDue(d.due ?? 0);
         setDict(d.diccionari ?? []);
       })
-      .catch(() => setShelves([]));
-  }, []);
+      .catch(() => setLoadFailed(true));   // Fehler sichtbar machen, nie als leer tarnen
+  }
+
+  useEffect(load, []);
 
   async function createShelf() {
     if (!newName.trim()) return;
@@ -92,7 +99,14 @@ export default function Vocabulario() {
 
       <SubirMaterial />
 
-      {shelves === null ? (
+      {loadFailed ? (
+        <>
+          <p className="text-sm text-stone-500">{S.loadFailed}</p>
+          <button onClick={load} className="mt-3 text-sm text-stone-500 underline-offset-2 hover:underline">
+            {S.retryBtn}
+          </button>
+        </>
+      ) : shelves === null ? (
         <p className="text-sm text-stone-400">{S.loading}</p>
       ) : (
         <>
@@ -137,8 +151,9 @@ export default function Vocabulario() {
                   >
                     <div>
                       <p className="font-medium capitalize">{t.topic}</p>
+                      {/* kein Haken hier — "0/55 ✓" las sich wie erledigt */}
                       <p className="mt-0.5 text-xs text-stone-400">
-                        {t.added}/{t.count} {S.dictAdded}
+                        {S.dictTopicCount(t.added, t.count)}
                       </p>
                     </div>
                     <span className="text-stone-300">→</span>
@@ -148,24 +163,49 @@ export default function Vocabulario() {
             </section>
           )}
 
-          {loose.length > 0 && (
-            <section>
-              <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
-                {S.looseTitle}
-              </h2>
-              <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
-                {loose.map((v) => (
-                  <li key={v.id} className="flex items-baseline justify-between gap-3 p-3">
-                    <span className="font-medium">{v.term}</span>
-                    <span className="min-w-0 truncate text-right text-sm text-stone-500">
-                      {v.translation}
-                      {v.region ? ` · ${v.region}` : ""}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+          {loose.length > 0 && (() => {
+            // Suche + Kappung: die Liste wächst unbegrenzt und wird sonst wertlos
+            const q = query.trim().toLowerCase();
+            const filtered = q
+              ? loose.filter((v) =>
+                  v.term.toLowerCase().includes(q) || v.translation.toLowerCase().includes(q))
+              : loose;
+            const shown = q || showAllLoose ? filtered : filtered.slice(0, 10);
+            return (
+              <section>
+                <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
+                  {S.looseTitle}
+                </h2>
+                {loose.length > 15 && (
+                  <input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder={S.looseSearch}
+                    className="mb-2 w-full rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm outline-none focus:border-accent-500"
+                  />
+                )}
+                <ul className="divide-y divide-stone-100 rounded-xl border border-stone-200 bg-white">
+                  {shown.map((v) => (
+                    <li key={v.id} className="flex items-baseline justify-between gap-3 p-3">
+                      <span className="font-medium">{v.term}</span>
+                      <span className="min-w-0 truncate text-right text-sm text-stone-500">
+                        {v.translation}
+                        {v.region ? ` · ${v.region}` : ""}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                {!q && !showAllLoose && filtered.length > shown.length && (
+                  <button
+                    onClick={() => setShowAllLoose(true)}
+                    className="mt-2 text-sm text-stone-500 underline-offset-2 hover:underline"
+                  >
+                    {S.looseShowAll(filtered.length)}
+                  </button>
+                )}
+              </section>
+            );
+          })()}
 
           {shelves.length === 0 && loose.length === 0 && dict.length === 0 && (
             <p className="text-sm text-stone-500">{S.vocabEmpty}</p>

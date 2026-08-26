@@ -68,7 +68,17 @@ export default function HablarDetail() {
       .catch(() => setFailed(true));
   }, [id]);
 
-  if (failed) return <p className="text-sm text-stone-400">{S.loadFailed}</p>;
+  if (failed)
+    return (
+      <>
+        <p className="text-sm text-stone-400">{S.loadFailed}</p>
+        <p className="mt-4">
+          <Link href="/hablar" className="text-sm text-accent-700">
+            ← {S.hablarTitle}
+          </Link>
+        </p>
+      </>
+    );
   if (d === null) return <p className="text-sm text-stone-400">{S.loading}</p>;
 
   const { session } = d;

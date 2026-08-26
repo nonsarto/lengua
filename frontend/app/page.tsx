@@ -10,10 +10,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { apiFetch, getUser, STATE_LABEL, STATE_STYLE } from "@/lib/api";
-import { S } from "@/lib/strings";
+import { LANG, S } from "@/lib/strings";
 
 type Grammar = { slug: string; label: string; cefr: string | null; state: string; need_count: number };
 type Inicio = { top_grammar: Grammar[]; vocab: { due: number; preview: string[] } };
+type HablarOverview = {
+  top_errors: { error_type: string; count: number }[];
+  sessions: { id: string; created_at: string; snippet: string; error_count: number }[];
+};
 type SessionToday = {
   id: string;
   status: "active" | "completed";
@@ -94,6 +98,53 @@ function SessionCard() {
         )}
       </div>
       <span className="shrink-0 pt-0.5 text-xl text-accent-700">▶</span>
+    </Link>
+  );
+}
+
+/** Hablar-Feedback (ES-only): letzte Bot-Session + Fehler-Top-3. Lädt getrennt,
+ *  blockiert nie den Rest — gleiche Philosophie wie die SessionCard. */
+function HablarCard() {
+  const [data, setData] = useState<HablarOverview | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    apiFetch(`/hablar`)
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then(setData)
+      .catch(() => setFailed(true));
+  }, []);
+
+  if (failed) return null;                    // Inicio bleibt ruhig, Hablar hat die Details
+  const last = data?.sessions?.[0];
+  if (data && !last) {
+    return (
+      <div className="rounded-xl border border-dashed border-stone-300 p-4 text-sm text-stone-400">
+        {S.inicioHablarEmpty}
+      </div>
+    );
+  }
+  if (!last) return null;                     // lädt noch
+
+  const date = new Date(last.created_at).toLocaleDateString("es-ES", {
+    weekday: "short", day: "numeric", month: "short",
+  });
+  const top = (data!.top_errors ?? []).slice(0, 3)
+    .map((t) => S.errorTypeLabels[t.error_type] ?? t.error_type);
+  return (
+    <Link
+      href={`/hablar/${last.id}`}
+      className="flex items-center justify-between rounded-xl border border-stone-200 bg-white p-4 active:scale-[0.99]"
+    >
+      <div className="min-w-0">
+        <p className="font-medium">
+          {date} · {S.hablarSessionErrors(last.error_count)}
+        </p>
+        <p className="mt-0.5 truncate text-xs text-stone-500">
+          {top.length > 0 ? top.join(" · ") : last.snippet}
+        </p>
+      </div>
+      <span className="shrink-0 text-stone-400">→</span>
     </Link>
   );
 }
@@ -190,19 +241,12 @@ export default function InicioPage() {
         </Link>
       </Section>
 
-      {/* 3. Comprensión oral */}
-      <Section title={S.inicioListen}>
-        <Link
-          href="/practicar/escucha"
-          className="flex items-center justify-between rounded-xl border border-stone-200 bg-white p-4 active:scale-[0.99]"
-        >
-          <div>
-            <p className="font-medium">{S.escuchaBtn}</p>
-            <p className="mt-0.5 text-xs text-stone-500">{S.escuchaDesc}</p>
-          </div>
-          <span className="shrink-0 text-stone-400">→</span>
-        </Link>
-      </Section>
+      {/* 3. Hablar-Feedback (Speaking Bot — ES-only; Escucha lebt jetzt in Practicar) */}
+      {LANG === "es" && (
+        <Section title={S.inicioHablar}>
+          <HablarCard />
+        </Section>
+      )}
 
       {failed && <p className="mt-2 text-center text-xs text-stone-400">{S.loadFailed}</p>}
 

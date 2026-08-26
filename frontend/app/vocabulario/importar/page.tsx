@@ -319,8 +319,20 @@ function CsvLane() {
     if (!file) return;
     const reader = new FileReader();
     reader.onload = () => {
+      const content = String(reader.result ?? "");
+      // Binärdateien landen sonst als Müll im Feld und die Dup-Meldung behauptet
+      // "alles schon vorhanden" -- hier ehrlich abfangen. Leere Datei ebenso.
+      if (!content.trim()) {
+        setError(S.importEmpty);
+        return;
+      }
+      if (/[\u0000-\u0008\u000E-\u001F\uFFFD]/.test(content)) {
+        setError(S.importUnreadable);
+        return;
+      }
+      setError(null);
       setHasHeader(null);
-      setText(String(reader.result ?? ""));
+      setText(content);
     };
     reader.readAsText(file);
   }
@@ -381,7 +393,12 @@ function CsvLane() {
       {done && <p className="mt-4 rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">{done}</p>}
       {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
 
-      {preview && (
+      {/* 0 erkannte Zeilen ≠ "alles schon vorhanden" — ehrlich unterscheiden */}
+      {preview && preview.total === 0 && (
+        <p className="mt-6 text-sm text-stone-500">{S.importNoRows}</p>
+      )}
+
+      {preview && preview.total > 0 && (
         <section className="mt-6">
           <div className="mb-3 flex flex-wrap items-end gap-3">
             <label className="text-xs text-stone-500">

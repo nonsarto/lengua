@@ -279,6 +279,10 @@ def inicio(user: dict = Depends(current_user)) -> dict:
     rows = db.list_concepts_with_state(user_id)
     for r in rows:
         r["priority"] = compute_priority(r)
+    # Nur Kapitel mit echtem persönlichem Signal (Bedarf oder berührt) — sonst zeigt
+    # Inicio vor der ersten Handlung schon "deine" Grammatik und der Leerzustand
+    # des Frontends ist unerreichbar.
+    rows = [r for r in rows if r["priority"] > 0 or r["state"] != "sin_ver"]
     active_rank = {"aprendiendo": 0, "flojo": 1, "visto": 2, "dominado": 3, "sin_ver": 4}
     rows.sort(key=lambda r: (-r["priority"], active_rank.get(r["state"], 9),
                              -r.get("need_count", 0)))
@@ -628,54 +632,11 @@ def concept_detail(slug: str, user: dict = Depends(current_user)) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Practicar — three drill types, ONE store. Selection is deterministic: it pulls
-# exactly the items where your scoring wobbles (due SRS, shaky concepts, shaky patterns).
+# Practicar — zwei Drills, EINE Quelle: 'vocabulario' (SRS-Recall, Wörter UND Frasen)
+# und 'gramatica' (eigene Fehlersätze + interaktive Übungen der wackligen Konzepte;
+# Bewertung über /exercises/{id}/answer bewegt den Lernstand). Der 20-Minuten-Mix
+# ist die Tages-Session (/session/today). Auswahl bleibt deterministisch.
 # ---------------------------------------------------------------------------
-
-PATTERN_TENSE = PACK.PATTERN_TENSE
-TENSE_LABEL = PACK.TENSE_LABEL
-PERSONS = PACK.PERSONS
-PERSON_LABEL = PACK.PERSON_LABEL
-
-
-def _conj_drills(db, shaky: list[dict], limit: int = 5,
-                 always: bool = False) -> list[dict]:
-    """Verb+tense+person cards from the shaky pattern families / tenses. With always=True
-    (dedicated conjugation session) falls back to frequent verbs in the present."""
-    slugs = [s["slug"] for s in shaky if s["slug"] in PATTERN_TENSE]
-    verbs = db.verbs_for_patterns(slugs) or (db.frequent_verbs() if (slugs or always) else [])
-    if not slugs and always:
-        slugs = [PACK.DEFAULT_DRILL_TENSE_SLUG]
-    drills: list[dict] = []
-    for verb in verbs:
-        if len(drills) >= limit:
-            break
-        matched = [s for s in slugs if s in (verb.get("pattern_tags") or [])] or slugs
-        tense = PATTERN_TENSE[matched[0]]
-        table = (verb.get("conjugations") or {}).get(tense)
-        if table is None:
-            continue
-        if isinstance(table, str):                      # gerundi/participi: single form
-            person, answer = None, table
-        else:
-            # Sprachneutral: Standard-Personen, die die Tabelle kennt (der Imperativ
-            # hat eigene Keys wie usted/voste — dann die Tabellen-Keys selbst).
-            pool = [p for p in PERSONS if p in table] or list(table)
-            # Stem changes only hit the stressed stem — nosotros/vosotros don't diphthongize,
-            # so drilling them there would miss the very thing the pattern is about.
-            if matched[0].startswith(PACK.STEM_CHANGE_PREFIX):
-                pool = [p for p in pool if p not in PACK.STEM_UNSTRESSED]
-            candidates = [p for p in pool if table.get(p) and table[p] != "—"]
-            if not candidates:
-                continue
-            person = random.choice(candidates)
-            answer = table[person]
-        drills.append({
-            "type": "conj", "verb": verb["infinitive"], "verb_de": verb["translation"],
-            "tense": TENSE_LABEL[tense], "person": PERSON_LABEL.get(person, person),
-            "answer": answer, "pattern": matched[0],
-        })
-    return drills
 
 
 def _vocab_cards(db, user_id: str, limit: int, phrases: bool | None) -> list[dict]:
@@ -698,30 +659,52 @@ def _fix_cards(db, user_id: str, shaky: list[dict], limit: int = 5) -> list[dict
     return items
 
 
+def _grammar_drill(db, user_id: str, limit: int = 10) -> list[dict]:
+    """Grammatik-Drill: EIGENE Fehlersätze zuerst, dann interaktive Übungen der wackligen
+    Konzepte (ungesehene zuerst, dann zuletzt-falsche). Rein deterministisch — im Drill
+    wird NIE generiert; Übungs-Nachschub entsteht in der Tages-Session."""
+    shaky = db.shaky_concepts(user_id)
+    items: list[dict] = _fix_cards(db, user_id, shaky, limit=4)
+    budget = limit - len(items)
+    for s in shaky:
+        if budget <= 0:
+            break
+        pool = db.exercises_for_concept(s["concept_id"])
+        if not pool:
+            continue
+        attempts = db.exercise_attempts(user_id, [e["id"] for e in pool])
+
+        def bucket(e: dict):
+            a = attempts.get(e["id"])
+            if a is None:
+                return (0, 0)
+            return (1, a["count"]) if a.get("last_correct") is False else (2, a["count"])
+        pool.sort(key=bucket)
+        for e in pool[:3]:
+            if budget <= 0:
+                break
+            items.append({"type": "exercise", "exercise_id": e["id"], "etype": e["etype"],
+                          "prompt": e["prompt"], "options": e["options"],
+                          "concept_slug": s["slug"], "concept_label": s["label"]})
+            budget -= 1
+    return items
+
+
 @app.get("/practicar/session")
-def practicar_session(tipo: str = "mix", user: dict = Depends(current_user)) -> dict:
-    """Four session flavors, one store. mix = a bit of everything where your scoring
-    wobbles; palabras/frases = pure SRS recall; conjugacion = verb forms only."""
+def practicar_session(tipo: str = "vocabulario", user: dict = Depends(current_user)) -> dict:
+    """'vocabulario' = SRS-Recall (Wörter und Frasen zusammen); 'gramatica' = Fehlersätze +
+    interaktive Übungen. Alte Client-Namen (mix/palabras/frases) fallen auf vocabulario."""
     db = get_db()
     user_id = user["user_id"]
 
-    # Grundwortschatz: bis zu 10 neue Wörter/Tag rücken automatisch nach (no-op ohne seed_vocab)
-    if tipo in ("mix", "palabras"):
+    if tipo in ("vocabulario", "palabras", "frases", "mix"):
+        # Grundwortschatz: bis zu 10 neue Wörter/Tag rücken nach (no-op ohne seed_vocab
+        # bzw. bevor der Nutzer selbst etwas captured hat)
         db.promote_daily_seed(user_id)
-
-    if tipo == "palabras":
-        items = _vocab_cards(db, user_id, 15, phrases=False)
-    elif tipo == "frases":
-        items = _vocab_cards(db, user_id, 15, phrases=True)
-    elif tipo == "conjugacion":
-        items = _conj_drills(db, db.shaky_concepts(user_id), limit=12, always=True)
-    else:  # mix — Vokabeln, deine echten Fehlersätze, Konjugation
-        shaky = db.shaky_concepts(user_id)
-        items = (_vocab_cards(db, user_id, 8, phrases=None)
-                 + _fix_cards(db, user_id, shaky)
-                 + _conj_drills(db, shaky))
-
-    return {"tipo": tipo, "items": items}
+        return {"tipo": "vocabulario", "items": _vocab_cards(db, user_id, 15, phrases=None)}
+    if tipo == "gramatica":
+        return {"tipo": "gramatica", "items": _grammar_drill(db, user_id)}
+    raise HTTPException(422, "Tipo de sesión desconocido.")
 
 
 class GradeIn(BaseModel):
@@ -1024,10 +1007,24 @@ def concept_exercises_generate(slug: str, user: dict = Depends(current_user)) ->
 
 @app.get("/escucha/session")
 def escucha_session(user: dict = Depends(current_user)) -> dict:
-    """Neuer Hörtext: Zielwörter aus dem eigenen Vokabular → Text + MC-Fragen (LLM) →
-    Audio (TTS). Antworten bleiben serverseitig; der Client bekommt nur Audio + Fragen."""
+    """Hörtext: Zielwörter aus dem eigenen Vokabular → Text + MC-Fragen (LLM) → Audio (TTS).
+    Ein unbeantworteter Hörtext mit gespeichertem Audio wird WIEDERVERWENDET (Reload,
+    Vertippen, Zurück kosten sonst je einen Text- und einen TTS-Call); erst nach dem
+    Korrigieren wird neu generiert. Antworten bleiben serverseitig."""
     db = get_db()
     user_id = user["user_id"]
+
+    reuse = db.get_reusable_listening_item(user_id)
+    if reuse:
+        return {
+            "item_id": reuse["id"],
+            "audio_b64": reuse["audio_b64"],
+            "audio_media_type": reuse.get("audio_media_type") or "audio/mpeg",
+            "targets": [],
+            "questions": [{"index": i, "q": q["q"], "options": q["options"]}
+                          for i, q in enumerate(reuse["questions"])],
+        }
+
     terms = db.listening_target_terms(user_id, 6)
     if not terms:
         raise HTTPException(404, "Aún no tienes vocabulario para generar un audio.")
@@ -1041,12 +1038,14 @@ def escucha_session(user: dict = Depends(current_user)) -> dict:
     except Exception:
         logger.exception("TTS failed (user %s)", user_id)
         raise HTTPException(502, "No se pudo generar el audio — inténtalo otra vez.")
-    item_id = db.create_listening_item(user_id, item["passage"], item["gist_de"],
-                                       item["questions"])
     import base64
+    audio_b64 = base64.b64encode(audio).decode()
+    item_id = db.create_listening_item(user_id, item["passage"], item["gist_de"],
+                                       item["questions"], audio_b64=audio_b64,
+                                       audio_media_type="audio/mpeg")
     return {
         "item_id": item_id,
-        "audio_b64": base64.b64encode(audio).decode(),
+        "audio_b64": audio_b64,
         "audio_media_type": "audio/mpeg",
         "targets": terms,
         "questions": [{"index": i, "q": q["q"], "options": q["options"]}
@@ -1073,6 +1072,7 @@ def escucha_grade(item_id: str, body: EscuchaGradeIn,
         ok = given is not None and given.strip() == q["answer"].strip()
         score += ok
         results.append({"index": i, "correct": ok, "answer": q["answer"]})
+    db.mark_listening_answered(item_id)   # ab jetzt wird ein frischer Hörtext generiert
     return {"score": score, "total": len(qs), "results": results,
             "transcript": item["passage"], "gist": item["gist"]}
 

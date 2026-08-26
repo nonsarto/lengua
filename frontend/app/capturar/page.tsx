@@ -4,7 +4,7 @@
  * Capturar — la única puerta de entrada. UNA superficie, SIN menú de modo:
  * el usuario tira lo que sea (texto o foto) y analyze() infiere la intención.
  * Microdosis de vuelta + archivo silencioso. Textos de lib/strings (es/ca).
- * Deep-link: /capturar?mode=camera|voz|texto
+ * Deep-link: /capturar?mode=camera (Action Button) — sonst Fokus auf el texto.
  */
 
 import { Suspense, useEffect, useRef, useState } from "react";
@@ -19,7 +19,6 @@ type CaptureResult = {
   gist: string | null;
   correction: Correction | null;
   word: { term: string; translation: string; added: boolean } | null;
-  transcript: string | null;
   notes: string;
   concepts: { slug: string; label: string }[];
   written?: {
@@ -49,17 +48,6 @@ type CaptureDetail = {
   word: { term: string; translation: string } | null;
 };
 
-/** Blob → base64 (sin prefijo data:) — para el audio grabado. */
-async function blobToB64(blob: Blob): Promise<string> {
-  const buf = new Uint8Array(await blob.arrayBuffer());
-  let bin = "";
-  const chunk = 0x8000;
-  for (let i = 0; i < buf.length; i += chunk) {
-    bin += String.fromCharCode(...buf.subarray(i, i + chunk));
-  }
-  return btoa(bin);
-}
-
 /** Foto → JPEG base64, reducida (el iPhone manda HEIC de 12MP; el canvas lo normaliza). */
 async function fileToJpegB64(file: File, maxSide = 1568): Promise<string> {
   const bitmap = await createImageBitmap(file);
@@ -86,6 +74,7 @@ function CapturarInner() {
   const [text, setText] = useState("");
   const [photo, setPhoto] = useState<File | null>(null);
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
+  const [cameraHint, setCameraHint] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<CaptureResult | null>(null);
@@ -93,44 +82,8 @@ function CapturarInner() {
   const [detail, setDetail] = useState<CaptureDetail | null>(null);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailError, setDetailError] = useState(false);
-  const [audio, setAudio] = useState<Blob | null>(null);
-  const [recording, setRecording] = useState(false);
-  const recRef = useRef<MediaRecorder | null>(null);
-  const chunksRef = useRef<BlobPart[]>([]);
   const fileRef = useRef<HTMLInputElement>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
-
-  async function startRec() {
-    setError(null);
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mime = MediaRecorder.isTypeSupported("audio/webm")
-        ? "audio/webm"
-        : MediaRecorder.isTypeSupported("audio/mp4")
-          ? "audio/mp4"
-          : "";
-      const rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
-      chunksRef.current = [];
-      rec.ondataavailable = (e) => {
-        if (e.data.size > 0) chunksRef.current.push(e.data);
-      };
-      rec.onstop = () => {
-        setAudio(new Blob(chunksRef.current, { type: rec.mimeType || "audio/webm" }));
-        stream.getTracks().forEach((t) => t.stop());
-      };
-      rec.start();
-      recRef.current = rec;
-      setRecording(true);
-    } catch {
-      setError(S.micDenied);
-    }
-  }
-
-  function stopRec() {
-    recRef.current?.stop();
-    recRef.current = null;
-    setRecording(false);
-  }
 
   // Historial clicable: abre el detalle (análisis completo) de una captura.
   async function openDetail(id: string) {
@@ -154,12 +107,27 @@ function CapturarInner() {
     setDetailError(false);
   }
 
+  function removePhoto() {
+    setPhoto(null);
+    // Sin esto, elegir LA MISMA foto otra vez no dispara onChange (value idéntico)
+    if (fileRef.current) fileRef.current.value = "";
+  }
+
   useEffect(() => {
-    if (mode === "camera") fileRef.current?.click();
-    else if (mode === "voz") startRec();  // Deep-link: directo a grabar (permiso mediante)
-    else textRef.current?.focus();
+    if (mode === "camera") {
+      fileRef.current?.click();
+      // Browser blockt den programmatischen Dialog ohne User-Geste (iOS!) —
+      // dann zeigt der Hinweis den Weg über den Kamera-Button.
+      const t = setTimeout(() => setCameraHint(true), 800);
+      return () => clearTimeout(t);
+    }
+    textRef.current?.focus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode]);
+
+  useEffect(() => {
+    if (photo) setCameraHint(false);
+  }, [photo]);
 
   useEffect(() => {
     apiFetch(`/captures?limit=15`)
@@ -179,7 +147,7 @@ function CapturarInner() {
   }, [photo]);
 
   async function submit() {
-    if (!text.trim() && !photo && !audio) return;
+    if (!text.trim() && !photo) return;
     setBusy(true);
     setError(null);
     setResult(null);
@@ -189,10 +157,6 @@ function CapturarInner() {
       if (photo) {
         body.image_b64 = await fileToJpegB64(photo);
         body.image_media_type = "image/jpeg";
-      }
-      if (audio) {
-        body.audio_b64 = await blobToB64(audio);
-        body.audio_media_type = audio.type || "audio/webm";
       }
       const res = await apiFetch(`/capture`, {
         method: "POST",
@@ -205,7 +169,7 @@ function CapturarInner() {
       setHistory((h) => [
         {
           id: data.capture_id,
-          text: data.transcript || sentText || S.photoFallback,
+          text: sentText || S.photoFallback,
           mode: data.mode,
           created_at: new Date().toISOString(),
           correction: data.correction,
@@ -213,9 +177,7 @@ function CapturarInner() {
         ...h,
       ]);
       setText("");
-      setPhoto(null);
-      setAudio(null);
-      if (fileRef.current) fileRef.current.value = "";
+      removePhoto();
     } catch (e) {
       setError(e instanceof Error ? e.message : "?");
     } finally {
@@ -235,21 +197,8 @@ function CapturarInner() {
             <img src={photoUrl} alt="Foto" className="h-16 w-16 rounded-lg object-cover" />
             <span className="text-sm text-stone-500">{S.photoReady}</span>
             <button
-              onClick={() => setPhoto(null)}
+              onClick={removePhoto}
               aria-label={S.photoRemove}
-              className="ml-auto flex h-8 w-8 items-center justify-center rounded-full text-stone-400 hover:bg-stone-100"
-            >
-              ✕
-            </button>
-          </div>
-        )}
-        {audio && !recording && (
-          <div className="flex items-center gap-3 border-b border-stone-100 p-3">
-            <span className="text-xl">🎙</span>
-            <span className="text-sm text-stone-500">{S.audioReady}</span>
-            <button
-              onClick={() => setAudio(null)}
-              aria-label={S.audioRemove}
               className="ml-auto flex h-8 w-8 items-center justify-center rounded-full text-stone-400 hover:bg-stone-100"
             >
               ✕
@@ -260,13 +209,7 @@ function CapturarInner() {
           ref={textRef}
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder={
-            mode === "voz"
-              ? S.placeholderVoice
-              : photoUrl
-                ? S.placeholderPhotoContext
-                : S.placeholderDefault
-          }
+          placeholder={photoUrl ? S.placeholderPhotoContext : S.placeholderDefault}
           rows={4}
           className="w-full resize-none rounded-xl bg-transparent p-4 text-base outline-none"
         />
@@ -279,16 +222,6 @@ function CapturarInner() {
         >
           📷 {S.cameraBtn}
         </button>
-        <button
-          onClick={recording ? stopRec : startRec}
-          className={`rounded-lg border px-4 py-2 text-sm active:scale-95 ${
-            recording
-              ? "animate-pulse border-red-300 bg-red-50 text-red-700"
-              : "border-stone-300 bg-white"
-          }`}
-        >
-          {recording ? `⏹ ${S.voiceStop}` : `🎤 ${S.voiceBtn}`}
-        </button>
         <input
           ref={fileRef}
           type="file"
@@ -299,12 +232,16 @@ function CapturarInner() {
         />
         <button
           onClick={submit}
-          disabled={busy || recording || (!text.trim() && !photo && !audio)}
+          disabled={busy || (!text.trim() && !photo)}
           className="ml-auto rounded-lg bg-accent-600 px-6 py-2 text-sm font-semibold text-white disabled:opacity-40 active:scale-95"
         >
           {busy ? S.analyzing : S.captureBtn}
         </button>
       </div>
+
+      {cameraHint && !photoUrl && (
+        <p className="mt-2 text-xs text-stone-500">{S.cameraFallbackHint}</p>
+      )}
 
       {error && (
         <p className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">
@@ -359,13 +296,6 @@ function CapturarInner() {
                 )}
               </p>
             </a>
-          )}
-
-          {/* Lo que Whisper oyó — para poder juzgar la traducción */}
-          {result.transcript && (
-            <p className="mb-1 text-sm italic text-stone-500">
-              🎙 {S.heard} “{result.transcript}”
-            </p>
           )}
 
           {/* La traducción alemana — del texto descifrado o de la frase corregida */}

@@ -22,16 +22,19 @@ export default function Nivel() {
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [result, setResult] = useState<Result | null>(null);
   const [busy, setBusy] = useState(false);
+  const [loadFailed, setLoadFailed] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
+    setLoadFailed(false);
     apiFetch("/onboarding")
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((d) => {
         if (d.done) router.replace("/");
         else setQuestions(d.questions);
       })
-      .catch(() => {});
-  }, [router]);
+      .catch(() => setLoadFailed(true));   // nicht stumm auf "cargando…" hängen bleiben
+  }, [router, reloadKey]);
 
   async function submit(all: Record<string, number>) {
     setBusy(true);
@@ -86,6 +89,18 @@ export default function Nivel() {
     );
   }
 
+  if (loadFailed)
+    return (
+      <>
+        <p className="text-sm text-stone-500">{S.nivelFailed}</p>
+        <button
+          onClick={() => setReloadKey((k) => k + 1)}
+          className="mt-3 text-sm text-stone-500 underline-offset-2 hover:underline"
+        >
+          {S.retryBtn}
+        </button>
+      </>
+    );
   if (!questions) return <p className="text-sm text-stone-400">{S.loading}</p>;
 
   const q = questions[idx];

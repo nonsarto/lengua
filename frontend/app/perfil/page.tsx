@@ -4,7 +4,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { apiFetch, clearAuth, getUser } from "@/lib/api";
+import { apiFetch, clearAuth, getUser, type User } from "@/lib/api";
 import { S } from "@/lib/strings";
 
 type Row = {
@@ -19,11 +19,17 @@ type Row = {
 
 export default function Perfil() {
   const router = useRouter();
-  const me = getUser();
+  // localStorage erst nach dem Mount lesen — direkt im Render bricht die Hydration
+  // (SSR-HTML ≠ Client; gleiches Muster wie HeaderUser)
+  const [me, setMe] = useState<User | null>(null);
   const [users, setUsers] = useState<Row[]>([]);
   const [newUser, setNewUser] = useState({ username: "", display_name: "", password: "" });
   const [msg, setMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    setMe(getUser());
+  }, []);
 
   useEffect(() => {
     if (me?.is_admin) {

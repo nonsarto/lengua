@@ -2,3 +2,6 @@
 venv/
 __pycache__/
 .DS_Store
+
+# UX-Audit-Artefakte: DB-Dumps (echte Daten), Screenshots, Test-Harness
+ux-audit/

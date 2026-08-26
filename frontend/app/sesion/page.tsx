@@ -248,9 +248,10 @@ export default function Sesion() {
 
   return (
     <>
-      <div className="mb-4 flex items-baseline justify-between">
-        <h1 className="text-xl font-bold">{session.headline || S.sessionVocabLabel}</h1>
-        <span className="text-sm text-stone-400">{idx + 1} / {total}</span>
+      <div className="mb-4 flex items-baseline justify-between gap-3">
+        {/* truncate + nowrap: bei langen Kapitel-Headlines brach der Zähler sonst um */}
+        <h1 className="min-w-0 truncate text-xl font-bold">{session.headline || S.sessionVocabLabel}</h1>
+        <span className="shrink-0 whitespace-nowrap text-sm text-stone-400">{idx + 1} / {total}</span>
       </div>
 
       {/* progreso */}
