@@ -812,3 +812,58 @@ class Database:
         rows = (self.c.table("listening_items").select("*")
                 .eq("id", item_id).eq("user_id", user_id).execute().data)
         return rows[0] if rows else None
+
+    # ---------- hablar (Speaking Bot; Tabellen aus Migration 012) ----------
+    # Der Bot (lengua-bot, Railway) schreibt diese Tabellen per Service-Key;
+    # hier wird nur gelesen. Audio liegt als bucket-relativer Pfad im privaten
+    # Bucket speaking-audio — Auslieferung über signierte URLs.
+
+    def list_speaking_sessions(self, user_id: str, limit: int = 50) -> list[dict]:
+        return (self.c.table("speaking_sessions")
+                .select("id, created_at, duration_sec, transcript")
+                .eq("user_id", user_id)
+                .order("created_at", desc=True).limit(limit).execute().data)
+
+    def get_speaking_session(self, user_id: str, session_id: str) -> dict | None:
+        rows = (self.c.table("speaking_sessions").select("*")
+                .eq("id", session_id).eq("user_id", user_id).execute().data)
+        return rows[0] if rows else None
+
+    def list_speaking_errors(self, user_id: str, session_ids: list[str]) -> list[dict]:
+        if not session_ids:
+            return []
+        return (self.c.table("error_log")
+                .select("session_id, error_type, original, corrected, explanation,"
+                        " char_start, char_end")
+                .eq("user_id", user_id).in_("session_id", session_ids)
+                .execute().data)
+
+    def list_speaking_chunks(self, user_id: str, session_id: str | None = None) -> list[dict]:
+        q = (self.c.table("speaking_chunks")
+             .select("id, session_id, chunk_es, example_es, trigger_de, status, activated_at")
+             .eq("user_id", user_id))
+        if session_id is not None:
+            q = q.eq("session_id", session_id)
+        return q.execute().data
+
+    def speaking_error_counts(self, user_id: str, days: int = 14) -> dict[str, int]:
+        from datetime import datetime, timedelta, timezone
+        cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+        rows = (self.c.table("error_log").select("error_type")
+                .eq("user_id", user_id).gte("created_at", cutoff).execute().data)
+        counts: dict[str, int] = {}
+        for r in rows:
+            counts[r["error_type"]] = counts.get(r["error_type"], 0) + 1
+        return counts
+
+    def count_open_speaking_chunks(self, user_id: str) -> int:
+        res = (self.c.table("speaking_chunks").select("id", count="exact")
+               .eq("user_id", user_id).eq("status", "open").execute())
+        return res.count or 0
+
+    def speaking_audio_url(self, path: str, expires_sec: int = 3600) -> str | None:
+        try:
+            res = self.c.storage.from_("speaking-audio").create_signed_url(path, expires_sec)
+            return res.get("signedURL") or res.get("signedUrl")
+        except Exception:
+            return None

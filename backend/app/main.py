@@ -1145,3 +1145,75 @@ def capture_detail(capture_id: str, user: dict = Depends(current_user)) -> dict:
     if detail is None:
         raise HTTPException(404, "Captura no encontrada.")
     return detail
+
+
+# ---------------------------------------------------------------------------
+# Hablar — Speaking-Bot-Sessions (Produktion). Der Telegram-Bot schreibt die
+# Daten; hier nur Lesen fürs Frontend. ES-only-Feature (Tab ist im Frontend
+# per LANG gegated; auf der ca-Instanz existieren die Tabellen nicht).
+# ---------------------------------------------------------------------------
+
+@app.get("/hablar")
+def hablar_overview(user: dict = Depends(current_user)) -> dict:
+    """Fehler-Top-3 (14 Tage), offene Chunks, Sessions-Liste (neueste zuerst)."""
+    db = get_db()
+    user_id = user["user_id"]
+    sessions = db.list_speaking_sessions(user_id)
+    session_ids = [s["id"] for s in sessions]
+    errors = db.list_speaking_errors(user_id, session_ids)
+    chunks = db.list_speaking_chunks(user_id)
+    error_by_session: dict[str, int] = {}
+    for e in errors:
+        error_by_session[e["session_id"]] = error_by_session.get(e["session_id"], 0) + 1
+    chunk_by_session: dict[str, int] = {}
+    for c in chunks:
+        if c["session_id"]:
+            chunk_by_session[c["session_id"]] = chunk_by_session.get(c["session_id"], 0) + 1
+    counts = db.speaking_error_counts(user_id)
+    top = sorted(counts.items(), key=lambda kv: -kv[1])[:3]
+    return {
+        "top_errors": [{"error_type": t, "count": n} for t, n in top],
+        "open_chunks": db.count_open_speaking_chunks(user_id),
+        "sessions": [{
+            "id": s["id"],
+            "created_at": s["created_at"],
+            "duration_sec": s["duration_sec"],
+            "snippet": (s["transcript"] or "")[:90],
+            "error_count": error_by_session.get(s["id"], 0),
+            "chunk_count": chunk_by_session.get(s["id"], 0),
+        } for s in sessions],
+    }
+
+
+@app.get("/hablar/{session_id}")
+def hablar_detail(session_id: str, user: dict = Depends(current_user)) -> dict:
+    """Detailansicht: Audio (signierte URL), Transkript + Korrektur, Fehler mit
+    Wiederkehr-Zähler (14 Tage), Chunks der Session."""
+    db = get_db()
+    user_id = user["user_id"]
+    session = db.get_speaking_session(user_id, session_id)
+    if session is None:
+        raise HTTPException(404, "Sesión no encontrada.")
+    errors = db.list_speaking_errors(user_id, [session_id])
+    counts = db.speaking_error_counts(user_id)
+    for e in errors:
+        e["recurrence"] = counts.get(e["error_type"], 0)
+        e.pop("session_id", None)
+    audio_url = (db.speaking_audio_url(session["audio_url"])
+                 if session.get("audio_url") else None)
+    return {
+        "session": {
+            "id": session["id"],
+            "created_at": session["created_at"],
+            "duration_sec": session["duration_sec"],
+            "transcript": session["transcript"],
+            "transcript_corrected": session["transcript_corrected"],
+            "low_conf_spans": session["low_conf_spans"],
+        },
+        "audio_url": audio_url,
+        "errors": errors,
+        "chunks": [
+            {k: c[k] for k in ("chunk_es", "example_es", "trigger_de", "status", "activated_at")}
+            for c in db.list_speaking_chunks(user_id, session_id)
+        ],
+    }

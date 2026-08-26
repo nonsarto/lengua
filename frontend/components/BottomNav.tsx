@@ -7,7 +7,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { S } from "@/lib/strings";
+import { LANG, S } from "@/lib/strings";
 
 const stroke = {
   fill: "none",
@@ -44,15 +44,22 @@ const ICONS: Record<string, React.ReactNode> = {
       <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
     </svg>
   ),
+  hablar: (
+    <svg viewBox="0 0 24 24" className="h-7 w-7" {...stroke}>
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5.5 11a6.5 6.5 0 0 0 13 0" />
+      <path d="M12 17.5V21" />
+    </svg>
+  ),
 };
 
 function PlaceLink({ href, label, icon }: { href: string; label: string; icon: string }) {
   const pathname = usePathname();
-  const active = pathname === href;
+  const active = pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
   return (
     <Link
       href={href}
-      className={`flex min-w-14 flex-col items-center gap-1 rounded-lg px-2 py-1.5 text-[11px] ${
+      className={`flex min-w-12 flex-col items-center gap-1 rounded-lg px-1.5 py-1.5 text-[11px] ${
         active ? "text-stone-900 font-semibold" : "text-stone-400"
       }`}
     >
@@ -80,6 +87,8 @@ export default function BottomNav() {
           +
         </Link>
         <PlaceLink href="/vocabulario" label={S.navVocabulario} icon="vocabulario" />
+        {/* Hablar ist ES-only (Speaking Bot) — auf llengua/ca existiert das Feature nicht */}
+        {LANG === "es" && <PlaceLink href="/hablar" label={S.navHablar} icon="hablar" />}
         <PlaceLink href="/practicar" label={S.navPracticar} icon="practicar" />
       </div>
     </nav>
