@@ -100,6 +100,85 @@ class Database:
                         " onboarded_at, created_at")
                 .order("created_at").execute().data)
 
+    # ---------- llm usage / admin stats ----------
+    def insert_llm_usage(self, row: dict) -> None:
+        self.c.table("llm_usage").insert(row).execute()
+
+    def admin_stats(self) -> list[dict]:
+        """Pro Nutzer: letzte Aktivität + Aktivitäts- und Verbrauchszähler (7/30 Tage).
+        Familien-Skala: 30-Tage-Rohzeilen holen und in Python aggregieren ist billiger
+        und klarer als ein RPC. llm_usage darf fehlen (Migration 016 noch nicht gelaufen,
+        ca-Instanz) — dann bleiben die Token-Felder einfach 0."""
+        from datetime import datetime, timedelta, timezone
+
+        now = datetime.now(timezone.utc)
+        cutoff30 = (now - timedelta(days=30)).isoformat()
+        cutoff7 = now - timedelta(days=7)
+
+        def _ts(value: str) -> datetime:
+            return datetime.fromisoformat(value)
+
+        # (interner Key, Tabelle, Zeitspalte, Extra-Spalten)
+        sources = [
+            ("sessions", "daily_sessions", "created_at", ""),
+            ("exercises", "exercise_attempts", "answered_at", ""),
+            ("captures", "captures", "created_at", ""),
+            ("voices", "speaking_sessions", "created_at", ", duration_sec"),
+        ]
+        rows30: dict[str, list[dict]] = {}
+        for key, table, ts_col, extra in sources:
+            rows30[key] = (self.c.table(table).select(f"user_id, {ts_col}{extra}")
+                           .gte(ts_col, cutoff30).limit(10000).execute().data)
+
+        try:
+            usage_rows = (self.c.table("llm_usage")
+                          .select("user_id, model, input_tokens, output_tokens,"
+                                  " cache_read_tokens, cache_write_tokens, audio_seconds")
+                          .gte("created_at", cutoff30).limit(10000).execute().data)
+        except Exception:
+            usage_rows = []
+
+        stats = []
+        for u in self.list_users():
+            if (u.get("username") or "").startswith("__"):
+                continue  # Testnutzer
+            uid = u["user_id"]
+            s = {**u, "last_active": None, "voice_min_30d": 0,
+                 "tokens_in_30d": 0, "tokens_out_30d": 0, "tokens_cache_30d": 0,
+                 "audio_sec_30d": 0, "models_30d": {}}
+            for key, table, ts_col, _ in sources:
+                mine = [r for r in rows30[key] if r["user_id"] == uid]
+                s[f"{key}_30d"] = len(mine)
+                s[f"{key}_7d"] = sum(1 for r in mine if _ts(r[ts_col]) >= cutoff7)
+                if mine:
+                    latest = max(r[ts_col] for r in mine)
+                    if s["last_active"] is None or latest > s["last_active"]:
+                        s["last_active"] = latest
+                if key == "voices":
+                    s["voice_min_30d"] = sum(r.get("duration_sec") or 0 for r in mine) // 60
+            # Nichts in 30 Tagen: letzte Aktivität überhaupt nachschlagen
+            if s["last_active"] is None:
+                for _, table, ts_col, _extra in sources:
+                    r = (self.c.table(table).select(ts_col).eq("user_id", uid)
+                         .order(ts_col, desc=True).limit(1).execute().data)
+                    if r and (s["last_active"] is None or r[0][ts_col] > s["last_active"]):
+                        s["last_active"] = r[0][ts_col]
+            for r in usage_rows:
+                if r["user_id"] != uid:
+                    continue
+                s["tokens_in_30d"] += r["input_tokens"]
+                s["tokens_out_30d"] += r["output_tokens"]
+                s["tokens_cache_30d"] += r["cache_read_tokens"] + r["cache_write_tokens"]
+                s["audio_sec_30d"] += r["audio_seconds"]
+                m = s["models_30d"].setdefault(
+                    r["model"], {"in": 0, "out": 0, "cache_read": 0, "cache_write": 0})
+                m["in"] += r["input_tokens"]
+                m["out"] += r["output_tokens"]
+                m["cache_read"] += r["cache_read_tokens"]
+                m["cache_write"] += r["cache_write_tokens"]
+            stats.append(s)
+        return stats
+
     def claim_legacy_user(self, username: str, password_hash: str,
                           display_name: str) -> dict | None:
         """Turn the pre-auth single-user row (with all its learning data) into the admin.

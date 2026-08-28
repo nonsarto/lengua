@@ -39,6 +39,15 @@ def _get_client() -> Anthropic:
     return _client
 
 
+def _create(kind: str, **kwargs):
+    """Einziger Weg zu messages.create: loggt den Verbrauch nach llm_usage
+    (Nutzer kommt aus der Request-ContextVar in usage.py)."""
+    import usage as usage_mod
+    resp = _get_client().messages.create(**kwargs)
+    usage_mod.log_usage(kind, kwargs["model"], getattr(resp, "usage", None))
+    return resp
+
+
 # Sonnet is the right workhorse for this extraction task: fast, cheap, strong at tagging.
 MODEL = "claude-sonnet-5"
 
@@ -211,7 +220,8 @@ CHAPTER_SYSTEM = PACK.CHAPTER_SYSTEM
 
 def generate_chapter_body(slug: str, label: str, cefr: str | None) -> dict:
     """Fill a draft concept with reference content — returns the column dict to persist."""
-    resp = _get_client().messages.create(
+    resp = _create(
+        "chapter",
         model=CHAPTER_MODEL,
         max_tokens=2500,
         system=CHAPTER_SYSTEM,
@@ -272,7 +282,8 @@ def generate_exercises(slug: str, label: str, cefr: str | None, chapter: dict,
     if existing_prompts:
         ground += ("\n\nALREADY EXISTING exercises (do NOT repeat these sentences or "
                    "near-variants):\n- " + "\n- ".join(existing_prompts[-40:]))
-    resp = _get_client().messages.create(
+    resp = _create(
+        "exercises",
         model=CHAPTER_MODEL,   # Content-Arbeit pro Kapitel — Qualität vor Kosten, wie der Seed
         max_tokens=4000,
         system=EXERCISES_SYSTEM,
@@ -332,6 +343,8 @@ def transcribe(audio_b64: str, media_type: str = "audio/webm") -> str:
     f.name = f"captura.{ext}"   # die API braucht den Dateinamen als Format-Hinweis
     resp = _get_openai_client().audio.transcriptions.create(
         model=TRANSCRIBE_MODEL, file=f, language=PACK.LANG)
+    import usage as usage_mod
+    usage_mod.log_usage("transcribe", TRANSCRIBE_MODEL, getattr(resp, "usage", None))
     return resp.text.strip()
 
 
@@ -385,7 +398,8 @@ def generate_listening(target_terms: list[str], level: str = "A2-B1", n_q: int =
         "the listener UNDERSTOOD the passage (who/what/where/when/why) — never grammar. Distractors "
         "plausible and in the same register; questions simple and solvable from the passage alone."
     )
-    resp = _get_client().messages.create(
+    resp = _create(
+        "listening",
         model=MICRO_MODEL, max_tokens=1500,   # A2-Text + einfache MC-Fragen — Haiku reicht, ~halb so lang
         thinking={"type": "disabled"},
         system=system,
@@ -421,7 +435,8 @@ def answer_concept_question(concept: dict, question: str,
             for m in (history or [])[-CHAT_MAX_HISTORY:]
             if m.get("role") in ("user", "assistant") and m.get("content")]
     msgs.append({"role": "user", "content": question})
-    resp = _get_client().messages.create(
+    resp = _create(
+        "chat",
         model=CHAT_MODEL,
         max_tokens=800,
         system=f"{CHAT_SYSTEM}\n\n## Chapter content (your ground truth)\n{ground}",
@@ -487,7 +502,8 @@ def analyze(raw_text: str, variety: str | None = None,
             "uncovered:\n" + ", ".join(known_slugs)
         )
 
-    resp = _get_client().messages.create(
+    resp = _create(
+        "analyze",
         model=MODEL,
         max_tokens=3000,  # brief packages are the biggest legitimate output
         thinking={"type": "disabled"},  # pure extraction — no thinking tokens competing with output
@@ -584,7 +600,8 @@ def analyze_micro(raw_text: str, variety: str | None = None, image_b64: str | No
              "source": {"type": "base64", "media_type": image_media_type, "data": image_b64}},
             {"type": "text", "text": raw_text or "(foto capturada)"},
         ]
-    resp = _get_client().messages.create(
+    resp = _create(
+        "micro",
         model=MICRO_MODEL,
         max_tokens=600,
         thinking={"type": "disabled"},
@@ -697,7 +714,8 @@ def analyze_document(text: str = "", files: list[dict] | None = None,
                 "type": "base64", "media_type": "application/pdf", "data": f["data"]}})
     content.append({"type": "text", "text": text or "(material adjunto)"})
 
-    resp = _get_client().messages.create(
+    resp = _create(
+        "document",
         model=DOCUMENT_MODEL,
         max_tokens=4000,
         thinking={"type": "disabled"},

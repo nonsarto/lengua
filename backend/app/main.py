@@ -33,6 +33,7 @@ from analyze import (analyze, analyze_document, analyze_micro, answer_concept_qu
 from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
 import importer
+import usage
 
 logger = logging.getLogger("lengua")
 
@@ -60,6 +61,7 @@ def current_user(user_id: str = Depends(user_id_from_token)) -> dict:
     user = get_db().get_user_by_id(user_id)
     if user is None:
         raise HTTPException(401, "Usuario no existe.")
+    usage.set_user(user_id)  # LLM-Verbrauch dieses Requests dem Nutzer zuordnen
     return user
 
 
@@ -112,6 +114,43 @@ def me(user: dict = Depends(current_user)) -> dict:
 @app.get("/admin/users")
 def admin_list_users(user: dict = Depends(admin_user)) -> list[dict]:
     return [{k: v for k, v in u.items()} for u in get_db().list_users()]
+
+
+# USD pro 1M Tokens (input, output); Cache-Read 0.1×, Cache-Write 1.25× vom Input-Preis.
+# Nur Claude-Modelle — für unbekannte Modelle (z.B. gpt-4o-transcribe) zeigen wir Tokens
+# ohne Kosten und markieren die Schätzung als unvollständig.
+_PRICES_PER_MTOK = {
+    "claude-sonnet-5": (3.0, 15.0),
+    "claude-opus-4-8": (5.0, 25.0),
+    "claude-haiku-4-5": (1.0, 5.0),
+}
+
+
+def _cost_estimate(models: dict) -> tuple[float, bool]:
+    """-> (USD über bekannte Modelle, True wenn unbekannte Modelle dabei waren)."""
+    cost, partial = 0.0, False
+    for model, t in models.items():
+        price = next((p for prefix, p in _PRICES_PER_MTOK.items()
+                      if model.startswith(prefix)), None)
+        if price is None:
+            partial = True
+            continue
+        p_in, p_out = price
+        cost += (t["in"] * p_in + t["out"] * p_out
+                 + t["cache_read"] * p_in * 0.1 + t["cache_write"] * p_in * 1.25) / 1e6
+    return round(cost, 2), partial
+
+
+@app.get("/admin/stats")
+def admin_stats(user: dict = Depends(admin_user)) -> dict:
+    """Nutzungs-Dashboard: pro Nutzer letzte Aktivität, Aktivität 7/30 Tage und
+    LLM-Verbrauch 30 Tage (llm_usage, Migration 016)."""
+    users = []
+    for s in get_db().admin_stats():
+        cost, partial = _cost_estimate(s.pop("models_30d"))
+        s.pop("password_hash", None)
+        users.append({**s, "cost_usd_30d": cost, "cost_partial": partial})
+    return {"users": users}
 
 
 @app.post("/admin/users")

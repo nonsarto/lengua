@@ -4,6 +4,7 @@
  *  contraseña · Telegram-Pairing-Link (Speaking Bot) · eliminar. */
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { apiFetch, clearAuth, getUser, type User } from "@/lib/api";
 import { S } from "@/lib/strings";
@@ -138,9 +139,14 @@ export default function Perfil() {
 
       {me?.is_admin && (
         <section>
-          <h2 className="mb-2 text-xs font-semibold uppercase tracking-[.12em] text-stone-400">
-            {S.usersTitle}
-          </h2>
+          <div className="mb-2 flex items-baseline justify-between">
+            <h2 className="text-xs font-semibold uppercase tracking-[.12em] text-stone-400">
+              {S.usersTitle}
+            </h2>
+            <Link href="/admin" className="text-xs text-accent-700">
+              {S.usoBtn}
+            </Link>
+          </div>
 
           <div className={`${cardQuiet} mb-3 divide-y divide-stone-100`}>
             {users.map((u) => (
