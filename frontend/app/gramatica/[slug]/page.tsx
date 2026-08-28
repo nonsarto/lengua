@@ -1,9 +1,10 @@
 "use client";
 
 /**
- * Un capítulo = dos capas: MANTO personal (tus errores primero, si está caliente) +
- * CUERPO compartido (explicación, regla de oro, trampa alemana, paradigma, ejercicios).
- * Textos de lib/strings (es/ca); las personas del paradigma también.
+ * Una lección del Temario = dos capas: MANTO personal (deine Fehler zuerst, wenn das
+ * Thema heiß ist — Connect Layer) + CUERPO compartido (die eingefrorenen Lektions-Blöcke).
+ * Unten die Dudas-Box: Klärungsfragen, gegroundet in Lektion + eigenen Fehlern; bewegt
+ * NIE Lernstand. Die URL darf auch einen Konzept-Slug tragen — das Backend löst auf.
  */
 
 import { useEffect, useState } from "react";
@@ -12,46 +13,47 @@ import { useParams } from "next/navigation";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
 import { IconArrowLeft, IconSend } from "@/components/icons";
-import { DeChip, NeedLine, StateDots, btnPrimary, cardQuiet } from "@/components/ui";
+import LessonBlocks, { Block } from "@/components/LessonBlocks";
+import { NeedLine, StateDots } from "@/components/ui";
 
 type Detail = {
   slug: string;
-  label: string;
-  ctype: string;
-  cefr: string | null;
-  explanation: string | null;
-  rule_of_thumb: string | null;
-  german_pitfall: string | null;
-  paradigm: Record<string, Record<string, string>> | null;
-  member_verbs: string[] | null;
-  default_exercises: { q: string; a: string }[] | null;
-  reviewed: boolean;
+  level: string;
+  title_es: string;
+  subtitle_de: string | null;
+  lesson: { blocks: Block[]; version: number } | null;
   corrections: { wrong: string; correct: string; created_at: string }[];
-  state: { state: string; need_count: number; success_count: number; priority: number };
+  state: string;
+  need_count: number;
 };
 
 type ChatMsg = { role: "user" | "assistant"; content: string };
 
-export default function Capitulo() {
+export default function Tema() {
   const { slug } = useParams<{ slug: string }>();
   const [d, setD] = useState<Detail | null>(null);
   const [missing, setMissing] = useState(false);
-  const [generating, setGenerating] = useState(false);
-  const [genError, setGenError] = useState(false);
   const [chat, setChat] = useState<ChatMsg[]>([]);
   const [question, setQuestion] = useState("");
   const [chatBusy, setChatBusy] = useState(false);
   const [chatError, setChatError] = useState(false);
 
+  useEffect(() => {
+    apiFetch(`/grammar/topics/${slug}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then(setD)
+      .catch(() => setMissing(true));
+  }, [slug]);
+
   async function ask() {
     const q = question.trim();
-    if (!q || chatBusy) return;
+    if (!q || chatBusy || !d) return;
     setChatBusy(true);
     setChatError(false);
     setChat((c) => [...c, { role: "user", content: q }]);
     setQuestion("");
     try {
-      const res = await apiFetch(`/concepts/${slug}/chat`, {
+      const res = await apiFetch(`/grammar/topics/${d.slug}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: q, history: chat }),
@@ -61,38 +63,17 @@ export default function Capitulo() {
       setChat((c) => [...c, { role: "assistant", content: answer }]);
     } catch {
       setChatError(true);
-      setChat((c) => c.slice(0, -1));  // la pregunta vuelve al input
+      setChat((c) => c.slice(0, -1)); // la pregunta vuelve al input
       setQuestion(q);
     } finally {
       setChatBusy(false);
     }
   }
 
-  useEffect(() => {
-    apiFetch(`/concepts/${slug}`)
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then(setD)
-      .catch(() => setMissing(true));
-  }, [slug]);
-
-  async function generate() {
-    setGenerating(true);
-    setGenError(false);
-    try {
-      const res = await apiFetch(`/concepts/${slug}/generate`, { method: "POST" });
-      if (!res.ok) throw new Error();
-      setD(await res.json());
-    } catch {
-      setGenError(true);
-    } finally {
-      setGenerating(false);
-    }
-  }
-
   if (missing)
     return (
       <>
-        <p className="text-sm text-stone-400">{S.chapterMissing}</p>
+        <p className="text-sm text-stone-400">{S.temarioTopicMissing}</p>
         <p className="mt-4">
           <Link href="/gramatica" className="text-sm text-stone-500 underline-offset-2 hover:underline">
             ← {S.gramaticaTitle}
@@ -102,19 +83,19 @@ export default function Capitulo() {
     );
   if (!d) return <p className="text-sm text-stone-400">{S.loading}</p>;
 
-  const promoted = d.state.state === "aprendiendo" || d.state.state === "flojo";
+  const promoted = d.state === "aprendiendo" || d.state === "flojo";
 
   return (
     <>
       <p className="mb-1 flex items-center gap-2 text-xs text-stone-400">
-        {d.cefr && <span>{d.cefr}</span>}
-        <StateDots state={d.state.state} />
-        <NeedLine state={d.state.state} needCount={d.state.need_count} />
-        {!d.reviewed && <span className="text-stone-300">{S.draftLong}</span>}
+        <span>{d.level}</span>
+        <StateDots state={d.state} />
+        <NeedLine state={d.state} needCount={d.need_count} />
       </p>
-      <h1 className="mb-4 font-display text-2xl font-bold">{d.label}</h1>
+      <h1 className="font-display text-2xl font-bold">{d.title_es}</h1>
+      {d.subtitle_de && <p className="mb-4 mt-0.5 text-sm text-stone-400">{d.subtitle_de}</p>}
 
-      {/* EL MANTO — tus errores primero, si el capítulo está caliente */}
+      {/* EL MANTO — tus errores primero, si el tema está caliente (Connect Layer) */}
       {promoted && d.corrections.length > 0 && (
         <section className="mb-6 rounded-xl border border-accent-300 bg-accent-50/70 p-4">
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-accent-800">
@@ -128,109 +109,20 @@ export default function Capitulo() {
               </li>
             ))}
           </ul>
-          <p className="mt-2 text-xs text-accent-700">{S.timesCaptured(d.state.need_count)}</p>
+          <p className="mt-2 text-xs text-accent-700">{S.timesCaptured(d.need_count)}</p>
         </section>
       )}
 
-      {/* Capítulo borrador sin cuerpo: nació de una captura, el contenido llega a demanda */}
-      {!d.explanation && (
+      {/* EL CUERPO — die geteilte, eingefrorene Lektion */}
+      {d.lesson ? (
+        <LessonBlocks blocks={d.lesson.blocks} />
+      ) : (
         <div className="mb-4 rounded-xl border border-dashed border-stone-300 bg-white p-5 text-center">
-          <p className="text-sm text-stone-500">{S.draftEmpty}</p>
-          <button
-            onClick={generate}
-            disabled={generating}
-            className={`mt-3 ${btnPrimary}`}
-          >
-            {generating ? S.generating : S.generateBtn}
-          </button>
-          {genError && <p className="mt-2 text-xs text-red-600">{S.generateFailed}</p>}
+          <p className="text-sm text-stone-500">{S.temarioLessonPending}</p>
         </div>
       )}
 
-      {/* EL CUERPO — la referencia compartida */}
-      {d.explanation && <p className="mb-4 text-base leading-relaxed">{d.explanation}</p>}
-
-      {d.rule_of_thumb && (
-        <div className="mb-4 rounded-2xl border border-stone-200 bg-white p-4">
-          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
-            {S.ruleOfThumb}
-          </h3>
-          <p className="text-base">{d.rule_of_thumb}</p>
-        </div>
-      )}
-
-      {d.german_pitfall && (
-        <div className="mb-4 rounded-2xl border border-orange-200 bg-amber-50 p-4">
-          <h3 className="mb-1 text-xs font-semibold uppercase tracking-[.12em] text-amber-700">
-            <DeChip />{S.germanPitfall}
-          </h3>
-          <p className="text-base">{d.german_pitfall}</p>
-        </div>
-      )}
-
-      {d.paradigm && (
-        <div className="mb-4 overflow-x-auto rounded-2xl border border-stone-200 bg-white p-4">
-          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
-            {S.paradigm}
-          </h3>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-left text-xs text-stone-400">
-                <th className="py-1 pr-3 font-normal"></th>
-                {Object.keys(d.paradigm).map((g) => (
-                  <th key={g} className="py-1 pr-3 font-semibold">-{g}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {S.persons.map((p) => (
-                <tr key={p} className="border-t border-stone-100">
-                  <td className="py-1 pr-3 text-stone-400">{S.personLabels[p]}</td>
-                  {Object.keys(d.paradigm!).map((g) => (
-                    <td key={g} className="py-1 pr-3">{d.paradigm![g][p]}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {d.member_verbs && d.member_verbs.length > 0 && (
-        <div className="mb-4">
-          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
-            {S.patternVerbs}
-          </h3>
-          <div className="flex flex-wrap gap-1.5">
-            {d.member_verbs.map((v) => (
-              <span key={v} className="rounded-full border border-stone-200 bg-white px-2.5 py-0.5 text-sm">
-                {v}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Geübt wird in Practicar (Gramática-Drill) — das Kapitel ist Referenz + Chat. */}
-      {d.default_exercises && d.default_exercises.length > 0 && (
-        <div className="mb-4 rounded-2xl border border-stone-200 bg-white p-4">
-          <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
-            {S.tryIt}
-          </h3>
-          <ul className="space-y-2">
-            {d.default_exercises.map((ex, i) => (
-              <li key={i}>
-                <details>
-                  <summary className="cursor-pointer text-base">{ex.q}</summary>
-                  <p className="mt-1 pl-4 font-medium text-green-700">{ex.a}</p>
-                </details>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Dudas — preguntas de aclaración, ancladas al capítulo. Efímero: vive en el cliente. */}
+      {/* Dudas — preguntas de aclaración, ancladas a la lección. Efímero: vive en el cliente. */}
       <div className="mb-4 rounded-2xl border border-stone-200 bg-white p-4">
         <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
           {S.chatTitle}

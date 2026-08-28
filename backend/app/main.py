@@ -28,7 +28,7 @@ from lang import get_lang
 PACK = get_lang()
 from analyze import (analyze, analyze_document, analyze_micro, answer_concept_question,
                      apply_analysis, apply_document, apply_exercise_result, compute_priority,
-                     generate_chapter_body, generate_exercises, generate_listening,
+                     generate_exercises, generate_listening,
                      grade_exercise, srs_update, synthesize, transcribe)
 from auth import hash_password, make_token, user_id_from_token, verify_password
 from db import get_db
@@ -649,62 +649,11 @@ def session_more_exercises(session_id: str, body: MoreExercisesIn,
     return {"items": added, "replaced": replaced}
 
 
-GRAMMAR_CLUSTER = PACK.GRAMMAR_CLUSTER
-
-
-def _concept_category(row: dict) -> str:
-    if row["ctype"] == "tense":
-        return PACK.CLUSTER_TENSE_LABEL
-    if row["ctype"] == "pattern_family":
-        return PACK.CLUSTER_PATTERN_LABEL
-    return GRAMMAR_CLUSTER.get(row["slug"], PACK.CLUSTER_OTHER_LABEL)
-
-
-@app.get("/concepts")
-def concepts_list(user: dict = Depends(current_user)) -> list[dict]:
-    """Chapter list, priority-sorted: hot ones on top, mastered ones sink into quiet
-    reference. Priority is deterministic (need + unexpired boost) — computed here, never LLM."""
-    db = get_db()
-    user_id = user["user_id"]
-    rows = db.list_concepts_with_state(user_id)
-    for r in rows:
-        r["priority"] = compute_priority(r)
-        r["category"] = _concept_category(r)
-        r.pop("relevance_boost", None)
-        r.pop("boost_expires_at", None)
-        r.pop("id", None)
-    active_rank = {"aprendiendo": 0, "flojo": 1, "visto": 2, "dominado": 3, "sin_ver": 4}
-    rows.sort(key=lambda r: (-r["priority"], active_rank.get(r["state"], 9),
-                             r["cefr"] or "Z", r["label"]))
-    return rows
-
-
-def _concept_detail_payload(db, user_id: str, slug: str) -> dict:
-    detail = db.get_concept_detail(user_id, slug)
-    if detail is None:
-        raise HTTPException(404, f"Concepto '{slug}' no existe.")
-    state = detail.pop("user_state", None)
-    detail.pop("id", None)
-    detail["state"] = {
-        "state": state["state"] if state else "sin_ver",
-        "need_count": state["need_count"] if state else 0,
-        "success_count": state["success_count"] if state else 0,
-        "priority": compute_priority(state) if state else 0,
-    }
-    return detail
-
-
-@app.get("/concepts/{slug}")
-def concept_detail(slug: str, user: dict = Depends(current_user)) -> dict:
-    """One chapter: shared body (frozen reference) + personal mantle (your errors, your state).
-    The body is the same for everyone; the mantle is what makes it yours."""
-    return _concept_detail_payload(get_db(), user["user_id"], slug)
-
-
 # ---------------------------------------------------------------------------
-# Temario — der browsbare Grammatik-Katalog (A1-B2, Migration 017). Inhalte sind
-# geteilte, eingefrorene Lektionen (grammar_catalog.py: generate → push → approve);
-# der Status pro Thema kommt aus dem Connect Layer, nie aus dem Katalog selbst.
+# Temario — DAS Grammatik-Lese-Medium (A1-B2, Migration 017). Inhalte sind geteilte,
+# eingefrorene Lektionen (grammar_catalog.py: generate → push → approve); der Status
+# und der Fehler-Mantel pro Thema kommen aus dem Connect Layer, nie aus dem Katalog.
+# Links dürfen Konzept-Slugs tragen — db._resolve_grammar_topic löst sie auf.
 # ---------------------------------------------------------------------------
 
 
@@ -717,8 +666,8 @@ def grammar_topics(user: dict = Depends(current_user)) -> list[dict]:
 
 @app.get("/grammar/topics/{slug}")
 def grammar_topic_detail(slug: str, user: dict = Depends(current_user)) -> dict:
-    """Ein Thema + jüngste freigegebene Lektion (lesson=null solange nichts reviewed ist)
-    + Link auf das verbundene Konzept-Kapitel (verlinken, nie kopieren)."""
+    """Ein Thema (Topic- ODER Konzept-Slug) + jüngste freigegebene Lektion
+    (lesson=null solange nichts reviewed ist) + Status und eigene Fehlersätze."""
     detail = get_db().get_grammar_topic_detail(user["user_id"], slug)
     if detail is None:
         raise HTTPException(404, f"Tema '{slug}' no existe.")
@@ -1027,22 +976,6 @@ def concept_merge(slug: str, into: str, user: dict = Depends(admin_user)) -> dic
         raise HTTPException(404, str(e))
 
 
-@app.post("/concepts/{slug}/generate")
-def concept_generate(slug: str, user: dict = Depends(current_user)) -> dict:
-    """Fill an empty draft chapter (born from a capture) with reference content on demand.
-    Stays reviewed=false — freezing remains a human act."""
-    db = get_db()
-    user_id = user["user_id"]
-    detail = db.get_concept_detail(user_id, slug)
-    if detail is None:
-        raise HTTPException(404, f"Concepto '{slug}' no existe.")
-    if detail.get("explanation"):
-        raise HTTPException(409, "Este capítulo ya tiene contenido.")
-    body = generate_chapter_body(slug, detail["label"], detail.get("cefr"))
-    db.update_concept_body(slug, body)
-    return _concept_detail_payload(db, user_id, slug)
-
-
 # ---------------------------------------------------------------------------
 # Interaktive Übungen — Generierung ist der LLM-Seam, Auswahl + Bewertung sind Code.
 # ---------------------------------------------------------------------------
@@ -1176,18 +1109,47 @@ class ChatIn(BaseModel):
     history: list[dict] = []
 
 
-@app.post("/concepts/{slug}/chat")
-def concept_chat(slug: str, body: ChatIn, user: dict = Depends(current_user)) -> dict:
-    """Klärungsfrage zum Kapitel. Stateless: die History kommt vom Client und lebt nur
-    dort — Chat erklärt, er bewegt NIE Counter oder States."""
+def _lesson_ground(detail: dict) -> str:
+    """Die Lektions-Blöcke als kompakter Text — Ground Truth für den Dudas-Chat.
+    Deterministische Serialisierung, kein LLM."""
+    parts = [detail.get("subtitle_de") or ""]
+    for b in (detail.get("lesson") or {}).get("blocks", []):
+        if b["type"] in ("paragraph", "heading"):
+            parts.append(b["text"])
+        elif b["type"] == "table":
+            parts.append("\n".join(filter(None, [b.get("caption"),
+                         " | ".join(b["headers"]),
+                         *(" | ".join(r) for r in b["rows"])])))
+        elif b["type"] == "usecases":
+            parts += [f"- {i['title']}: {i['es']} ({i['de']})" for i in b["items"]]
+        elif b["type"] == "examples":
+            parts += [f"- {i['es']} ({i['de']})" for i in b["items"]]
+        elif b["type"] == "note":
+            parts.append(f"Nota: {b['text']}")
+    return "\n".join(filter(None, parts))
+
+
+@app.post("/grammar/topics/{slug}/chat")
+def grammar_topic_chat(slug: str, body: ChatIn, user: dict = Depends(current_user)) -> dict:
+    """Klärungsfrage zur Lektion (Dudas). Gegroundet in den Lektions-Blöcken + dem
+    Konzept-Wissen (Regel/deutsche Falle) + den eigenen Fehlern. Stateless: die History
+    kommt vom Client und lebt nur dort — Chat erklärt, er bewegt NIE Counter oder States."""
     db = get_db()
-    detail = db.get_concept_detail(user["user_id"], slug)
+    detail = db.get_grammar_topic_detail(user["user_id"], slug)
     if detail is None:
-        raise HTTPException(404, f"Concepto '{slug}' no existe.")
+        raise HTTPException(404, f"Tema '{slug}' no existe.")
     question = body.question.strip()
     if not question:
         raise HTTPException(422, "Pregunta vacía.")
-    answer = answer_concept_question(detail, question[:2000], body.history)
+    concept = detail.get("concept") or {}
+    ground = {
+        "label": detail["title_es"], "slug": detail["slug"], "cefr": detail["level"],
+        "explanation": _lesson_ground(detail),
+        "rule_of_thumb": concept.get("rule_of_thumb"),
+        "german_pitfall": concept.get("german_pitfall"),
+        "corrections": detail.get("corrections") or [],
+    }
+    answer = answer_concept_question(ground, question[:2000], body.history)
     return {"answer": answer}
 
 

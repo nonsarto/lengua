@@ -113,20 +113,18 @@ const es = {
   sessionSummaryVocab: (n: number) => `${n} palabras repasadas`,
   sessionSaved: "resultados guardados ✓",
   sessionToInicio: "← Inicio",
-  // gramática
+  // gramática = el temario (A1-B2); el manto personal viene del Connect Layer
   gramaticaTitle: "Gramática",
-  summary: (total: number, touched: number, hot: number, dom: number) =>
-    `${total} capítulos · ${touched} tocados · ${hot} en caliente · ${dom} dominados`,
-  yoursNow: "Lo tuyo ahora", draft: "borrador", draftLong: "borrador — sin revisar",
-  chapterMissing: "Este capítulo no existe.",
+  draft: "borrador",
   yourProblem: "Esto es lo que te pasa",
   timesCaptured: (n: number) =>
-    `${n} ${n === 1 ? "vez" : "veces"} capturado — la regla de abajo explica tu problema.`,
-  ruleOfThumb: "Regla de oro", germanPitfall: "La trampa alemana",
-  paradigm: "Paradigma", patternVerbs: "Verbos de este patrón", tryIt: "Para probar",
-  draftEmpty: "Este capítulo nació de tus capturas y aún no tiene contenido.",
-  generateBtn: "Generar contenido", generating: "escribiendo el capítulo… (medio minuto)",
-  generateFailed: "No se pudo generar — inténtalo otra vez.",
+    `${n} ${n === 1 ? "vez" : "veces"} capturado — la lección de abajo explica tu problema.`,
+  germanPitfall: "La trampa alemana",
+  temarioSummary: (total: number, touched: number) =>
+    `${total} temas · ${touched} con actividad tuya`,
+  temarioCount: (n: number) => `${n} ${n === 1 ? "tema" : "temas"}`,
+  temarioTopicMissing: "Este tema no existe.",
+  temarioLessonPending: "La lección de este tema aún no está lista.",
   exercisesBtn: "🏋️ Ejercicios interactivos", exTitle: "Ejercicios",
   exEmpty: "Este capítulo aún no tiene ejercicios.",
   exGenerate: "Generar ejercicios", exGenerating: "escribiendo ejercicios… (medio minuto)",
@@ -138,14 +136,6 @@ const es = {
   chatTitle: "Dudas", chatPlaceholder: "pregunta sobre este tema…",
   chatSend: "preguntar", chatThinking: "pensando…",
   chatFailed: "No se pudo responder — inténtalo otra vez.",
-  // temario (catálogo de gramática A1-B2)
-  temarioTitle: "Temario",
-  temarioLink: "Temario A1–B2",
-  temarioLinkDesc: "Todos los temas de gramática, nivel a nivel",
-  temarioCount: (n: number) => `${n} ${n === 1 ? "tema" : "temas"}`,
-  temarioTopicMissing: "Este tema no existe.",
-  temarioLessonPending: "La lección de este tema aún no está lista.",
-  temarioConceptLink: "Tu capítulo conectado",
   // escucha (comprensión oral)
   escuchaBtn: "Escucha", escuchaDesc: "Comprensión oral con tu vocabulario",
   escuchaTitle: "Escucha", escuchaPreparing: "preparando tu audio… (unos segundos)",
@@ -260,11 +250,6 @@ const es = {
   stateLabels: {
     sin_ver: "sin ver", visto: "visto", flojo: "flojo",
     aprendiendo: "aprendiendo", dominado: "dominado",
-  } as Record<string, string>,
-  persons: ["yo", "tu", "el", "nosotros", "vosotros", "ellos"],
-  personLabels: {
-    yo: "yo", tu: "tú", el: "él/ella", nosotros: "nosotros",
-    vosotros: "vosotros", ellos: "ellos/ellas",
   } as Record<string, string>,
   // Lernstand-Zeile (Azulejo: nur "braucht dich" trägt Farbe)
   needsPractice: "necesita práctica",
@@ -416,19 +401,18 @@ const ca: typeof es = {
   sessionSummaryVocab: (n) => `${n} paraules repassades`,
   sessionSaved: "resultats desats ✓",
   sessionToInicio: "← Inici",
+  // gramàtica = el temari (A1-B2) — Grundgerüst; ca-Rollout ist ein eigener Durchgang
   gramaticaTitle: "Gramàtica",
-  summary: (total, touched, hot, dom) =>
-    `${total} capítols · ${touched} tocats · ${hot} en calent · ${dom} dominats`,
-  yoursNow: "El teu ara mateix", draft: "esborrany", draftLong: "esborrany — sense revisar",
-  chapterMissing: "Aquest capítol no existeix.",
+  draft: "esborrany",
   yourProblem: "Això és el que et passa",
   timesCaptured: (n) =>
-    `${n} ${n === 1 ? "vegada capturada" : "vegades capturades"} — la regla de sota explica el teu problema.`,
-  ruleOfThumb: "Regla d'or", germanPitfall: "La trampa alemanya",
-  paradigm: "Paradigma", patternVerbs: "Verbs d'aquest patró", tryIt: "Per provar",
-  draftEmpty: "Aquest capítol va néixer de les teves captures i encara no té contingut.",
-  generateBtn: "Generar contingut", generating: "escrivint el capítol… (mig minut)",
-  generateFailed: "No s'ha pogut generar — torna-ho a provar.",
+    `${n} ${n === 1 ? "vegada capturada" : "vegades capturades"} — la lliçó de sota explica el teu problema.`,
+  germanPitfall: "La trampa alemanya",
+  temarioSummary: (total, touched) =>
+    `${total} temes · ${touched} amb activitat teva`,
+  temarioCount: (n) => `${n} ${n === 1 ? "tema" : "temes"}`,
+  temarioTopicMissing: "Aquest tema no existeix.",
+  temarioLessonPending: "La lliçó d'aquest tema encara no està llesta.",
   exercisesBtn: "🏋️ Exercicis interactius", exTitle: "Exercicis",
   exEmpty: "Aquest capítol encara no té exercicis.",
   exGenerate: "Generar exercicis", exGenerating: "escrivint exercicis… (mig minut)",
@@ -440,14 +424,6 @@ const ca: typeof es = {
   chatTitle: "Dubtes", chatPlaceholder: "pregunta sobre aquest tema…",
   chatSend: "preguntar", chatThinking: "pensant…",
   chatFailed: "No s'ha pogut respondre — torna-ho a provar.",
-  // temari (catàleg de gramàtica A1-B2) — Grundgerüst; ca-Rollout ist ein eigener Durchgang
-  temarioTitle: "Temari",
-  temarioLink: "Temari A1–B2",
-  temarioLinkDesc: "Tots els temes de gramàtica, nivell a nivell",
-  temarioCount: (n) => `${n} ${n === 1 ? "tema" : "temes"}`,
-  temarioTopicMissing: "Aquest tema no existeix.",
-  temarioLessonPending: "La lliçó d'aquest tema encara no està llesta.",
-  temarioConceptLink: "El teu capítol connectat",
   // escucha (comprensió oral)
   escuchaBtn: "Escolta", escuchaDesc: "Comprensió oral amb el teu vocabulari",
   escuchaTitle: "Escolta", escuchaPreparing: "preparant el teu àudio… (uns segons)",
@@ -556,11 +532,6 @@ const ca: typeof es = {
   stateLabels: {
     sin_ver: "per veure", visto: "vist", flojo: "fluix",
     aprendiendo: "aprenent", dominado: "dominat",
-  },
-  persons: ["jo", "tu", "ell", "nosaltres", "vosaltres", "ells"],
-  personLabels: {
-    jo: "jo", tu: "tu", ell: "ell/ella", nosaltres: "nosaltres",
-    vosaltres: "vosaltres", ells: "ells/elles",
   },
   // TODO(ca-Durchgang): nur damit der Typ passt — im eigenen llengua-Durchgang gegenlesen.
   needsPractice: "necessita pràctica",

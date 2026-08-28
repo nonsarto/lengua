@@ -940,28 +940,56 @@ class Database:
                         "has_lesson": t["slug"] in has_lesson})
         return out
 
+    def _resolve_grammar_topic(self, slug: str) -> dict | None:
+        """Der Temario ist das führende Lese-Medium — Links tragen mal Topic-, mal
+        Konzept-Slugs (Inicio, Capturar, Practicar). Auflösung in drei Stufen:
+        Topic-Slug direkt → Topic, dessen concept_slug passt → kuratierter Alias
+        (grammar_catalog.CONCEPT_ALIASES) für Konzepte, die eine Lektion mit abdeckt."""
+        rows = self.c.table("grammar_topics").select("*").eq("slug", slug).execute().data
+        if rows:
+            return rows[0]
+        rows = (self.c.table("grammar_topics").select("*").eq("concept_slug", slug)
+                .order("level").order("order_index").limit(1).execute().data)
+        if rows:
+            return rows[0]
+        from grammar_catalog import CONCEPT_ALIASES
+        alias = CONCEPT_ALIASES.get(slug)
+        if alias:
+            rows = self.c.table("grammar_topics").select("*").eq("slug", alias).execute().data
+        return rows[0] if alias and rows else None
+
     def get_grammar_topic_detail(self, user_id: str, slug: str) -> dict | None:
         """Ein Thema + seine jüngste FREIGEGEBENE Lektion (Review-Gate liegt hier in der
-        Query — unreviewte Lektionen sind für die App unsichtbar) + Status + Konzept-Link."""
-        rows = self.c.table("grammar_topics").select("*").eq("slug", slug).execute().data
-        if not rows:
+        Query — unreviewte Lektionen sind für die App unsichtbar) + der persönliche Mantel
+        aus dem Connect Layer. Kam der Aufruf mit einem KONZEPT-Slug (Inicio, Capturar),
+        trägt der Mantel genau dieses Konzept — auf der Preposiciones-Lektion sollen deine
+        por/para-Fehler stehen, nicht die des Standard-Konzepts des Topics."""
+        topic = self._resolve_grammar_topic(slug)
+        if topic is None:
             return None
-        topic = rows[0]
         lessons = (self.c.table("grammar_lessons").select("blocks, version, generated_at")
                    .eq("topic_id", topic["id"]).eq("reviewed", True)
                    .order("version", desc=True).limit(1).execute().data)
-        concept = None
-        if topic["concept_slug"]:
-            c = (self.c.table("concepts").select("slug, label")
-                 .eq("slug", topic["concept_slug"]).execute().data)
-            concept = c[0] if c else None
-        states = self._states_for_concept_slugs(user_id, [topic["concept_slug"]]) \
-            if topic["concept_slug"] else {}
-        s = states.get(topic["concept_slug"], {})
+        mantle_slug = slug if slug != topic["slug"] else topic["concept_slug"]
+        concept, corrections = None, []
+        if mantle_slug:
+            c = (self.c.table("concepts")
+                 .select("id, slug, label, rule_of_thumb, german_pitfall")
+                 .eq("slug", mantle_slug).execute().data)
+            if c:
+                concept = c[0]
+                corrections = (self.c.table("corrections")
+                               .select("wrong, correct, created_at")
+                               .eq("user_id", user_id).eq("concept_id", concept["id"])
+                               .order("created_at", desc=True).limit(10).execute().data)
+                concept.pop("id", None)
+        states = self._states_for_concept_slugs(user_id, [mantle_slug]) if mantle_slug else {}
+        s = states.get(mantle_slug, {})
         return {"slug": topic["slug"], "level": topic["level"],
                 "title_es": topic["title_es"], "subtitle_de": topic["subtitle_de"],
                 "lesson": lessons[0] if lessons else None,
                 "concept": concept,
+                "corrections": corrections,
                 "state": s.get("state", "sin_ver"),
                 "need_count": s.get("need_count", 0)}
 

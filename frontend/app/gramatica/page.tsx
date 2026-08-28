@@ -1,9 +1,10 @@
 "use client";
 
 /**
- * Gramática — la lista de capítulos, ordenada por score: los calientes arriba,
- * la referencia en desplegables tranquilos. Azulejo: Lernstand als Tinte (Dots),
- * nur "braucht dich" trägt Akzent. Geübt wird in Practicar — hier wird gelesen.
+ * Gramática = el Temario: el curriculum completo, nivel a nivel (A1-B2), en orden fijo.
+ * Die Dots rechts sind der Connect Layer — welche Themen dir in deinen Captures schon
+ * begegnet sind, bevor du sie überhaupt gelernt hast. Die score-sortierte Sicht
+ * ("lo tuyo ahora") lebt auf Inicio; hier wird gelesen und gebrowst.
  */
 
 import { useEffect, useState } from "react";
@@ -11,50 +12,48 @@ import Link from "next/link";
 import { apiFetch } from "@/lib/api";
 import { S } from "@/lib/strings";
 import SubirMaterial from "@/components/SubirMaterial";
-import { ErrorState, NeedLine, PageHead, StateDots, cardQuiet } from "@/components/ui";
+import { ErrorState, PageHead, StateDots, cardQuiet } from "@/components/ui";
 
-type ConceptRow = {
+type TopicRow = {
   slug: string;
-  label: string;
-  ctype: string;
-  cefr: string | null;
+  level: "A1" | "A2" | "B1" | "B2";
+  title_es: string;
+  subtitle_de: string | null;
   state: string;
-  need_count: number;
-  priority: number;
-  reviewed: boolean;
-  category: string;
+  has_lesson: boolean;
 };
 
-function Row({ c }: { c: ConceptRow }) {
+const LEVELS: TopicRow["level"][] = ["A1", "A2", "B1", "B2"];
+
+function Row({ t }: { t: TopicRow }) {
   return (
     <Link
-      href={`/gramatica/${c.slug}`}
+      href={`/gramatica/${t.slug}`}
       className="flex items-center justify-between gap-3 p-3.5 active:bg-stone-50"
     >
       <div className="min-w-0">
-        <p className="truncate font-medium">{c.label}</p>
-        <p className="mt-0.5 flex items-center gap-1.5 text-xs text-stone-400">
-          <NeedLine state={c.state} needCount={c.need_count} />
-          {c.state !== "flojo" && c.state !== "aprendiendo" && c.cefr && <span>{c.cefr}</span>}
-          {!c.reviewed && <span className="text-stone-300">{S.draft}</span>}
+        <p className="truncate font-medium">{t.title_es}</p>
+        <p className="mt-0.5 truncate text-xs text-stone-400">
+          {t.subtitle_de}
+          {!t.has_lesson && <span className="text-stone-300"> · {S.draft}</span>}
         </p>
       </div>
-      <StateDots state={c.state} />
+      <StateDots state={t.state} />
     </Link>
   );
 }
 
 export default function Gramatica() {
-  const [rows, setRows] = useState<ConceptRow[] | null>(null);
+  const [rows, setRows] = useState<TopicRow[] | null>(null);
   const [failed, setFailed] = useState(false);
 
   function load() {
     setFailed(false);
     setRows(null);
-    apiFetch(`/concepts`)
+    apiFetch(`/grammar/topics`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then(setRows)
-      .catch(() => setFailed(true));   // Fehler sichtbar machen, nie als leere Liste tarnen
+      .catch(() => setFailed(true)); // Fehler sichtbar machen, nie als leere Liste tarnen
   }
 
   useEffect(load, []);
@@ -68,68 +67,32 @@ export default function Gramatica() {
     );
   if (rows === null) return <p className="text-sm text-stone-400">{S.loading}</p>;
 
-  const hot = rows.filter((r) => r.priority > 0 || r.state === "aprendiendo");
-  const quiet = rows.filter((r) => !hot.includes(r));
-
   const touched = rows.filter((r) => r.state !== "sin_ver").length;
-  const dominated = rows.filter((r) => r.state === "dominado").length;
-
-  const categories: string[] = [];
-  for (const r of quiet) if (!categories.includes(r.category)) categories.push(r.category);
-  const clusters = categories.map((cat) => ({
-    cat,
-    items: quiet.filter((r) => r.category === cat),
-  }));
 
   return (
     <>
       <h1 className="mb-1 font-display text-2xl font-bold">{S.gramaticaTitle}</h1>
       <p className="mb-4 text-xs tabular-nums text-stone-400">
-        {S.summary(rows.length, touched, hot.length, dominated)}
+        {S.temarioSummary(rows.length, touched)}
       </p>
 
       <SubirMaterial />
 
-      {/* El Temario — das feste Curriculum A1-B2, komplementär zur Score-Liste hier */}
-      <Link
-        href="/gramatica/temario"
-        className={`mb-6 flex items-center justify-between gap-3 p-3.5 ${cardQuiet} active:bg-stone-50`}
-      >
-        <div className="min-w-0">
-          <p className="font-medium">{S.temarioLink}</p>
-          <p className="mt-0.5 truncate text-xs text-stone-400">{S.temarioLinkDesc}</p>
-        </div>
-        <span className="text-stone-300">›</span>
-      </Link>
-
-      {/* Tus temas — offen, weil sie dich brauchen */}
-      {hot.length > 0 && (
-        <details open className={`group mb-6 ${cardQuiet}`}>
-          <summary className="flex cursor-pointer select-none items-center justify-between p-3.5 text-xs font-semibold uppercase tracking-[.12em] text-stone-500 [&::-webkit-details-marker]:hidden">
-            <span>
-              {S.yoursNow} <span className="font-normal text-stone-300">· {hot.length}</span>
-            </span>
-            <span className="text-stone-300 transition-transform group-open:rotate-90">›</span>
-          </summary>
-          <div className="divide-y divide-stone-100 border-t border-stone-100">
-            {hot.map((c) => <Row key={c.slug} c={c} />)}
-          </div>
-        </details>
-      )}
-
-      {clusters.map(({ cat, items }) => (
-        <details key={cat} className={`group mb-2 ${cardQuiet}`}>
-          <summary className="flex cursor-pointer select-none items-center justify-between p-3.5 text-xs font-semibold uppercase tracking-[.12em] text-stone-500 [&::-webkit-details-marker]:hidden">
-            <span>
-              {cat} <span className="font-normal text-stone-300">· {items.length}</span>
-            </span>
-            <span className="text-stone-300 transition-transform group-open:rotate-90">›</span>
-          </summary>
-          <div className="divide-y divide-stone-100 border-t border-stone-100">
-            {items.map((c) => <Row key={c.slug} c={c} />)}
-          </div>
-        </details>
-      ))}
+      {LEVELS.map((level) => {
+        const items = rows.filter((r) => r.level === level);
+        if (items.length === 0) return null;
+        return (
+          <section key={level} className="mb-6">
+            <h2 className="mb-2 flex items-baseline gap-2 text-xs font-semibold uppercase tracking-[.12em] text-stone-500">
+              {level}
+              <span className="font-normal text-stone-300">· {S.temarioCount(items.length)}</span>
+            </h2>
+            <div className={`divide-y divide-stone-100 ${cardQuiet}`}>
+              {items.map((t) => <Row key={t.slug} t={t} />)}
+            </div>
+          </section>
+        );
+      })}
     </>
   );
 }

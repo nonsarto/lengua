@@ -96,9 +96,12 @@ Browsbarer Katalog aller Grammatikthemen nach Niveau (Migration 017): 39 kuratie
 Konjugationstabellen mit Personenspalte, Verwendungsfälle, „häufigster Fehler"-Note).
 Generierung LLM (Opus, Structured Output), Review-Gate über `reviewed` (generate → push →
 Gegenlesen GRAMMAR_REVIEW.md → approve). Status pro Thema aus dem Connect Layer via
-`concept_slug` — der Katalog verlinkt Kapitel, kopiert nie Lernstand. UI: `/gramatica/temario`
-(Sections pro Niveau + StateDots) und `/gramatica/temario/[slug]` (Block-Renderer mit
-horizontal scrollbaren Tabellen, sticky Personenspalte).
+`concept_slug` — der Katalog verlinkt den Connect Layer, kopiert nie Lernstand.
+Der Temario IST die Gramática (führendes Lese-Medium, alte Kapitelansicht entfernt):
+`/gramatica` = Katalog (Sections pro Niveau + StateDots), `/gramatica/[slug]` = Lektion
+(Block-Renderer mit sticky Personenspalte, Fehler-Manto oben, Dudas-Chat unten — gegroundet
+in Lektion + Konzept + eigenen Fehlern). Links dürfen Konzept-Slugs tragen; das Backend
+löst sie auf (direkt via concept_slug, sonst kuratierte CONCEPT_ALIASES).
 **Fertig, wenn:** alle 39 Lektionen gegengelesen live sind und ein Thema, das dir in Captures
 schon begegnet ist, im Katalog seinen Status zeigt.
 

@@ -127,6 +127,22 @@ TOPICS: list[tuple[str, str, str, str, str | None]] = [
 ]
 
 # --------------------------------------------------------------------------------------
+# Konzept → Topic für Konzepte OHNE eigenes Thema, deren Inhalt eine Lektion mit abdeckt.
+# Der Temario ist das führende Lese-Medium: Links aus Inicio/Capturar tragen Konzept-Slugs,
+# die hier auf die passende Lektion aufgelöst werden (db.get_grammar_topic_detail).
+# Kuratiert wie das Curriculum — nur eintragen, was die Lektion wirklich behandelt.
+# --------------------------------------------------------------------------------------
+CONCEPT_ALIASES: dict[str, str] = {
+    "por-vs-para":              "preposiciones",           # eigene por/para-Tabelle
+    "tuteo-vs-usted":           "pronombres-personales",   # tú/usted-Abschnitt
+    "vosotros-vs-ustedes":      "pronombres-personales",   # Anrede-Tabelle
+    "estar-gerundio":           "gerundio",                # estar + gerundio ist der Kern der Lektion
+    "imperativo-negativo":      "imperativo",              # verneinte Formen enthalten
+    "condicional-real":         "oraciones-condicionales", # realer si-Satz = Typ 1
+    "desencadenantes-subjuntivo": "subjuntivo-presente",   # Auslöser-Liste in "Verwendung"
+}
+
+# --------------------------------------------------------------------------------------
 # Block-Schema (Structured Output): das LLM füllt Inhalt, nie Struktur.
 # Spiegelbild des TS-Typs Block in frontend/components/LessonBlocks.tsx — synchron halten.
 # --------------------------------------------------------------------------------------
