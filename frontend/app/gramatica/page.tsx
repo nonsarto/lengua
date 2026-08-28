@@ -90,6 +90,18 @@ export default function Gramatica() {
 
       <SubirMaterial />
 
+      {/* El Temario — das feste Curriculum A1-B2, komplementär zur Score-Liste hier */}
+      <Link
+        href="/gramatica/temario"
+        className={`mb-6 flex items-center justify-between gap-3 p-3.5 ${cardQuiet} active:bg-stone-50`}
+      >
+        <div className="min-w-0">
+          <p className="font-medium">{S.temarioLink}</p>
+          <p className="mt-0.5 truncate text-xs text-stone-400">{S.temarioLinkDesc}</p>
+        </div>
+        <span className="text-stone-300">›</span>
+      </Link>
+
       {/* Tus temas — offen, weil sie dich brauchen */}
       {hot.length > 0 && (
         <details open className={`group mb-6 ${cardQuiet}`}>

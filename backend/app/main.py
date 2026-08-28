@@ -702,6 +702,30 @@ def concept_detail(slug: str, user: dict = Depends(current_user)) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Temario — der browsbare Grammatik-Katalog (A1-B2, Migration 017). Inhalte sind
+# geteilte, eingefrorene Lektionen (grammar_catalog.py: generate → push → approve);
+# der Status pro Thema kommt aus dem Connect Layer, nie aus dem Katalog selbst.
+# ---------------------------------------------------------------------------
+
+
+@app.get("/grammar/topics")
+def grammar_topics(user: dict = Depends(current_user)) -> list[dict]:
+    """Katalog: alle Themen in Curriculum-Reihenfolge (A1→B2), mit Nutzer-Status
+    und has_lesson-Flag. Gruppierung nach Niveau macht das Frontend."""
+    return get_db().list_grammar_topics_with_state(user["user_id"])
+
+
+@app.get("/grammar/topics/{slug}")
+def grammar_topic_detail(slug: str, user: dict = Depends(current_user)) -> dict:
+    """Ein Thema + jüngste freigegebene Lektion (lesson=null solange nichts reviewed ist)
+    + Link auf das verbundene Konzept-Kapitel (verlinken, nie kopieren)."""
+    detail = get_db().get_grammar_topic_detail(user["user_id"], slug)
+    if detail is None:
+        raise HTTPException(404, f"Tema '{slug}' no existe.")
+    return detail
+
+
+# ---------------------------------------------------------------------------
 # Practicar — zwei Drills, EINE Quelle: 'vocabulario' (SRS-Recall, Wörter UND Frasen)
 # und 'gramatica' (eigene Fehlersätze + interaktive Übungen der wackligen Konzepte;
 # Bewertung über /exercises/{id}/answer bewegt den Lernstand). Der 20-Minuten-Mix

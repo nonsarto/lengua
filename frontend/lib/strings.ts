@@ -138,6 +138,14 @@ const es = {
   chatTitle: "Dudas", chatPlaceholder: "pregunta sobre este tema…",
   chatSend: "preguntar", chatThinking: "pensando…",
   chatFailed: "No se pudo responder — inténtalo otra vez.",
+  // temario (catálogo de gramática A1-B2)
+  temarioTitle: "Temario",
+  temarioLink: "Temario A1–B2",
+  temarioLinkDesc: "Todos los temas de gramática, nivel a nivel",
+  temarioCount: (n: number) => `${n} ${n === 1 ? "tema" : "temas"}`,
+  temarioTopicMissing: "Este tema no existe.",
+  temarioLessonPending: "La lección de este tema aún no está lista.",
+  temarioConceptLink: "Tu capítulo conectado",
   // escucha (comprensión oral)
   escuchaBtn: "Escucha", escuchaDesc: "Comprensión oral con tu vocabulario",
   escuchaTitle: "Escucha", escuchaPreparing: "preparando tu audio… (unos segundos)",
@@ -432,6 +440,14 @@ const ca: typeof es = {
   chatTitle: "Dubtes", chatPlaceholder: "pregunta sobre aquest tema…",
   chatSend: "preguntar", chatThinking: "pensant…",
   chatFailed: "No s'ha pogut respondre — torna-ho a provar.",
+  // temari (catàleg de gramàtica A1-B2) — Grundgerüst; ca-Rollout ist ein eigener Durchgang
+  temarioTitle: "Temari",
+  temarioLink: "Temari A1–B2",
+  temarioLinkDesc: "Tots els temes de gramàtica, nivell a nivell",
+  temarioCount: (n) => `${n} ${n === 1 ? "tema" : "temes"}`,
+  temarioTopicMissing: "Aquest tema no existeix.",
+  temarioLessonPending: "La lliçó d'aquest tema encara no està llesta.",
+  temarioConceptLink: "El teu capítol connectat",
   // escucha (comprensió oral)
   escuchaBtn: "Escolta", escuchaDesc: "Comprensió oral amb el teu vocabulari",
   escuchaTitle: "Escolta", escuchaPreparing: "preparant el teu àudio… (uns segons)",

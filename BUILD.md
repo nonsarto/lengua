@@ -90,6 +90,18 @@ eigenen Fehlern, antwortet deutsch, bewegt NIE Lernstand.
 Trichter. UI zeigt "escuché: …" zur Kontrolle. Braucht `OPENAI_API_KEY`.
 **Fertig, wenn:** Overheard-Spanisch als Aufnahme reingeht und als listen-Capture rauskommt.
 
+## Slice 13 — Temario: der Grammatik-Katalog (A1-B2)
+Browsbarer Katalog aller Grammatikthemen nach Niveau (Migration 017): 39 kuratierte Topics
+(`grammar_catalog.py`), pro Thema eine Lektion aus typisierten Blöcken (Erklärung deutsch,
+Konjugationstabellen mit Personenspalte, Verwendungsfälle, „häufigster Fehler"-Note).
+Generierung LLM (Opus, Structured Output), Review-Gate über `reviewed` (generate → push →
+Gegenlesen GRAMMAR_REVIEW.md → approve). Status pro Thema aus dem Connect Layer via
+`concept_slug` — der Katalog verlinkt Kapitel, kopiert nie Lernstand. UI: `/gramatica/temario`
+(Sections pro Niveau + StateDots) und `/gramatica/temario/[slug]` (Block-Renderer mit
+horizontal scrollbaren Tabellen, sticky Personenspalte).
+**Fertig, wenn:** alle 39 Lektionen gegengelesen live sind und ein Thema, das dir in Captures
+schon begegnet ist, im Katalog seinen Status zeigt.
+
 ## Nachzug llengua (ca) — eigener Durchgang, NICHT nebenbei
 Slices 8–12 sind nur auf **lengua (es)** live. Für llengua: Migrationen 004–006 auf der
 ca-DB ausführen, ca-Strings/Prompts gegenlesen (Grundgerüst liegt schon in `lang/ca.py` +

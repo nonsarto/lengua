@@ -902,6 +902,69 @@ class Database:
             "user_id": user_id, "exercise_id": exercise_id, "correct": correct,
         }).execute()
 
+    # ---------- temario (Grammatik-Katalog A1-B2 — geteilte Lektionen, Migration 017) ----------
+    # Status kommt aus dem Connect Layer (concept_state über concept_slug), nie von hier.
+    # Join in Python statt SQL-View — dasselbe Muster wie list_concepts_with_state.
+
+    def _states_for_concept_slugs(self, user_id: str, slugs: list[str]) -> dict[str, dict]:
+        """concept_slug → concept_state-Zeile dieses Nutzers (nur vorhandene)."""
+        if not slugs:
+            return {}
+        concepts = (self.c.table("concepts").select("id, slug")
+                    .in_("slug", slugs).execute().data)
+        if not concepts:
+            return {}
+        by_id = {c["id"]: c["slug"] for c in concepts}
+        states = (self.c.table("concept_state")
+                  .select("concept_id, state, need_count, last_seen")
+                  .eq("user_id", user_id).in_("concept_id", list(by_id)).execute().data)
+        return {by_id[s["concept_id"]]: s for s in states}
+
+    def list_grammar_topics_with_state(self, user_id: str) -> list[dict]:
+        """Alle Topics (Niveau-Reihenfolge = Enum-Reihenfolge A1→B2) + Nutzer-Status +
+        ob eine freigegebene Lektion existiert. Themen ohne Konzept bleiben 'sin_ver'."""
+        topics = (self.c.table("grammar_topics")
+                  .select("slug, level, title_es, subtitle_de, order_index, concept_slug")
+                  .order("level").order("order_index").execute().data)
+        reviewed = (self.c.table("grammar_lessons").select("topic_id, grammar_topics(slug)")
+                    .eq("reviewed", True).execute().data)
+        has_lesson = {r["grammar_topics"]["slug"] for r in reviewed if r.get("grammar_topics")}
+        states = self._states_for_concept_slugs(
+            user_id, [t["concept_slug"] for t in topics if t["concept_slug"]])
+        out = []
+        for t in topics:
+            s = states.get(t["concept_slug"], {}) if t["concept_slug"] else {}
+            out.append({**t,
+                        "state": s.get("state", "sin_ver"),
+                        "need_count": s.get("need_count", 0),
+                        "has_lesson": t["slug"] in has_lesson})
+        return out
+
+    def get_grammar_topic_detail(self, user_id: str, slug: str) -> dict | None:
+        """Ein Thema + seine jüngste FREIGEGEBENE Lektion (Review-Gate liegt hier in der
+        Query — unreviewte Lektionen sind für die App unsichtbar) + Status + Konzept-Link."""
+        rows = self.c.table("grammar_topics").select("*").eq("slug", slug).execute().data
+        if not rows:
+            return None
+        topic = rows[0]
+        lessons = (self.c.table("grammar_lessons").select("blocks, version, generated_at")
+                   .eq("topic_id", topic["id"]).eq("reviewed", True)
+                   .order("version", desc=True).limit(1).execute().data)
+        concept = None
+        if topic["concept_slug"]:
+            c = (self.c.table("concepts").select("slug, label")
+                 .eq("slug", topic["concept_slug"]).execute().data)
+            concept = c[0] if c else None
+        states = self._states_for_concept_slugs(user_id, [topic["concept_slug"]]) \
+            if topic["concept_slug"] else {}
+        s = states.get(topic["concept_slug"], {})
+        return {"slug": topic["slug"], "level": topic["level"],
+                "title_es": topic["title_es"], "subtitle_de": topic["subtitle_de"],
+                "lesson": lessons[0] if lessons else None,
+                "concept": concept,
+                "state": s.get("state", "sin_ver"),
+                "need_count": s.get("need_count", 0)}
+
     # ---------- escucha (Hörverstehen — Text aus eigenen Vokabeln, MC-Fragen) ----------
     def listening_target_terms(self, user_id: str, n: int = 6) -> list[str]:
         """Zielwörter für einen Hörtext: erst fällige SRS-Wörter, dann restliches eigenes
