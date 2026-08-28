@@ -228,6 +228,21 @@ def _save(data: dict) -> None:
 
 
 def _call(client: Anthropic, prompt: str) -> dict:
+    """Netz-Aussetzer (ReadTimeout mitten im Stream) nicht den Lauf kosten lassen:
+    bis zu 3 Versuche mit Backoff, dann wirklich aufgeben."""
+    import httpx
+    for attempt in range(3):
+        try:
+            return _call_once(client, prompt)
+        except (httpx.HTTPError, TimeoutError) as e:
+            if attempt == 2:
+                raise
+            print(f"  … Netzfehler ({type(e).__name__}), neuer Versuch in 15 s")
+            time.sleep(15)
+    raise AssertionError("unreachable")
+
+
+def _call_once(client: Anthropic, prompt: str) -> dict:
     with client.messages.stream(
         model=SEED_MODEL,
         max_tokens=8000,

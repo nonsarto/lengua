@@ -1,0 +1,6110 @@
+{
+  "articulos-definidos": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Der bestimmte Artikel (artículos definidos) steht vor Substantiven, die schon bekannt oder eindeutig sind. Er entspricht dem deutschen der, die, das. Im Spanischen richtet er sich in Geschlecht und Zahl nach dem Substantiv und wird deshalb in vier Formen verwendet."
+      },
+      {
+        "type": "heading",
+        "text": "Die vier Formen"
+      },
+      {
+        "type": "table",
+        "caption": "Bestimmte Artikel nach Geschlecht und Zahl",
+        "headers": [
+          "",
+          "Singular",
+          "Plural"
+        ],
+        "rows": [
+          [
+            "maskulin",
+            "el",
+            "los"
+          ],
+          [
+            "feminin",
+            "la",
+            "las"
+          ]
+        ]
+      },
+      {
+        "type": "table",
+        "caption": "Beispiele mit Substantiv",
+        "headers": [
+          "",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "el (m. Sg.)",
+            "el libro"
+          ],
+          [
+            "la (f. Sg.)",
+            "la casa"
+          ],
+          [
+            "los (m. Pl.)",
+            "los libros"
+          ],
+          [
+            "las (f. Pl.)",
+            "las casas"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Etwas Bekanntes oder bereits Erwähntes",
+            "es": "El coche está en la calle.",
+            "de": "Das Auto steht auf der Straße."
+          },
+          {
+            "title": "Eindeutiges, Einmaliges",
+            "es": "El sol brilla hoy.",
+            "de": "Die Sonne scheint heute."
+          },
+          {
+            "title": "Allgemeine Aussagen über eine ganze Gruppe",
+            "es": "Los gatos duermen mucho.",
+            "de": "Katzen schlafen viel."
+          },
+          {
+            "title": "Bei Wochentagen (regelmäßige Ereignisse)",
+            "es": "Trabajo los lunes.",
+            "de": "Ich arbeite montags."
+          },
+          {
+            "title": "Bei Körperteilen statt Possessiv",
+            "es": "Me duele la cabeza.",
+            "de": "Mir tut der Kopf weh."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Besonderheiten"
+      },
+      {
+        "type": "table",
+        "caption": "Verschmelzung mit a und de",
+        "headers": [
+          "",
+          "Verschmelzung",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "a + el",
+            "al",
+            "Voy al mercado."
+          ],
+          [
+            "de + el",
+            "del",
+            "La puerta del coche."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche Muttersprachler übertragen oft das deutsche Genus. Aber das Geschlecht kann abweichen: Es heißt 'la leche' (die Milch, feminin – wie im Deutschen), aber 'el problema' (das Problem, maskulin trotz Endung -a) und 'la mano' (die Hand, feminin trotz Endung -o). Der Artikel muss immer mit dem spanischen Genus gelernt werden, nicht aus dem Deutschen abgeleitet."
+      }
+    ]
+  },
+  "articulos-indeterminados": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Der unbestimmte Artikel (artículo indeterminado) steht vor Substantiven, die nicht näher bestimmt sind oder zum ersten Mal erwähnt werden. Auf Deutsch entspricht er »ein, eine«. Im Plural (unos, unas) bedeutet er »einige« oder »ein paar«."
+      },
+      {
+        "type": "heading",
+        "text": "Die Formen"
+      },
+      {
+        "type": "table",
+        "caption": "Unbestimmte Artikel nach Genus und Numerus",
+        "headers": [
+          "",
+          "Singular",
+          "Plural"
+        ],
+        "rows": [
+          [
+            "maskulin",
+            "un",
+            "unos"
+          ],
+          [
+            "feminin",
+            "una",
+            "unas"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Beispiele mit Substantiv"
+      },
+      {
+        "type": "table",
+        "caption": "Der Artikel richtet sich nach Genus und Numerus des Substantivs",
+        "headers": [
+          "",
+          "maskulin",
+          "feminin"
+        ],
+        "rows": [
+          [
+            "Singular",
+            "un libro",
+            "una casa"
+          ],
+          [
+            "Plural",
+            "unos libros",
+            "unas casas"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Etwas zum ersten Mal erwähnen",
+            "es": "Hay un perro en el jardín.",
+            "de": "Es ist ein Hund im Garten."
+          },
+          {
+            "title": "Eine unbestimmte Menge (Plural)",
+            "es": "He comprado unas manzanas.",
+            "de": "Ich habe ein paar Äpfel gekauft."
+          },
+          {
+            "title": "Eine ungefähre Zahl angeben",
+            "es": "Vinieron unas veinte personas.",
+            "de": "Es kamen ungefähr zwanzig Personen."
+          },
+          {
+            "title": "Eine Eigenschaft betonen",
+            "es": "Es una casa muy grande.",
+            "de": "Es ist ein sehr großes Haus."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Besonderheit: un vor femininen Substantiven"
+      },
+      {
+        "type": "table",
+        "caption": "Feminine Substantive, die mit betontem a- oder ha- beginnen, nehmen im Singular un",
+        "headers": [
+          "",
+          "Singular",
+          "Plural"
+        ],
+        "rows": [
+          [
+            "agua (f.)",
+            "un agua",
+            "unas aguas"
+          ],
+          [
+            "águila (f.)",
+            "un águila",
+            "unas águilas"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutschsprachige lassen den unbestimmten Artikel oft weg oder setzen ihn falsch bei Berufen: Nach »ser« steht der Beruf ohne Artikel — »Soy médico« (nicht »Soy un médico«). Der Artikel erscheint erst, wenn ein Adjektiv folgt: »Soy un médico excelente«."
+      }
+    ]
+  },
+  "genero-numero-sustantivo": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Jedes spanische Substantiv hat ein Genus (männlich oder weiblich) und einen Numerus (Singular oder Plural). Genus und Numerus bestimmen, welchen Artikel und welche Adjektivendung du verwendest. Deshalb lohnt es sich, beides von Anfang an mitzulernen."
+      },
+      {
+        "type": "heading",
+        "text": "Genus: typische Endungen"
+      },
+      {
+        "type": "table",
+        "caption": "Häufige Endungen für männliche und weibliche Substantive",
+        "headers": [
+          "Endung",
+          "Genus",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "-o",
+            "meist männlich",
+            "el libro (das Buch)"
+          ],
+          [
+            "-a",
+            "meist weiblich",
+            "la mesa (der Tisch)"
+          ],
+          [
+            "-or",
+            "meist männlich",
+            "el color (die Farbe)"
+          ],
+          [
+            "-ción, -sión",
+            "weiblich",
+            "la canción (das Lied)"
+          ],
+          [
+            "-dad, -tad",
+            "weiblich",
+            "la ciudad (die Stadt)"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Pluralbildung"
+      },
+      {
+        "type": "table",
+        "caption": "Regeln für den Plural",
+        "headers": [
+          "Wortende",
+          "Regel",
+          "Singular → Plural"
+        ],
+        "rows": [
+          [
+            "Vokal",
+            "+ -s",
+            "el gato → los gatos"
+          ],
+          [
+            "Konsonant",
+            "+ -es",
+            "el papel → los papeles"
+          ],
+          [
+            "-z",
+            "-z wird zu -c + -es",
+            "el lápiz → los lápices"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Passenden Artikel wählen",
+            "es": "El coche es nuevo y la casa es grande.",
+            "de": "Das Auto ist neu und das Haus ist groß."
+          },
+          {
+            "title": "Vom Singular zum Plural",
+            "es": "Tengo un amigo. Tengo tres amigos.",
+            "de": "Ich habe einen Freund. Ich habe drei Freunde."
+          },
+          {
+            "title": "Weibliche Endungen erkennen",
+            "es": "La libertad y la información son importantes.",
+            "de": "Die Freiheit und die Information sind wichtig."
+          },
+          {
+            "title": "Plural bei gemischten Gruppen",
+            "es": "Los padres están en casa.",
+            "de": "Die Eltern sind zu Hause."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Ausnahmen und Sonderfälle"
+      },
+      {
+        "type": "table",
+        "caption": "Wörter, die der Endungsregel widersprechen",
+        "headers": [
+          "Wort",
+          "Genus",
+          "Bedeutung"
+        ],
+        "rows": [
+          [
+            "el día",
+            "männlich",
+            "der Tag (endet auf -a)"
+          ],
+          [
+            "la mano",
+            "weiblich",
+            "die Hand (endet auf -o)"
+          ],
+          [
+            "el problema",
+            "männlich",
+            "das Problem (endet auf -a)"
+          ],
+          [
+            "el mapa",
+            "männlich",
+            "die Landkarte (endet auf -a)"
+          ],
+          [
+            "la foto",
+            "weiblich",
+            "das Foto (Kurzform von la fotografía)"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Verlass dich nicht auf das deutsche Genus: Spanisch und Deutsch stimmen oft nicht überein. 'die Milch' ist im Spanischen männlich? Nein – aber 'der Tisch' ist weiblich (la mesa) und 'das Auto' ist männlich (el coche). Lern jedes Substantiv immer zusammen mit seinem Artikel."
+      }
+    ]
+  },
+  "adjetivos-concordancia-posicion": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Adjektive beschreiben Substantive, zum Beispiel ihre Farbe, Größe oder Eigenschaft. Im Spanischen richten sie sich in Geschlecht und Zahl nach dem Substantiv und stehen meistens dahinter. Das ist grundlegend, um im Alltag Dinge und Personen korrekt zu beschreiben."
+      },
+      {
+        "type": "heading",
+        "text": "Angleichung in Geschlecht und Zahl"
+      },
+      {
+        "type": "table",
+        "caption": "Adjektive auf -o (vier Formen)",
+        "headers": [
+          "",
+          "männlich",
+          "weiblich"
+        ],
+        "rows": [
+          [
+            "Singular",
+            "el coche rojo",
+            "la casa roja"
+          ],
+          [
+            "Plural",
+            "los coches rojos",
+            "las casas rojas"
+          ]
+        ]
+      },
+      {
+        "type": "table",
+        "caption": "Adjektive auf -e oder Konsonant (zwei Formen)",
+        "headers": [
+          "",
+          "Singular",
+          "Plural"
+        ],
+        "rows": [
+          [
+            "auf -e (grande)",
+            "un libro grande / una mesa grande",
+            "libros grandes / mesas grandes"
+          ],
+          [
+            "auf Konsonant (azul)",
+            "un jersey azul / una falda azul",
+            "jerséis azules / faldas azules"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Eigenschaft einer Person beschreiben",
+            "es": "Mi hermana es muy alta.",
+            "de": "Meine Schwester ist sehr groß."
+          },
+          {
+            "title": "Angleichung im Plural",
+            "es": "Los pisos nuevos son caros.",
+            "de": "Die neuen Wohnungen sind teuer."
+          },
+          {
+            "title": "Adjektiv nach dem Substantiv",
+            "es": "Quiero una camisa blanca.",
+            "de": "Ich möchte ein weißes Hemd."
+          },
+          {
+            "title": "Ein Adjektiv für zwei Substantive (männlich Plural)",
+            "es": "El padre y la madre están cansados.",
+            "de": "Der Vater und die Mutter sind müde."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Stellung: einige Adjektive stehen davor"
+      },
+      {
+        "type": "table",
+        "caption": "Vorangestellte Adjektive und Kurzformen",
+        "headers": [
+          "",
+          "vor Substantiv",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "bueno",
+            "buen (vor männl. Sing.)",
+            "un buen amigo"
+          ],
+          [
+            "malo",
+            "mal (vor männl. Sing.)",
+            "un mal día"
+          ],
+          [
+            "grande",
+            "gran (Sing. m/w)",
+            "una gran ciudad"
+          ],
+          [
+            "Ordnungszahl",
+            "primer, tercer (vor männl. Sing.)",
+            "el primer piso"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche stellen das Adjektiv oft vor das Substantiv, wie im Deutschen ('ein rotes Auto'). Im Spanischen steht es normalerweise dahinter: 'un coche rojo', nicht 'un rojo coche'."
+      }
+    ]
+  },
+  "pronombres-personales": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Die pronombres personales sind die Subjektpronomen: sie ersetzen die handelnde Person im Satz. Im Spanischen werden sie oft weggelassen, weil die Verbendung schon zeigt, wer gemeint ist. Wichtig sind sie aber zur Betonung, zum Kontrast und in der höflichen Anrede."
+      },
+      {
+        "type": "heading",
+        "text": "Die Formen"
+      },
+      {
+        "type": "table",
+        "caption": "Subjektpronomen im Überblick",
+        "headers": [
+          "",
+          "Singular",
+          "Plural"
+        ],
+        "rows": [
+          [
+            "1. Person",
+            "yo",
+            "nosotros, nosotras"
+          ],
+          [
+            "2. Person",
+            "tú",
+            "vosotros, vosotras"
+          ],
+          [
+            "3. Person",
+            "él, ella, usted",
+            "ellos, ellas, ustedes"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "nosotras, vosotras und ellas werden nur verwendet, wenn die Gruppe ausschließlich aus weiblichen Personen besteht. Sobald mindestens ein Mann dabei ist, stehen die maskulinen Formen nosotros, vosotros, ellos. usted und ustedes sind die höflichen Anredeformen, werden aber grammatisch mit der 3. Person verbunden."
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Betonung oder Kontrast",
+            "es": "Yo trabajo en Madrid, pero ella vive en Sevilla.",
+            "de": "Ich arbeite in Madrid, aber sie wohnt in Sevilla."
+          },
+          {
+            "title": "Höfliche Anrede (Sie)",
+            "es": "¿Usted quiere un café?",
+            "de": "Möchten Sie einen Kaffee?"
+          },
+          {
+            "title": "Vertraute Anrede in Spanien (ihr)",
+            "es": "¿Vosotros venís a la fiesta?",
+            "de": "Kommt ihr zur Party?"
+          },
+          {
+            "title": "Weggelassen, weil klar aus dem Verb",
+            "es": "Hablo español.",
+            "de": "Ich spreche Spanisch."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Besonderheiten in Spanien"
+      },
+      {
+        "type": "table",
+        "caption": "Anrede: vertraut vs. höflich",
+        "headers": [
+          "",
+          "vertraut",
+          "höflich"
+        ],
+        "rows": [
+          [
+            "Singular",
+            "tú",
+            "usted"
+          ],
+          [
+            "Plural",
+            "vosotros, vosotras",
+            "ustedes"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutschsprachige benutzen die Subjektpronomen zu oft. Da die Verbendung die Person schon anzeigt, klingt 'Yo soy alemán, yo vivo en España, yo trabajo aquí' unnatürlich. Setze das Pronomen nur bei Betonung oder Kontrast; normalerweise reicht 'Soy alemán, vivo en España, trabajo aquí'."
+      }
+    ]
+  },
+  "pronombres-posesivos": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Possessivbegleiter (posesivos) drücken aus, wem etwas gehört: mein Haus, dein Auto, seine Katze. Sie stehen vor dem Substantiv und richten sich in der Anzahl (Singular/Plural) danach, bei nuestro und vuestro auch im Geschlecht. Sie ersetzen dabei den Artikel."
+      },
+      {
+        "type": "heading",
+        "text": "Die Possessivbegleiter (unbetonte Form)"
+      },
+      {
+        "type": "table",
+        "caption": "Formen im Singular und Plural des besessenen Objekts",
+        "headers": [
+          "",
+          "ein Objekt (Singular)",
+          "mehrere Objekte (Plural)"
+        ],
+        "rows": [
+          [
+            "yo",
+            "mi",
+            "mis"
+          ],
+          [
+            "tú",
+            "tu",
+            "tus"
+          ],
+          [
+            "él, ella, usted",
+            "su",
+            "sus"
+          ],
+          [
+            "nosotros, nosotras",
+            "nuestro / nuestra",
+            "nuestros / nuestras"
+          ],
+          [
+            "vosotros, vosotras",
+            "vuestro / vuestra",
+            "vuestros / vuestras"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "su",
+            "sus"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Wichtig: mi, tu, su und ihre Pluralformen haben nur eine Geschlechtsform. Nur nuestro und vuestro unterscheiden zwischen männlich (-o) und weiblich (-a)."
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Besitz einer Person",
+            "es": "Mi coche está en la calle.",
+            "de": "Mein Auto steht auf der Straße."
+          },
+          {
+            "title": "Zugehörigkeit im Plural (Objekt)",
+            "es": "Tus llaves están en la mesa.",
+            "de": "Deine Schlüssel liegen auf dem Tisch."
+          },
+          {
+            "title": "Übereinstimmung mit nosotros",
+            "es": "Nuestra casa es muy grande.",
+            "de": "Unser Haus ist sehr groß."
+          },
+          {
+            "title": "Vosotros-Form (Spanien)",
+            "es": "¿Dónde están vuestros hijos?",
+            "de": "Wo sind eure Kinder?"
+          },
+          {
+            "title": "Familie und Beziehungen",
+            "es": "Su madre vive en Sevilla.",
+            "de": "Seine/ihre Mutter wohnt in Sevilla."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Die betonte Form (Possessivpronomen)"
+      },
+      {
+        "type": "table",
+        "caption": "Betonte Formen, oft mit Artikel: el mío, la tuya …",
+        "headers": [
+          "",
+          "männlich Sg.",
+          "weiblich Sg.",
+          "männlich Pl.",
+          "weiblich Pl."
+        ],
+        "rows": [
+          [
+            "yo",
+            "mío",
+            "mía",
+            "míos",
+            "mías"
+          ],
+          [
+            "tú",
+            "tuyo",
+            "tuya",
+            "tuyos",
+            "tuyas"
+          ],
+          [
+            "él, ella, usted",
+            "suyo",
+            "suya",
+            "suyos",
+            "suyas"
+          ],
+          [
+            "nosotros, nosotras",
+            "nuestro",
+            "nuestra",
+            "nuestros",
+            "nuestras"
+          ],
+          [
+            "vosotros, vosotras",
+            "vuestro",
+            "vuestra",
+            "vuestros",
+            "vuestras"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "suyo",
+            "suya",
+            "suyos",
+            "suyas"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Die betonte Form steht nach dem Substantiv (un amigo mío = ein Freund von mir) oder allein mit Artikel (el mío = meiner). Beispiel: Esta maleta es mía. (Dieser Koffer gehört mir.)"
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Der häufigste Fehler: die Possessivbegleiter mit dem Geschlecht des Besitzers statt des Objekts abgleichen. Es heißt su casa – egal ob 'er', 'sie' oder 'Sie' gemeint ist. Und mi, tu, su bekommen NIE ein -a oder -o (nicht 'mia casa', sondern mi casa)."
+      }
+    ]
+  },
+  "ser-estar-tener": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Ser, estar und tener sind die drei wichtigsten Grundverben. Ser drückt dauerhafte Eigenschaften und Identität aus, estar bezeichnet Zustände und Orte, und tener bedeutet haben oder besitzen. Ohne diese drei Verben lässt sich kaum ein Satz bilden, deshalb bilden sie das Fundament des Spanischen."
+      },
+      {
+        "type": "heading",
+        "text": "Die Konjugation im Präsens"
+      },
+      {
+        "type": "table",
+        "caption": "Ser, estar und tener im Presente de indicativo",
+        "headers": [
+          "",
+          "ser",
+          "estar",
+          "tener"
+        ],
+        "rows": [
+          [
+            "yo",
+            "soy",
+            "estoy",
+            "tengo"
+          ],
+          [
+            "tú",
+            "eres",
+            "estás",
+            "tienes"
+          ],
+          [
+            "él, ella, usted",
+            "es",
+            "está",
+            "tiene"
+          ],
+          [
+            "nosotros, nosotras",
+            "somos",
+            "estamos",
+            "tenemos"
+          ],
+          [
+            "vosotros, vosotras",
+            "sois",
+            "estáis",
+            "tenéis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "son",
+            "están",
+            "tienen"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Ser: Identität, Beruf, Herkunft",
+            "es": "Soy alemana y soy profesora.",
+            "de": "Ich bin Deutsche und ich bin Lehrerin."
+          },
+          {
+            "title": "Ser: dauerhafte Eigenschaften",
+            "es": "La casa es grande y blanca.",
+            "de": "Das Haus ist groß und weiß."
+          },
+          {
+            "title": "Estar: Ort",
+            "es": "El supermercado está en la esquina.",
+            "de": "Der Supermarkt ist an der Ecke."
+          },
+          {
+            "title": "Estar: vorübergehender Zustand",
+            "es": "Hoy estoy muy cansado.",
+            "de": "Heute bin ich sehr müde."
+          },
+          {
+            "title": "Tener: Besitz und Alter",
+            "es": "Tengo dos hijos y tengo cuarenta años.",
+            "de": "Ich habe zwei Kinder und ich bin vierzig Jahre alt."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Feste Ausdrücke mit tener"
+      },
+      {
+        "type": "table",
+        "caption": "Häufige Wendungen, in denen tener statt ser oder estar steht",
+        "headers": [
+          "Spanisch",
+          "Deutsch"
+        ],
+        "rows": [
+          [
+            "tener hambre",
+            "Hunger haben"
+          ],
+          [
+            "tener sed",
+            "Durst haben"
+          ],
+          [
+            "tener frío",
+            "frieren / kalt haben"
+          ],
+          [
+            "tener calor",
+            "warm haben / schwitzen"
+          ],
+          [
+            "tener miedo",
+            "Angst haben"
+          ],
+          [
+            "tener razón",
+            "recht haben"
+          ],
+          [
+            "tener ... años",
+            "... Jahre alt sein"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Verwechsle ser und estar nicht: Deutsch hat nur „sein\". Ort und vorübergehender Zustand verlangen estar (Estoy en Madrid, estoy enfermo), Identität und dauerhafte Eigenschaft verlangen ser (Soy médico). Und Alter oder Hunger stehen mit tener: sag Tengo treinta años, niemals „soy treinta años\", und Tengo hambre, nicht „estoy hambre\"."
+      }
+    ]
+  },
+  "hay-estar": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Mit hay und estar drückst du im Spanischen unterschiedliche Dinge aus: hay bedeutet „es gibt“ und benennt die bloße Existenz von etwas. Estar bedeutet „sich befinden“ und beschreibt, wo etwas Bestimmtes liegt. Die Unterscheidung ist wichtig, weil beide im Deutschen oft mit „ist“ übersetzt werden."
+      },
+      {
+        "type": "heading",
+        "text": "Die beiden Formen im Überblick"
+      },
+      {
+        "type": "table",
+        "caption": "Hay ist unveränderlich; estar wird konjugiert.",
+        "headers": [
+          "",
+          "Form"
+        ],
+        "rows": [
+          [
+            "hay (Existenz)",
+            "hay"
+          ],
+          [
+            "yo",
+            "estoy"
+          ],
+          [
+            "tú",
+            "estás"
+          ],
+          [
+            "él, ella, usted",
+            "está"
+          ],
+          [
+            "nosotros, nosotras",
+            "estamos"
+          ],
+          [
+            "vosotros, vosotras",
+            "estáis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "están"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Faustregel: hay steht mit unbestimmten Dingen (un, una, unos, unas), mit Zahlen oder mit unbestimmten Mengen. Estar steht mit bestimmten Dingen (el, la, los, las), mit Eigennamen oder mit Possessivbegleitern."
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Existenz benennen (hay)",
+            "es": "En la plaza hay un supermercado.",
+            "de": "Auf dem Platz gibt es einen Supermarkt."
+          },
+          {
+            "title": "Menge oder Zahl angeben (hay)",
+            "es": "Hay tres bancos en esta calle.",
+            "de": "Es gibt drei Banken in dieser Straße."
+          },
+          {
+            "title": "Standort von etwas Bestimmtem (estar)",
+            "es": "El supermercado está al lado de la farmacia.",
+            "de": "Der Supermarkt befindet sich neben der Apotheke."
+          },
+          {
+            "title": "Wo sich Personen befinden (estar)",
+            "es": "Mis padres están en casa.",
+            "de": "Meine Eltern sind zu Hause."
+          },
+          {
+            "title": "Nach dem Weg fragen (estar)",
+            "es": "¿Dónde está el baño, por favor?",
+            "de": "Wo ist die Toilette, bitte?"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Bestimmt oder unbestimmt: der Unterschied im Satz"
+      },
+      {
+        "type": "table",
+        "caption": "Derselbe Ort, aber andere Perspektive.",
+        "headers": [
+          "",
+          "hay (unbestimmt)",
+          "estar (bestimmt)"
+        ],
+        "rows": [
+          [
+            "Beispiel",
+            "Hay una parada de metro cerca.",
+            "La parada de metro está cerca."
+          ],
+          [
+            "Deutsch",
+            "Es gibt eine Metrostation in der Nähe.",
+            "Die Metrostation ist in der Nähe."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche Muttersprachler sagen oft fälschlich „El supermercado hay al lado de la farmacia“. Mit einem bestimmten Artikel (el, la, los, las), Eigennamen oder Possessiv muss estar stehen: „El supermercado está al lado de la farmacia.“ Hay verwendest du nie zusammen mit el, la, los oder las."
+      }
+    ]
+  },
+  "muy-mucho": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Muy und mucho werden im Deutschen oft beide mit „sehr\" oder „viel\" wiedergegeben, funktionieren aber unterschiedlich. Muy verstärkt Adjektive und Adverbien, mucho drückt eine große Menge oder Intensität aus. Wer beide unterscheidet, vermeidet einen der häufigsten A1-Fehler."
+      },
+      {
+        "type": "heading",
+        "text": "Die Grundregel"
+      },
+      {
+        "type": "table",
+        "caption": "Muy und mucho im Überblick",
+        "headers": [
+          "Wort",
+          "Funktion",
+          "Veränderlich?"
+        ],
+        "rows": [
+          [
+            "muy",
+            "verstärkt Adjektiv oder Adverb",
+            "unveränderlich"
+          ],
+          [
+            "mucho/-a/-os/-as",
+            "Menge vor Substantiv",
+            "richtet sich nach Genus und Numerus"
+          ],
+          [
+            "mucho",
+            "Intensität nach Verb",
+            "unveränderlich"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Formen von mucho vor dem Substantiv"
+      },
+      {
+        "type": "table",
+        "caption": "Anpassung von mucho an das Substantiv",
+        "headers": [
+          "",
+          "männlich",
+          "weiblich"
+        ],
+        "rows": [
+          [
+            "Singular",
+            "mucho",
+            "mucha"
+          ],
+          [
+            "Plural",
+            "muchos",
+            "muchas"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Muy vor einem Adjektiv",
+            "es": "La casa es muy grande.",
+            "de": "Das Haus ist sehr groß."
+          },
+          {
+            "title": "Muy vor einem Adverb",
+            "es": "Hablas muy bien español.",
+            "de": "Du sprichst sehr gut Spanisch."
+          },
+          {
+            "title": "Mucho vor einem Substantiv (angepasst)",
+            "es": "Tengo mucha hambre y muchos amigos.",
+            "de": "Ich habe großen Hunger und viele Freunde."
+          },
+          {
+            "title": "Mucho nach einem Verb (unveränderlich)",
+            "es": "Vosotros trabajáis mucho.",
+            "de": "Ihr arbeitet viel."
+          },
+          {
+            "title": "Mucho allein für Menge",
+            "es": "¿Comes mucho? — Sí, como mucho.",
+            "de": "Isst du viel? — Ja, ich esse viel."
+          }
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche sagen oft fälschlich „muy mucho\" oder „muy calor\". Vor Substantiven wie calor, hambre, frío steht mucho/mucha (mucho calor, mucha hambre), niemals muy. Und muy kombiniert nie direkt mit mucho: für „sehr viel\" sagt man muchísimo, nicht „muy mucho\"."
+      }
+    ]
+  },
+  "presente-indicativo-1": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Das Presente de Indicativo beschreibt Handlungen in der Gegenwart, regelmäßige Abläufe und allgemeine Tatsachen. Spanische Verben enden im Infinitiv auf -ar, -er oder -ir. Bei regelmäßigen Verben wird die Endung abgetrennt und durch die passende Personalendung ersetzt."
+      },
+      {
+        "type": "heading",
+        "text": "Die drei Konjugationen"
+      },
+      {
+        "type": "table",
+        "caption": "Beispielverben: hablar (sprechen), comer (essen), vivir (leben)",
+        "headers": [
+          "",
+          "hablar (-ar)",
+          "comer (-er)",
+          "vivir (-ir)"
+        ],
+        "rows": [
+          [
+            "yo",
+            "hablo",
+            "como",
+            "vivo"
+          ],
+          [
+            "tú",
+            "hablas",
+            "comes",
+            "vives"
+          ],
+          [
+            "él, ella, usted",
+            "habla",
+            "come",
+            "vive"
+          ],
+          [
+            "nosotros, nosotras",
+            "hablamos",
+            "comemos",
+            "vivimos"
+          ],
+          [
+            "vosotros, vosotras",
+            "habláis",
+            "coméis",
+            "vivís"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "hablan",
+            "comen",
+            "viven"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Die Endungen im Überblick"
+      },
+      {
+        "type": "table",
+        "caption": "Personalendungen der regelmäßigen Verben",
+        "headers": [
+          "",
+          "-ar",
+          "-er",
+          "-ir"
+        ],
+        "rows": [
+          [
+            "yo",
+            "-o",
+            "-o",
+            "-o"
+          ],
+          [
+            "tú",
+            "-as",
+            "-es",
+            "-es"
+          ],
+          [
+            "él, ella, usted",
+            "-a",
+            "-e",
+            "-e"
+          ],
+          [
+            "nosotros, nosotras",
+            "-amos",
+            "-emos",
+            "-imos"
+          ],
+          [
+            "vosotros, vosotras",
+            "-áis",
+            "-éis",
+            "-ís"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "-an",
+            "-en",
+            "-en"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Gewohnheiten und Routinen",
+            "es": "Todos los días trabajo en casa.",
+            "de": "Jeden Tag arbeite ich zu Hause."
+          },
+          {
+            "title": "Allgemeine Tatsachen",
+            "es": "Los españoles cenan muy tarde.",
+            "de": "Die Spanier essen sehr spät zu Abend."
+          },
+          {
+            "title": "Aktuelle Handlungen",
+            "es": "Ahora leo el periódico.",
+            "de": "Jetzt lese ich die Zeitung."
+          },
+          {
+            "title": "Vorlieben und Meinungen ausdrücken",
+            "es": "Comemos mucha fruta en verano.",
+            "de": "Im Sommer essen wir viel Obst."
+          }
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Weil das Subjekt aus der Verbendung hervorgeht, werden die Personalpronomen (yo, tú ...) meist weggelassen. Deutschsprachige setzen sie oft aus Gewohnheit dazu: nicht 'yo hablo español' im Normalfall, sondern einfach 'hablo español'. Das Pronomen wird nur zur Betonung oder zum Kontrast verwendet."
+      }
+    ]
+  },
+  "pronombres-demostrativos": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Die pronombres demostrativos (Demonstrativa) zeigen auf Dinge oder Personen und drücken deren Nähe zum Sprecher aus. Sie unterscheiden drei Entfernungen: este (hier bei mir), ese (dort bei dir) und aquel (weiter weg). Sie richten sich in Genus und Numerus nach dem Substantiv."
+      },
+      {
+        "type": "heading",
+        "text": "Die Formen der Demonstrativa"
+      },
+      {
+        "type": "table",
+        "caption": "este – Nähe zum Sprecher (hier)",
+        "headers": [
+          "",
+          "männlich",
+          "weiblich"
+        ],
+        "rows": [
+          [
+            "Singular",
+            "este",
+            "esta"
+          ],
+          [
+            "Plural",
+            "estos",
+            "estas"
+          ]
+        ]
+      },
+      {
+        "type": "table",
+        "caption": "ese – Nähe zum Angesprochenen (da)",
+        "headers": [
+          "",
+          "männlich",
+          "weiblich"
+        ],
+        "rows": [
+          [
+            "Singular",
+            "ese",
+            "esa"
+          ],
+          [
+            "Plural",
+            "esos",
+            "esas"
+          ]
+        ]
+      },
+      {
+        "type": "table",
+        "caption": "aquel – entfernt von beiden (dort drüben)",
+        "headers": [
+          "",
+          "männlich",
+          "weiblich"
+        ],
+        "rows": [
+          [
+            "Singular",
+            "aquel",
+            "aquella"
+          ],
+          [
+            "Plural",
+            "aquellos",
+            "aquellas"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Etwas Nahes zeigen",
+            "es": "Este libro es muy interesante.",
+            "de": "Dieses Buch (hier) ist sehr interessant."
+          },
+          {
+            "title": "Etwas beim Gesprächspartner zeigen",
+            "es": "¿Me pasas esa botella?",
+            "de": "Reichst du mir diese Flasche (da)?"
+          },
+          {
+            "title": "Etwas Entferntes zeigen",
+            "es": "Aquella montaña es la más alta.",
+            "de": "Jener Berg (dort drüben) ist der höchste."
+          },
+          {
+            "title": "Zeitliche Nähe ausdrücken",
+            "es": "Esta semana tengo mucho trabajo.",
+            "de": "Diese Woche habe ich viel Arbeit."
+          },
+          {
+            "title": "Allein stehend als Pronomen",
+            "es": "No quiero este, prefiero ese.",
+            "de": "Ich will nicht diesen, ich bevorzuge jenen."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Neutrale Formen: esto, eso, aquello"
+      },
+      {
+        "type": "table",
+        "caption": "Für nicht identifizierte Dinge oder ganze Sachverhalte (unveränderlich)",
+        "headers": [
+          "Form",
+          "Bedeutung",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "esto",
+            "das hier",
+            "¿Qué es esto?"
+          ],
+          [
+            "eso",
+            "das da",
+            "Eso no es verdad."
+          ],
+          [
+            "aquello",
+            "das dort",
+            "Aquello fue increíble."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Die neutralen Formen esto, eso, aquello nie mit einem Substantiv kombinieren. Falsch ist 'esto libro' – vor einem maskulinen Substantiv steht este libro. Esto/eso/aquello stehen nur allein, wenn die Sache unbekannt oder abstrakt ist (¿Qué es esto?)."
+      }
+    ]
+  },
+  "interrogativos": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Interrogativos sind Fragewörter, mit denen man gezielt nach Personen, Dingen, Orten, Zeit oder Gründen fragt. Sie stehen am Anfang der Frage und tragen im Spanischen immer einen Akzent (Tilde). Ohne sie kann man nur Ja/Nein-Fragen stellen."
+      },
+      {
+        "type": "heading",
+        "text": "Die wichtigsten Fragewörter"
+      },
+      {
+        "type": "table",
+        "caption": "Fragewörter und ihre Bedeutung",
+        "headers": [
+          "Fragewort",
+          "Bedeutung"
+        ],
+        "rows": [
+          [
+            "¿qué?",
+            "was? / welche(r)?"
+          ],
+          [
+            "¿cuál? / ¿cuáles?",
+            "welche(r)? (Auswahl)"
+          ],
+          [
+            "¿quién? / ¿quiénes?",
+            "wer?"
+          ],
+          [
+            "¿cómo?",
+            "wie?"
+          ],
+          [
+            "¿dónde?",
+            "wo?"
+          ],
+          [
+            "¿adónde?",
+            "wohin?"
+          ],
+          [
+            "¿cuándo?",
+            "wann?"
+          ],
+          [
+            "¿cuánto? / ¿cuánta? / ¿cuántos? / ¿cuántas?",
+            "wie viel? / wie viele?"
+          ],
+          [
+            "¿por qué?",
+            "warum?"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Formen mit Angleichung"
+      },
+      {
+        "type": "table",
+        "caption": "quién, cuál und cuánto passen sich an",
+        "headers": [
+          "",
+          "Singular",
+          "Plural"
+        ],
+        "rows": [
+          [
+            "quién (Person)",
+            "quién",
+            "quiénes"
+          ],
+          [
+            "cuál (Auswahl)",
+            "cuál",
+            "cuáles"
+          ],
+          [
+            "cuánto (maskulin)",
+            "cuánto",
+            "cuántos"
+          ],
+          [
+            "cuánta (feminin)",
+            "cuánta",
+            "cuántas"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Nach einer Sache oder Definition fragen",
+            "es": "¿Qué es esto?",
+            "de": "Was ist das?"
+          },
+          {
+            "title": "Aus einer Auswahl wählen (cuál)",
+            "es": "¿Cuál prefieres, el rojo o el azul?",
+            "de": "Welchen bevorzugst du, den roten oder den blauen?"
+          },
+          {
+            "title": "Nach einer Person fragen",
+            "es": "¿Quiénes son vuestros amigos?",
+            "de": "Wer sind eure Freunde?"
+          },
+          {
+            "title": "Nach Ort und Zeit fragen",
+            "es": "¿Dónde vivís y cuándo llegáis?",
+            "de": "Wo wohnt ihr und wann kommt ihr an?"
+          },
+          {
+            "title": "Nach Menge fragen (angeglichen)",
+            "es": "¿Cuántas hermanas tienes?",
+            "de": "Wie viele Schwestern hast du?"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "qué oder cuál vor einem Substantiv"
+      },
+      {
+        "type": "table",
+        "caption": "Unterschied qué / cuál",
+        "headers": [
+          "Fragewort",
+          "Gebrauch",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "qué + Substantiv",
+            "fragt allgemein nach Art/Sorte",
+            "¿Qué libro lees?"
+          ],
+          [
+            "cuál (ohne Substantiv)",
+            "fragt nach Auswahl aus bekannten Optionen",
+            "¿Cuál lees?"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche übersetzen „welcher?“ oft mit cuál vor einem Substantiv – aber vor einem Substantiv steht im Spanien-Spanisch normalerweise qué: nicht „¿cuál libro?“, sondern „¿qué libro?“. Cuál benutzt man ohne folgendes Substantiv: „¿cuál de los libros?“."
+      }
+    ]
+  },
+  "conjunciones": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Conjunciones sind Bindewörter. Sie verbinden Wörter, Satzteile oder ganze Sätze miteinander und drücken Beziehungen aus: Hinzufügung, Gegensatz, Grund oder Wahl. Ohne sie wirken Sätze abgehackt. Hier lernst du die wichtigsten Bindewörter des Alltags und wann man sie benutzt."
+      },
+      {
+        "type": "heading",
+        "text": "Die wichtigsten Bindewörter"
+      },
+      {
+        "type": "table",
+        "caption": "Grundlegende Konjunktionen",
+        "headers": [
+          "Bindewort",
+          "Bedeutung",
+          "Funktion"
+        ],
+        "rows": [
+          [
+            "y",
+            "und",
+            "Hinzufügung"
+          ],
+          [
+            "o",
+            "oder",
+            "Auswahl"
+          ],
+          [
+            "pero",
+            "aber",
+            "Gegensatz"
+          ],
+          [
+            "porque",
+            "weil",
+            "Grund"
+          ],
+          [
+            "también",
+            "auch",
+            "Hinzufügung"
+          ],
+          [
+            "ni ... ni",
+            "weder ... noch",
+            "Verneinung"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Formwechsel bei y und o"
+      },
+      {
+        "type": "table",
+        "caption": "y wird zu e, o wird zu u",
+        "headers": [
+          "Normalform",
+          "Sonderform",
+          "Regel"
+        ],
+        "rows": [
+          [
+            "y",
+            "e",
+            "vor Wörtern, die mit i- oder hi- beginnen"
+          ],
+          [
+            "o",
+            "u",
+            "vor Wörtern, die mit o- oder ho- beginnen"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Zwei Dinge verbinden (y)",
+            "es": "Compro pan y leche.",
+            "de": "Ich kaufe Brot und Milch."
+          },
+          {
+            "title": "Einen Gegensatz ausdrücken (pero)",
+            "es": "Quiero salir, pero está lloviendo.",
+            "de": "Ich will rausgehen, aber es regnet."
+          },
+          {
+            "title": "Einen Grund angeben (porque)",
+            "es": "No voy porque estoy cansado.",
+            "de": "Ich gehe nicht, weil ich müde bin."
+          },
+          {
+            "title": "Eine Auswahl anbieten (o)",
+            "es": "¿Tomas té o café?",
+            "de": "Trinkst du Tee oder Kaffee?"
+          },
+          {
+            "title": "y wird zu e vor i-/hi-",
+            "es": "Estudio español e inglés.",
+            "de": "Ich lerne Spanisch und Englisch."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "porque, por qué, porqué und el porqué"
+      },
+      {
+        "type": "table",
+        "caption": "Leicht zu verwechseln",
+        "headers": [
+          "Form",
+          "Bedeutung",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "porque",
+            "weil (Antwort/Grund)",
+            "No como porque no tengo hambre."
+          ],
+          [
+            "por qué",
+            "warum (Frage)",
+            "¿Por qué no vienes?"
+          ],
+          [
+            "el porqué",
+            "der Grund (Substantiv)",
+            "No entiendo el porqué."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Verwechsle nicht das fragende '¿por qué?' (getrennt, mit Akzent = warum) mit dem antwortenden 'porque' (zusammen, ohne Akzent = weil). Deutsche schreiben oft fälschlich 'porqué' als Antwort. Richtig: '¿Por qué estudias español? — Porque vivo en España.'"
+      }
+    ]
+  },
+  "acentuacion": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Die Acentuación regelt, welche Silbe im Spanischen betont wird und wann ein geschriebener Akzent (tilde) nötig ist. Sie hilft beim korrekten Aussprechen und beim Unterscheiden von Wörtern, die sonst gleich aussehen."
+      },
+      {
+        "type": "heading",
+        "text": "Die drei Grundregeln der Betonung"
+      },
+      {
+        "type": "table",
+        "caption": "Wortarten nach betonter Silbe",
+        "headers": [
+          "Typ",
+          "Betonte Silbe",
+          "Akzentregel"
+        ],
+        "rows": [
+          [
+            "palabras agudas",
+            "letzte Silbe",
+            "Akzent nur bei Endung auf Vokal, -n oder -s"
+          ],
+          [
+            "palabras llanas",
+            "vorletzte Silbe",
+            "Akzent außer bei Endung auf Vokal, -n oder -s"
+          ],
+          [
+            "palabras esdrújulas",
+            "drittletzte Silbe",
+            "immer Akzent"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Beispiele zu den Regeln"
+      },
+      {
+        "type": "examples",
+        "items": [
+          {
+            "es": "El sofá es cómodo.",
+            "de": "Das Sofa ist bequem. (aguda mit Akzent + esdrújula)"
+          },
+          {
+            "es": "El árbol está en el jardín.",
+            "de": "Der Baum ist im Garten. (llana mit Akzent, endet auf -l)"
+          },
+          {
+            "es": "Compré una lámpara nueva.",
+            "de": "Ich habe eine neue Lampe gekauft. (esdrújula, immer Akzent)"
+          },
+          {
+            "es": "El reloj no funciona.",
+            "de": "Die Uhr funktioniert nicht. (aguda ohne Akzent, endet auf -j)"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Betonte Endsilbe kennzeichnen",
+            "es": "Voy a hablar con el capitán.",
+            "de": "Ich werde mit dem Kapitän sprechen."
+          },
+          {
+            "title": "Wörter mit gleichem Klang unterscheiden (tilde diacrítica)",
+            "es": "Sé que tú tienes tu libro.",
+            "de": "Ich weiß, dass du dein Buch hast."
+          },
+          {
+            "title": "Fragewörter mit Akzent",
+            "es": "¿Qué quieres? No sé qué comprar.",
+            "de": "Was willst du? Ich weiß nicht, was ich kaufen soll."
+          },
+          {
+            "title": "Verbformen der Vergangenheit",
+            "es": "Ayer hablé con María.",
+            "de": "Gestern habe ich mit María gesprochen."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Tilde diacrítica: gleiche Schreibung, anderer Sinn"
+      },
+      {
+        "type": "table",
+        "caption": "Wortpaare, nur durch den Akzent unterschieden",
+        "headers": [
+          "Ohne Akzent",
+          "Bedeutung",
+          "Mit Akzent",
+          "Bedeutung"
+        ],
+        "rows": [
+          [
+            "tu",
+            "dein",
+            "tú",
+            "du"
+          ],
+          [
+            "el",
+            "der (Artikel)",
+            "él",
+            "er"
+          ],
+          [
+            "mi",
+            "mein",
+            "mí",
+            "mir/mich"
+          ],
+          [
+            "si",
+            "wenn/ob",
+            "sí",
+            "ja/sich"
+          ],
+          [
+            "se",
+            "sich",
+            "sé",
+            "ich weiß"
+          ],
+          [
+            "te",
+            "dich/dir",
+            "té",
+            "Tee"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche Muttersprachler vergessen häufig den Akzent bei den regelmäßigen Vergangenheitsformen wie 'hablé', 'comí' oder 'estudió'. Ohne Akzent ('hable', 'estudio') entsteht eine andere Form oder Zeit — 'estudio' heißt 'ich lerne', 'estudió' heißt 'er/sie lernte'."
+      }
+    ]
+  },
+  "preposiciones": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Präpositionen sind unveränderliche Wörter, die Beziehungen zwischen Wörtern herstellen: Ort, Zeit, Richtung, Zweck oder Zugehörigkeit. Sie sind unverzichtbar, um im Alltag anzugeben, wo etwas ist, wohin man geht oder wann etwas passiert. Im Spanischen entsprechen sie oft nicht eins zu eins den deutschen Präpositionen."
+      },
+      {
+        "type": "heading",
+        "text": "Die wichtigsten Präpositionen"
+      },
+      {
+        "type": "table",
+        "caption": "Grundbedeutungen",
+        "headers": [
+          "Präposition",
+          "Bedeutung"
+        ],
+        "rows": [
+          [
+            "a",
+            "zu, nach, um (Zeit/Richtung)"
+          ],
+          [
+            "de",
+            "von, aus, über (Herkunft/Besitz)"
+          ],
+          [
+            "en",
+            "in, auf, an (Ort)"
+          ],
+          [
+            "con",
+            "mit"
+          ],
+          [
+            "sin",
+            "ohne"
+          ],
+          [
+            "por",
+            "wegen, durch, per, für"
+          ],
+          [
+            "para",
+            "für, um zu, nach (Ziel/Zweck)"
+          ],
+          [
+            "desde",
+            "seit, von ... an"
+          ],
+          [
+            "hasta",
+            "bis"
+          ],
+          [
+            "entre",
+            "zwischen"
+          ],
+          [
+            "sobre",
+            "auf, über"
+          ],
+          [
+            "hacia",
+            "in Richtung"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Ort angeben (en)",
+            "es": "Las llaves están en la mesa.",
+            "de": "Die Schlüssel sind auf dem Tisch."
+          },
+          {
+            "title": "Richtung/Ziel (a)",
+            "es": "Vamos a Madrid este fin de semana.",
+            "de": "Wir fahren dieses Wochenende nach Madrid."
+          },
+          {
+            "title": "Herkunft und Besitz (de)",
+            "es": "Soy de Alemania y este coche es de mi hermano.",
+            "de": "Ich komme aus Deutschland und dieses Auto gehört meinem Bruder."
+          },
+          {
+            "title": "Begleitung (con / sin)",
+            "es": "¿Venís con nosotros o vais sin paraguas?",
+            "de": "Kommt ihr mit uns oder geht ihr ohne Regenschirm?"
+          },
+          {
+            "title": "Zeitspanne (desde ... hasta)",
+            "es": "Trabajo desde las nueve hasta las cinco.",
+            "de": "Ich arbeite von neun bis fünf."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "por oder para?"
+      },
+      {
+        "type": "table",
+        "caption": "Unterscheidung von por und para",
+        "headers": [
+          "Verwendung",
+          "Beispiel (es)",
+          "Übersetzung"
+        ],
+        "rows": [
+          [
+            "Grund/Ursache (por)",
+            "Gracias por tu ayuda.",
+            "Danke für deine Hilfe."
+          ],
+          [
+            "Durch einen Ort (por)",
+            "Paseamos por el parque.",
+            "Wir spazieren durch den Park."
+          ],
+          [
+            "Zweck/Ziel (para)",
+            "Este regalo es para ti.",
+            "Dieses Geschenk ist für dich."
+          ],
+          [
+            "Frist (para)",
+            "Lo necesito para el lunes.",
+            "Ich brauche es bis Montag (Frist)."
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verschmelzungen a + el / de + el"
+      },
+      {
+        "type": "table",
+        "caption": "Pflichtkontraktionen mit dem Artikel el",
+        "headers": [
+          "Kombination",
+          "Ergebnis",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "a + el",
+            "al",
+            "Voy al médico."
+          ],
+          [
+            "de + el",
+            "del",
+            "Vengo del trabajo."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche verwechseln oft por und para, weil beide 'für' bedeuten können. Merke: por nennt den Grund (por el tráfico = wegen des Verkehrs), para den Zweck oder Empfänger (para el trabajo = für die Arbeit). Außerdem sind al und del Pflicht: nie 'a el' oder 'de el' schreiben."
+      }
+    ]
+  },
+  "presente-indicativo-2": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Viele häufige spanische Verben folgen im Präsens nicht dem regelmäßigen Muster. Sie ändern den Vokal im Stamm oder haben besondere Formen. Diese Verben brauchst du täglich, denn dazu gehören querer, poder, dormir, pedir oder hacer."
+      },
+      {
+        "type": "heading",
+        "text": "Diphthongierung: e → ie und o → ue"
+      },
+      {
+        "type": "table",
+        "caption": "Der Stammvokal ändert sich in allen Formen außer bei nosotros/vosotros.",
+        "headers": [
+          "",
+          "querer (wollen)",
+          "poder (können)"
+        ],
+        "rows": [
+          [
+            "yo",
+            "quiero",
+            "puedo"
+          ],
+          [
+            "tú",
+            "quieres",
+            "puedes"
+          ],
+          [
+            "él, ella, usted",
+            "quiere",
+            "puede"
+          ],
+          [
+            "nosotros, nosotras",
+            "queremos",
+            "podemos"
+          ],
+          [
+            "vosotros, vosotras",
+            "queréis",
+            "podéis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "quieren",
+            "pueden"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Vokalwechsel e → i"
+      },
+      {
+        "type": "table",
+        "caption": "Nur bei einigen Verben auf -ir; nosotros/vosotros bleiben unverändert.",
+        "headers": [
+          "",
+          "pedir (bitten)",
+          "seguir (folgen)"
+        ],
+        "rows": [
+          [
+            "yo",
+            "pido",
+            "sigo"
+          ],
+          [
+            "tú",
+            "pides",
+            "sigues"
+          ],
+          [
+            "él, ella, usted",
+            "pide",
+            "sigue"
+          ],
+          [
+            "nosotros, nosotras",
+            "pedimos",
+            "seguimos"
+          ],
+          [
+            "vosotros, vosotras",
+            "pedís",
+            "seguís"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "piden",
+            "siguen"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige erste Person (yo)"
+      },
+      {
+        "type": "table",
+        "caption": "Nur die yo-Form ist unregelmäßig, der Rest ist regelmäßig.",
+        "headers": [
+          "",
+          "hacer (machen)",
+          "poner (setzen)",
+          "salir (hinausgehen)"
+        ],
+        "rows": [
+          [
+            "yo",
+            "hago",
+            "pongo",
+            "salgo"
+          ],
+          [
+            "tú",
+            "haces",
+            "pones",
+            "sales"
+          ],
+          [
+            "él, ella, usted",
+            "hace",
+            "pone",
+            "sale"
+          ],
+          [
+            "nosotros, nosotras",
+            "hacemos",
+            "ponemos",
+            "salimos"
+          ],
+          [
+            "vosotros, vosotras",
+            "hacéis",
+            "ponéis",
+            "salís"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "hacen",
+            "ponen",
+            "salen"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Wunsch oder Absicht ausdrücken",
+            "es": "Quiero un café con leche, por favor.",
+            "de": "Ich möchte einen Milchkaffee, bitte."
+          },
+          {
+            "title": "Fähigkeit oder Möglichkeit",
+            "es": "No puedo venir esta tarde.",
+            "de": "Ich kann heute Nachmittag nicht kommen."
+          },
+          {
+            "title": "Um etwas bitten (im Lokal)",
+            "es": "Siempre pido la tortilla de patatas.",
+            "de": "Ich bestelle immer die Kartoffeltortilla."
+          },
+          {
+            "title": "Gewohnheiten und Tätigkeiten",
+            "es": "Los sábados hago la compra por la mañana.",
+            "de": "Samstags erledige ich morgens den Einkauf."
+          },
+          {
+            "title": "Über Uhrzeiten des Alltags sprechen",
+            "es": "Salgo de casa a las ocho.",
+            "de": "Ich verlasse das Haus um acht Uhr."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Weitere häufige Sonderformen"
+      },
+      {
+        "type": "table",
+        "caption": "Verben mit doppelter Unregelmäßigkeit (yo-Form und Diphthong).",
+        "headers": [
+          "",
+          "tener (haben)",
+          "venir (kommen)",
+          "decir (sagen)"
+        ],
+        "rows": [
+          [
+            "yo",
+            "tengo",
+            "vengo",
+            "digo"
+          ],
+          [
+            "tú",
+            "tienes",
+            "vienes",
+            "dices"
+          ],
+          [
+            "él, ella, usted",
+            "tiene",
+            "viene",
+            "dice"
+          ],
+          [
+            "nosotros, nosotras",
+            "tenemos",
+            "venimos",
+            "decimos"
+          ],
+          [
+            "vosotros, vosotras",
+            "tenéis",
+            "venís",
+            "decís"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "tienen",
+            "vienen",
+            "dicen"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Häufiger Fehler: Der Vokalwechsel wird fälschlich auch bei nosotros und vosotros angewendet. Es heißt queremos und podéis, NICHT „quieremos\" oder „puedéis\". Nur in diesen beiden Formen bleibt der Stammvokal unverändert."
+      }
+    ]
+  },
+  "gerundio": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Das Gerundio (auf -ando/-iendo) entspricht in etwa dem deutschen Partizip auf -end. Kombiniert mit estar bildet es die Verlaufsform (estar + gerundio) und drückt aus, dass eine Handlung gerade abläuft: estoy hablando – ich bin gerade am Sprechen."
+      },
+      {
+        "type": "heading",
+        "text": "Bildung des Gerundio"
+      },
+      {
+        "type": "table",
+        "caption": "Regelmäßige Endungen nach Verbgruppe",
+        "headers": [
+          "",
+          "Endung",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "-ar-Verben",
+            "-ando",
+            "hablar → hablando"
+          ],
+          [
+            "-er-Verben",
+            "-iendo",
+            "comer → comiendo"
+          ],
+          [
+            "-ir-Verben",
+            "-iendo",
+            "vivir → viviendo"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Estar + Gerundio (die Verlaufsform)"
+      },
+      {
+        "type": "table",
+        "caption": "estar konjugiert + Gerundio",
+        "headers": [
+          "",
+          "estar + hablando"
+        ],
+        "rows": [
+          [
+            "yo",
+            "estoy hablando"
+          ],
+          [
+            "tú",
+            "estás hablando"
+          ],
+          [
+            "él, ella, usted",
+            "está hablando"
+          ],
+          [
+            "nosotros, nosotras",
+            "estamos hablando"
+          ],
+          [
+            "vosotros, vosotras",
+            "estáis hablando"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "están hablando"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Eine Handlung, die genau jetzt abläuft",
+            "es": "No puedo hablar, estoy conduciendo.",
+            "de": "Ich kann nicht reden, ich fahre gerade Auto."
+          },
+          {
+            "title": "Vorübergehende Handlung in diesem Zeitraum",
+            "es": "Este mes estamos estudiando español.",
+            "de": "Diesen Monat lernen wir gerade Spanisch."
+          },
+          {
+            "title": "Frage nach der aktuellen Tätigkeit",
+            "es": "¿Qué estáis haciendo?",
+            "de": "Was macht ihr gerade?"
+          },
+          {
+            "title": "Art und Weise (ohne estar)",
+            "es": "Entró en casa cantando.",
+            "de": "Er kam singend nach Hause."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Gerundios"
+      },
+      {
+        "type": "table",
+        "caption": "Häufige unregelmäßige Formen",
+        "headers": [
+          "Infinitiv",
+          "Gerundio",
+          "Übersetzung"
+        ],
+        "rows": [
+          [
+            "leer",
+            "leyendo",
+            "lesend"
+          ],
+          [
+            "oír",
+            "oyendo",
+            "hörend"
+          ],
+          [
+            "ir",
+            "yendo",
+            "gehend"
+          ],
+          [
+            "dormir",
+            "durmiendo",
+            "schlafend"
+          ],
+          [
+            "pedir",
+            "pidiendo",
+            "bittend"
+          ],
+          [
+            "decir",
+            "diciendo",
+            "sagend"
+          ],
+          [
+            "venir",
+            "viniendo",
+            "kommend"
+          ],
+          [
+            "poder",
+            "pudiendo",
+            "könnend"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Stellung der Pronomen"
+      },
+      {
+        "type": "table",
+        "caption": "Objektpronomen beim Gerundio",
+        "headers": [
+          "Variante",
+          "Beispiel",
+          "Übersetzung"
+        ],
+        "rows": [
+          [
+            "angehängt",
+            "estoy leyéndolo",
+            "ich lese es gerade"
+          ],
+          [
+            "vorangestellt",
+            "lo estoy leyendo",
+            "ich lese es gerade"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutschsprachige benutzen die Verlaufsform oft zu häufig. Für allgemeine oder wiederkehrende Handlungen steht im Spanischen das normale Präsens, nicht estar + gerundio: 'Trabajo en Madrid' (Ich arbeite in Madrid), nicht 'Estoy trabajando en Madrid', wenn kein Bezug auf den aktuellen Moment gemeint ist. Für die Zukunft gilt das Gerundio nie: 'Mañana voy al médico', nicht 'Mañana estoy yendo'."
+      }
+    ]
+  },
+  "participio": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Das Participio (Partizip) ist eine unveränderliche Verbform, die man vor allem für zusammengesetzte Zeiten mit dem Hilfsverb 'haber' braucht (z. B. 'he hablado'). Es kann außerdem als Adjektiv dienen. In dieser Lektion geht es um die Bildung und die wichtigsten unregelmäßigen Formen."
+      },
+      {
+        "type": "heading",
+        "text": "Bildung des Participio"
+      },
+      {
+        "type": "table",
+        "caption": "Regelmäßige Endungen nach Verbklasse",
+        "headers": [
+          "",
+          "Endung",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "-ar-Verben",
+            "-ado",
+            "hablar → hablado"
+          ],
+          [
+            "-er-Verben",
+            "-ido",
+            "comer → comido"
+          ],
+          [
+            "-ir-Verben",
+            "-ido",
+            "vivir → vivido"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Perfekt mit haber (unveränderlich)",
+            "es": "He hablado con el médico esta mañana.",
+            "de": "Ich habe heute Morgen mit dem Arzt gesprochen."
+          },
+          {
+            "title": "Als Adjektiv (kongruiert in Genus und Numerus)",
+            "es": "La puerta está cerrada y las ventanas abiertas.",
+            "de": "Die Tür ist geschlossen und die Fenster sind offen."
+          },
+          {
+            "title": "Mit estar für einen Zustand",
+            "es": "El trabajo ya está terminado.",
+            "de": "Die Arbeit ist schon fertig."
+          },
+          {
+            "title": "Ihr-Form (vosotros) im Perfekt",
+            "es": "¿Habéis comido ya?",
+            "de": "Habt ihr schon gegessen?"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Wichtige unregelmäßige Partizipien"
+      },
+      {
+        "type": "table",
+        "caption": "Häufige unregelmäßige Formen",
+        "headers": [
+          "Infinitiv",
+          "Participio",
+          "Bedeutung"
+        ],
+        "rows": [
+          [
+            "abrir",
+            "abierto",
+            "geöffnet"
+          ],
+          [
+            "escribir",
+            "escrito",
+            "geschrieben"
+          ],
+          [
+            "decir",
+            "dicho",
+            "gesagt"
+          ],
+          [
+            "hacer",
+            "hecho",
+            "gemacht"
+          ],
+          [
+            "ver",
+            "visto",
+            "gesehen"
+          ],
+          [
+            "poner",
+            "puesto",
+            "gestellt/gelegt"
+          ],
+          [
+            "volver",
+            "vuelto",
+            "zurückgekehrt"
+          ],
+          [
+            "romper",
+            "roto",
+            "zerbrochen"
+          ],
+          [
+            "morir",
+            "muerto",
+            "gestorben"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Nach 'haber' bleibt das Participio immer unveränderlich – nie an das Subjekt anpassen. Falsch ist 'ellos han llegados' oder 'Ana ha comida'; richtig ist 'ellos han llegado' und 'Ana ha comido'. Nur als Adjektiv (mit ser/estar oder beim Substantiv) verändert es sich: 'las ventanas están abiertas'."
+      }
+    ]
+  },
+  "pronombres-reflexivos": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Reflexive Pronomen zeigen an, dass sich eine Handlung auf das Subjekt selbst richtet. Viele alltägliche Verben sind im Spanischen reflexiv: aufstehen, sich waschen, sich anziehen. Das Pronomen (me, te, se …) begleitet dabei immer das konjugierte Verb und richtet sich nach der Person."
+      },
+      {
+        "type": "heading",
+        "text": "Die reflexiven Pronomen"
+      },
+      {
+        "type": "table",
+        "caption": "Formen der reflexiven Pronomen",
+        "headers": [
+          "",
+          "Pronomen"
+        ],
+        "rows": [
+          [
+            "yo",
+            "me"
+          ],
+          [
+            "tú",
+            "te"
+          ],
+          [
+            "él, ella, usted",
+            "se"
+          ],
+          [
+            "nosotros, nosotras",
+            "nos"
+          ],
+          [
+            "vosotros, vosotras",
+            "os"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "se"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Konjugation reflexiver Verben"
+      },
+      {
+        "type": "table",
+        "caption": "levantarse (aufstehen), ducharse (duschen), acostarse (sich hinlegen, o→ue)",
+        "headers": [
+          "",
+          "levantarse",
+          "ducharse",
+          "acostarse"
+        ],
+        "rows": [
+          [
+            "yo",
+            "me levanto",
+            "me ducho",
+            "me acuesto"
+          ],
+          [
+            "tú",
+            "te levantas",
+            "te duchas",
+            "te acuestas"
+          ],
+          [
+            "él, ella, usted",
+            "se levanta",
+            "se ducha",
+            "se acuesta"
+          ],
+          [
+            "nosotros, nosotras",
+            "nos levantamos",
+            "nos duchamos",
+            "nos acostamos"
+          ],
+          [
+            "vosotros, vosotras",
+            "os levantáis",
+            "os ducháis",
+            "os acostáis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "se levantan",
+            "se duchan",
+            "se acuestan"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Stellung des Pronomens"
+      },
+      {
+        "type": "table",
+        "caption": "Bei Infinitiv und Gerundium kann das Pronomen angehängt werden",
+        "headers": [
+          "",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "konjugiertes Verb (davor)",
+            "Me lavo las manos."
+          ],
+          [
+            "Infinitiv (angehängt oder davor)",
+            "Voy a ducharme. / Me voy a duchar."
+          ],
+          [
+            "Gerundium (angehängt oder davor)",
+            "Estoy vistiéndome. / Me estoy vistiendo."
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Tägliche Routine",
+            "es": "Me levanto a las siete y me ducho enseguida.",
+            "de": "Ich stehe um sieben auf und dusche sofort."
+          },
+          {
+            "title": "Körperteile und Kleidung (mit Artikel, nicht Possessivpronomen)",
+            "es": "Se lava los dientes después de comer.",
+            "de": "Er/Sie putzt sich nach dem Essen die Zähne."
+          },
+          {
+            "title": "Gefühle und Zustandsänderungen",
+            "es": "Mi hermana se enfada cuando llegamos tarde.",
+            "de": "Meine Schwester ärgert sich, wenn wir zu spät kommen."
+          },
+          {
+            "title": "Gegenseitigkeit (im Plural)",
+            "es": "Mi novio y yo nos vemos todos los días.",
+            "de": "Mein Freund und ich sehen uns jeden Tag."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verben mit Bedeutungswechsel"
+      },
+      {
+        "type": "table",
+        "caption": "Manche Verben ändern mit dem Pronomen ihre Bedeutung",
+        "headers": [
+          "ohne Pronomen",
+          "mit Pronomen"
+        ],
+        "rows": [
+          [
+            "ir (gehen)",
+            "irse (weggehen)"
+          ],
+          [
+            "dormir (schlafen)",
+            "dormirse (einschlafen)"
+          ],
+          [
+            "llamar (rufen, anrufen)",
+            "llamarse (heißen)"
+          ],
+          [
+            "poner (stellen, legen)",
+            "ponerse (sich anziehen; werden)"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche vergessen oft, dass bei Körperteilen und Kleidung der bestimmte Artikel steht, nicht das Possessivpronomen. Es heißt 'Me lavo las manos' (nicht 'Me lavo mis manos') – das Reflexivpronomen 'me' zeigt bereits an, dass es die eigenen Hände sind."
+      }
+    ]
+  },
+  "futuro": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Das Futuro simple drückt zukünftige Handlungen und Vorhersagen aus und dient auch für Vermutungen über die Gegenwart. Es wird gebildet, indem an den vollständigen Infinitiv einheitliche Endungen angehängt werden – für alle drei Konjugationsgruppen dieselben."
+      },
+      {
+        "type": "heading",
+        "text": "Bildung: Infinitiv + Endung"
+      },
+      {
+        "type": "table",
+        "caption": "Endungen des Futuro simple (gleich für -ar, -er, -ir)",
+        "headers": [
+          "",
+          "Endung",
+          "hablar",
+          "comer",
+          "vivir"
+        ],
+        "rows": [
+          [
+            "yo",
+            "-é",
+            "hablaré",
+            "comeré",
+            "viviré"
+          ],
+          [
+            "tú",
+            "-ás",
+            "hablarás",
+            "comerás",
+            "vivirás"
+          ],
+          [
+            "él, ella, usted",
+            "-á",
+            "hablará",
+            "comerá",
+            "vivirá"
+          ],
+          [
+            "nosotros, nosotras",
+            "-emos",
+            "hablaremos",
+            "comeremos",
+            "viviremos"
+          ],
+          [
+            "vosotros, vosotras",
+            "-éis",
+            "hablaréis",
+            "comeréis",
+            "viviréis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "-án",
+            "hablarán",
+            "comerán",
+            "vivirán"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Zukünftige Handlungen",
+            "es": "Mañana hablaré con el médico.",
+            "de": "Morgen werde ich mit dem Arzt sprechen."
+          },
+          {
+            "title": "Vorhersagen",
+            "es": "El fin de semana lloverá en el norte.",
+            "de": "Am Wochenende wird es im Norden regnen."
+          },
+          {
+            "title": "Vermutung über die Gegenwart",
+            "es": "¿Qué hora es? Serán las tres.",
+            "de": "Wie spät ist es? Es wird wohl drei Uhr sein."
+          },
+          {
+            "title": "Versprechen",
+            "es": "Te llamaré cuando llegue a casa.",
+            "de": "Ich rufe dich an, wenn ich zu Hause ankomme."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Stämme"
+      },
+      {
+        "type": "table",
+        "caption": "Diese Verben ändern den Stamm, behalten aber dieselben Endungen",
+        "headers": [
+          "Infinitiv",
+          "Stamm",
+          "Beispiel (yo)"
+        ],
+        "rows": [
+          [
+            "tener",
+            "tendr-",
+            "tendré"
+          ],
+          [
+            "poner",
+            "pondr-",
+            "pondré"
+          ],
+          [
+            "salir",
+            "saldr-",
+            "saldré"
+          ],
+          [
+            "venir",
+            "vendr-",
+            "vendré"
+          ],
+          [
+            "poder",
+            "podr-",
+            "podré"
+          ],
+          [
+            "saber",
+            "sabr-",
+            "sabré"
+          ],
+          [
+            "haber",
+            "habr-",
+            "habré"
+          ],
+          [
+            "hacer",
+            "har-",
+            "haré"
+          ],
+          [
+            "decir",
+            "dir-",
+            "diré"
+          ],
+          [
+            "querer",
+            "querr-",
+            "querré"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche Muttersprachler greifen für die Zukunft oft automatisch zum Futuro, obwohl das Spanische im Alltag meist 'ir a + Infinitiv' oder das Präsens verwendet: 'Mañana voy a hablar con él' oder 'Mañana hablo con él' klingt natürlicher als 'hablaré'. Das Futuro simple wirkt oft förmlicher oder betont Vorhersagen und Vermutungen."
+      }
+    ]
+  },
+  "apocope": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Als Apócope bezeichnet man die Verkürzung bestimmter Wörter, wenn sie direkt vor einem Substantiv stehen. So wird aus bueno ein buen und aus grande ein gran. Diese Formen klingen natürlicher und werden im Alltag ständig gebraucht."
+      },
+      {
+        "type": "heading",
+        "text": "Adjektive mit Apócope vor männlichem Singular"
+      },
+      {
+        "type": "table",
+        "caption": "Diese Adjektive verlieren das -o vor einem männlichen Substantiv im Singular.",
+        "headers": [
+          "Vollform",
+          "Verkürzt",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "bueno",
+            "buen",
+            "un buen amigo"
+          ],
+          [
+            "malo",
+            "mal",
+            "un mal día"
+          ],
+          [
+            "primero",
+            "primer",
+            "el primer piso"
+          ],
+          [
+            "tercero",
+            "tercer",
+            "el tercer capítulo"
+          ],
+          [
+            "uno",
+            "un",
+            "un libro"
+          ],
+          [
+            "alguno",
+            "algún",
+            "algún problema"
+          ],
+          [
+            "ninguno",
+            "ningún",
+            "ningún error"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "grande und weitere Sonderfälle"
+      },
+      {
+        "type": "table",
+        "caption": "grande verkürzt sich vor männlichen UND weiblichen Substantiven im Singular.",
+        "headers": [
+          "Vollform",
+          "Verkürzt",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "grande",
+            "gran",
+            "un gran hombre / una gran mujer"
+          ],
+          [
+            "ciento",
+            "cien",
+            "cien euros"
+          ],
+          [
+            "cualquiera",
+            "cualquier",
+            "cualquier persona"
+          ],
+          [
+            "santo",
+            "san",
+            "san Pedro"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Eigenschaft vor dem Substantiv",
+            "es": "Es un buen profesor.",
+            "de": "Er ist ein guter Lehrer."
+          },
+          {
+            "title": "Ordnungszahl vor dem Substantiv",
+            "es": "Vivo en el primer piso.",
+            "de": "Ich wohne im ersten Stock."
+          },
+          {
+            "title": "gran mit Bedeutungswechsel (großartig)",
+            "es": "Madrid es una gran ciudad.",
+            "de": "Madrid ist eine großartige Stadt."
+          },
+          {
+            "title": "Unbestimmte Menge",
+            "es": "No tengo ningún plan para hoy.",
+            "de": "Ich habe keinen Plan für heute."
+          },
+          {
+            "title": "Zahl vor dem Substantiv",
+            "es": "Hay cien personas en la sala.",
+            "de": "Es sind hundert Personen im Saal."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Wichtige Ausnahmen"
+      },
+      {
+        "type": "table",
+        "caption": "Keine Verkürzung in diesen Fällen.",
+        "headers": [
+          "Regel",
+          "Beispiel",
+          "Übersetzung"
+        ],
+        "rows": [
+          [
+            "Adjektiv steht NACH dem Substantiv",
+            "un día bueno",
+            "ein guter Tag"
+          ],
+          [
+            "Vor weiblichem Substantiv (außer grande)",
+            "una buena idea",
+            "eine gute Idee"
+          ],
+          [
+            "Im Plural",
+            "unos buenos amigos",
+            "gute Freunde"
+          ],
+          [
+            "san wird nicht vor Do-/To- verkürzt",
+            "Santo Domingo, Santo Tomás",
+            "(Ortsname / Heiliger)"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutschsprachige verwenden die Vollform oft an der falschen Stelle: Vor dem männlichen Substantiv muss verkürzt werden. Also 'un buen coche' (nicht 'un bueno coche'), aber 'un coche bueno', wenn das Adjektiv nachgestellt ist."
+      }
+    ]
+  },
+  "comparativos-superlativos": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Mit den comparativos vergleichst du zwei Dinge oder Personen (mehr, weniger oder gleich), mit den superlativos hebst du eines aus einer Gruppe hervor (der/die/das ...ste). Beides brauchst du täglich, um Preise, Eigenschaften oder Vorlieben zu beschreiben."
+      },
+      {
+        "type": "heading",
+        "text": "Die drei Vergleichsformen"
+      },
+      {
+        "type": "table",
+        "caption": "Grundstrukturen des Vergleichs",
+        "headers": [
+          "Vergleich",
+          "Struktur",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "Überlegenheit (mehr)",
+            "más + Adjektiv + que",
+            "más alto que"
+          ],
+          [
+            "Unterlegenheit (weniger)",
+            "menos + Adjektiv + que",
+            "menos caro que"
+          ],
+          [
+            "Gleichheit",
+            "tan + Adjektiv + como",
+            "tan rápido como"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Der Superlativ"
+      },
+      {
+        "type": "table",
+        "caption": "Bildung des Superlativs mit bestimmtem Artikel",
+        "headers": [
+          "",
+          "Form",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "Höchststufe (+)",
+            "el/la/los/las + más + Adjektiv",
+            "el más caro"
+          ],
+          [
+            "Tiefststufe (−)",
+            "el/la/los/las + menos + Adjektiv",
+            "la menos cara"
+          ],
+          [
+            "mit Bezugsgruppe",
+            "... de ...",
+            "el más caro de la tienda"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Zwei Dinge vergleichen (mehr)",
+            "es": "Este piso es más grande que el nuestro.",
+            "de": "Diese Wohnung ist größer als unsere."
+          },
+          {
+            "title": "Zwei Dinge vergleichen (weniger)",
+            "es": "El tren es menos rápido que el avión.",
+            "de": "Der Zug ist weniger schnell als das Flugzeug."
+          },
+          {
+            "title": "Gleichheit ausdrücken",
+            "es": "Mi hermana es tan simpática como tú.",
+            "de": "Meine Schwester ist genauso nett wie du."
+          },
+          {
+            "title": "Etwas hervorheben",
+            "es": "Es el restaurante más caro de la ciudad.",
+            "de": "Es ist das teuerste Restaurant der Stadt."
+          },
+          {
+            "title": "Mengen vergleichen",
+            "es": "Vosotros tenéis más libros que nosotros.",
+            "de": "Ihr habt mehr Bücher als wir."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Formen"
+      },
+      {
+        "type": "table",
+        "caption": "Adjektive mit eigener Vergleichs- und Superlativform",
+        "headers": [
+          "Adjektiv",
+          "Komparativ",
+          "Superlativ"
+        ],
+        "rows": [
+          [
+            "bueno (gut)",
+            "mejor",
+            "el mejor"
+          ],
+          [
+            "malo (schlecht)",
+            "peor",
+            "el peor"
+          ],
+          [
+            "grande (groß/älter)",
+            "mayor",
+            "el mayor"
+          ],
+          [
+            "pequeño (klein/jünger)",
+            "menor",
+            "el menor"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Im Vergleich heißt „als“ immer que, nicht como. Deutsche sagen oft fälschlich „más grande como“ (nach dem deutschen „so groß wie“). Richtig: „más grande que“. Como benutzt du nur in der Gleichheit: „tan grande como“."
+      }
+    ]
+  },
+  "pronombres-complemento-indirecto": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Die unbetonten indirekten Objektpronomen ersetzen die Person oder Sache, die den Empfänger einer Handlung darstellt — also wem etwas gegeben, gesagt oder geschickt wird. Sie antworten auf die Frage '¿A quién?'. Anders als beim direkten Objekt gibt es hier für die dritte Person nur eine Form: le beziehungsweise les."
+      },
+      {
+        "type": "heading",
+        "text": "Die Formen"
+      },
+      {
+        "type": "table",
+        "caption": "Unbetonte indirekte Objektpronomen",
+        "headers": [
+          "",
+          "Pronomen"
+        ],
+        "rows": [
+          [
+            "yo",
+            "me"
+          ],
+          [
+            "tú",
+            "te"
+          ],
+          [
+            "él, ella, usted",
+            "le"
+          ],
+          [
+            "nosotros, nosotras",
+            "nos"
+          ],
+          [
+            "vosotros, vosotras",
+            "os"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "les"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Stellung im Satz"
+      },
+      {
+        "type": "table",
+        "caption": "Position des Pronomens",
+        "headers": [
+          "",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "Vor konjugiertem Verb",
+            "Te escribo mañana."
+          ],
+          [
+            "Am Infinitiv angehängt",
+            "Voy a escribirte."
+          ],
+          [
+            "Am Gerundium angehängt",
+            "Estoy escribiéndote."
+          ],
+          [
+            "Am bejahten Imperativ angehängt",
+            "Escríbeme."
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Empfänger einer Handlung (geben, schicken)",
+            "es": "Le doy el libro a mi hermano.",
+            "de": "Ich gebe meinem Bruder das Buch."
+          },
+          {
+            "title": "Verben des Sagens und Kommunizierens",
+            "es": "¿Os cuento lo que pasó ayer?",
+            "de": "Soll ich euch erzählen, was gestern passiert ist?"
+          },
+          {
+            "title": "Mit Verben wie gustar, doler, interesar",
+            "es": "A mí me gusta el café solo.",
+            "de": "Mir gefällt schwarzer Kaffee."
+          },
+          {
+            "title": "Verdopplung mit betontem 'a + Person'",
+            "es": "A María le encanta viajar.",
+            "de": "María liebt es zu reisen."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Kombination mit direktem Objekt: le/les wird zu se"
+      },
+      {
+        "type": "table",
+        "caption": "Zwei Pronomen zusammen",
+        "headers": [
+          "",
+          "Beispiel",
+          "Erklärung"
+        ],
+        "rows": [
+          [
+            "le + lo/la",
+            "Se lo doy.",
+            "Nicht 'le lo': le wird zu se"
+          ],
+          [
+            "les + los/las",
+            "Se las mando.",
+            "Nicht 'les las': les wird zu se"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche Muttersprachler vergessen oft die 'redundante' Verdopplung: Auch wenn das indirekte Objekt als 'a + Person' bereits genannt ist, muss le/les zusätzlich stehen. Es heißt 'A Juan le regalo flores', nicht 'A Juan regalo flores'."
+      }
+    ]
+  },
+  "preterito-indefinido": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Das Pretérito Indefinido bezeichnet abgeschlossene Handlungen in der Vergangenheit, die zu einem bestimmten Zeitpunkt geschehen und beendet sind. Man braucht es, um zu erzählen, was passiert ist: Ereignisse, Abfolgen, einmalige Aktionen. Typische Signalwörter sind ayer, anoche, el año pasado, en 2010 oder de repente."
+      },
+      {
+        "type": "heading",
+        "text": "Regelmäßige Endungen"
+      },
+      {
+        "type": "table",
+        "caption": "Endungen der drei Konjugationsklassen",
+        "headers": [
+          "",
+          "-ar (hablar)",
+          "-er (comer)",
+          "-ir (vivir)"
+        ],
+        "rows": [
+          [
+            "yo",
+            "hablé",
+            "comí",
+            "viví"
+          ],
+          [
+            "tú",
+            "hablaste",
+            "comiste",
+            "viviste"
+          ],
+          [
+            "él, ella, usted",
+            "habló",
+            "comió",
+            "vivió"
+          ],
+          [
+            "nosotros, nosotras",
+            "hablamos",
+            "comimos",
+            "vivimos"
+          ],
+          [
+            "vosotros, vosotras",
+            "hablasteis",
+            "comisteis",
+            "vivisteis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "hablaron",
+            "comieron",
+            "vivieron"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Einmalige abgeschlossene Handlung",
+            "es": "Ayer compré un coche nuevo.",
+            "de": "Gestern kaufte ich ein neues Auto."
+          },
+          {
+            "title": "Abfolge von Ereignissen",
+            "es": "Entré, dejé las llaves y me senté.",
+            "de": "Ich kam herein, legte die Schlüssel ab und setzte mich."
+          },
+          {
+            "title": "Handlung mit bestimmtem Zeitraum",
+            "es": "Viví en Madrid tres años.",
+            "de": "Ich lebte drei Jahre in Madrid."
+          },
+          {
+            "title": "Datierter historischer Fakt",
+            "es": "La guerra terminó en 1939.",
+            "de": "Der Krieg endete 1939."
+          },
+          {
+            "title": "Plötzliche Unterbrechung",
+            "es": "De repente sonó el teléfono.",
+            "de": "Plötzlich klingelte das Telefon."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Wichtige unregelmäßige Verben"
+      },
+      {
+        "type": "table",
+        "caption": "Häufige unregelmäßige Formen (eigener Stamm, endungslose Betonung)",
+        "headers": [
+          "",
+          "ser/ir",
+          "estar",
+          "tener",
+          "hacer",
+          "poder"
+        ],
+        "rows": [
+          [
+            "yo",
+            "fui",
+            "estuve",
+            "tuve",
+            "hice",
+            "pude"
+          ],
+          [
+            "tú",
+            "fuiste",
+            "estuviste",
+            "tuviste",
+            "hiciste",
+            "pudiste"
+          ],
+          [
+            "él, ella, usted",
+            "fue",
+            "estuvo",
+            "tuvo",
+            "hizo",
+            "pudo"
+          ],
+          [
+            "nosotros, nosotras",
+            "fuimos",
+            "estuvimos",
+            "tuvimos",
+            "hicimos",
+            "pudimos"
+          ],
+          [
+            "vosotros, vosotras",
+            "fuisteis",
+            "estuvisteis",
+            "tuvisteis",
+            "hicisteis",
+            "pudisteis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "fueron",
+            "estuvieron",
+            "tuvieron",
+            "hicieron",
+            "pudieron"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Verwechsle das Indefinido nicht mit dem Imperfecto: Für abgeschlossene, punktuelle Ereignisse steht das Indefinido (Ayer comí paella), für Gewohnheiten, Beschreibungen oder Hintergrund das Imperfecto (Antes comía paella los domingos). Deutsche greifen oft fälschlich zum Imperfecto, weil im Deutschen beides mit dem Präteritum ausgedrückt wird."
+      }
+    ]
+  },
+  "preterito-imperfecto": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Das Pretérito Imperfecto beschreibt die Vergangenheit: gewohnheitsmäßige Handlungen, andauernde Zustände, Umstände und Beschreibungen. Es sagt nicht, wann etwas begann oder endete, sondern wie es war. Man braucht es für Kulissen, Wiederholungen und Hintergründe – oft im Kontrast zum Pretérito Indefinido."
+      },
+      {
+        "type": "heading",
+        "text": "Regelmäßige Formen"
+      },
+      {
+        "type": "table",
+        "caption": "Verben auf -ar, -er, -ir",
+        "headers": [
+          "",
+          "hablar",
+          "comer",
+          "vivir"
+        ],
+        "rows": [
+          [
+            "yo",
+            "hablaba",
+            "comía",
+            "vivía"
+          ],
+          [
+            "tú",
+            "hablabas",
+            "comías",
+            "vivías"
+          ],
+          [
+            "él, ella, usted",
+            "hablaba",
+            "comía",
+            "vivía"
+          ],
+          [
+            "nosotros, nosotras",
+            "hablábamos",
+            "comíamos",
+            "vivíamos"
+          ],
+          [
+            "vosotros, vosotras",
+            "hablabais",
+            "comíais",
+            "vivíais"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "hablaban",
+            "comían",
+            "vivían"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Die -er- und -ir-Verben haben identische Endungen. Alle Formen von -ía tragen einen Akzent auf dem i. Bei -ar liegt der Akzent nur in der nosotros-Form (hablábamos)."
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Gewohnheiten in der Vergangenheit",
+            "es": "De niño jugaba al fútbol todos los días.",
+            "de": "Als Kind spielte ich jeden Tag Fußball."
+          },
+          {
+            "title": "Beschreibung von Umständen und Kulissen",
+            "es": "Era de noche y llovía mucho.",
+            "de": "Es war Nacht und es regnete stark."
+          },
+          {
+            "title": "Andauernde Handlung, unterbrochen von einer anderen",
+            "es": "Cenábamos cuando sonó el teléfono.",
+            "de": "Wir aßen gerade zu Abend, als das Telefon klingelte."
+          },
+          {
+            "title": "Alter, Uhrzeit und Zustände in der Vergangenheit",
+            "es": "Eran las tres y tenía mucho sueño.",
+            "de": "Es war drei Uhr und ich war sehr müde."
+          },
+          {
+            "title": "Höfliche oder abgeschwächte Bitten",
+            "es": "Quería preguntarte una cosa.",
+            "de": "Ich wollte dich etwas fragen."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Verben"
+      },
+      {
+        "type": "table",
+        "caption": "Nur drei Verben sind im Imperfecto unregelmäßig",
+        "headers": [
+          "",
+          "ser",
+          "ir",
+          "ver"
+        ],
+        "rows": [
+          [
+            "yo",
+            "era",
+            "iba",
+            "veía"
+          ],
+          [
+            "tú",
+            "eras",
+            "ibas",
+            "veías"
+          ],
+          [
+            "él, ella, usted",
+            "era",
+            "iba",
+            "veía"
+          ],
+          [
+            "nosotros, nosotras",
+            "éramos",
+            "íbamos",
+            "veíamos"
+          ],
+          [
+            "vosotros, vosotras",
+            "erais",
+            "ibais",
+            "veíais"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "eran",
+            "iban",
+            "veían"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche Muttersprachler wählen oft das Imperfecto, weil das deutsche Präteritum (\"ich spielte\") es nahelegt. Im Spanischen entscheidet aber die Perspektive: eine abgeschlossene Einzelhandlung braucht das Indefinido (Ayer jugué al fútbol), eine Gewohnheit oder Beschreibung das Imperfecto (De niño jugaba al fútbol). Nicht am deutschen Zeitwort festmachen, sondern fragen: einmalig/abgeschlossen oder wiederholt/beschreibend?"
+      }
+    ]
+  },
+  "contraste-indefinido-imperfecto": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Beide Zeitformen erzählen von der Vergangenheit, aber aus unterschiedlicher Perspektive. Das Indefinido nennt abgeschlossene, punktuelle Ereignisse, die die Handlung vorantreiben. Das Imperfecto beschreibt den Rahmen: Umstände, Gewohnheiten, Beschreibungen und andauernde Zustände. Wer beide unterscheidet, erzählt im Alltag klar und natürlich."
+      },
+      {
+        "type": "heading",
+        "text": "Grundunterscheidung"
+      },
+      {
+        "type": "table",
+        "caption": "Wann welche Vergangenheit?",
+        "headers": [
+          "Funktion",
+          "Indefinido",
+          "Imperfecto"
+        ],
+        "rows": [
+          [
+            "Ereignis",
+            "abgeschlossen, punktuell",
+            "andauernd, im Verlauf"
+          ],
+          [
+            "Zeitrahmen",
+            "begrenzt / abgeschlossen",
+            "unbegrenzt / offen"
+          ],
+          [
+            "Wiederholung",
+            "einmalig / gezählt",
+            "gewohnheitsmäßig"
+          ],
+          [
+            "Rolle in der Erzählung",
+            "treibt die Handlung voran",
+            "beschreibt den Hintergrund"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Typische Signalwörter"
+      },
+      {
+        "type": "table",
+        "caption": "Marcadores temporales",
+        "headers": [
+          "",
+          "Beispiel",
+          "Übersetzung"
+        ],
+        "rows": [
+          [
+            "Indefinido",
+            "ayer, anoche, el lunes, en 2010, una vez, de repente",
+            "gestern, gestern Nacht, am Montag, 2010, einmal, plötzlich"
+          ],
+          [
+            "Imperfecto",
+            "antes, siempre, todos los días, mientras, normalmente",
+            "früher, immer, jeden Tag, während, normalerweise"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Abgeschlossenes Ereignis (Indefinido)",
+            "es": "Ayer comí en un restaurante italiano.",
+            "de": "Gestern aß ich in einem italienischen Restaurant."
+          },
+          {
+            "title": "Beschreibung / Umstände (Imperfecto)",
+            "es": "El restaurante era pequeño y estaba lleno.",
+            "de": "Das Restaurant war klein und war voll."
+          },
+          {
+            "title": "Gewohnheit in der Vergangenheit (Imperfecto)",
+            "es": "De niños íbamos a la playa todos los veranos.",
+            "de": "Als Kinder gingen wir jeden Sommer ans Meer."
+          },
+          {
+            "title": "Handlung unterbricht Hintergrund (beide)",
+            "es": "Mientras cenábamos, sonó el teléfono.",
+            "de": "Während wir zu Abend aßen, klingelte das Telefon."
+          },
+          {
+            "title": "Uhrzeit und Alter (Imperfecto)",
+            "es": "Eran las tres cuando llegasteis a casa.",
+            "de": "Es war drei Uhr, als ihr nach Hause kamt."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verben mit Bedeutungswechsel"
+      },
+      {
+        "type": "table",
+        "caption": "Manche Verben ändern die Nuance je nach Zeitform",
+        "headers": [
+          "Verb",
+          "Imperfecto",
+          "Indefinido"
+        ],
+        "rows": [
+          [
+            "saber",
+            "sabía = wusste (Zustand)",
+            "supe = erfuhr (Moment)"
+          ],
+          [
+            "conocer",
+            "conocía = kannte",
+            "conocí = lernte kennen"
+          ],
+          [
+            "querer",
+            "quería = wollte",
+            "quise = versuchte / quiso no = weigerte sich"
+          ],
+          [
+            "poder",
+            "podía = konnte (fähig sein)",
+            "pude = schaffte es (in dem Moment)"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche übertragen oft das eine deutsche Präteritum eins zu eins und wählen für Beschreibungen fälschlich das Indefinido. 'Das Wetter war schön' ist 'Hacía buen tiempo' (Zustand, Imperfecto), nicht 'Hizo buen tiempo'. Faustregel: Beschreibung und Rahmen → Imperfecto; das, was dann passierte → Indefinido."
+      }
+    ]
+  },
+  "el-vs-lo": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Sowohl \"el\" als auch \"lo\" stehen vor anderen Wörtern, sind aber grundverschieden: \"el\" ist der bestimmte Artikel für männliche Substantive im Singular. \"lo\" ist der sogenannte Neutrumartikel und steht nie vor einem konkreten Substantiv, sondern vor Adjektiven, Adverbien oder Relativsätzen und macht daraus einen abstrakten Begriff."
+      },
+      {
+        "type": "heading",
+        "text": "Überblick der Formen"
+      },
+      {
+        "type": "table",
+        "caption": "el vs. lo im Vergleich",
+        "headers": [
+          "",
+          "el",
+          "lo"
+        ],
+        "rows": [
+          [
+            "Wortart",
+            "bestimmter Artikel (maskulin Sg.)",
+            "Neutrumartikel"
+          ],
+          [
+            "steht vor",
+            "männlichem Substantiv",
+            "Adjektiv, Adverb, Relativsatz"
+          ],
+          [
+            "Genus/Numerus",
+            "hat Plural: los",
+            "unveränderlich, kein Plural"
+          ],
+          [
+            "Beispiel",
+            "el libro",
+            "lo importante"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Konstruktionen mit lo"
+      },
+      {
+        "type": "table",
+        "caption": "Typische Muster mit lo",
+        "headers": [
+          "",
+          "Konstruktion",
+          "Bedeutung"
+        ],
+        "rows": [
+          [
+            "lo + Adjektiv",
+            "lo bueno",
+            "das Gute"
+          ],
+          [
+            "lo + Adverb",
+            "lo rápido",
+            "wie schnell / das Schnelle"
+          ],
+          [
+            "lo que",
+            "lo que dices",
+            "das, was du sagst"
+          ],
+          [
+            "lo de",
+            "lo de ayer",
+            "die Sache von gestern"
+          ],
+          [
+            "lo más/menos + Adj.",
+            "lo más pronto posible",
+            "so bald wie möglich"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "el als Artikel vor männlichem Substantiv",
+            "es": "El coche está en el garaje.",
+            "de": "Das Auto steht in der Garage."
+          },
+          {
+            "title": "lo + Adjektiv für einen abstrakten Begriff",
+            "es": "Lo difícil es empezar.",
+            "de": "Das Schwierige ist der Anfang."
+          },
+          {
+            "title": "lo que als Relativpronomen ohne Bezugswort",
+            "es": "No entiendo lo que quieres decir.",
+            "de": "Ich verstehe nicht, was du sagen willst."
+          },
+          {
+            "title": "lo de für eine bekannte Angelegenheit",
+            "es": "¿Sabéis algo de lo de la reunión?",
+            "de": "Wisst ihr etwas über die Sache mit dem Treffen?"
+          },
+          {
+            "title": "lo + Adjektiv/Adverb zur Betonung des Grades",
+            "es": "No sabes lo cansado que estoy.",
+            "de": "Du weißt nicht, wie müde ich bin."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Besondere Fälle"
+      },
+      {
+        "type": "table",
+        "caption": "lo mit veränderlichem Adjektiv im Gradausdruck",
+        "headers": [
+          "",
+          "Beispiel",
+          "Deutsch"
+        ],
+        "rows": [
+          [
+            "Adjektiv angeglichen",
+            "No te imaginas lo contentas que están.",
+            "Du ahnst nicht, wie zufrieden sie (fem. Pl.) sind."
+          ],
+          [
+            "Adverb unverändert",
+            "Me sorprende lo bien que cocináis.",
+            "Mich überrascht, wie gut ihr kocht."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutschsprachige verwechseln \"lo\" oft mit dem bestimmten Artikel und sagen fälschlich \"lo libro\". Vor einem Substantiv steht immer \"el\" (el libro), nie \"lo\". \"lo\" gibt es nur vor Adjektiven, Adverbien oder mit \"que\"/\"de\" — und niemals im Plural."
+      }
+    ]
+  },
+  "imperativo": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Der Imperativo (Befehlsform) dient dazu, Aufforderungen, Befehle, Bitten, Anweisungen oder Ratschläge auszudrücken. Im Spanischen gibt es eigene bejahende Formen für tú, usted, nosotros, vosotros und ustedes. Die verneinten Formen werden mit dem Subjuntivo gebildet."
+      },
+      {
+        "type": "heading",
+        "text": "Bejahter Imperativ: regelmäßige Formen"
+      },
+      {
+        "type": "table",
+        "caption": "Bejahte Formen von hablar, comer, vivir",
+        "headers": [
+          "",
+          "hablar",
+          "comer",
+          "vivir"
+        ],
+        "rows": [
+          [
+            "tú",
+            "habla",
+            "come",
+            "vive"
+          ],
+          [
+            "usted",
+            "hable",
+            "coma",
+            "viva"
+          ],
+          [
+            "nosotros, nosotras",
+            "hablemos",
+            "comamos",
+            "vivamos"
+          ],
+          [
+            "vosotros, vosotras",
+            "hablad",
+            "comed",
+            "vivid"
+          ],
+          [
+            "ustedes",
+            "hablen",
+            "coman",
+            "vivan"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verneinter Imperativ"
+      },
+      {
+        "type": "table",
+        "caption": "Verneinte Formen (mit Subjuntivo gebildet)",
+        "headers": [
+          "",
+          "hablar",
+          "comer",
+          "vivir"
+        ],
+        "rows": [
+          [
+            "tú",
+            "no hables",
+            "no comas",
+            "no vivas"
+          ],
+          [
+            "usted",
+            "no hable",
+            "no coma",
+            "no viva"
+          ],
+          [
+            "nosotros, nosotras",
+            "no hablemos",
+            "no comamos",
+            "no vivamos"
+          ],
+          [
+            "vosotros, vosotras",
+            "no habléis",
+            "no comáis",
+            "no viváis"
+          ],
+          [
+            "ustedes",
+            "no hablen",
+            "no coman",
+            "no vivan"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Direkter Befehl / Aufforderung",
+            "es": "¡Cierra la puerta, por favor!",
+            "de": "Mach bitte die Tür zu!"
+          },
+          {
+            "title": "Anweisung oder Rezept",
+            "es": "Añadid dos huevos y mezclad bien.",
+            "de": "Gebt zwei Eier dazu und mischt gut."
+          },
+          {
+            "title": "Ratschlag geben",
+            "es": "Descansa un poco, tienes mala cara.",
+            "de": "Ruh dich ein bisschen aus, du siehst schlecht aus."
+          },
+          {
+            "title": "Höfliche Bitte (usted)",
+            "es": "Pase y siéntese, por favor.",
+            "de": "Kommen Sie herein und setzen Sie sich, bitte."
+          },
+          {
+            "title": "Etwas verbieten (verneint)",
+            "es": "No toques eso, está caliente.",
+            "de": "Fass das nicht an, es ist heiß."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Formen (tú, bejaht)"
+      },
+      {
+        "type": "table",
+        "caption": "Häufige unregelmäßige tú-Formen",
+        "headers": [
+          "Verb",
+          "tú (bejaht)",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "decir",
+            "di",
+            "Dime la verdad."
+          ],
+          [
+            "hacer",
+            "haz",
+            "Haz los deberes."
+          ],
+          [
+            "ir",
+            "ve",
+            "Ve a casa."
+          ],
+          [
+            "poner",
+            "pon",
+            "Pon la mesa."
+          ],
+          [
+            "salir",
+            "sal",
+            "Sal de aquí."
+          ],
+          [
+            "ser",
+            "sé",
+            "Sé amable."
+          ],
+          [
+            "tener",
+            "ten",
+            "Ten paciencia."
+          ],
+          [
+            "venir",
+            "ven",
+            "Ven conmigo."
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Pronomen beim Imperativ"
+      },
+      {
+        "type": "table",
+        "caption": "Stellung der Pronomen",
+        "headers": [
+          "Form",
+          "Stellung",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "bejaht",
+            "angehängt (ein Wort)",
+            "Dámelo. (Gib es mir.)"
+          ],
+          [
+            "verneint",
+            "davor, getrennt",
+            "No me lo des. (Gib es mir nicht.)"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche Muttersprachler verwenden häufig fälschlich die bejahte Form auch für die Verneinung: Nicht »no habla«, sondern »no hables«. Der verneinte Imperativ wird immer mit dem Subjuntivo gebildet — auch bei tú und vosotros (no comas, no comáis), wo sich die Endungen deutlich von den bejahten Formen (come, comed) unterscheiden."
+      }
+    ]
+  },
+  "condicional-simple": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Der Condicional Simple drückt Höflichkeit, Wünsche, Ratschläge und hypothetische Handlungen aus. Er entspricht oft dem deutschen 'würde' plus Infinitiv. Man verwendet ihn auch, um über die Zukunft aus vergangener Sicht zu sprechen."
+      },
+      {
+        "type": "heading",
+        "text": "Bildung der regelmäßigen Formen"
+      },
+      {
+        "type": "paragraph",
+        "text": "An den vollständigen Infinitiv (-ar, -er, -ir) werden für alle drei Konjugationen dieselben Endungen angehängt: -ía, -ías, -ía, -íamos, -íais, -ían."
+      },
+      {
+        "type": "table",
+        "caption": "Regelmäßige Konjugation: hablar, comer, vivir",
+        "headers": [
+          "",
+          "hablar",
+          "comer",
+          "vivir"
+        ],
+        "rows": [
+          [
+            "yo",
+            "hablaría",
+            "comería",
+            "viviría"
+          ],
+          [
+            "tú",
+            "hablarías",
+            "comerías",
+            "vivirías"
+          ],
+          [
+            "él, ella, usted",
+            "hablaría",
+            "comería",
+            "viviría"
+          ],
+          [
+            "nosotros, nosotras",
+            "hablaríamos",
+            "comeríamos",
+            "viviríamos"
+          ],
+          [
+            "vosotros, vosotras",
+            "hablaríais",
+            "comeríais",
+            "viviríais"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "hablarían",
+            "comerían",
+            "vivirían"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Höfliche Bitte oder Wunsch",
+            "es": "¿Podrías ayudarme con esto?",
+            "de": "Könntest du mir dabei helfen?"
+          },
+          {
+            "title": "Ratschlag geben",
+            "es": "Yo que tú, hablaría con el jefe.",
+            "de": "An deiner Stelle würde ich mit dem Chef sprechen."
+          },
+          {
+            "title": "Hypothetische Handlung",
+            "es": "Con más tiempo, viajaríamos por toda España.",
+            "de": "Mit mehr Zeit würden wir durch ganz Spanien reisen."
+          },
+          {
+            "title": "Zukunft aus vergangener Sicht",
+            "es": "Dijo que vendría mañana.",
+            "de": "Er sagte, dass er morgen kommen würde."
+          },
+          {
+            "title": "Vermutung über die Vergangenheit",
+            "es": "Serían las tres cuando llegó.",
+            "de": "Es war wohl drei Uhr, als er ankam."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Stämme"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dieselben Verben, die im Futuro einen unregelmäßigen Stamm haben, sind es auch im Condicional. Die Endungen bleiben immer regelmäßig."
+      },
+      {
+        "type": "table",
+        "caption": "Häufige unregelmäßige Stämme (yo-Form)",
+        "headers": [
+          "Infinitiv",
+          "Stamm",
+          "Beispiel (yo)"
+        ],
+        "rows": [
+          [
+            "tener",
+            "tendr-",
+            "tendría"
+          ],
+          [
+            "poder",
+            "podr-",
+            "podría"
+          ],
+          [
+            "poner",
+            "pondr-",
+            "pondría"
+          ],
+          [
+            "salir",
+            "saldr-",
+            "saldría"
+          ],
+          [
+            "venir",
+            "vendr-",
+            "vendría"
+          ],
+          [
+            "hacer",
+            "har-",
+            "haría"
+          ],
+          [
+            "decir",
+            "dir-",
+            "diría"
+          ],
+          [
+            "querer",
+            "querr-",
+            "querría"
+          ],
+          [
+            "saber",
+            "sabr-",
+            "sabría"
+          ],
+          [
+            "haber",
+            "habr-",
+            "habría"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche verwechseln oft Condicional und Pretérito Imperfecto, weil das 'r' entscheidet: 'comía' heißt 'ich aß / ich habe gegessen', 'comería' heißt 'ich würde essen'. Das 'r' vor der Endung darf nie fehlen."
+      }
+    ]
+  },
+  "preterito-perfecto-compuesto": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Das Pretérito Perfecto Compuesto beschreibt abgeschlossene Handlungen mit Bezug zur Gegenwart oder innerhalb eines noch nicht beendeten Zeitraums (heute, diese Woche, in meinem Leben). Es wird mit dem Präsens von haber plus Partizip gebildet. In Spanien ist es sehr gebräuchlich."
+      },
+      {
+        "type": "heading",
+        "text": "Bildung: haber im Präsens + Partizip"
+      },
+      {
+        "type": "table",
+        "caption": "Präsens von haber als Hilfsverb",
+        "headers": [
+          "",
+          "haber"
+        ],
+        "rows": [
+          [
+            "yo",
+            "he"
+          ],
+          [
+            "tú",
+            "has"
+          ],
+          [
+            "él, ella, usted",
+            "ha"
+          ],
+          [
+            "nosotros, nosotras",
+            "hemos"
+          ],
+          [
+            "vosotros, vosotras",
+            "habéis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "han"
+          ]
+        ]
+      },
+      {
+        "type": "table",
+        "caption": "Beispielkonjugation mit hablar, comer, vivir",
+        "headers": [
+          "",
+          "hablar",
+          "comer",
+          "vivir"
+        ],
+        "rows": [
+          [
+            "yo",
+            "he hablado",
+            "he comido",
+            "he vivido"
+          ],
+          [
+            "tú",
+            "has hablado",
+            "has comido",
+            "has vivido"
+          ],
+          [
+            "él, ella, usted",
+            "ha hablado",
+            "ha comido",
+            "ha vivido"
+          ],
+          [
+            "nosotros, nosotras",
+            "hemos hablado",
+            "hemos comido",
+            "hemos vivido"
+          ],
+          [
+            "vosotros, vosotras",
+            "habéis hablado",
+            "habéis comido",
+            "habéis vivido"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "han hablado",
+            "han comido",
+            "han vivido"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Handlung in noch nicht beendetem Zeitraum",
+            "es": "Esta mañana he desayunado en casa.",
+            "de": "Heute Morgen habe ich zu Hause gefrühstückt."
+          },
+          {
+            "title": "Vergangenes mit Gegenwartsbezug",
+            "es": "Todavía no he terminado el informe.",
+            "de": "Ich habe den Bericht noch nicht fertiggestellt."
+          },
+          {
+            "title": "Lebenserfahrung (ohne Zeitangabe)",
+            "es": "¿Alguna vez has estado en Sevilla?",
+            "de": "Warst du schon einmal in Sevilla?"
+          },
+          {
+            "title": "Ganz kürzlich Geschehenes",
+            "es": "Acabas de llegar y ya has roto algo.",
+            "de": "Du bist gerade angekommen und hast schon etwas kaputt gemacht."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Partizipien"
+      },
+      {
+        "type": "table",
+        "caption": "Häufige unregelmäßige Partizipien",
+        "headers": [
+          "Infinitiv",
+          "Partizip"
+        ],
+        "rows": [
+          [
+            "abrir",
+            "abierto"
+          ],
+          [
+            "decir",
+            "dicho"
+          ],
+          [
+            "escribir",
+            "escrito"
+          ],
+          [
+            "hacer",
+            "hecho"
+          ],
+          [
+            "poner",
+            "puesto"
+          ],
+          [
+            "ver",
+            "visto"
+          ],
+          [
+            "volver",
+            "vuelto"
+          ],
+          [
+            "romper",
+            "roto"
+          ],
+          [
+            "morir",
+            "muerto"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Das Partizip verändert sich hier nie: Es bleibt immer auf -o und richtet sich nicht nach Geschlecht oder Zahl des Subjekts. Falsch ist »Ana ha llegada«, richtig ist »Ana ha llegado«. Außerdem darf zwischen haber und Partizip nichts stehen — nicht »he no comido«, sondern »no he comido«."
+      }
+    ]
+  },
+  "preterito-pluscuamperfecto": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Das Pretérito Pluscuamperfecto beschreibt eine Handlung, die vor einem anderen Ereignis in der Vergangenheit bereits abgeschlossen war. Es entspricht dem deutschen Plusquamperfekt und wird mit dem Imperfecto von 'haber' plus Partizip gebildet."
+      },
+      {
+        "type": "heading",
+        "text": "Bildung: haber (Imperfecto) + Partizip"
+      },
+      {
+        "type": "table",
+        "caption": "Konjugation von 'haber' im Imperfecto mit Beispielpartizip 'hablado'",
+        "headers": [
+          "",
+          "haber",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "yo",
+            "había",
+            "había hablado"
+          ],
+          [
+            "tú",
+            "habías",
+            "habías hablado"
+          ],
+          [
+            "él, ella, usted",
+            "había",
+            "había hablado"
+          ],
+          [
+            "nosotros, nosotras",
+            "habíamos",
+            "habíamos hablado"
+          ],
+          [
+            "vosotros, vosotras",
+            "habíais",
+            "habíais hablado"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "habían",
+            "habían hablado"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Regelmäßige Partizipendungen"
+      },
+      {
+        "type": "table",
+        "caption": "Partizipbildung nach Verbgruppe",
+        "headers": [
+          "",
+          "Endung",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "-ar-Verben",
+            "-ado",
+            "hablar → hablado"
+          ],
+          [
+            "-er-Verben",
+            "-ido",
+            "comer → comido"
+          ],
+          [
+            "-ir-Verben",
+            "-ido",
+            "vivir → vivido"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Handlung vor einer anderen Vergangenheitshandlung",
+            "es": "Cuando llegué, ellos ya habían cenado.",
+            "de": "Als ich ankam, hatten sie schon zu Abend gegessen."
+          },
+          {
+            "title": "Erstmalige Erfahrung in der Vergangenheit",
+            "es": "Nunca había estado en Sevilla antes de aquel verano.",
+            "de": "Ich war vor jenem Sommer noch nie in Sevilla gewesen."
+          },
+          {
+            "title": "Erklärung eines vergangenen Zustands",
+            "es": "No pude entrar porque había perdido las llaves.",
+            "de": "Ich konnte nicht hinein, weil ich die Schlüssel verloren hatte."
+          },
+          {
+            "title": "In indirekter Rede",
+            "es": "Me dijo que ya había terminado el informe.",
+            "de": "Er sagte mir, dass er den Bericht schon fertiggestellt hatte."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Partizipien"
+      },
+      {
+        "type": "table",
+        "caption": "Häufige unregelmäßige Partizipien",
+        "headers": [
+          "Infinitiv",
+          "Partizip",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "abrir",
+            "abierto",
+            "había abierto"
+          ],
+          [
+            "decir",
+            "dicho",
+            "había dicho"
+          ],
+          [
+            "escribir",
+            "escrito",
+            "había escrito"
+          ],
+          [
+            "hacer",
+            "hecho",
+            "había hecho"
+          ],
+          [
+            "poner",
+            "puesto",
+            "había puesto"
+          ],
+          [
+            "ver",
+            "visto",
+            "había visto"
+          ],
+          [
+            "volver",
+            "vuelto",
+            "había vuelto"
+          ],
+          [
+            "romper",
+            "roto",
+            "había roto"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Zwischen 'haber' und dem Partizip darf nichts stehen. Pronomen kommen VOR 'haber', nicht dazwischen: richtig ist 'ya me lo había dicho', falsch 'había me lo dicho'. Das Partizip bleibt im Pluscuamperfecto immer unverändert auf -o und richtet sich nie nach Geschlecht oder Zahl."
+      }
+    ]
+  },
+  "subjuntivo-presente": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Der Presente de Subjuntivo drückt keine reine Tatsache aus, sondern Wunsch, Zweifel, Gefühl, Wertung oder Notwendigkeit. Er steht meist in Nebensätzen nach Auslösern wie 'querer que', 'es importante que' oder 'ojalá'. Er ist zentral für nuancierte, natürliche Kommunikation auf Spanisch."
+      },
+      {
+        "type": "heading",
+        "text": "Bildung: regelmäßige Formen"
+      },
+      {
+        "type": "paragraph",
+        "text": "Man geht von der 1. Person Singular des Indikativs Präsens aus, streicht das -o und hängt die Subjuntivo-Endungen an. Verben auf -ar bekommen -e-Endungen, Verben auf -er/-ir bekommen -a-Endungen (\"Vokaltausch\")."
+      },
+      {
+        "type": "table",
+        "caption": "Regelmäßige Endungen: hablar, comer, vivir",
+        "headers": [
+          "",
+          "hablar",
+          "comer",
+          "vivir"
+        ],
+        "rows": [
+          [
+            "yo",
+            "hable",
+            "coma",
+            "viva"
+          ],
+          [
+            "tú",
+            "hables",
+            "comas",
+            "vivas"
+          ],
+          [
+            "él, ella, usted",
+            "hable",
+            "coma",
+            "viva"
+          ],
+          [
+            "nosotros, nosotras",
+            "hablemos",
+            "comamos",
+            "vivamos"
+          ],
+          [
+            "vosotros, vosotras",
+            "habléis",
+            "comáis",
+            "viváis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "hablen",
+            "coman",
+            "vivan"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Stämme aus dem Indikativ"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ist die 1. Person Singular Indikativ unregelmäßig, überträgt sich diese Unregelmäßigkeit auf alle Personen des Subjuntivo: tengo → tenga, hago → haga, digo → diga, salgo → salga, conozco → conozca."
+      },
+      {
+        "type": "table",
+        "caption": "tener und hacer im Presente de Subjuntivo",
+        "headers": [
+          "",
+          "tener",
+          "hacer"
+        ],
+        "rows": [
+          [
+            "yo",
+            "tenga",
+            "haga"
+          ],
+          [
+            "tú",
+            "tengas",
+            "hagas"
+          ],
+          [
+            "él, ella, usted",
+            "tenga",
+            "haga"
+          ],
+          [
+            "nosotros, nosotras",
+            "tengamos",
+            "hagamos"
+          ],
+          [
+            "vosotros, vosotras",
+            "tengáis",
+            "hagáis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "tengan",
+            "hagan"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Wunsch oder Wille (querer que, esperar que)",
+            "es": "Quiero que vengas a la fiesta.",
+            "de": "Ich will, dass du zur Party kommst."
+          },
+          {
+            "title": "Unpersönliche Wertung (es importante que, es necesario que)",
+            "es": "Es importante que estudiéis todos los días.",
+            "de": "Es ist wichtig, dass ihr jeden Tag lernt."
+          },
+          {
+            "title": "Gefühl (me alegro de que, temer que)",
+            "es": "Me alegro de que estés aquí.",
+            "de": "Ich freue mich, dass du hier bist."
+          },
+          {
+            "title": "Zweifel oder Verneinung (dudar que, no creer que)",
+            "es": "No creo que tenga razón.",
+            "de": "Ich glaube nicht, dass er recht hat."
+          },
+          {
+            "title": "Wunschpartikel ojalá",
+            "es": "Ojalá haga buen tiempo mañana.",
+            "de": "Hoffentlich ist morgen gutes Wetter."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Vollständig unregelmäßige Verben"
+      },
+      {
+        "type": "table",
+        "caption": "Verben mit eigenem Subjuntiv-Stamm",
+        "headers": [
+          "",
+          "ser",
+          "ir",
+          "haber",
+          "saber",
+          "estar"
+        ],
+        "rows": [
+          [
+            "yo",
+            "sea",
+            "vaya",
+            "haya",
+            "sepa",
+            "esté"
+          ],
+          [
+            "tú",
+            "seas",
+            "vayas",
+            "hayas",
+            "sepas",
+            "estés"
+          ],
+          [
+            "él, ella, usted",
+            "sea",
+            "vaya",
+            "haya",
+            "sepa",
+            "esté"
+          ],
+          [
+            "nosotros, nosotras",
+            "seamos",
+            "vayamos",
+            "hayamos",
+            "sepamos",
+            "estemos"
+          ],
+          [
+            "vosotros, vosotras",
+            "seáis",
+            "vayáis",
+            "hayáis",
+            "sepáis",
+            "estéis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "sean",
+            "vayan",
+            "hayan",
+            "sepan",
+            "estén"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche Muttersprachler setzen nach 'dass' automatisch den Indikativ, weil das Deutsche hier keinen Subjuntivo verlangt. Merke: Nach 'querer que', 'espero que', 'es necesario que' usw. steht immer der Subjuntivo. Falsch: 'Quiero que vienes.' Richtig: 'Quiero que vengas.'"
+      }
+    ]
+  },
+  "imperfecto-subjuntivo": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Der Imperfecto de Subjuntivo ist der Subjuntivo der Vergangenheit. Er steht in Nebensätzen, wenn der Hauptsatz in einer Vergangenheitszeit oder im Konditional steht, und ist zentral für irreale Bedingungssätze (si-Sätze) und höfliche Wünsche. Es gibt zwei gleichwertige Endungen: -ra und -se."
+      },
+      {
+        "type": "heading",
+        "text": "Bildung"
+      },
+      {
+        "type": "paragraph",
+        "text": "Man geht von der 3. Person Plural des Indefinido aus (ellos hablaron, comieron, vivieron), streicht die Endung -ron und hängt die Subjuntiv-Endungen an. So bleiben alle unregelmäßigen Stämme des Indefinido erhalten."
+      },
+      {
+        "type": "table",
+        "caption": "Endungen -ra (Beispiele: hablar, comer, vivir)",
+        "headers": [
+          "",
+          "hablar",
+          "comer",
+          "vivir"
+        ],
+        "rows": [
+          [
+            "yo",
+            "hablara",
+            "comiera",
+            "viviera"
+          ],
+          [
+            "tú",
+            "hablaras",
+            "comieras",
+            "vivieras"
+          ],
+          [
+            "él, ella, usted",
+            "hablara",
+            "comiera",
+            "viviera"
+          ],
+          [
+            "nosotros, nosotras",
+            "habláramos",
+            "comiéramos",
+            "viviéramos"
+          ],
+          [
+            "vosotros, vosotras",
+            "hablarais",
+            "comierais",
+            "vivierais"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "hablaran",
+            "comieran",
+            "vivieran"
+          ]
+        ]
+      },
+      {
+        "type": "table",
+        "caption": "Endungen -se (gleichwertige Variante)",
+        "headers": [
+          "",
+          "hablar",
+          "comer",
+          "vivir"
+        ],
+        "rows": [
+          [
+            "yo",
+            "hablase",
+            "comiese",
+            "viviese"
+          ],
+          [
+            "tú",
+            "hablases",
+            "comieses",
+            "vivieses"
+          ],
+          [
+            "él, ella, usted",
+            "hablase",
+            "comiese",
+            "viviese"
+          ],
+          [
+            "nosotros, nosotras",
+            "hablásemos",
+            "comiésemos",
+            "viviésemos"
+          ],
+          [
+            "vosotros, vosotras",
+            "hablaseis",
+            "comieseis",
+            "vivieseis"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "hablasen",
+            "comiesen",
+            "viviesen"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Irreale Bedingung (si + Imperfecto de Subjuntivo)",
+            "es": "Si tuviera más tiempo, viajaría por toda España.",
+            "de": "Wenn ich mehr Zeit hätte, würde ich durch ganz Spanien reisen."
+          },
+          {
+            "title": "Subjuntiv-Auslöser in der Vergangenheit",
+            "es": "Mi jefe me pidió que llegara antes de las nueve.",
+            "de": "Mein Chef bat mich, vor neun Uhr zu kommen."
+          },
+          {
+            "title": "Höflicher Wunsch mit querer",
+            "es": "Quisiera reservar una mesa para dos.",
+            "de": "Ich hätte gern einen Tisch für zwei reserviert."
+          },
+          {
+            "title": "Nach como si (als ob)",
+            "es": "Habla como si lo supiera todo.",
+            "de": "Er redet, als ob er alles wüsste."
+          },
+          {
+            "title": "Nachzeitigkeit des Konditionals",
+            "es": "Me gustaría que vinierais a la fiesta.",
+            "de": "Ich würde mich freuen, wenn ihr zur Party kämt."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Stämme (aus dem Indefinido)"
+      },
+      {
+        "type": "table",
+        "caption": "Da der Stamm aus der 3. Person Plural Indefinido kommt, bleiben die Unregelmäßigkeiten erhalten",
+        "headers": [
+          "Infinitiv",
+          "3. Pl. Indefinido",
+          "Imperfecto de Subjuntivo (yo)"
+        ],
+        "rows": [
+          [
+            "ser / ir",
+            "fueron",
+            "fuera / fuese"
+          ],
+          [
+            "tener",
+            "tuvieron",
+            "tuviera / tuviese"
+          ],
+          [
+            "hacer",
+            "hicieron",
+            "hiciera / hiciese"
+          ],
+          [
+            "poder",
+            "pudieron",
+            "pudiera / pudiese"
+          ],
+          [
+            "poner",
+            "pusieron",
+            "pusiera / pusiese"
+          ],
+          [
+            "decir",
+            "dijeron",
+            "dijera / dijese"
+          ],
+          [
+            "venir",
+            "vinieron",
+            "viniera / viniese"
+          ],
+          [
+            "dar",
+            "dieron",
+            "diera / diese"
+          ],
+          [
+            "pedir",
+            "pidieron",
+            "pidiera / pidiese"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Nach si für eine irreale Bedingung steht nie das Konditional, sondern der Imperfecto de Subjuntivo. Falsch ist ‚Si tendría tiempo‘ — richtig ist ‚Si tuviera tiempo, iría‘. Das Konditional (iría) steht nur im Hauptsatz, der Subjuntivo im si-Satz."
+      }
+    ]
+  },
+  "oraciones-condicionales": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Die oraciones condicionales mit \"si\" drücken Bedingungen und ihre Folgen aus. Man unterscheidet reale Bedingungen (gut möglich), unwahrscheinliche oder unmögliche Bedingungen in der Gegenwart und Bedingungen der Vergangenheit, die nicht mehr eintreten können. Der gewählte Modus im si-Satz bestimmt die Bedeutung."
+      },
+      {
+        "type": "heading",
+        "text": "Die drei Grundtypen"
+      },
+      {
+        "type": "table",
+        "caption": "Struktur der si-Sätze",
+        "headers": [
+          "Typ",
+          "si-Satz (Bedingung)",
+          "Hauptsatz (Folge)"
+        ],
+        "rows": [
+          [
+            "Real",
+            "si + Presente de Indicativo",
+            "Presente / Futuro / Imperativo"
+          ],
+          [
+            "Irreal Gegenwart",
+            "si + Imperfecto de Subjuntivo",
+            "Condicional Simple"
+          ],
+          [
+            "Irreal Vergangenheit",
+            "si + Pluscuamperfecto de Subjuntivo",
+            "Condicional Compuesto"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Beispielsätze der drei Typen"
+      },
+      {
+        "type": "table",
+        "caption": "Vollständige Sätze",
+        "headers": [
+          "Typ",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "Real",
+            "Si tienes tiempo, vamos al cine."
+          ],
+          [
+            "Irreal Gegenwart",
+            "Si tuviera tiempo, iría al cine."
+          ],
+          [
+            "Irreal Vergangenheit",
+            "Si hubiera tenido tiempo, habría ido al cine."
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Reale, gut mögliche Bedingung",
+            "es": "Si llueve mañana, nos quedamos en casa.",
+            "de": "Wenn es morgen regnet, bleiben wir zu Hause."
+          },
+          {
+            "title": "Bedingung mit Aufforderung",
+            "es": "Si termináis pronto, llamadme.",
+            "de": "Wenn ihr bald fertig seid, ruft mich an."
+          },
+          {
+            "title": "Unwahrscheinliche Bedingung in der Gegenwart",
+            "es": "Si fuéramos ricos, viviríamos junto al mar.",
+            "de": "Wenn wir reich wären, würden wir am Meer wohnen."
+          },
+          {
+            "title": "Nicht mehr erfüllbare Bedingung in der Vergangenheit",
+            "es": "Si hubieras estudiado más, habrías aprobado el examen.",
+            "de": "Wenn du mehr gelernt hättest, hättest du die Prüfung bestanden."
+          },
+          {
+            "title": "Allgemeingültige Regel oder Gewohnheit",
+            "es": "Si caliento agua a cien grados, hierve.",
+            "de": "Wenn ich Wasser auf hundert Grad erhitze, kocht es."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Mischformen"
+      },
+      {
+        "type": "table",
+        "caption": "Vergangene Bedingung mit gegenwärtiger Folge",
+        "headers": [
+          "si-Satz",
+          "Hauptsatz",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "Pluscuamperfecto de Subjuntivo",
+            "Condicional Simple",
+            "Si hubiera ahorrado más, ahora sería rico."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Nach \"si\" steht im irrealen Bedingungssatz NIE der Condicional und auch nicht das Presente de Subjuntivo. Falsch: \"Si tendría tiempo\" oder \"Si tenga tiempo\". Richtig ist der Imperfecto de Subjuntivo: \"Si tuviera tiempo, iría\". Der Condicional gehört nur in den Hauptsatz."
+      }
+    ]
+  },
+  "perifrasis-verbales": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Als perífrasis verbales bezeichnet man feste Verbindungen aus einem konjugierten Hilfsverb und einer Verbform im Infinitiv, Gerundium oder Partizip. Sie drücken Nuancen aus, für die es im Deutschen oft nur Umschreibungen gibt: Wiederholung, Andauern, Beginn oder Ende einer Handlung."
+      },
+      {
+        "type": "heading",
+        "text": "Die drei Grundtypen"
+      },
+      {
+        "type": "table",
+        "caption": "Struktur nach Verbform",
+        "headers": [
+          "",
+          "Struktur",
+          "Bedeutung"
+        ],
+        "rows": [
+          [
+            "Infinitiv",
+            "volver a + Infinitiv",
+            "etwas wieder tun"
+          ],
+          [
+            "Infinitiv",
+            "ir a + Infinitiv",
+            "etwas gleich/bald tun"
+          ],
+          [
+            "Infinitiv",
+            "acabar de + Infinitiv",
+            "gerade getan haben"
+          ],
+          [
+            "Gerundium",
+            "seguir + Gerundium",
+            "weiterhin tun"
+          ],
+          [
+            "Gerundium",
+            "llevar + Gerundium",
+            "seit einer Dauer tun"
+          ],
+          [
+            "Gerundium",
+            "estar + Gerundium",
+            "gerade dabei sein"
+          ],
+          [
+            "Partizip",
+            "llevar + Partizip",
+            "bereits erledigt haben"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "seguir + Gerundium konjugiert"
+      },
+      {
+        "type": "table",
+        "caption": "Beispiel: seguir trabajando (weiterarbeiten)",
+        "headers": [
+          "",
+          "seguir",
+          "+ Gerundium"
+        ],
+        "rows": [
+          [
+            "yo",
+            "sigo",
+            "trabajando"
+          ],
+          [
+            "tú",
+            "sigues",
+            "trabajando"
+          ],
+          [
+            "él, ella, usted",
+            "sigue",
+            "trabajando"
+          ],
+          [
+            "nosotros, nosotras",
+            "seguimos",
+            "trabajando"
+          ],
+          [
+            "vosotros, vosotras",
+            "seguís",
+            "trabajando"
+          ],
+          [
+            "ellos, ellas, ustedes",
+            "siguen",
+            "trabajando"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Wiederholung einer Handlung",
+            "es": "Ha vuelto a llover esta tarde.",
+            "de": "Es hat heute Nachmittag wieder geregnet."
+          },
+          {
+            "title": "Andauern eines Zustands",
+            "es": "Sigo viviendo en el mismo piso.",
+            "de": "Ich wohne weiterhin in derselben Wohnung."
+          },
+          {
+            "title": "Dauer bis zum Sprechzeitpunkt",
+            "es": "Llevo tres años estudiando español.",
+            "de": "Ich lerne seit drei Jahren Spanisch."
+          },
+          {
+            "title": "Etwas gerade Abgeschlossenes",
+            "es": "Acabo de salir del trabajo.",
+            "de": "Ich habe gerade Feierabend gemacht."
+          },
+          {
+            "title": "Naher Zukunftsbezug",
+            "es": "Vamos a cenar en casa de mis padres.",
+            "de": "Wir werden bei meinen Eltern zu Abend essen."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Besonderheiten der Konstruktion"
+      },
+      {
+        "type": "table",
+        "caption": "Stellung der Pronomen",
+        "headers": [
+          "",
+          "Beispiel",
+          "Deutsch"
+        ],
+        "rows": [
+          [
+            "vor dem Hilfsverb",
+            "Lo sigo estudiando.",
+            "Ich lerne es weiterhin."
+          ],
+          [
+            "angehängt am Gerundium",
+            "Sigo estudiándolo.",
+            "Ich lerne es weiterhin."
+          ],
+          [
+            "vor dem Hilfsverb (Infinitiv)",
+            "Lo voy a llamar.",
+            "Ich werde ihn anrufen."
+          ],
+          [
+            "angehängt am Infinitiv",
+            "Voy a llamarlo.",
+            "Ich werde ihn anrufen."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche verwechseln oft 'volver a + Infinitiv' (wieder tun) mit 'volver' (zurückkehren). 'Vuelvo a leerlo' heißt 'Ich lese es erneut', nicht 'Ich kehre zurück, um es zu lesen'. Und nach 'volver a' steht immer der Infinitiv, nie das Gerundium: nicht *vuelvo a leyendo*."
+      }
+    ]
+  },
+  "marcadores-temporales": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Die marcadores temporales desde, hace und durante geben an, seit wann, vor wie langer Zeit oder während welches Zeitraums etwas geschieht. Sie sind zentral, um Dauer, Ausgangspunkt und Zeitspanne einer Handlung präzise auszudrücken, und werden oft verwechselt."
+      },
+      {
+        "type": "heading",
+        "text": "Grundformen und ihre Bedeutung"
+      },
+      {
+        "type": "table",
+        "caption": "Die drei Marker im Überblick",
+        "headers": [
+          "Marker",
+          "Bedeutung",
+          "Bezug"
+        ],
+        "rows": [
+          [
+            "desde",
+            "seit (Ausgangspunkt)",
+            "konkreter Zeitpunkt in der Vergangenheit"
+          ],
+          [
+            "desde hace",
+            "seit (Dauer)",
+            "verstrichene Zeitspanne bis heute"
+          ],
+          [
+            "hace",
+            "vor / seit (Abstand)",
+            "Zeit, die seit einem Ereignis vergangen ist"
+          ],
+          [
+            "durante",
+            "während / (für die Dauer von)",
+            "abgeschlossener oder gesamter Zeitraum"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Satzstellung"
+      },
+      {
+        "type": "table",
+        "caption": "Konstruktion mit Beispielangabe",
+        "headers": [
+          "",
+          "Struktur",
+          "Beispielangabe"
+        ],
+        "rows": [
+          [
+            "desde",
+            "desde + Zeitpunkt",
+            "desde 2010, desde el lunes"
+          ],
+          [
+            "desde hace",
+            "desde hace + Zeitspanne",
+            "desde hace tres años"
+          ],
+          [
+            "hace ... que",
+            "hace + Zeitspanne + que",
+            "hace tres años que"
+          ],
+          [
+            "hace",
+            "hace + Zeitspanne (Abstand)",
+            "hace dos días"
+          ],
+          [
+            "durante",
+            "durante + Zeitraum",
+            "durante el verano"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Ausgangspunkt mit desde",
+            "es": "Vivo en Valencia desde 2015.",
+            "de": "Ich wohne seit 2015 in Valencia."
+          },
+          {
+            "title": "Andauernde Handlung: desde hace",
+            "es": "Estudio alemán desde hace dos años.",
+            "de": "Ich lerne seit zwei Jahren Deutsch."
+          },
+          {
+            "title": "Gleiche Aussage mit hace ... que",
+            "es": "Hace dos años que estudio alemán.",
+            "de": "Seit zwei Jahren lerne ich Deutsch."
+          },
+          {
+            "title": "Zeitlicher Abstand zu einem Ereignis",
+            "es": "Terminé la carrera hace cinco años.",
+            "de": "Ich habe mein Studium vor fünf Jahren abgeschlossen."
+          },
+          {
+            "title": "Zeitraum mit durante",
+            "es": "Durante las vacaciones no trabajamos.",
+            "de": "Während der Ferien arbeiten wir nicht."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "desde vs. desde hace"
+      },
+      {
+        "type": "table",
+        "caption": "Zeitpunkt oder Zeitspanne",
+        "headers": [
+          "",
+          "desde (Zeitpunkt)",
+          "desde hace (Dauer)"
+        ],
+        "rows": [
+          [
+            "Beispiel",
+            "desde el martes",
+            "desde hace tres días"
+          ],
+          [
+            "Frage",
+            "¿Desde cuándo?",
+            "¿Desde cuándo? / ¿Cuánto tiempo hace?"
+          ],
+          [
+            "Antwortfokus",
+            "ab wann es begann",
+            "wie lange es schon dauert"
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche übersetzen 'seit' oft pauschal mit desde: 'Vivo aquí desde tres años' ist falsch. Bei einer Zeitspanne (drei Jahre) muss desde hace stehen: 'Vivo aquí desde hace tres años'. Desde allein nur vor einem konkreten Zeitpunkt (desde 2020, desde marzo). Und hace bezeichnet den Abstand ('vor drei Jahren'), nicht die Dauer bis heute."
+      }
+    ]
+  },
+  "voz-pasiva-refleja": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Das Passiv rückt die Handlung oder das betroffene Objekt in den Vordergrund, während der Handelnde unwichtig oder unbekannt bleibt. Im Spanischen gibt es zwei Wege: die Vorgangspassiv-Konstruktion mit ser + Partizip (voz pasiva) und die weit häufigere pasiva refleja mit se, die im Alltag klar bevorzugt wird."
+      },
+      {
+        "type": "heading",
+        "text": "Voz pasiva: ser + Partizip"
+      },
+      {
+        "type": "paragraph",
+        "text": "Das Partizip richtet sich in Geschlecht und Zahl nach dem Subjekt. Der Handelnde wird, wenn genannt, mit der Präposition por eingeleitet."
+      },
+      {
+        "type": "table",
+        "caption": "ser + Partizip (Beispiel: publicar)",
+        "headers": [
+          "",
+          "ser",
+          "Partizip"
+        ],
+        "rows": [
+          [
+            "Singular mask.",
+            "es / fue",
+            "publicado"
+          ],
+          [
+            "Singular fem.",
+            "es / fue",
+            "publicada"
+          ],
+          [
+            "Plural mask.",
+            "son / fueron",
+            "publicados"
+          ],
+          [
+            "Plural fem.",
+            "son / fueron",
+            "publicadas"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Pasiva refleja: se + Verb"
+      },
+      {
+        "type": "paragraph",
+        "text": "Das Verb steht in der 3. Person und richtet sich in der Zahl nach dem grammatischen Subjekt (der Sache). Kein Handelnder wird genannt."
+      },
+      {
+        "type": "table",
+        "caption": "Pasiva refleja",
+        "headers": [
+          "",
+          "Singular",
+          "Plural"
+        ],
+        "rows": [
+          [
+            "Präsens",
+            "se vende",
+            "se venden"
+          ],
+          [
+            "Indefinido",
+            "se vendió",
+            "se vendieron"
+          ],
+          [
+            "Perfekt",
+            "se ha vendido",
+            "se han vendido"
+          ],
+          [
+            "Futur",
+            "se venderá",
+            "se venderán"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Formeller/schriftlicher Vorgang mit ser",
+            "es": "La ley fue aprobada por el Parlamento en 2020.",
+            "de": "Das Gesetz wurde 2020 vom Parlament verabschiedet."
+          },
+          {
+            "title": "Handelnder unbekannt oder unwichtig (pasiva refleja)",
+            "es": "Aquí se hablan varios idiomas.",
+            "de": "Hier werden mehrere Sprachen gesprochen."
+          },
+          {
+            "title": "Schilder und Anzeigen",
+            "es": "Se vende piso. Se buscan camareros.",
+            "de": "Wohnung zu verkaufen. Kellner gesucht."
+          },
+          {
+            "title": "Anleitungen und Rezepte",
+            "es": "Primero se cortan las verduras y se fríen en aceite.",
+            "de": "Zuerst schneidet man das Gemüse und brät es in Öl."
+          },
+          {
+            "title": "Allgemeine Aussagen ohne Subjekt",
+            "es": "En España se cena muy tarde.",
+            "de": "In Spanien isst man sehr spät zu Abend."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Unregelmäßige Partizipien im Passiv"
+      },
+      {
+        "type": "table",
+        "caption": "Häufige unregelmäßige Partizipien",
+        "headers": [
+          "",
+          "Partizip",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "escribir",
+            "escrito",
+            "La carta fue escrita ayer."
+          ],
+          [
+            "hacer",
+            "hecho",
+            "El trabajo está hecho."
+          ],
+          [
+            "abrir",
+            "abierto",
+            "La tienda fue abierta a las ocho."
+          ],
+          [
+            "romper",
+            "roto",
+            "Los vasos fueron rotos."
+          ],
+          [
+            "resolver",
+            "resuelto",
+            "El caso fue resuelto."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutschsprachige übertragen das deutsche 'werden'-Passiv oft direkt mit ser + Partizip. Im Spanien-Spanisch klingt das im Alltag steif und schriftsprachlich. Statt 'La casa fue construida en 1990' sagt man normalerweise 'La casa se construyó en 1990'. Denk außerdem an die Zahl-Kongruenz bei der pasiva refleja: 'Se venden pisos' (Plural!), nicht 'Se vende pisos'."
+      }
+    ]
+  },
+  "estilo-indirecto": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Der estilo indirecto gibt wieder, was jemand gesagt, gefragt oder gefordert hat, ohne die Worte wörtlich zu zitieren. Statt «Voy a casa» sagst du «Dijo que iba a casa». Wenn das einleitende Verb in der Vergangenheit steht, verschieben sich Zeiten, Pronomen und Zeitangaben."
+      },
+      {
+        "type": "heading",
+        "text": "Zeitenverschiebung nach Vergangenheit"
+      },
+      {
+        "type": "table",
+        "caption": "Wechsel der Verbzeit, wenn das einleitende Verb (dijo, preguntó …) in der Vergangenheit steht",
+        "headers": [
+          "Direkte Rede",
+          "Indirekte Rede"
+        ],
+        "rows": [
+          [
+            "Presente (trabajo)",
+            "Imperfecto (trabajaba)"
+          ],
+          [
+            "Pretérito Perfecto (he trabajado)",
+            "Pluscuamperfecto (había trabajado)"
+          ],
+          [
+            "Indefinido (trabajé)",
+            "Pluscuamperfecto (había trabajado)"
+          ],
+          [
+            "Imperfecto (trabajaba)",
+            "Imperfecto (trabajaba)"
+          ],
+          [
+            "Futuro (trabajaré)",
+            "Condicional (trabajaría)"
+          ],
+          [
+            "Imperativo (trabaja)",
+            "Imperfecto de Subjuntivo (trabajara)"
+          ],
+          [
+            "Presente de Subjuntivo (trabaje)",
+            "Imperfecto de Subjuntivo (trabajara)"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verschiebung von Zeit- und Ortsangaben"
+      },
+      {
+        "type": "table",
+        "caption": "Wechsel der Deiktika bei zeitlicher Distanz",
+        "headers": [
+          "Direkte Rede",
+          "Indirekte Rede"
+        ],
+        "rows": [
+          [
+            "hoy",
+            "aquel día"
+          ],
+          [
+            "ayer",
+            "el día anterior"
+          ],
+          [
+            "mañana",
+            "el día siguiente"
+          ],
+          [
+            "ahora",
+            "entonces"
+          ],
+          [
+            "aquí",
+            "allí"
+          ],
+          [
+            "este/esta",
+            "ese/esa"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Aussage wiedergeben",
+            "es": "Dijo que estaba cansado y que se iría pronto.",
+            "de": "Er sagte, dass er müde sei und bald gehen werde."
+          },
+          {
+            "title": "Ja/Nein-Frage wiedergeben (si)",
+            "es": "Me preguntó si había terminado el informe.",
+            "de": "Sie fragte mich, ob ich den Bericht fertig hätte."
+          },
+          {
+            "title": "Ergänzungsfrage wiedergeben (mit Fragewort)",
+            "es": "Nos preguntó dónde vivíamos.",
+            "de": "Er fragte uns, wo wir wohnten."
+          },
+          {
+            "title": "Aufforderung oder Bitte wiedergeben",
+            "es": "El médico me dijo que descansara unos días.",
+            "de": "Der Arzt sagte mir, ich solle mich ein paar Tage ausruhen."
+          },
+          {
+            "title": "Wiedergabe im Präsens (keine Verschiebung)",
+            "es": "Dice que viene esta tarde.",
+            "de": "Sie sagt, dass sie heute Nachmittag kommt."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Einleitende Verben und Anschluss"
+      },
+      {
+        "type": "table",
+        "caption": "Typische Verben und ihr Anschluss",
+        "headers": [
+          "",
+          "Beispiel"
+        ],
+        "rows": [
+          [
+            "Aussage (que)",
+            "Comentó que vosotros teníais razón."
+          ],
+          [
+            "Ja/Nein-Frage (si)",
+            "Preguntó si veníais con nosotros."
+          ],
+          [
+            "W-Frage (Fragewort)",
+            "Quiso saber cuándo llegabais."
+          ],
+          [
+            "Aufforderung (que + Subjuntivo)",
+            "Os pidió que llegarais a tiempo."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutschsprachige übernehmen bei der W-Frage oft den Akzent nicht: Auch im estilo indirecto behält das Fragewort seinen Akzent (Me preguntó qué quería, dónde vivía, cuándo llegaba) — obwohl kein Fragezeichen mehr steht."
+      }
+    ]
+  },
+  "pronombres-complemento-directo": {
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Die direkten Objektpronomen (Pronombres de Complemento Directo) ersetzen das direkte Objekt eines Satzes, um Wiederholungen zu vermeiden. Statt „Veo el coche“ sagt man „Lo veo“. Sie richten sich in Geschlecht und Zahl nach dem Substantiv, das sie ersetzen."
+      },
+      {
+        "type": "heading",
+        "text": "Die Formen"
+      },
+      {
+        "type": "table",
+        "caption": "Direkte Objektpronomen",
+        "headers": [
+          "Person",
+          "Singular",
+          "Plural"
+        ],
+        "rows": [
+          [
+            "1. Person",
+            "me (mich)",
+            "nos (uns)"
+          ],
+          [
+            "2. Person",
+            "te (dich)",
+            "os (euch)"
+          ],
+          [
+            "3. Person maskulin",
+            "lo (ihn/es)",
+            "los (sie)"
+          ],
+          [
+            "3. Person feminin",
+            "la (sie/es)",
+            "las (sie)"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "lo, la, los, las ersetzen sowohl Personen als auch Sachen. Das Geschlecht richtet sich nach dem ersetzten Substantiv: el libro → lo, la casa → la."
+      },
+      {
+        "type": "heading",
+        "text": "Stellung im Satz"
+      },
+      {
+        "type": "table",
+        "caption": "Position des Pronomens",
+        "headers": [
+          "",
+          "Beispiel",
+          "Übersetzung"
+        ],
+        "rows": [
+          [
+            "Vor konjugiertem Verb",
+            "La compro.",
+            "Ich kaufe sie."
+          ],
+          [
+            "Am Infinitiv angehängt",
+            "Voy a comprarla.",
+            "Ich werde sie kaufen."
+          ],
+          [
+            "Vor der Verbalperiphrase",
+            "La voy a comprar.",
+            "Ich werde sie kaufen."
+          ],
+          [
+            "Am Gerundium angehängt",
+            "Estoy comprándola.",
+            "Ich kaufe sie gerade."
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Verwendung"
+      },
+      {
+        "type": "usecases",
+        "items": [
+          {
+            "title": "Eine Sache ersetzen",
+            "es": "¿Tienes el móvil? Sí, lo tengo aquí.",
+            "de": "Hast du das Handy? Ja, ich habe es hier."
+          },
+          {
+            "title": "Eine Person ersetzen",
+            "es": "¿Conoces a María? Sí, la conozco bien.",
+            "de": "Kennst du María? Ja, ich kenne sie gut."
+          },
+          {
+            "title": "Plural ersetzen",
+            "es": "¿Compras las manzanas? Sí, las compro.",
+            "de": "Kaufst du die Äpfel? Ja, ich kaufe sie."
+          },
+          {
+            "title": "Angehängt an den Infinitiv",
+            "es": "Estas cartas quiero enviarlas hoy.",
+            "de": "Diese Briefe will ich heute abschicken."
+          },
+          {
+            "title": "Euch ansprechen (vosotros)",
+            "es": "Os espero en la puerta.",
+            "de": "Ich warte auf euch am Eingang."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Besonderheit: neutrales lo"
+      },
+      {
+        "type": "table",
+        "caption": "lo für ganze Aussagen oder Adjektive",
+        "headers": [
+          "",
+          "Beispiel",
+          "Übersetzung"
+        ],
+        "rows": [
+          [
+            "Ersetzt eine Aussage",
+            "¿Sabes que viene? Sí, lo sé.",
+            "Weißt du, dass er kommt? Ja, ich weiß es."
+          ],
+          [
+            "Ersetzt ein Adjektiv",
+            "¿Está cansada? Sí, lo está.",
+            "Ist sie müde? Ja, das ist sie."
+          ]
+        ]
+      },
+      {
+        "type": "note",
+        "variant": "warning",
+        "text": "Deutsche Muttersprachler vergessen oft, das Objekt bei bekannten Dingen durch ein Pronomen zu ersetzen, und wiederholen das Substantiv: „¿Compras el pan? Sí, compro el pan.“ ist unnatürlich. Richtig: „Sí, lo compro.“ Achte außerdem darauf, das Pronomen VOR das konjugierte Verb zu stellen, nicht dahinter wie im Deutschen: „Lo veo“, nicht „Veo lo“."
+      }
+    ]
+  }
+}
