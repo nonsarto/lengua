@@ -23,9 +23,12 @@ const es = {
   hablarTranscript: "Transcripción",
   hablarCorrected: "Versión corregida",
   hablarErrorsTitle: "Fallos",
+  hablarGoodTitle: "Bien dicho",
+  hablarImprovementsTitle: "Mejoras",
+  hablarImprovementBadge: "aprendido",
   hablarChunksTitle: "Chunks",
   hablarAudioMissing: "Audio no disponible.",
-  hablarLegend: "rojo = fallo · ámbar = palabra alemana · punteado = poca confianza",
+  hablarLegend: "rojo = fallo · verde = bien dicho · ámbar = palabra alemana · punteado = poca confianza",
   // Quelle des Enums: lengua-bot/constants.py ERROR_TYPES + db/migrations/012 — synchron halten.
   errorTypeLabels: {
     subjuntivo: "subjuntivo", ser_estar: "ser/estar",
@@ -315,9 +318,12 @@ const ca: typeof es = {
   hablarTranscript: "Transcripció",
   hablarCorrected: "Versió corregida",
   hablarErrorsTitle: "Errors",
+  hablarGoodTitle: "Ben dit",
+  hablarImprovementsTitle: "Millores",
+  hablarImprovementBadge: "après",
   hablarChunksTitle: "Chunks",
   hablarAudioMissing: "Àudio no disponible.",
-  hablarLegend: "vermell = error · ambre = paraula alemanya · puntejat = poca confiança",
+  hablarLegend: "vermell = error · verd = ben dit · ambre = paraula alemanya · puntejat = poca confiança",
   errorTypeLabels: {
     subjuntivo: "subjuntiu", ser_estar: "ser/estar",
     indefinido_imperfecto: "indefinit/imperfet", perifrasis: "perífrasi",

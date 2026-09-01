@@ -1265,6 +1265,9 @@ def hablar_detail(session_id: str, user: dict = Depends(current_user)) -> dict:
             "transcript": session["transcript"],
             "transcript_corrected": session["transcript_corrected"],
             "low_conf_spans": session["low_conf_spans"],
+            # .get: Spalten kommen mit Migration 018 — Backend darf davor nicht brechen.
+            "highlights": session.get("highlights") or [],
+            "improvements": session.get("improvements") or [],
         },
         "audio_url": audio_url,
         "errors": errors,

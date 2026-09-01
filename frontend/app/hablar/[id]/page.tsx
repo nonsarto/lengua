@@ -22,6 +22,18 @@ type Detail = {
     transcript: string;
     transcript_corrected: string | null;
     low_conf_spans: { model?: string; spans?: { char_start: number; char_end: number }[] } | null;
+    highlights: {
+      text: string;
+      comment: string;
+      char_start: number | null;
+      char_end: number | null;
+    }[];
+    improvements: {
+      text: string;
+      past_original: string;
+      past_corrected: string;
+      comment: string | null;
+    }[];
   };
   audio_url: string | null;
   errors: {
@@ -87,6 +99,9 @@ export default function HablarDetail() {
     ...d.errors
       .filter((e) => e.char_start != null && e.char_end != null)
       .map((e) => ({ start: e.char_start!, end: e.char_end!, kind: "error" as const })),
+    ...(session.highlights ?? [])
+      .filter((h) => h.char_start != null && h.char_end != null)
+      .map((h) => ({ start: h.char_start!, end: h.char_end!, kind: "good" as const })),
     ...germanSpans(session.transcript, d.chunks.map((c) => c.trigger_de)),
     ...(session.low_conf_spans?.spans ?? []).map((s) => ({
       start: s.char_start, end: s.char_end, kind: "lowconf" as const,
@@ -121,6 +136,40 @@ export default function HablarDetail() {
           <p className="whitespace-pre-wrap leading-relaxed text-stone-600">
             {session.transcript_corrected}
           </p>
+        </Tile>
+      )}
+
+      {(session.improvements ?? []).length > 0 && (
+        <Tile title={S.hablarImprovementsTitle}>
+          <div className="divide-y divide-stone-100">
+            {session.improvements.map((m, i) => (
+              <div key={i} className="py-2.5 first:pt-0 last:pb-0">
+                <p className="mb-1 text-xs">
+                  <span className="rounded-full bg-green-50 px-1.5 py-px text-green-700">
+                    {S.hablarImprovementBadge}
+                  </span>
+                </p>
+                <p className="text-sm">
+                  <span className="text-stone-400 line-through">{m.past_original}</span>{" "}
+                  <span className="font-medium">{m.text}</span>
+                </p>
+                {m.comment && <p className="mt-0.5 text-xs text-stone-500">{m.comment}</p>}
+              </div>
+            ))}
+          </div>
+        </Tile>
+      )}
+
+      {(session.highlights ?? []).length > 0 && (
+        <Tile title={S.hablarGoodTitle}>
+          <div className="divide-y divide-stone-100">
+            {session.highlights.map((h, i) => (
+              <div key={i} className="py-2.5 first:pt-0 last:pb-0">
+                <p className="text-sm font-medium">{h.text}</p>
+                <p className="mt-0.5 text-xs text-stone-500">{h.comment}</p>
+              </div>
+            ))}
+          </div>
         </Tile>
       )}
 

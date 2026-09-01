@@ -1,18 +1,19 @@
 "use client";
 
 /**
- * Transkript mit Inline-Markierungen aus drei Quellen (Offsets gegen das
+ * Transkript mit Inline-Markierungen aus vier Quellen (Offsets gegen das
  * ORIGINAL-Transkript, nie die korrigierte Fassung):
  *   - error:   error_log char_start/char_end        → rot
+ *   - good:    highlights der Analyse (gelungene Stellen) → grün
  *   - de:      deutsche Wörter (client-seitig via trigger_de gematcht) → amber
  *   - lowconf: low_conf_spans der Transkription     → gepunktete Unterstreichung
- * Zwei verschiedene Dinge, zwei Farben (Fehler ≠ fehlende Vokabel).
+ * Verschiedene Dinge, verschiedene Farben (Fehler ≠ fehlende Vokabel ≠ gelungen).
  *
  * segmentSpans() schneidet den Text an allen Span-Grenzen in atomare Segmente —
  * verkraftet damit beliebige Überlappungen ohne verschachtelte Elemente.
  */
 
-export type Span = { start: number; end: number; kind: "error" | "de" | "lowconf" };
+export type Span = { start: number; end: number; kind: "error" | "good" | "de" | "lowconf" };
 
 export function segmentSpans(text: string, spans: Span[]) {
   const valid = spans.filter(
@@ -63,6 +64,7 @@ export function germanSpans(text: string, triggers: (string | null)[]): Span[] {
 
 const SEGMENT_STYLE: Record<string, string> = {
   error: "bg-red-50 underline decoration-red-400 decoration-2 underline-offset-2",
+  good: "bg-green-50 underline decoration-green-500 decoration-2 underline-offset-2",
   de: "bg-amber-100 rounded-sm",
   lowconf: "underline decoration-dotted decoration-stone-400 underline-offset-4",
 };
